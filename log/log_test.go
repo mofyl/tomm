@@ -13,5 +13,5 @@ func TestGetConfig(t *testing.T) {
 }
 
 func TestLog(t *testing.T) {
-	Info("qqq", zap.String("asda", "asda"))
+	Debug("qqq", zap.String("asda", "asda"))
 }

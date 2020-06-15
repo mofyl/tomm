@@ -5,7 +5,9 @@ import (
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
 	"os"
+	"path/filepath"
 	"tomm/config"
+	"tomm/utils"
 )
 
 type LogLEVEL = string
@@ -85,7 +87,8 @@ func buildLog(config LogConfig) *zap.Logger {
 func getWriteSync(outFile bool, filePath string) zapcore.WriteSyncer {
 	if outFile {
 		if filePath == "" {
-			filePath = "../logs/tomm.log"
+			filePath = utils.GetProDirAbs() + "logs" + string(filepath.Separator) + "tomm.log"
+			//filePath = "../logs/tomm.log"
 		}
 		hook := lumberjack.Logger{
 			Filename:   filePath, // 日志文件路径

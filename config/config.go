@@ -4,6 +4,11 @@ import (
 	"errors"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
+	"tomm/utils"
+)
+
+const (
+	CONFIGDIR = "configfile"
 )
 
 func init() {
@@ -12,10 +17,11 @@ func init() {
 
 func newFile(base string) {
 	if base == "" {
-		base = "../configfile"
+		base = utils.GetProDirAbs() + CONFIGDIR
 	}
-	viper.SetConfigType("yaml")
+
 	viper.SetConfigName("config_test")
+	viper.SetConfigType("yaml")
 	viper.AddConfigPath(base)
 	loadFile()
 	viper.WatchConfig()
