@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"github.com/google/uuid"
 	"os"
 	"path/filepath"
 	"strings"
@@ -21,4 +22,8 @@ func GetProDirAbs() string {
 
 	path := sbuilder.String()
 	return path
+}
+
+func GetUUID() (uuid.UUID, error) {
+	return uuid.NewUUID()
 }

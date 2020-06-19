@@ -1,5 +1,7 @@
 redis:
   addr: "127.0.0.1:3306"
+privateKey : # 单位为秒
+  expTime : 2 * 3600
 log:
   level: "DEBUG"
   outFile: true

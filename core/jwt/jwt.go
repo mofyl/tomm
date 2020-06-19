@@ -1,0 +1,103 @@
+package jwt
+
+import (
+	"crypto/md5"
+	"encoding/hex"
+	"errors"
+	"go.uber.org/zap"
+	"gopkg.in/dgrijalva/jwt-go.v3"
+	"time"
+	"tomm/log"
+	"tomm/utils"
+)
+
+const (
+	AUTH_NAME = "bee"
+)
+
+type TokenInfo struct {
+	ChannelName string `json:"channel_name,omitempty"`
+	ExternInfo  string `json:"extern_info,omitempty"`
+}
+
+type CustomClaims struct {
+	TokenInfo
+	ChannelKey string `json:"channel_key,omitempty"`
+	RandomKey  string `json:"random_key,omitempty"`
+	jwt.StandardClaims
+}
+
+type Jwt struct {
+	key PrivateKey
+}
+
+func NewJwt() *Jwt {
+	j := &Jwt{}
+	//if err != nil {
+	//	panic("init Jwt Fail err" + err.Error())
+	//}
+
+	return j
+}
+
+func NewJwtWithPrivateKey(key PrivateKey) *Jwt {
+	return &Jwt{
+		key: key,
+	}
+}
+
+func (j *Jwt) getRandomStr() string {
+	uid, err := utils.GetUUID()
+	if err != nil {
+		return ""
+	}
+	return uid.String()
+}
+
+func (j *Jwt) decode(token string) error {
+
+	to, err := jwt.ParseWithClaims(token, &CustomClaims{}, j.doVaild)
+
+	if err != nil {
+		return err
+	}
+
+	customClaims, ok := to.Claims.(*CustomClaims)
+
+	if !ok {
+		return errors.New("CustomClaims Convert Fail")
+	}
+
+	if !to.Valid {
+		return errors.New("Token is not vaild")
+	}
+	expTime := customClaims.ExpiresAt
+	auth := customClaims.Issuer
+
+	log.Info("Decode ", zap.Int64("expTime", expTime), zap.String("secret", auth))
+	return nil
+}
+
+func (j *Jwt) doVaild(token *jwt.Token) (interface{}, error) {
+	return []byte(j.key.Key), nil
+}
+
+func (j *Jwt) Encode(tokenInfo TokenInfo) (string, error) {
+
+	timeNow := time.Now()
+	beforeTime := timeNow.Unix() - 2*60
+	afterTime := timeNow.Add(2 * time.Hour).Unix()
+	claims := CustomClaims{}
+
+	claims.TokenInfo = tokenInfo
+	claims.ChannelKey = "qweqwe"
+	claims.RandomKey = j.getRandomStr()
+	claims.NotBefore = beforeTime
+	claims.ExpiresAt = afterTime
+	claims.IssuedAt = timeNow.Unix()
+	claims.Issuer = AUTH_NAME
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, &claims)
+
+	return token.SignedString([]byte(j.PrivateKey))
+}
