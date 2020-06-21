@@ -15,14 +15,14 @@ const (
 )
 
 var (
-	defaultConf *PrivateConf
+	defaultConf PrivateConf
 )
 
 func init() {
-	err := config.Decode(CONF_KEY, defaultConf)
+	err := config.Decode(CONF_KEY, &defaultConf)
 
 	if err != nil {
-		panic("privateKey Conf init Fail")
+		panic("privateKey Conf init Fail" + err.Error())
 	}
 }
 
@@ -40,7 +40,7 @@ type PrivateKey struct {
 func NewPrivateKey(conf *PrivateConf) (*PrivateKey, error) {
 
 	if conf == nil {
-		conf = defaultConf
+		conf = &defaultConf
 	}
 
 	p := &PrivateKey{

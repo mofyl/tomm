@@ -1,8 +1,6 @@
 package jwt
 
 import (
-	"crypto/md5"
-	"encoding/hex"
 	"errors"
 	"go.uber.org/zap"
 	"gopkg.in/dgrijalva/jwt-go.v3"
@@ -28,11 +26,18 @@ type CustomClaims struct {
 }
 
 type Jwt struct {
-	key PrivateKey
+	key *PrivateKey
 }
 
 func NewJwt() *Jwt {
-	j := &Jwt{}
+	key , err := NewPrivateKey(nil)
+
+	if err != nil {
+		panic("NewJwt Get PrivateKey Fail,"  + err.Error())
+	}
+	j := &Jwt{
+		key: key ,
+	}
 	//if err != nil {
 	//	panic("init Jwt Fail err" + err.Error())
 	//}
@@ -40,7 +45,7 @@ func NewJwt() *Jwt {
 	return j
 }
 
-func NewJwtWithPrivateKey(key PrivateKey) *Jwt {
+func NewJwtWithPrivateKey(key *PrivateKey) *Jwt {
 	return &Jwt{
 		key: key,
 	}
@@ -79,7 +84,7 @@ func (j *Jwt) decode(token string) error {
 }
 
 func (j *Jwt) doVaild(token *jwt.Token) (interface{}, error) {
-	return []byte(j.key.Key), nil
+	return j.key.GetKey(), nil
 }
 
 func (j *Jwt) Encode(tokenInfo TokenInfo) (string, error) {
@@ -99,5 +104,5 @@ func (j *Jwt) Encode(tokenInfo TokenInfo) (string, error) {
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, &claims)
 
-	return token.SignedString([]byte(j.PrivateKey))
+	return token.SignedString(j.key.GetKey())
 }

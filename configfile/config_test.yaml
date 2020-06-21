@@ -1,7 +1,23 @@
 redis:
+  addr: "127.0.0.1:6379"
+#  userName: "redis"
+  pwd: "123456"
+  db: 0
+  idleTimeout: 300 # 5*60 单位s
+  writeTimeout: 3
+  dialTimeout: 5
+  readTimeout: 3
+  minExpTime: 3
+dbName: "mysql"
+mysql:
   addr: "127.0.0.1:3306"
+  userName: "root"
+  pwd: "123456"
+  maxOpenConn: 10,
+  maxIdleConn: 4 ,
+  connLiftTime: 3600 # 1* 3600 1Hour
 privateKey : # 单位为秒
-  expTime : 2 * 3600
+  expTime :  7200 #2 * 3600
 log:
   level: "DEBUG"
   outFile: true

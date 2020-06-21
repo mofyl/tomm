@@ -15,6 +15,10 @@ func Debug(msg string, field ...zap.Field) {
 	defaultLog(DEBUG, msg, field...)
 }
 
+func Msg(level LogLEVEL, msg string) {
+	defaultLog(level, msg)
+}
+
 func Info(msg string, field ...zap.Field) {
 	defaultLog(INFO, msg, field...)
 }

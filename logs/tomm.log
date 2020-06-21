@@ -21,3 +21,57 @@
 {"level":"info","time":"2020-06-19T16:10:02.774+0800","msg":"decode","Decode Err":"CustomClaims Convert Fail"}
 {"level":"info","time":"2020-06-19T16:12:45.572+0800","msg":"encode","Token ":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsX25hbWUiOiJhYWFhYSIsImNoYW5uZWxfa2V5IjoicXdlcXdlIiwicmFuZG9tX2tleSI6ImE3ZjU4Nzg4LWIyMDQtMTFlYS1hOGVjLWYwMTg5ODA1ZjBlMyIsImV4cCI6MTU5MjU2MTU2NSwiaWF0IjoxNTkyNTU0MzY1LCJpc3MiOiJiZWUiLCJuYmYiOjE1OTI1NTQyNDV9.tqB8EGAjwn1zLtlDYsGan8fkhT8_IDykCF2CN3Mlf34"}
 {"level":"info","time":"2020-06-19T16:12:45.572+0800","msg":"Decode ","expTime":1592561565,"secret":"bee"}
+{"level":"info","time":"2020-06-20T14:54:06.468+0800","msg":"encode","Token ":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsX25hbWUiOiJhYWFhYSIsImNoYW5uZWxfa2V5IjoicXdlcXdlIiwicmFuZG9tX2tleSI6ImQ1OTEyNWI0LWIyYzItMTFlYS04MzZiLWI0MmU5OWY5MThlOSIsImV4cCI6MTU5MjY0MzI0NiwiaWF0IjoxNTkyNjM2MDQ2LCJpc3MiOiJiZWUiLCJuYmYiOjE1OTI2MzU5MjZ9.w7xE2s_b34MGttwZswOyyfUZy4HYYk5HOclQJbzK_rs"}
+{"level":"info","time":"2020-06-20T14:54:06.475+0800","msg":"Decode ","expTime":1592643246,"secret":"bee"}
+{"level":"debug","time":"2020-06-20T18:01:13.510+0800","msg":"Success"}
+{"level":"debug","time":"2020-06-20T18:01:49.142+0800","msg":"Success"}
+{"level":"debug","time":"2020-06-20T18:04:47.585+0800","msg":"ExpTime is ","ExpTime ":4}
+{"level":"debug","time":"2020-06-20T18:04:47.592+0800","msg":"Success"}
+{"level":"debug","time":"2020-06-20T18:05:06.012+0800","msg":"ExpTime is ","ExpTime ":4}
+{"level":"debug","time":"2020-06-20T18:05:06.019+0800","msg":"Success"}
+{"level":"debug","time":"2020-06-20T18:05:22.636+0800","msg":"ExpTime is ","ExpTime ":4}
+{"level":"debug","time":"2020-06-20T18:05:22.642+0800","msg":"Success"}
+{"level":"debug","time":"2020-06-20T18:08:36.208+0800","msg":"getRandomTime","randomTime":2}
+{"level":"debug","time":"2020-06-20T18:08:36.216+0800","msg":"getRandomTime","randomTime":2}
+{"level":"debug","time":"2020-06-20T18:08:36.217+0800","msg":"getRandomTime","randomTime":2}
+{"level":"debug","time":"2020-06-20T18:08:36.218+0800","msg":"getRandomTime","randomTime":2}
+{"level":"debug","time":"2020-06-20T18:08:36.219+0800","msg":"getRandomTime","randomTime":2}
+{"level":"debug","time":"2020-06-20T18:08:36.220+0800","msg":"getRandomTime","randomTime":2}
+{"level":"debug","time":"2020-06-20T18:08:36.221+0800","msg":"getRandomTime","randomTime":2}
+{"level":"debug","time":"2020-06-20T18:08:36.222+0800","msg":"getRandomTime","randomTime":2}
+{"level":"debug","time":"2020-06-20T18:08:36.223+0800","msg":"getRandomTime","randomTime":2}
+{"level":"debug","time":"2020-06-20T18:08:36.224+0800","msg":"getRandomTime","randomTime":2}
+{"level":"debug","time":"2020-06-20T18:10:06.923+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:06.932+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:06.933+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:06.934+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:06.935+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:06.936+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:06.937+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:06.938+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:06.939+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:06.940+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:27.453+0800","msg":"getRandomTime","randomTime":1}
+{"level":"debug","time":"2020-06-20T18:10:36.764+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:38.506+0800","msg":"getRandomTime","randomTime":2}
+{"level":"debug","time":"2020-06-20T18:10:40.370+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:42.039+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:43.485+0800","msg":"getRandomTime","randomTime":2}
+{"level":"debug","time":"2020-06-20T18:10:47.491+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:47.492+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:47.493+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:10:47.494+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:11:17.347+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:11:17.356+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:11:17.357+0800","msg":"getRandomTime","randomTime":2}
+{"level":"debug","time":"2020-06-20T18:11:17.358+0800","msg":"getRandomTime","randomTime":1}
+{"level":"debug","time":"2020-06-20T18:11:17.359+0800","msg":"getRandomTime","randomTime":1}
+{"level":"debug","time":"2020-06-20T18:11:17.360+0800","msg":"getRandomTime","randomTime":2}
+{"level":"debug","time":"2020-06-20T18:11:17.361+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:11:17.362+0800","msg":"getRandomTime","randomTime":0}
+{"level":"debug","time":"2020-06-20T18:11:17.363+0800","msg":"getRandomTime","randomTime":1}
+{"level":"debug","time":"2020-06-20T18:11:17.364+0800","msg":"getRandomTime","randomTime":1}
+{"level":"debug","time":"2020-06-20T18:11:26.653+0800","msg":"ExpTime is ","ExpTime ":4}
+{"level":"debug","time":"2020-06-20T18:11:26.660+0800","msg":"Success"}
+{"level":"debug","time":"2020-06-20T18:11:40.508+0800","msg":"ExpTime is ","ExpTime ":5}
+{"level":"debug","time":"2020-06-20T18:11:40.514+0800","msg":"Success"}
