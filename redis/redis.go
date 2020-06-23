@@ -33,7 +33,7 @@ var (
 
 func init() {
 	defaultConf = &RedisConf{}
-	if err := config.Decode("redis", defaultConf); err != nil {
+	if err := config.Decode(config.CONFIG_FILE_NAME, "redis", defaultConf); err != nil {
 		panic("Decode Redis Conf Fail " + err.Error())
 	}
 }
@@ -55,7 +55,7 @@ func newRedisCli(conf *RedisConf) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(conf.DialTimeout)*time.Second)
 	defer cancel()
 	if err := cli.Ping(ctx).Err(); err != nil {
-		panic(fmt.Sprintf("Ping Redis Fail addr is %s ,err is %s\n", conf.Addr, err.Error()))
+		panic(fmt.Sprintf("Ping Redis Fail addr is %s ,errmsg is %s\n", conf.Addr, err.Error()))
 	}
 }
 
@@ -76,7 +76,7 @@ func newRedisRingCli(conf *RedisConf) *redis.Ring {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(conf.DialTimeout)*time.Second)
 	defer cancel()
 	if err := cli.Ping(ctx).Err(); err != nil {
-		panic(fmt.Sprintf("Ping Redis Fail addr is %s ,err is %s\n", conf.Addr, err.Error()))
+		panic(fmt.Sprintf("Ping Redis Fail addr is %s ,errmsg is %s\n", conf.Addr, err.Error()))
 	}
 	return cli
 }

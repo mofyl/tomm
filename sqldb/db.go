@@ -1,15 +1,16 @@
 package sqldb
 
-import "sync"
+import (
+	"context"
+	"sync"
+)
 
 type SqlDB interface {
 	//getConnStr() string
+	Exec(ctx context.Context, sql string, args ...interface{}) error
 }
 
 type baseConf struct {
-	Addr     string `yaml:"addr"`
-	UserName string `yaml:"userName"`
-	Pwd      string `yaml:"pwd"`
 }
 
 type DriverType string

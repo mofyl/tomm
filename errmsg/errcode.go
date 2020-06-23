@@ -1,0 +1,3 @@
+package errmsg
+
+const ()

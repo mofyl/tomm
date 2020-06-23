@@ -5,6 +5,8 @@ import (
 	"go.uber.org/zap"
 	"math"
 	"net/http"
+	"runtime"
+	"tomm/core/server/binding"
 	"tomm/core/server/rending"
 	"tomm/log"
 )
@@ -12,6 +14,8 @@ import (
 const (
 	ABORT_INDEX = math.MaxInt8 / 2
 )
+
+type Chain func(c *Context)
 
 type Context struct {
 	Req *http.Request
@@ -37,6 +41,19 @@ func (c *Context) Status(code int) {
 
 func (c *Context) Next() {
 	c.index++
+
+	defer func() {
+
+		if err := recover(); err != nil {
+			runtime.Caller(1)
+			buf := make([]byte, 4096)
+			n := runtime.Stack(buf, false)
+			log.Error("http server recover ", zap.String("errmsg", string(buf[:n])))
+			c.Byte(500, "text/plain", default505Body)
+		}
+
+	}()
+
 	for c.handler != nil && c.index < int8(len(c.handler)) {
 		c.handler[c.index](c)
 		c.index++
@@ -76,4 +93,13 @@ func (c *Context) Byte(code int, contentType string, data ...[]byte) error {
 		ContentType: contentType,
 		Data:        data,
 	})
+}
+
+func (c *Context) Bind(obj interface{}) error {
+	bind := binding.DefaultBind(c.Req.Method, c.Req.Header.Get("Content-Type"))
+	return c.mustBind(bind, obj)
+}
+
+func (c *Context) mustBind(bind binding.Binding, obj interface{}) error {
+	return bind.Bind(c.Req, obj)
 }

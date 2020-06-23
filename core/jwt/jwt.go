@@ -30,16 +30,16 @@ type Jwt struct {
 }
 
 func NewJwt() *Jwt {
-	key , err := NewPrivateKey(nil)
+	key, err := NewPrivateKey(nil)
 
 	if err != nil {
-		panic("NewJwt Get PrivateKey Fail,"  + err.Error())
+		panic("NewJwt Get PrivateKey Fail," + err.Error())
 	}
 	j := &Jwt{
-		key: key ,
+		key: key,
 	}
-	//if err != nil {
-	//	panic("init Jwt Fail err" + err.Error())
+	//if errmsg != nil {
+	//	panic("init Jwt Fail errmsg" + errmsg.Error())
 	//}
 
 	return j

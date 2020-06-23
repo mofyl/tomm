@@ -22,8 +22,8 @@ func mapForm(ptr interface{}, form map[string][]string) error {
 		if !ok {
 			if fd.hasDefault {
 				structVal.Set(fd.defaultValue)
-				continue
 			}
+			continue
 		}
 		if formV[0] == "" && fd.hasDefault {
 			structVal.Set(fd.defaultValue)

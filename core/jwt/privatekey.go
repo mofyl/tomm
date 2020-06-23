@@ -19,7 +19,7 @@ var (
 )
 
 func init() {
-	err := config.Decode(CONF_KEY, &defaultConf)
+	err := config.Decode(config.CONFIG_FILE_NAME, CONF_KEY, &defaultConf)
 
 	if err != nil {
 		panic("privateKey Conf init Fail" + err.Error())

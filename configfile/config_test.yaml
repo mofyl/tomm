@@ -8,13 +8,13 @@ redis:
   dialTimeout: 5
   readTimeout: 3
   minExpTime: 3
-dbName: "mysql"
 mysql:
   addr: "127.0.0.1:3306"
   userName: "root"
   pwd: "123456"
-  maxOpenConn: 10,
-  maxIdleConn: 4 ,
+  dbName: "tomm"
+  maxOpenConn: 10
+  maxIdleConn: 4
   connLiftTime: 3600 # 1* 3600 1Hour
 privateKey : # 单位为秒
   expTime :  7200 #2 * 3600

@@ -8,7 +8,8 @@ import (
 )
 
 const (
-	CONFIGDIR = "configfile"
+	CONFIGDIR        = "configfile"
+	CONFIG_FILE_NAME = "config_test.yaml"
 )
 
 func init() {
@@ -17,9 +18,10 @@ func init() {
 
 func newFile(base string) {
 	if base == "" {
-		base = utils.GetProDirAbs() + CONFIGDIR
+		//base = utils.GetProDirAbs() + CONFIGDIR
+		base = GetConfigPath()
 	}
-
+	//
 	viper.SetConfigName("config_test")
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(base)
@@ -45,7 +47,23 @@ func SetFile(fileName string) {
 	loadFile()
 }
 
-func Decode(key string, data interface{}) error {
+func GetConfigPath() string {
+	return utils.GetProDirAbs() + CONFIGDIR
+}
+
+func DecodeAll(fileName string, data interface{}) error {
+	viper.SetConfigName(fileName)
+	viper.SetConfigType("yaml")
+	loadFile()
+
+	return viper.Unmarshal(data)
+}
+
+func Decode(fileName string, key string, data interface{}) error {
+	viper.SetConfigName(fileName)
+	viper.SetConfigType("yaml")
+	loadFile()
+
 	if !viper.IsSet(key) {
 		return errors.New("cur key not exist in any Config File")
 	}

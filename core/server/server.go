@@ -20,6 +20,7 @@ const (
 var (
 	default404Body = []byte("404 page not Found")
 	default405Body = []byte("405 method not allowed")
+	default505Body = []byte("505 System Error")
 )
 
 type EngConfig struct {
@@ -66,7 +67,6 @@ func NewEngine(cfg *EngConfig) *Engine {
 		noRouter: make([]HandlerFunc, 0),
 		noMethod: make([]HandlerFunc, 0),
 	}
-
 	// 加入pprof路由
 	startPProf(e)
 	return e

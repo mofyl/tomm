@@ -35,7 +35,7 @@ type LogConfig struct {
 
 func getDefaultLog() LogConfig {
 	cfg := LogConfig{}
-	err := config.Decode("log", &cfg)
+	err := config.Decode(config.CONFIG_FILE_NAME, "log", &cfg)
 	if err != nil {
 		panic("build log config fail package is log , method is getDefaultLog")
 	}

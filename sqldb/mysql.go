@@ -1,17 +1,23 @@
 package sqldb
 
 import (
+	"context"
 	"fmt"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 	"time"
 	"tomm/config"
+	"tomm/errmsg"
 )
 
 type mysqlConf struct {
-	baseConf
-	MaxOpenConn  int `yaml:"maxOpenConn"`
-	MaxIdleConn  int `yaml:"maxIdleConn"`
-	ConnLiftTime int `yaml:"connLiftTime"`
+	Addr         string `yaml:"addr"`
+	UserName     string `yaml:"userName"`
+	Pwd          string `yaml:"pwd"`
+	DBName       string `yaml:"dbName"`
+	MaxOpenConn  int    `yaml:"maxOpenConn"`
+	MaxIdleConn  int    `yaml:"maxIdleConn"`
+	ConnLiftTime int    `yaml:"connLiftTime"`
 }
 
 type mysqlDB struct {
@@ -21,9 +27,9 @@ type mysqlDB struct {
 
 func newMysqlDriver() *mysqlDB {
 
-	db := mysqlDB{}
+	db := &mysqlDB{}
 	conf := &mysqlConf{}
-	err := config.Decode("mysql", conf)
+	err := config.Decode(config.CONFIG_FILE_NAME, "mysql", conf)
 	if err != nil {
 		panic("Create Mysql Driver Fail " + err.Error())
 	}
@@ -40,7 +46,7 @@ func newMysqlDriver() *mysqlDB {
 
 	db.engine = engine
 
-	return nil
+	return db
 }
 
 func (m *mysqlDB) Connect() (*sqlx.DB, error) {
@@ -53,8 +59,17 @@ func (m *mysqlDB) Connect() (*sqlx.DB, error) {
 }
 
 func (m *mysqlDB) getConnStr() string {
-	return fmt.Sprintf("%s:%s@tcp(%s)?charset=utf8", m.conf.UserName, m.conf.UserName, m.conf.Addr)
+	return fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8", m.conf.UserName, m.conf.Pwd, m.conf.Addr, m.conf.DBName)
 }
 
 func (m *mysqlDB) Query() {
+}
+
+func (m *mysqlDB) Exec(ctx context.Context, sql string, args ...interface{}) error {
+	_, err := m.engine.ExecContext(ctx, sql, args...)
+	if err != nil {
+		return errmsg.NewSqlErr(err.Error())
+	}
+	//res.LastInsertId()
+	return nil
 }

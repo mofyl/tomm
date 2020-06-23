@@ -22,7 +22,7 @@ func (j *Json) WriteContentType(w http.ResponseWriter) {
 func (j *Json) Render(w http.ResponseWriter) error {
 	writeContentType(w, jsonContentType)
 	b, err := json.Marshal(j)
-	//b, err := msgpack.Marshal(j)
+	//b, errmsg := msgpack.Marshal(j)
 
 	if err != nil {
 		log.Error("WriteResponse msgPack Marshal ", zap.String("error", err.Error()))
