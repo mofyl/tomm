@@ -18,7 +18,7 @@ func TestExpTime(t *testing.T) {
 
 func TestRedis(t *testing.T) {
 	newRedisCli(nil)
-	err := Set(context.Background(), "test", "1111", -1)
+	err := Set(context.Background(), "test", "1111", 0)
 
 	if err != nil {
 		log.Error("Redis Set Fail", zap.String("error", err.Error()))
@@ -26,4 +26,23 @@ func TestRedis(t *testing.T) {
 	}
 	log.Msg(log.DEBUG, "Success")
 
+}
+
+func TestRedisCmd(t *testing.T) {
+	newRedisCli(nil)
+	//
+	//err := HSet(context.TODO(), "appkey", "test", 11111)
+	//
+	//if err != nil {
+	//	log.Error("Redis Set Fail", zap.String("error", err.Error()))
+	//}
+
+	var res string
+	err := HGet(context.TODO(), "appkey", "test", &res)
+
+	if err != nil {
+		log.Error("Redis Get Fail", zap.String("error", err.Error()))
+	}
+
+	log.Info("Redis Get ", zap.String("res", res))
 }

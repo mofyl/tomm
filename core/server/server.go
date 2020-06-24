@@ -93,7 +93,6 @@ func (e *Engine) DELETE(router string, handlers ...HandlerFunc) {
 	e.addRouter("DELETE", router, handlers...)
 }
 func (e *Engine) addRouter(method string, path string, handler ...HandlerFunc) {
-
 	if path[0] != '/' {
 		panic("path mast begin with '/'")
 	}

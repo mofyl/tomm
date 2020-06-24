@@ -101,6 +101,25 @@ func Set(ctx context.Context, key string, data interface{}, expTime int64) error
 	return nil
 }
 
+func Exist(ctx context.Context, key ...string) bool {
+	cmd := cli.Exists(ctx, key...)
+
+	if cmd.Err() != nil {
+		return false
+	}
+
+	if cmd.Val() != 1 {
+		return false
+	}
+	return true
+}
+
+func Expire(ctx context.Context, key string, expTime int64) bool {
+	cmd := cli.Expire(ctx, key, time.Duration(expTime)*time.Second)
+
+	return cmd.Val()
+}
+
 func Get(ctx context.Context, key string, data interface{}) error {
 	res := cli.Get(ctx, key)
 
@@ -119,6 +138,20 @@ func Del(ctx context.Context, key string) (int64, error) {
 	} else {
 		return count, err
 	}
+}
+
+func HSet(ctx context.Context, key string, field string, value interface{}) error {
+	cmd := cli.HSet(ctx, key, field, value)
+	return cmd.Err()
+}
+
+func HGet(ctx context.Context, key string, field string, value interface{}) error {
+	cmd := cli.HGet(ctx, key, field)
+	if cmd.Err() != nil {
+		return cmd.Err()
+	}
+
+	return cmd.Scan(value)
 }
 
 func getRandomTime() int64 {

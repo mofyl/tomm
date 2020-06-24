@@ -137,3 +137,7 @@
 {"level":"info","time":"2020-06-23T17:38:41.403+0800","msg":"Error 1366: Incorrect string value: '\\xC1\\xB5\\xBF,\\xE6q...' for column 'app_key' at row 1"}
 {"level":"info","time":"2020-06-23T17:41:00.127+0800","msg":"Error 1366: Incorrect string value: '\\xFF\\xC2\\xC3@7i...' for column 'app_key' at row 1"}
 {"level":"info","time":"2020-06-23T17:42:21.046+0800","msg":"secretInfo","secretKey":"44b893f32fc68d339a35cbeca4894f1b","appKey":"a49514e2e7fda40eb379c04cdda4e4a6"}
+{"level":"debug","time":"2020-06-24T11:01:44.107+0800","msg":"ExpTime is ","ExpTime ":5}
+{"level":"debug","time":"2020-06-24T11:01:44.109+0800","msg":"Success"}
+{"level":"debug","time":"2020-06-24T11:02:27.047+0800","msg":"Success"}
+{"level":"info","time":"2020-06-24T11:09:23.583+0800","msg":"Redis Get ","res":"11111"}
