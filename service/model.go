@@ -22,11 +22,11 @@ type ReqDataInfo struct {
 }
 
 type GetTokenRes struct {
-	Token      string `json:"token"`
-	ExpTime    int64  `json:"exp_time"`
-	ExtendInfo []byte `json:"extern_info"`
-	ErrCode    int64  `json:"err_code"`
-	ErrMsg     string `json:"err_msg"`
+	Token      string `json:"token,omitempty"`
+	ExpTime    int64  `json:"exp_time,omitempty"`
+	ExtendInfo []byte `json:"extern_info,omitempty"`
+	ErrCode    int64  `json:"err_code,omitempty"`
+	ErrMsg     string `json:"err_msg,omitempty"`
 }
 
 type VerifyTokenReq struct {
@@ -35,7 +35,7 @@ type VerifyTokenReq struct {
 }
 
 type VerifyTokenRes struct {
-	ExpTime int64  `json:"exp_time"`
-	ErrCode int64  `json:"err_code"`
-	ErrMsg  string `json:"err_msg"`
+	ExpTime int64  `json:"exp_time,omitempty"`
+	ErrCode int64  `json:"err_code,omitempty"`
+	ErrMsg  string `json:"err_msg,omitempty"`
 }

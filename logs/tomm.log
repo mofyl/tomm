@@ -156,3 +156,7 @@
 {"level":"info","time":"2020-06-28T17:40:23.730+0800","msg":"Http Server Start","Addr is ":":8086"}
 {"level":"debug","time":"2020-06-28T17:40:32.802+0800","msg":"router ","method is ":"GET","path is ":"/getToken"}
 {"level":"warn","time":"2020-06-28T17:40:32.808+0800","msg":"GetToken","Redis Get Key Fail AppKey is ":"1111","Redis Key Get Fail err is ":"redis: nil"}
+{"level":"info","time":"2020-06-28T17:46:55.244+0800","msg":"pprof start ","addr is ":":9000"}
+{"level":"info","time":"2020-06-28T17:46:55.244+0800","msg":"Http Server Start","Addr is ":":8086"}
+{"level":"debug","time":"2020-06-28T17:47:03.430+0800","msg":"router ","method is ":"GET","path is ":"/getToken"}
+{"level":"warn","time":"2020-06-28T17:47:03.433+0800","msg":"GetToken","Redis Get Key Fail AppKey is ":"1111","Redis Key Get Fail err is ":"redis: nil"}
