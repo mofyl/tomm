@@ -8,42 +8,43 @@ import (
 )
 
 const (
-	TOKEN_EXP_TIME = 2 * 3600
+	TOKEN_EXP_TIME = 10 * 60 // 10min
 )
 
 func GetOAuthInfo(appKey string) (*SecretInfo, error) {
 	return getSecretInfo(appKey)
 }
 
-func GetToken(appKey string) (string, error) {
+func GetToken(appKey string) (string, int64, error) {
 	// 查看该Appkey 是否已经存在Token
 	var token string
-	err := redis.Get(context.TODO(), fmt.Sprintf(redis.SECRET_KEY, appKey), &token)
-	if err != nil {
-		return "", err
-	}
+	var err error
+	key := fmt.Sprintf(redis.TOKEN_KEY, appKey)
+	exist := redis.Exist(context.TODO(), key)
 
+	if exist {
+		LeaseRenewKey(appKey, TOKEN_EXP_TIME)
+		return token, TOKEN_EXP_TIME, nil
+	}
 	if token == "" {
 		// 表示不存在
 		token, err = getUUID()
 		if err != nil {
-			return "", err
+			return "", 0, err
 		}
 	}
-
 	// 保存到redis中
 	err = redis.Set(context.TODO(), fmt.Sprintf(redis.TOKEN_KEY, appKey), token, TOKEN_EXP_TIME)
 
 	if err != nil {
-		return "", nil
+		return "", 0, err
 	}
 
-	return token, nil
+	return token, TOKEN_EXP_TIME, nil
 }
 
-func LeaseRenewToken(appKey string) error {
+func LeaseRenewKey(key string, expTime int64) error {
 	// 查看是否存在该key, 不存在直接返回错误
-	key := fmt.Sprintf(redis.TOKEN_KEY, appKey)
 	exist := redis.Exist(context.TODO(), key)
 
 	if !exist {
@@ -51,7 +52,7 @@ func LeaseRenewToken(appKey string) error {
 	}
 
 	// 重新设置为 ex
-	res := redis.Expire(context.TODO(), key, TOKEN_EXP_TIME)
+	res := redis.Expire(context.TODO(), key, expTime)
 
 	if !res {
 		return errors.New("Can not Lease Cur Key")

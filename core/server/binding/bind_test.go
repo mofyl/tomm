@@ -20,7 +20,7 @@ func TestDefaultBind(t *testing.T) {
 	testForm["b_field"] = []string{""}
 	err := formBind.testInterface(testForm, &ts)
 	if err != nil {
-		log.Error("testInterface error ", zap.String("errmsg", err.Error()))
+		log.Error("testInterface error ", zap.String("ecode", err.Error()))
 		return
 	}
 

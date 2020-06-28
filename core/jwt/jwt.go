@@ -38,8 +38,8 @@ func NewJwt() *Jwt {
 	j := &Jwt{
 		key: key,
 	}
-	//if errmsg != nil {
-	//	panic("init Jwt Fail errmsg" + errmsg.Error())
+	//if ecode != nil {
+	//	panic("init Jwt Fail ecode" + ecode.Error())
 	//}
 
 	return j

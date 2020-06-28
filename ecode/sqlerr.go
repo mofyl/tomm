@@ -1,4 +1,4 @@
-package errmsg
+package ecode
 
 type SqlErr struct {
 	ErrMsg

@@ -21,15 +21,19 @@ func (j *Json) WriteContentType(w http.ResponseWriter) {
 
 func (j *Json) Render(w http.ResponseWriter) error {
 	writeContentType(w, jsonContentType)
-	b, err := json.Marshal(j)
-	//b, errmsg := msgpack.Marshal(j)
 
-	if err != nil {
-		log.Error("WriteResponse msgPack Marshal ", zap.String("error", err.Error()))
-		return err
+	if j.Data != nil {
+		b, err := json.Marshal(j)
+		//b, ecode := msgpack.Marshal(j)
+
+		if err != nil {
+			log.Error("WriteResponse msgPack Marshal ", zap.String("error", err.Error()))
+			return err
+		}
+		if _, err := w.Write(b); err != nil {
+			return err
+		}
 	}
-	if _, err := w.Write(b); err != nil {
-		return err
-	}
+
 	return nil
 }

@@ -62,7 +62,7 @@ func NewEngine(cfg *EngConfig) *Engine {
 	e := &Engine{
 		cfg:      cfg,
 		wg:       &sync.WaitGroup{},
-		Router:   make(map[string]map[string][]HandlerFunc, 4),
+		Router:   make(map[string]map[string][]HandlerFunc),
 		Handlers: make([]HandlerFunc, math.MaxInt8),
 		noRouter: make([]HandlerFunc, 0),
 		noMethod: make([]HandlerFunc, 0),

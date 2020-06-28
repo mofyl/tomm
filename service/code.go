@@ -21,4 +21,11 @@ const (
 	// 数据包超时
 	PACKAGE_TIME_OUT     = 8003
 	PACKAGE_TIME_OUT_MSG = "Package Time out"
+
+	SYSTEM_FAIL      = 8003
+	SYSTEM_FAILE_MSG = "System Fail"
+
+	// TOKEN 校验失败
+	VERIFY_FAIL     = 8004
+	VERIFY_FAIL_MSG = "Verify Token Fail"
 )

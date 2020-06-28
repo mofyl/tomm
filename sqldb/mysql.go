@@ -7,7 +7,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	"time"
 	"tomm/config"
-	"tomm/errmsg"
+	"tomm/ecode"
 )
 
 type mysqlConf struct {
@@ -72,8 +72,9 @@ func (m *mysqlDB) Query(ctx context.Context, sql string, res interface{}, args .
 
 func (m *mysqlDB) Exec(ctx context.Context, sql string, args ...interface{}) error {
 	_, err := m.engine.ExecContext(ctx, sql, args...)
+	//db.RowsAffected()
 	if err != nil {
-		return errmsg.NewSqlErr(err.Error())
+		return ecode.NewSqlErr(err.Error())
 	}
 	//res.LastInsertId()
 	return nil

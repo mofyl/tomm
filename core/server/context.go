@@ -48,7 +48,7 @@ func (c *Context) Next() {
 			runtime.Caller(1)
 			buf := make([]byte, 4096)
 			n := runtime.Stack(buf, false)
-			log.Error("http server recover ", zap.String("errmsg", string(buf[:n])))
+			log.Error("http server recover ", zap.String("ecode", string(buf[:n])))
 			c.Byte(500, "text/plain", default505Body)
 		}
 

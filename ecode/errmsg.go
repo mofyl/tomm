@@ -1,4 +1,4 @@
-package errmsg
+package ecode
 
 type ErrMsg struct {
 	Msg string

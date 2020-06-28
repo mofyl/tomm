@@ -29,19 +29,26 @@ func SaveSecretInfo(info *SecretInfo) error {
 	return err
 }
 
+func UpdateChannelInfo(info *SecretInfo) error {
+
+	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
+	defer cancel()
+	return sqldb.GetDB(sqldb.MYSQL).Exec(ctx, "update tomm.channel_infos set channel_info=? where app_key=?", info.ChannelInfo, info.AppKey)
+
+}
+
 func getSecretInfo(appKey string) (*SecretInfo, error) {
 	var res string
-	err := redis.Get(context.TODO(), fmt.Sprintf(redis.SECRET_KEY, appKey), &res)
+	key := fmt.Sprintf(redis.SECRET_KEY, appKey)
+	err := redis.Get(context.TODO(), key, &res)
 
 	sInfo := &SecretInfo{}
 	if err != nil {
 		return nil, err
-	} else {
-		if res != "" {
-			sInfo.SecretKey = res
-			sInfo.AppKey = appKey
-			return sInfo, nil
-		}
+	} else if res != "" {
+		sInfo.SecretKey = res
+		sInfo.AppKey = appKey
+		return sInfo, nil
 	}
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
@@ -50,6 +57,8 @@ func getSecretInfo(appKey string) (*SecretInfo, error) {
 	if err != nil {
 		return nil, err
 	}
+	// 回写到redis中
+	redis.Set(context.TODO(), key, res, 0)
 	return sInfo, nil
 }
 

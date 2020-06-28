@@ -14,13 +14,28 @@ type GetTokenReq struct {
 	Data   string `form:"data"`
 }
 
-type GetTokenRes struct {
-	Token   string `json:"token"`
-	ExpTime int64  `json:"exp_time"`
+type ReqDataInfo struct {
+	DataLen     int32
+	SendTime    int64
+	ChannelInfo string
+	ExtendInfo  []byte
 }
 
-type BaseMsg struct {
-	Code int    `json:"code"`
-	Msg  string `json:"msg"`
-	Data []byte `json:"data"`
+type GetTokenRes struct {
+	Token      string `json:"token"`
+	ExpTime    int64  `json:"exp_time"`
+	ExtendInfo []byte `json:"extern_info"`
+	ErrCode    int64  `json:"err_code"`
+	ErrMsg     string `json:"err_msg"`
+}
+
+type VerifyTokenReq struct {
+	AppKey string `form:"app_key"`
+	Token  string `form:"token"`
+}
+
+type VerifyTokenRes struct {
+	ExpTime int64  `json:"exp_time"`
+	ErrCode int64  `json:"err_code"`
+	ErrMsg  string `json:"err_msg"`
 }

@@ -141,3 +141,18 @@
 {"level":"debug","time":"2020-06-24T11:01:44.109+0800","msg":"Success"}
 {"level":"debug","time":"2020-06-24T11:02:27.047+0800","msg":"Success"}
 {"level":"info","time":"2020-06-24T11:09:23.583+0800","msg":"Redis Get ","res":"11111"}
+{"level":"info","time":"2020-06-28T17:24:03.918+0800","msg":"pprof start ","addr is ":":9000"}
+{"level":"info","time":"2020-06-28T17:27:11.345+0800","msg":"pprof start ","addr is ":":9000"}
+{"level":"info","time":"2020-06-28T17:27:55.886+0800","msg":"pprof start ","addr is ":":9000"}
+{"level":"info","time":"2020-06-28T17:33:14.906+0800","msg":"pprof start ","addr is ":":9000"}
+{"level":"info","time":"2020-06-28T17:34:18.123+0800","msg":"pprof start ","addr is ":":9000"}
+{"level":"info","time":"2020-06-28T17:34:18.124+0800","msg":"Http Server Start","Addr is ":":8086"}
+{"level":"info","time":"2020-06-28T17:34:39.410+0800","msg":"pprof start ","addr is ":":9000"}
+{"level":"info","time":"2020-06-28T17:34:39.411+0800","msg":"Http Server Start","Addr is ":":8086"}
+{"level":"debug","time":"2020-06-28T17:35:05.628+0800","msg":"router ","method is ":"GET","path is ":"/getToken"}
+{"level":"debug","time":"2020-06-28T17:37:17.304+0800","msg":"router ","method is ":"GET","path is ":"/getToken"}
+{"level":"error","time":"2020-06-28T17:37:17.305+0800","msg":"http server recover ","ecode":"goroutine 52 [running]:\ntomm/core/server.(*Context).Next.func1(0xc0001f20e0)\n\t/Users/mo/go/src/tomm/core/server/context.go:50 +0xb1\npanic(0x16c7800, 0x1d22230)\n\t/usr/local/go/src/runtime/panic.go:679 +0x1b2\ntomm/redis.Get(0x1881760, 0xc000028210, 0xc0001862f0, 0xb, 0x1673060, 0xc00017a2c0, 0xb, 0x16746a0)\n\t/Users/mo/go/src/tomm/redis/redis.go:124 +0x28\ntomm/service/oauth.getSecretInfo(0xc00020c156, 0x4, 0xc00017e2a0, 0x0, 0x0)\n\t/Users/mo/go/src/tomm/service/oauth/model.go:43 +0x11f\ntomm/service/oauth.GetOAuthInfo(...)\n\t/Users/mo/go/src/tomm/service/oauth/oauth.go:15\ntomm/service.(*Ser).getToken(0xc0000102f8, 0xc0001f20e0)\n\t/Users/mo/go/src/tomm/service/service.go:90 +0x212\ntomm/core/server.(*Context).Next(0xc0001f20e0)\n\t/Users/mo/go/src/tomm/core/server/context.go:58 +0x6e\ntomm/core/server.(*Engine).HandlerContext(0xc000196770, 0xc0001f20e0)\n\t/Users/mo/go/src/tomm/core/server/server.go:196 +0x1ab\ntomm/core/server.(*Engine).ServeHTTP(0xc000196770, 0x187fc20, 0xc0001e80e0, 0xc0001f0100)\n\t/Users/mo/go/src/tomm/core/server/server.go:178 +0xb2\nnet/http.serverHandler.ServeHTTP(0xc0000e81c0, 0x187fc20, 0xc0001e80e0, 0xc0001f0100)\n\t/usr/local/go/src/net/http/server.go:2802 +0xa4\nnet/http.(*conn).serve(0xc000206140, 0x1881720, 0xc000188180)\n\t/usr/local/go/src/net/http/server.go:1890 +0x875\ncreated by net/http.(*Server).Serve\n\t/usr/local/go/src/net/http/server.go:2928 +0x384\n"}
+{"level":"info","time":"2020-06-28T17:40:23.730+0800","msg":"pprof start ","addr is ":":9000"}
+{"level":"info","time":"2020-06-28T17:40:23.730+0800","msg":"Http Server Start","Addr is ":":8086"}
+{"level":"debug","time":"2020-06-28T17:40:32.802+0800","msg":"router ","method is ":"GET","path is ":"/getToken"}
+{"level":"warn","time":"2020-06-28T17:40:32.808+0800","msg":"GetToken","Redis Get Key Fail AppKey is ":"1111","Redis Key Get Fail err is ":"redis: nil"}
