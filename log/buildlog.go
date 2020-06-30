@@ -61,6 +61,45 @@ func getLogLevel(level string) zapcore.Level {
 }
 
 func buildLog(config LogConfig) *zap.Logger {
+
+	/*
+
+				TimeKey:        "ts",
+		LevelKey:       "level",
+		NameKey:        "logger",
+		CallerKey:      "caller",
+		MessageKey:     "msg",
+		StacktraceKey:  "stacktrace",
+		LineEnding:     zapcore.DefaultLineEnding,
+		EncodeLevel:    zapcore.LowercaseLevelEncoder,
+		EncodeTime:     zapcore.EpochTimeEncoder,
+		EncodeDuration: zapcore.SecondsDurationEncoder,
+		EncodeCaller:   zapcore.ShortCallerEncoder,
+	*/
+
+	coreCfg := zapcore.EncoderConfig{
+		TimeKey:        "time",
+		LevelKey:       "level",
+		MessageKey:     "msg",
+		NameKey:        "logger",
+		StacktraceKey:  "stacktrace",
+		LineEnding:     zapcore.DefaultLineEnding,
+		EncodeLevel:    zapcore.LowercaseLevelEncoder,
+		EncodeTime:     zapcore.ISO8601TimeEncoder,
+		EncodeDuration: zapcore.SecondsDurationEncoder,
+		EncodeCaller:   zapcore.ShortCallerEncoder,
+	}
+	autoLevel := zap.NewAtomicLevel()
+	autoLevel.SetLevel(getLogLevel(config.Level))
+
+	encoder := getLogEncoder(config.LogFormat, coreCfg)
+
+	writeSync := getWriteSync(config.OutFile, config.FilePath)
+	core := zapcore.NewCore(encoder, writeSync, autoLevel)
+	return zap.New(core)
+}
+
+func buildLog_v2(config LogConfig) *zap.SugaredLogger {
 	coreCfg := zapcore.EncoderConfig{
 		TimeKey:        "time",
 		MessageKey:     "msg",
@@ -81,7 +120,10 @@ func buildLog(config LogConfig) *zap.Logger {
 
 	writeSync := getWriteSync(config.OutFile, config.FilePath)
 	core := zapcore.NewCore(encoder, writeSync, autoLevel)
-	return zap.New(core)
+	log := zap.New(core)
+	log.Sugar()
+
+	return log.Sugar()
 }
 
 func getWriteSync(outFile bool, filePath string) zapcore.WriteSyncer {

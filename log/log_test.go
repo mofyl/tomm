@@ -14,4 +14,7 @@ func TestGetConfig(t *testing.T) {
 
 func TestLog(t *testing.T) {
 	Debug("qqq", zap.String("asda", "asda"))
+
+	Debug_V2("this is test %d", 111)
+
 }

@@ -15,18 +15,24 @@ type GetTokenReq struct {
 }
 
 type ReqDataInfo struct {
-	DataLen     int32
 	SendTime    int64
 	ChannelInfo string
 	ExtendInfo  []byte
+	// 两个url
+	Resource    string // 这里的资源其实就是url
+	Method      string
+	ResourceUrl string // 表示资源服务器的资源  这里的资源服务器一定要实现 /verify
+	BackUrl     string // 第三方回调地址
 }
 
 type GetTokenRes struct {
+	TokenInfo string `json:"token_info,omitempty"`
+}
+
+type TokenInfo struct {
 	Token      string `json:"token,omitempty"`
 	ExpTime    int64  `json:"exp_time,omitempty"`
-	ExtendInfo []byte `json:"extern_info,omitempty"`
-	ErrCode    int64  `json:"err_code,omitempty"`
-	ErrMsg     string `json:"err_msg,omitempty"`
+	ExtendInfo []byte `json:"extend_info,omitempty"`
 }
 
 type VerifyTokenReq struct {
@@ -35,7 +41,5 @@ type VerifyTokenReq struct {
 }
 
 type VerifyTokenRes struct {
-	ExpTime int64  `json:"exp_time,omitempty"`
-	ErrCode int64  `json:"err_code,omitempty"`
-	ErrMsg  string `json:"err_msg,omitempty"`
+	ExpTime int64 `json:"exp_time,omitempty"`
 }

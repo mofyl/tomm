@@ -2,7 +2,6 @@ package rending
 
 import (
 	"encoding/json"
-	"go.uber.org/zap"
 	"net/http"
 	"tomm/log"
 )
@@ -12,7 +11,9 @@ var (
 )
 
 type Json struct {
-	Data interface{} `json:"data,omitempty"`
+	Code int64       `json:"code"`
+	Msg  string      `json:"msg"`
+	Data interface{} `json:"json,omitempty"`
 }
 
 func (j *Json) WriteContentType(w http.ResponseWriter) {
@@ -22,17 +23,15 @@ func (j *Json) WriteContentType(w http.ResponseWriter) {
 func (j *Json) Render(w http.ResponseWriter) error {
 	writeContentType(w, jsonContentType)
 
-	if j.Data != nil {
-		b, err := json.Marshal(j)
-		//b, ecode := msgpack.Marshal(j)
+	b, err := json.Marshal(j)
+	//b, ecode := msgpack.Marshal(j)
 
-		if err != nil {
-			log.Error("WriteResponse msgPack Marshal ", zap.String("error", err.Error()))
-			return err
-		}
-		if _, err := w.Write(b); err != nil {
-			return err
-		}
+	if err != nil {
+		log.Error("WriteResponse msgPack Marshal Err is %s ", err.Error())
+		return err
+	}
+	if _, err := w.Write(b); err != nil {
+		return err
 	}
 
 	return nil

@@ -5,6 +5,7 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
+	"github.com/pkg/errors"
 	"time"
 	"tomm/redis"
 	"tomm/sqldb"
@@ -19,11 +20,17 @@ type SecretInfo struct {
 
 func SaveSecretInfo(info *SecretInfo) error {
 	// save DB
-	err := sqldb.GetDB(sqldb.MYSQL).Exec(context.TODO(), "insert into channel_infos(`channel_info` , `app_key` , `secret_key`)values(? , ? , ?)",
+	res, err := sqldb.GetDB(sqldb.MYSQL).Exec(context.TODO(), "insert into channel_infos(`channel_info` , `app_key` , `secret_key`)values(? , ? , ?)",
 		info.ChannelInfo, info.AppKey, info.SecretKey)
 	if err != nil {
 		return err
 	}
+	if affectNum, err := res.RowsAffected(); err == nil {
+		if affectNum <= 0 {
+			return errors.New("Insert Fail")
+		}
+	}
+
 	// save redis
 	err = redis.Set(context.TODO(), fmt.Sprintf(redis.SECRET_KEY, info.AppKey), info.SecretKey, 0)
 	return err
@@ -33,7 +40,18 @@ func UpdateChannelInfo(info *SecretInfo) error {
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
 	defer cancel()
-	return sqldb.GetDB(sqldb.MYSQL).Exec(ctx, "update tomm.channel_infos set channel_info=? where app_key=?", info.ChannelInfo, info.AppKey)
+	res, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, "update tomm.channel_infos set channel_info=? where app_key=?", info.ChannelInfo, info.AppKey)
+
+	if err != nil {
+		return err
+	}
+
+	if affectNum, err := res.RowsAffected(); err == nil {
+		if affectNum <= 0 {
+			return errors.New("Update Fail")
+		}
+	}
+	return nil
 
 }
 

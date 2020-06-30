@@ -1,7 +1,6 @@
 package channel
 
 import (
-	"go.uber.org/zap"
 	"tomm/config"
 	"tomm/log"
 )
@@ -31,10 +30,9 @@ func testChannelInfo() {
 		return
 	}
 
-	for k, v := range channelMap {
+	for _, v := range channelMap {
 
-		log.Msg(log.DEBUG, "Channel Name is  "+k)
-		log.Info("Channel Info", zap.Any("ChannelInfo ", v))
+		log.Info("Channel Info %v ", v)
 
 	}
 
@@ -51,7 +49,7 @@ func init() {
 		return
 	}
 
-	log.Msg(log.DEBUG, "Init ChannelInfo")
+	log.Debug("Init ChannelInfo")
 }
 
 func GetChannelInfo(channelName string) *ChannelInfo {

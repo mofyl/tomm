@@ -2,7 +2,7 @@ package redis
 
 import (
 	"context"
-	"go.uber.org/zap"
+
 	"testing"
 	"time"
 	"tomm/log"
@@ -11,7 +11,7 @@ import (
 func TestExpTime(t *testing.T) {
 	for i := 0; i < 10; i++ {
 		num := getRandomTime()
-		log.Debug("getRandomTime", zap.Int64("randomTime", num))
+		log.Debug("getRandomTime is %d", num)
 		time.Sleep(time.Duration(num + 1))
 	}
 }
@@ -21,10 +21,9 @@ func TestRedis(t *testing.T) {
 	err := Set(context.Background(), "test", "1111", 0)
 
 	if err != nil {
-		log.Error("Redis Set Fail", zap.String("error", err.Error()))
+		log.Error("Redis Set Fail err is %s", err.Error())
 		return
 	}
-	log.Msg(log.DEBUG, "Success")
 
 }
 
@@ -41,8 +40,8 @@ func TestRedisCmd(t *testing.T) {
 	err := HGet(context.TODO(), "appkey", "test", &res)
 
 	if err != nil {
-		log.Error("Redis Get Fail", zap.String("error", err.Error()))
+		log.Error("Redis Get Fail Err is %s", err.Error())
 	}
 
-	log.Info("Redis Get ", zap.String("res", res))
+	log.Info("Redis Get res is %s", res)
 }

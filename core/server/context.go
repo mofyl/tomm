@@ -2,12 +2,13 @@ package server
 
 import (
 	"context"
-	"go.uber.org/zap"
+	"fmt"
 	"math"
 	"net/http"
 	"runtime"
 	"tomm/core/server/binding"
 	"tomm/core/server/rending"
+	"tomm/ecode"
 	"tomm/log"
 )
 
@@ -28,7 +29,7 @@ type Context struct {
 
 	Method     string
 	RouterPath string
-	//Err        message.ErrMsg
+	Err        ecode.ErrMsgs
 }
 
 func (c *Context) Abort() {
@@ -46,9 +47,10 @@ func (c *Context) Next() {
 
 		if err := recover(); err != nil {
 			runtime.Caller(1)
-			buf := make([]byte, 4096)
+			buf := make([]byte, 1024)
 			n := runtime.Stack(buf, false)
-			log.Error("http server recover ", zap.String("ecode", string(buf[:n])))
+			pl := fmt.Sprintf("http server panic: %v\n%s\n", err, buf[:n])
+			log.Error("http server recover  is %s", pl)
 			c.Byte(500, "text/plain", default505Body)
 		}
 
@@ -66,19 +68,32 @@ func (c *Context) Render(code int, render rending.Render) error {
 	if code > 0 {
 		c.Status(code)
 	}
+	if c.Err != nil {
 
+	}
 	err := render.Render(c.Res)
 	if err != nil {
-		log.Error("Context: Write Response ", zap.String("error", err.Error()))
+		log.Error("Context: Write Response Err is %s ", err.Error())
 		return err
 	}
 	return nil
 }
 
-func (c *Context) Json(code int, data interface{}) error {
-	return c.Render(code, &rending.Json{
-		Data: data,
-	})
+func (c *Context) Json(data interface{}, err error) error {
+	code := http.StatusOK
+
+	eCode, ok := err.(ecode.ErrMsgs)
+
+	if ok {
+		c.Err = eCode
+		return c.Render(code, &rending.Json{
+			Code: eCode.Code(),
+			Msg:  eCode.Error(),
+			Data: data,
+		})
+	}
+
+	return ecode.SystemErr
 }
 
 func (c *Context) String(code int, format string, data ...interface{}) error {

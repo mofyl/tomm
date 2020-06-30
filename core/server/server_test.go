@@ -6,6 +6,7 @@ import (
 	"os/signal"
 	"syscall"
 	"testing"
+	"tomm/ecode"
 )
 
 type JsonStrcut struct {
@@ -42,10 +43,10 @@ func TestServer(t *testing.T) {
 	c := make(chan os.Signal)
 	signal.Notify(c, os.Kill, syscall.SIGHUP, syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGSTOP)
 
-	js := JsonStrcut{
-		A: "qweqw",
-		B: "zczxc",
-	}
+	//js := JsonStrcut{
+	//	A: "qweqw",
+	//	B: "zczxc",
+	//}
 	e := NewEngine(nil)
 	go func() {
 		<-c
@@ -56,7 +57,7 @@ func TestServer(t *testing.T) {
 		c.String(200, "%s", "helloworld")
 	})
 	e.GET("/test1", func(c *Context) {
-		c.Json(200, js)
+		c.Json(nil, ecode.NewErrWithMsg("Success", ecode.OK))
 	})
 	e.GET("/test2", func(c *Context) {
 		c.Byte(200, "application/json; chatset=utf-8", []byte("test2"))

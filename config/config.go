@@ -22,7 +22,7 @@ func newFile(base string) {
 		base = GetConfigPath()
 	}
 	//
-	viper.SetConfigName("config_test")
+	viper.SetConfigName(CONFIG_FILE_NAME)
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath(base)
 	loadFile()

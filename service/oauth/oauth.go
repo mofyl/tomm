@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"tomm/log"
 	"tomm/redis"
 )
 
@@ -20,10 +21,13 @@ func GetToken(appKey string) (string, int64, error) {
 	var token string
 	var err error
 	key := fmt.Sprintf(redis.TOKEN_KEY, appKey)
-	exist := redis.Exist(context.TODO(), key)
-
-	if exist {
-		LeaseRenewKey(appKey, TOKEN_EXP_TIME)
+	err = redis.Get(context.TODO(), key, &token)
+	//exist := redis.Exist(context.TODO(), key)
+	if err != nil {
+		log.Error("GetToken Redis Get Fail Err is %s", err.Error())
+	}
+	if token != "" && err == nil {
+		LeaseRenewKey(key, TOKEN_EXP_TIME)
 		return token, TOKEN_EXP_TIME, nil
 	}
 	if token == "" {

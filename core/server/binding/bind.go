@@ -25,7 +25,8 @@ var (
 
 func DefaultBind(method string, contentType string) Binding {
 	if method == "GET" {
-		return formBind
+		//return formBind
+		return queryBind
 	}
 
 	switch contentType {

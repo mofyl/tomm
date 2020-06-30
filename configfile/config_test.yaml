@@ -15,7 +15,7 @@ mysql:
   dbName: "tomm"
   maxOpenConn: 10
   maxIdleConn: 4
-  connLiftTime: 3600 # 1* 3600 1Hour
+  connLiftTime: 3600 # 单位为秒 1* 3600 1Hour
 privateKey : # 单位为秒
   expTime :  7200 #2 * 3600
 log:
@@ -23,3 +23,7 @@ log:
   outFile: true
   logFormat: "JSON"
   filePath: ""
+pool:
+  wrokerNum: 10
+  workerContent: 100
+  

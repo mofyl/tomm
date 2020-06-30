@@ -1,7 +1,6 @@
 package jwt
 
 import (
-	"go.uber.org/zap"
 	"testing"
 	"tomm/log"
 )
@@ -15,15 +14,15 @@ func TestEncode(t *testing.T) {
 		ExternInfo:  "",
 	})
 	if err != nil {
-		log.Info("encode", zap.String("Encode Error ", err.Error()))
+		log.Info("encode err is  %s", err.Error())
 		return
 	}
 
-	log.Info("encode", zap.String("Token ", tokenStr))
+	log.Info("encode Token is %s", tokenStr)
 	err = j.decode(tokenStr)
 
 	if err != nil {
-		log.Info("decode", zap.String("Decode Err", err.Error()))
+		log.Info("decode Err is %s ", err.Error())
 		return
 	}
 }

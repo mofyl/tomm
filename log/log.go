@@ -1,6 +1,7 @@
 package log
 
 import (
+	"fmt"
 	"go.uber.org/zap"
 )
 
@@ -13,36 +14,34 @@ func init() {
 	logger = buildLog(cfg)
 }
 
-func Debug(msg string, field ...zap.Field) {
-	defaultLog(DEBUG, msg, field...)
+func Debug(format string, args ...interface{}) {
+	defaultLog(DEBUG, fmt.Sprintf(format, args...))
 }
 
-func Msg(level LogLEVEL, msg string) {
-	defaultLog(level, msg)
+func Info(format string, args ...interface{}) {
+	defaultLog(INFO, fmt.Sprintf(format, args...))
 }
 
-func Info(msg string, field ...zap.Field) {
-	defaultLog(INFO, msg, field...)
+func Warn(format string, args ...interface{}) {
+	defaultLog(WARN, fmt.Sprintf(format, args...))
 }
 
-func Warn(msg string, field ...zap.Field) {
-	defaultLog(WARN, msg, field...)
+func Error(format string, args ...interface{}) {
+	defaultLog(ERROR, fmt.Sprintf(format, args...))
 }
 
-func Error(msg string, field ...zap.Field) {
-	defaultLog(ERROR, msg, field...)
+func Panic(format string, args ...interface{}) {
+	defaultLog(PANIC, fmt.Sprintf(format, args...))
 }
 
-func Panic(msg string, field ...zap.Field) {
-	defaultLog(PANIC, msg, field...)
-}
-
-func Fatal(msg string, field ...zap.Field) {
-	defaultLog(FATAL, msg, field...)
+func Fatal(format string, args ...interface{}) {
+	defaultLog(FATAL, fmt.Sprintf(format, args...))
 }
 
 func defaultLog(level string, msg string, field ...zap.Field) {
+
 	if ce := logger.Check(getLogLevel(level), msg); ce != nil {
 		ce.Write(field...)
 	}
+
 }

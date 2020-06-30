@@ -2,10 +2,6 @@ package service
 
 const (
 
-	// 自定义返回码
-	SUCCESS     = 200
-	SUCCESS_MSG = "Success"
-
 	// 参数错误
 	PARAM_FAIL     = 8000
 	PARAM_FAIL_MSG = "parameter error"

@@ -7,7 +7,6 @@ import (
 	"github.com/jmoiron/sqlx"
 	"time"
 	"tomm/config"
-	"tomm/ecode"
 )
 
 type mysqlConf struct {
@@ -55,11 +54,8 @@ func newMysqlDriver() *mysqlDB {
 
 func (m *mysqlDB) Connect() (*sqlx.DB, error) {
 	connStr := m.getConnStr()
-	db, err := sqlx.Connect("mysql", connStr)
-	if err != nil {
-		return nil, err
-	}
-	return db, nil
+	return sqlx.Connect("mysql", connStr)
+
 }
 
 func (m *mysqlDB) getConnStr() string {
@@ -68,14 +64,9 @@ func (m *mysqlDB) getConnStr() string {
 
 func (m *mysqlDB) Query(ctx context.Context, sql string, res interface{}, args ...interface{}) error {
 	return m.engine.GetContext(ctx, res, sql, args)
+
 }
 
-func (m *mysqlDB) Exec(ctx context.Context, sql string, args ...interface{}) error {
-	_, err := m.engine.ExecContext(ctx, sql, args...)
-	//db.RowsAffected()
-	if err != nil {
-		return ecode.NewSqlErr(err.Error())
-	}
-	//res.LastInsertId()
-	return nil
+func (m *mysqlDB) Exec(ctx context.Context, sql string, args ...interface{}) (ExecResult, error) {
+	return m.engine.ExecContext(ctx, sql, args...)
 }

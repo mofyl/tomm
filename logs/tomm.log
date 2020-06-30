@@ -1,162 +1,341 @@
-{"level":"info","time":"2020-06-19T14:43:47.591+0800","msg":"encode","Encode Res ":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfc2VjcmV0IjoiaGVsbG8iLCJleHAiOiIyMDIwLTA2LTE5VDE1OjQzOjQ3LjU5MTQ0MyswODowMCJ9.giPQ6nhHVu6qZsAY6pXMQ37U4aznwMsBwqexY6azJT4"}
-{"level":"info","time":"2020-06-19T15:02:40.450+0800","msg":"encode","Encode Res ":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfc2VjcmV0IjoiaGVsbG8iLCJleHAiOiIyMDIwLTA2LTE5VDE2OjAyOjQwLjQ1MDM4NiswODowMCJ9.97KpKtgj9EsGybTsnkaGXUAyc7umAvlTQvVg0R83a18"}
-{"level":"info","time":"2020-06-19T15:02:40.451+0800","msg":"Decode ","expTime":"2020-06-19T16:02:40.450386+08:00","secret":"hello"}
-{"level":"info","time":"2020-06-19T15:03:16.890+0800","msg":"encode","Encode Res ":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfc2VjcmV0IjoiaGVsbG8iLCJleHAiOjE1OTI1NTM3OTY4OTAxMzUwMDB9.xw_mV9z34Ysf0t-hUi-WG1ouMTczXVdGxOd1M4GqewQ"}
-{"level":"info","time":"2020-06-19T15:03:16.890+0800","msg":"Decode ","expTime":1592553796890135000,"secret":"hello"}
-{"level":"info","time":"2020-06-19T15:03:33.658+0800","msg":"encode","Encode Res ":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfc2VjcmV0IjoiaGVsbG8iLCJleHAiOjE1OTI1NTM4MTN9.8CPqIpon-h7BwmAp7jAGm4sKL3ucd43ZNoTHkG-dNFE"}
-{"level":"info","time":"2020-06-19T15:03:33.659+0800","msg":"Decode ","expTime":1592553813,"secret":"hello"}
-{"level":"info","time":"2020-06-19T15:49:23.842+0800","msg":"encode","Encode Error ":"key is of invalid type"}
-{"level":"info","time":"2020-06-19T15:50:02.386+0800","msg":"encode","Encode Error ":"key is of invalid type"}
-{"level":"info","time":"2020-06-19T15:51:36.287+0800","msg":"encode","Encode Error ":"key is of invalid type"}
-{"level":"info","time":"2020-06-19T15:52:31.155+0800","msg":"decode","Decode Err":"CustomClaims Convert Fail"}
-{"level":"info","time":"2020-06-19T15:53:07.057+0800","msg":"encode","Token ":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsX25hbWUiOiJhYWFhYSIsImNoYW5uZWxfa2V5IjoicXdlcXdlIiwicmFuZG9tX2tleSI6ImU5ODI2ZmI2LWIyMDEtMTFlYS04NjA0LWYwMTg5ODA1ZjBlMyIsImV4cCI6MTU5MjU2MDM4NywiaWF0IjoxNTkyNTUzMTg3LCJpc3MiOiJiZWUiLCJuYmYiOjE1OTI1NTMwNjd9.l5mRlR44FevYHqHy79fOILZc66itPRgTQzxNb2EvxBo"}
-{"level":"info","time":"2020-06-19T15:53:07.057+0800","msg":"decode","Decode Err":"CustomClaims Convert Fail"}
-{"level":"info","time":"2020-06-19T16:08:11.716+0800","msg":"encode","Token ":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsX25hbWUiOiJhYWFhYSIsImNoYW5uZWxfa2V5IjoicXdlcXdlIiwicmFuZG9tX2tleSI6IjA0YmE3Nzg2LWIyMDQtMTFlYS1hYmM3LWYwMTg5ODA1ZjBlMyIsImV4cCI6MTU5MjU2MTI5MSwiaWF0IjoxNTkyNTU0MDkxLCJpc3MiOiJiZWUiLCJuYmYiOjE1OTI1NTM5NzF9.FT84YMHJr8OrGfNLhnHAXKVlYfQ-lME6brfzVoJui00"}
-{"level":"info","time":"2020-06-19T16:08:11.716+0800","msg":"decode","Decode Err":"CustomClaims Convert Fail"}
-{"level":"info","time":"2020-06-19T16:08:24.610+0800","msg":"encode","Token ":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsX25hbWUiOiJhYWFhYSIsImNoYW5uZWxfa2V5IjoicXdlcXdlIiwicmFuZG9tX2tleSI6IjBjNjllNGM2LWIyMDQtMTFlYS1iOWJjLWYwMTg5ODA1ZjBlMyIsImV4cCI6MTU5MjU2MTMwNCwiaWF0IjoxNTkyNTU0MTA0LCJpc3MiOiJiZWUiLCJuYmYiOjE1OTI1NTM5ODR9.jTsAhU5KXG_aWC2XX6UirQ91pfgu2KmNYpxM8qB2zFg"}
-{"level":"info","time":"2020-06-19T16:08:24.610+0800","msg":"decode","Decode Err":"CustomClaims Convert Fail"}
-{"level":"info","time":"2020-06-19T16:09:41.880+0800","msg":"encode","Token ":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsX25hbWUiOiJhYWFhYSIsImNoYW5uZWxfa2V5IjoicXdlcXdlIiwicmFuZG9tX2tleSI6IjNhNzg2NGU2LWIyMDQtMTFlYS1iNGE3LWYwMTg5ODA1ZjBlMyIsImV4cCI6MTU5MjU2MTM4MSwiaWF0IjoxNTkyNTU0MTgxLCJpc3MiOiJiZWUiLCJuYmYiOjE1OTI1NTQwNjF9.-Q1ZLWirMxQ8ReNNsllFTkkEZYEffLlHXWGFprSFX08"}
-{"level":"info","time":"2020-06-19T16:09:41.880+0800","msg":"decode","Decode Err":"CustomClaims Convert Fail"}
-{"level":"info","time":"2020-06-19T16:10:02.774+0800","msg":"encode","Token ":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsX25hbWUiOiJhYWFhYSIsImNoYW5uZWxfa2V5IjoicXdlcXdlIiwicmFuZG9tX2tleSI6IjQ2ZWM4YmM2LWIyMDQtMTFlYS05OTc0LWYwMTg5ODA1ZjBlMyIsImV4cCI6MTU5MjU2MTQwMiwiaWF0IjoxNTkyNTU0MjAyLCJpc3MiOiJiZWUiLCJuYmYiOjE1OTI1NTQwODJ9.sgSMCJ2H9SYJIhwO1_j69DAlx2TqOwHKthYZBGwYJQo"}
-{"level":"info","time":"2020-06-19T16:10:02.774+0800","msg":"decode","Decode Err":"CustomClaims Convert Fail"}
-{"level":"info","time":"2020-06-19T16:12:45.572+0800","msg":"encode","Token ":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsX25hbWUiOiJhYWFhYSIsImNoYW5uZWxfa2V5IjoicXdlcXdlIiwicmFuZG9tX2tleSI6ImE3ZjU4Nzg4LWIyMDQtMTFlYS1hOGVjLWYwMTg5ODA1ZjBlMyIsImV4cCI6MTU5MjU2MTU2NSwiaWF0IjoxNTkyNTU0MzY1LCJpc3MiOiJiZWUiLCJuYmYiOjE1OTI1NTQyNDV9.tqB8EGAjwn1zLtlDYsGan8fkhT8_IDykCF2CN3Mlf34"}
-{"level":"info","time":"2020-06-19T16:12:45.572+0800","msg":"Decode ","expTime":1592561565,"secret":"bee"}
-{"level":"info","time":"2020-06-20T14:54:06.468+0800","msg":"encode","Token ":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsX25hbWUiOiJhYWFhYSIsImNoYW5uZWxfa2V5IjoicXdlcXdlIiwicmFuZG9tX2tleSI6ImQ1OTEyNWI0LWIyYzItMTFlYS04MzZiLWI0MmU5OWY5MThlOSIsImV4cCI6MTU5MjY0MzI0NiwiaWF0IjoxNTkyNjM2MDQ2LCJpc3MiOiJiZWUiLCJuYmYiOjE1OTI2MzU5MjZ9.w7xE2s_b34MGttwZswOyyfUZy4HYYk5HOclQJbzK_rs"}
-{"level":"info","time":"2020-06-20T14:54:06.475+0800","msg":"Decode ","expTime":1592643246,"secret":"bee"}
-{"level":"debug","time":"2020-06-20T18:01:13.510+0800","msg":"Success"}
-{"level":"debug","time":"2020-06-20T18:01:49.142+0800","msg":"Success"}
-{"level":"debug","time":"2020-06-20T18:04:47.585+0800","msg":"ExpTime is ","ExpTime ":4}
-{"level":"debug","time":"2020-06-20T18:04:47.592+0800","msg":"Success"}
-{"level":"debug","time":"2020-06-20T18:05:06.012+0800","msg":"ExpTime is ","ExpTime ":4}
-{"level":"debug","time":"2020-06-20T18:05:06.019+0800","msg":"Success"}
-{"level":"debug","time":"2020-06-20T18:05:22.636+0800","msg":"ExpTime is ","ExpTime ":4}
-{"level":"debug","time":"2020-06-20T18:05:22.642+0800","msg":"Success"}
-{"level":"debug","time":"2020-06-20T18:08:36.208+0800","msg":"getRandomTime","randomTime":2}
-{"level":"debug","time":"2020-06-20T18:08:36.216+0800","msg":"getRandomTime","randomTime":2}
-{"level":"debug","time":"2020-06-20T18:08:36.217+0800","msg":"getRandomTime","randomTime":2}
-{"level":"debug","time":"2020-06-20T18:08:36.218+0800","msg":"getRandomTime","randomTime":2}
-{"level":"debug","time":"2020-06-20T18:08:36.219+0800","msg":"getRandomTime","randomTime":2}
-{"level":"debug","time":"2020-06-20T18:08:36.220+0800","msg":"getRandomTime","randomTime":2}
-{"level":"debug","time":"2020-06-20T18:08:36.221+0800","msg":"getRandomTime","randomTime":2}
-{"level":"debug","time":"2020-06-20T18:08:36.222+0800","msg":"getRandomTime","randomTime":2}
-{"level":"debug","time":"2020-06-20T18:08:36.223+0800","msg":"getRandomTime","randomTime":2}
-{"level":"debug","time":"2020-06-20T18:08:36.224+0800","msg":"getRandomTime","randomTime":2}
-{"level":"debug","time":"2020-06-20T18:10:06.923+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:06.932+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:06.933+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:06.934+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:06.935+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:06.936+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:06.937+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:06.938+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:06.939+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:06.940+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:27.453+0800","msg":"getRandomTime","randomTime":1}
-{"level":"debug","time":"2020-06-20T18:10:36.764+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:38.506+0800","msg":"getRandomTime","randomTime":2}
-{"level":"debug","time":"2020-06-20T18:10:40.370+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:42.039+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:43.485+0800","msg":"getRandomTime","randomTime":2}
-{"level":"debug","time":"2020-06-20T18:10:47.491+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:47.492+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:47.493+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:10:47.494+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:11:17.347+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:11:17.356+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:11:17.357+0800","msg":"getRandomTime","randomTime":2}
-{"level":"debug","time":"2020-06-20T18:11:17.358+0800","msg":"getRandomTime","randomTime":1}
-{"level":"debug","time":"2020-06-20T18:11:17.359+0800","msg":"getRandomTime","randomTime":1}
-{"level":"debug","time":"2020-06-20T18:11:17.360+0800","msg":"getRandomTime","randomTime":2}
-{"level":"debug","time":"2020-06-20T18:11:17.361+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:11:17.362+0800","msg":"getRandomTime","randomTime":0}
-{"level":"debug","time":"2020-06-20T18:11:17.363+0800","msg":"getRandomTime","randomTime":1}
-{"level":"debug","time":"2020-06-20T18:11:17.364+0800","msg":"getRandomTime","randomTime":1}
-{"level":"debug","time":"2020-06-20T18:11:26.653+0800","msg":"ExpTime is ","ExpTime ":4}
-{"level":"debug","time":"2020-06-20T18:11:26.660+0800","msg":"Success"}
-{"level":"debug","time":"2020-06-20T18:11:40.508+0800","msg":"ExpTime is ","ExpTime ":5}
-{"level":"debug","time":"2020-06-20T18:11:40.514+0800","msg":"Success"}
-{"level":"info","time":"2020-06-22T09:40:02.116+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-22T09:40:59.605+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-22T09:40:59.606+0800","msg":"Http Server Start","Addr is ":":8086"}
-{"level":"debug","time":"2020-06-22T09:41:20.591+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"debug","time":"2020-06-22T09:41:20.592+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"debug","time":"2020-06-22T09:41:20.594+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"debug","time":"2020-06-22T09:41:21.012+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"debug","time":"2020-06-22T09:41:21.013+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"debug","time":"2020-06-22T09:41:21.018+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"debug","time":"2020-06-22T09:41:26.080+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"debug","time":"2020-06-22T09:41:26.081+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"debug","time":"2020-06-22T09:41:26.085+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"info","time":"2020-06-22T09:41:47.503+0800","msg":"TestDefaultBind","binding Name":"form"}
-{"level":"info","time":"2020-06-22T09:41:47.503+0800","msg":"TestStruct ","content":{"A":"aaaa","B":"bbbb"}}
-{"level":"info","time":"2020-06-22T09:42:16.771+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-22T09:42:16.772+0800","msg":"Http Server Start","Addr is ":":8086"}
-{"level":"debug","time":"2020-06-22T09:42:23.702+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"debug","time":"2020-06-22T09:42:23.705+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"debug","time":"2020-06-22T09:42:23.707+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"info","time":"2020-06-22T09:43:20.991+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-22T09:43:20.991+0800","msg":"Http Server Start","Addr is ":":8086"}
-{"level":"debug","time":"2020-06-22T09:43:26.628+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"debug","time":"2020-06-22T09:49:50.392+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"debug","time":"2020-06-22T09:50:50.618+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"info","time":"2020-06-22T10:52:02.915+0800","msg":"result must be a pointer"}
-{"level":"info","time":"2020-06-22T10:52:18.734+0800","msg":"ChannelInfo","channelMap":{"channel_12":{"ChannelID":"1234","ChannelName":"workOrder","LoginUrl":"http://www.baidu.com"},"channel_132":{"ChannelID":"qweqw","ChannelName":"workOrder111","LoginUrl":"http://www.baidu.com"}}}
-{"level":"info","time":"2020-06-22T10:54:25.435+0800","msg":"ChannelInfo","key":"channel_132","Value":{"ChannelID":"qweqw","ChannelName":"workOrder111","LoginUrl":"http://www.baidu.com"}}
-{"level":"info","time":"2020-06-22T10:54:25.436+0800","msg":"ChannelInfo","key":"channel_12","Value":{"ChannelID":"1234","ChannelName":"workOrder","LoginUrl":"http://www.baidu.com"}}
-{"level":"debug","time":"2020-06-22T11:06:23.381+0800","msg":"Init ChannelInfo"}
-{"level":"debug","time":"2020-06-22T11:06:23.382+0800","msg":"Channel Name is  channel_132"}
-{"level":"info","time":"2020-06-22T11:06:23.382+0800","msg":"Channel Info","ChannelInfo ":{"ChannelID":"qweqw","ChannelName":"workOrder111","LoginUrl":"http://www.baidu.com"}}
-{"level":"debug","time":"2020-06-22T11:06:23.382+0800","msg":"Channel Name is  channel_12"}
-{"level":"info","time":"2020-06-22T11:06:23.382+0800","msg":"Channel Info","ChannelInfo ":{"ChannelID":"1234","ChannelName":"workOrder","LoginUrl":"http://www.baidu.com"}}
-{"level":"info","time":"2020-06-22T14:55:03.333+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-22T14:55:03.333+0800","msg":"Http Server Start","Addr is ":":8086"}
-{"level":"debug","time":"2020-06-22T14:55:15.079+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"fatal","time":"2020-06-22T14:55:15.079+0800","msg":"http server recover ","err":"goroutine 50 [running]:\ntomm/core/server.(*Context).Next.func1()\n\t/Users/mo/go/src/tomm/core/server/context.go:54 +0xb1\npanic(0x15641c0, 0x16fd280)\n\t/usr/local/go/src/runtime/panic.go:679 +0x1b2\nreflect.(*rtype).Elem(0x15c6900, 0x0, 0x0)\n\t/usr/local/go/src/reflect/type.go:920 +0x143\ntomm/core/server/binding.(*cache).set(0x1ae8a40, 0x1722f00, 0x15c6900, 0x1b06e40)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:48 +0x4c\ntomm/core/server/binding.(*cache).get(0x1ae8a40, 0x1722f00, 0x15c6900, 0x8)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:40 +0xf5\ntomm/core/server/binding.mapForm(0x15c6900, 0xc0001680a0, 0xc000166510, 0xc0001680a0, 0x0)\n\t/Users/mo/go/src/tomm/core/server/binding/form_map.go:10 +0x81\ntomm/core/server/binding.formBinding.Bind(0xc000200000, 0x15c6900, 0xc0001680a0, 0xc, 0x1b06e40)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:90 +0x7b\ntomm/core/server.(*Context).mustBind(...)\n\t/Users/mo/go/src/tomm/core/server/context.go:108\ntomm/core/server.(*Context).Bind(0xc00020c000, 0x15c6900, 0xc0001680a0, 0xc0001680a0, 0x8)\n\t/Users/mo/go/src/tomm/core/server/context.go:104 +0xb1\ntomm/core/server.TestEngine.func2(0xc00020c000)\n\t/Users/mo/go/src/tomm/core/server/server_test.go:29 +0x89\ntomm/core/server.(*Context).Next(0xc00020c000)\n\t/Users/mo/go/src/tomm/core/server/context.go:62 +0x69\ntomm/core/server.(*Engine).HandlerContext(0xc0001961c0, 0xc00020c000)\n\t/Users/mo/go/src/tomm/core/server/server.go:196 +0x1ab\ntomm/core/server.(*Engine).ServeHTTP(0xc0001961c0, 0x17140e0, 0xc0001c80e0, 0xc000200000)\n\t/Users/mo/go/src/tomm/core/server/server.go:178 +0xb2\nnet/http.serverHandler.ServeHTTP(0xc0001e0000, 0x17140e0, 0xc0001c80e0, 0xc000200000)\n\t/usr/local/go/src/net/http/server.go:2802 +0xa4\nnet/http.(*conn).serve(0xc0001e8000, 0x17158a0, 0xc00017a100)\n\t/usr/local/go/src/net/http/server.go:1890 +0x875\ncreated by net/http.(*Server).Serve\n\t/usr/local/go/src/net/http/server.go:2928 +0x384\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}
-{"level":"info","time":"2020-06-22T14:56:10.494+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-22T14:56:10.494+0800","msg":"Http Server Start","Addr is ":":8086"}
-{"level":"debug","time":"2020-06-22T14:56:15.055+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"fatal","time":"2020-06-22T14:56:15.055+0800","msg":"http server recover ","err":"goroutine 37 [running]:\ntomm/core/server.(*Context).Next.func1()\n\t/Users/mo/go/src/tomm/core/server/context.go:54 +0xb1\npanic(0x15641e0, 0x16fd2a0)\n\t/usr/local/go/src/runtime/panic.go:679 +0x1b2\nreflect.(*rtype).Elem(0x15c6920, 0x0, 0x0)\n\t/usr/local/go/src/reflect/type.go:920 +0x143\ntomm/core/server/binding.(*cache).set(0x1ae8a40, 0x1722f20, 0x15c6920, 0x1b06e40)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:48 +0x4c\ntomm/core/server/binding.(*cache).get(0x1ae8a40, 0x1722f20, 0x15c6920, 0x8)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:40 +0xf5\ntomm/core/server/binding.mapForm(0x15c6920, 0xc00017a0e0, 0xc00016e720, 0xc00017a0e0, 0x0)\n\t/Users/mo/go/src/tomm/core/server/binding/form_map.go:10 +0x81\ntomm/core/server/binding.formBinding.Bind(0xc0001a0200, 0x15c6920, 0xc00017a0e0, 0xc, 0x1b06e40)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:90 +0x7b\ntomm/core/server.(*Context).mustBind(...)\n\t/Users/mo/go/src/tomm/core/server/context.go:108\ntomm/core/server.(*Context).Bind(0xc0001901c0, 0x15c6920, 0xc00017a0e0, 0xc00017a0e0, 0x8)\n\t/Users/mo/go/src/tomm/core/server/context.go:104 +0xb1\ntomm/core/server.TestEngine.func2(0xc0001901c0)\n\t/Users/mo/go/src/tomm/core/server/server_test.go:29 +0x89\ntomm/core/server.(*Context).Next(0xc0001901c0)\n\t/Users/mo/go/src/tomm/core/server/context.go:62 +0x69\ntomm/core/server.(*Engine).HandlerContext(0xc0001ba000, 0xc0001901c0)\n\t/Users/mo/go/src/tomm/core/server/server.go:196 +0x1ab\ntomm/core/server.(*Engine).ServeHTTP(0xc0001ba000, 0x1714100, 0xc0001d20e0, 0xc0001a0200)\n\t/Users/mo/go/src/tomm/core/server/server.go:178 +0xb2\nnet/http.serverHandler.ServeHTTP(0xc0001d4000, 0x1714100, 0xc0001d20e0, 0xc0001a0200)\n\t/usr/local/go/src/net/http/server.go:2802 +0xa4\nnet/http.(*conn).serve(0xc000196140, 0x17158c0, 0xc000170680)\n\t/usr/local/go/src/net/http/server.go:1890 +0x875\ncreated by net/http.(*Server).Serve\n\t/usr/local/go/src/net/http/server.go:2928 +0x384\n"}
-{"level":"info","time":"2020-06-22T15:01:32.552+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-22T15:01:32.552+0800","msg":"Http Server Start","Addr is ":":8086"}
-{"level":"debug","time":"2020-06-22T15:01:40.217+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"error","time":"2020-06-22T15:01:40.218+0800","msg":"http server recover ","err":"goroutine 23 [running]:\ntomm/core/server.(*Context).Next.func1()\n\t/Users/mo/go/src/tomm/core/server/context.go:54 +0xb1\npanic(0x15641e0, 0x16fd2a0)\n\t/usr/local/go/src/runtime/panic.go:679 +0x1b2\nreflect.(*rtype).Elem(0x15c6920, 0x0, 0x0)\n\t/usr/local/go/src/reflect/type.go:920 +0x143\ntomm/core/server/binding.(*cache).set(0x1ae8a40, 0x1722f20, 0x15c6920, 0x1b06e40)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:48 +0x4c\ntomm/core/server/binding.(*cache).get(0x1ae8a40, 0x1722f20, 0x15c6920, 0x8)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:40 +0xf5\ntomm/core/server/binding.mapForm(0x15c6920, 0xc0000b3260, 0xc000101d40, 0xc0000b3260, 0x0)\n\t/Users/mo/go/src/tomm/core/server/binding/form_map.go:10 +0x81\ntomm/core/server/binding.formBinding.Bind(0xc0000fe600, 0x15c6920, 0xc0000b3260, 0xc, 0x1b06e40)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:90 +0x7b\ntomm/core/server.(*Context).mustBind(...)\n\t/Users/mo/go/src/tomm/core/server/context.go:108\ntomm/core/server.(*Context).Bind(0xc000133730, 0x15c6920, 0xc0000b3260, 0xc0000b3260, 0x8)\n\t/Users/mo/go/src/tomm/core/server/context.go:104 +0xb1\ntomm/core/server.TestEngine.func2(0xc000133730)\n\t/Users/mo/go/src/tomm/core/server/server_test.go:29 +0x89\ntomm/core/server.(*Context).Next(0xc000133730)\n\t/Users/mo/go/src/tomm/core/server/context.go:62 +0x69\ntomm/core/server.(*Engine).HandlerContext(0xc00016e1c0, 0xc000133730)\n\t/Users/mo/go/src/tomm/core/server/server.go:196 +0x1ab\ntomm/core/server.(*Engine).ServeHTTP(0xc00016e1c0, 0x1714100, 0xc0000f62a0, 0xc0000fe600)\n\t/Users/mo/go/src/tomm/core/server/server.go:178 +0xb2\nnet/http.serverHandler.ServeHTTP(0xc0001b2000, 0x1714100, 0xc0000f62a0, 0xc0000fe600)\n\t/usr/local/go/src/net/http/server.go:2802 +0xa4\nnet/http.(*conn).serve(0xc0000cde00, 0x17158c0, 0xc000086e00)\n\t/usr/local/go/src/net/http/server.go:1890 +0x875\ncreated by net/http.(*Server).Serve\n\t/usr/local/go/src/net/http/server.go:2928 +0x384\n"}
-{"level":"info","time":"2020-06-22T15:03:58.786+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-22T15:03:58.786+0800","msg":"Http Server Start","Addr is ":":8086"}
-{"level":"debug","time":"2020-06-22T15:04:10.956+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"error","time":"2020-06-22T15:04:10.956+0800","msg":"http server recover ","err":"goroutine 24 [running]:\ntomm/core/server.(*Context).Next.func1(0xc000178070)\n\t/Users/mo/go/src/tomm/core/server/context.go:50 +0xb1\npanic(0x1564220, 0x16fd400)\n\t/usr/local/go/src/runtime/panic.go:679 +0x1b2\nreflect.(*rtype).Elem(0x15c6960, 0x0, 0x0)\n\t/usr/local/go/src/reflect/type.go:920 +0x143\ntomm/core/server/binding.(*cache).set(0x1ae8a80, 0x1723080, 0x15c6960, 0x1b06e80)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:48 +0x4c\ntomm/core/server/binding.(*cache).get(0x1ae8a80, 0x1723080, 0x15c6960, 0x8)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:40 +0xf5\ntomm/core/server/binding.mapForm(0x15c6960, 0xc0001520e0, 0xc000150660, 0xc0001520e0, 0x0)\n\t/Users/mo/go/src/tomm/core/server/binding/form_map.go:10 +0x81\ntomm/core/server/binding.formBinding.Bind(0xc0001b8100, 0x15c6960, 0xc0001520e0, 0xc, 0x1b06e80)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:90 +0x7b\ntomm/core/server.(*Context).mustBind(...)\n\t/Users/mo/go/src/tomm/core/server/context.go:105\ntomm/core/server.(*Context).Bind(0xc000178070, 0x15c6960, 0xc0001520e0, 0xc0001520e0, 0x8)\n\t/Users/mo/go/src/tomm/core/server/context.go:101 +0xb1\ntomm/core/server.TestEngine.func2(0xc000178070)\n\t/Users/mo/go/src/tomm/core/server/server_test.go:29 +0x89\ntomm/core/server.(*Context).Next(0xc000178070)\n\t/Users/mo/go/src/tomm/core/server/context.go:59 +0x6e\ntomm/core/server.(*Engine).HandlerContext(0xc000178000, 0xc000178070)\n\t/Users/mo/go/src/tomm/core/server/server.go:197 +0x1ab\ntomm/core/server.(*Engine).ServeHTTP(0xc000178000, 0x1714260, 0xc0001a20e0, 0xc0001b8100)\n\t/Users/mo/go/src/tomm/core/server/server.go:179 +0xb2\nnet/http.serverHandler.ServeHTTP(0xc0001a2000, 0x1714260, 0xc0001a20e0, 0xc0001b8100)\n\t/usr/local/go/src/net/http/server.go:2802 +0xa4\nnet/http.(*conn).serve(0xc0001b6000, 0x1715a20, 0xc0000842c0)\n\t/usr/local/go/src/net/http/server.go:1890 +0x875\ncreated by net/http.(*Server).Serve\n\t/usr/local/go/src/net/http/server.go:2928 +0x384\n"}
-{"level":"info","time":"2020-06-22T15:05:03.326+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-22T15:05:03.326+0800","msg":"Http Server Start","Addr is ":":8086"}
-{"level":"debug","time":"2020-06-22T15:05:17.743+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"error","time":"2020-06-22T15:05:17.744+0800","msg":"http server recover ","err":"goroutine 9 [running]:\ntomm/core/server.(*Context).Next.func1(0xc00018c070)\n\t/Users/mo/go/src/tomm/core/server/context.go:50 +0xb1\npanic(0x15642e0, 0x16fd500)\n\t/usr/local/go/src/runtime/panic.go:679 +0x1b2\nreflect.(*rtype).Elem(0x15c6a20, 0x0, 0x0)\n\t/usr/local/go/src/reflect/type.go:920 +0x143\ntomm/core/server/binding.(*cache).set(0x1ae8a80, 0x1723180, 0x15c6a20, 0x1b06e80)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:48 +0x4c\ntomm/core/server/binding.(*cache).get(0x1ae8a80, 0x1723180, 0x15c6a20, 0x8)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:40 +0xf5\ntomm/core/server/binding.mapForm(0x15c6a20, 0xc00000e100, 0xc00014a6c0, 0xc00000e100, 0x0)\n\t/Users/mo/go/src/tomm/core/server/binding/form_map.go:10 +0x81\ntomm/core/server/binding.formBinding.Bind(0xc0001b8100, 0x15c6a20, 0xc00000e100, 0xc, 0x1b06e80)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:90 +0x7b\ntomm/core/server.(*Context).mustBind(...)\n\t/Users/mo/go/src/tomm/core/server/context.go:104\ntomm/core/server.(*Context).Bind(0xc00018c070, 0x15c6a20, 0xc00000e100, 0xc00000e100, 0x8)\n\t/Users/mo/go/src/tomm/core/server/context.go:100 +0xb1\ntomm/core/server.TestEngine.func2(0xc00018c070)\n\t/Users/mo/go/src/tomm/core/server/server_test.go:29 +0x89\ntomm/core/server.(*Context).Next(0xc00018c070)\n\t/Users/mo/go/src/tomm/core/server/context.go:58 +0x6e\ntomm/core/server.(*Engine).HandlerContext(0xc00018c000, 0xc00018c070)\n\t/Users/mo/go/src/tomm/core/server/server.go:197 +0x1ab\ntomm/core/server.(*Engine).ServeHTTP(0xc00018c000, 0x1714360, 0xc0001a80e0, 0xc0001b8100)\n\t/Users/mo/go/src/tomm/core/server/server.go:179 +0xb2\nnet/http.serverHandler.ServeHTTP(0xc0001a8000, 0x1714360, 0xc0001a80e0, 0xc0001b8100)\n\t/usr/local/go/src/net/http/server.go:2802 +0xa4\nnet/http.(*conn).serve(0xc0001b6000, 0x1715b20, 0xc000020280)\n\t/usr/local/go/src/net/http/server.go:1890 +0x875\ncreated by net/http.(*Server).Serve\n\t/usr/local/go/src/net/http/server.go:2928 +0x384\n"}
-{"level":"debug","time":"2020-06-22T15:05:58.994+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"error","time":"2020-06-22T15:05:58.994+0800","msg":"http server recover ","err":"goroutine 9 [running]:\ntomm/core/server.(*Context).Next.func1(0xc00012d7a0)\n\t/Users/mo/go/src/tomm/core/server/context.go:50 +0xb1\npanic(0x15642e0, 0x16fd500)\n\t/usr/local/go/src/runtime/panic.go:679 +0x1b2\nreflect.(*rtype).Elem(0x15c6a20, 0x0, 0x0)\n\t/usr/local/go/src/reflect/type.go:920 +0x143\ntomm/core/server/binding.(*cache).set(0x1ae8a80, 0x1723180, 0x15c6a20, 0x1b06e80)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:48 +0x4c\ntomm/core/server/binding.(*cache).get(0x1ae8a80, 0x1723180, 0x15c6a20, 0x8)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:40 +0xf5\ntomm/core/server/binding.mapForm(0x15c6a20, 0xc0000ad220, 0xc0000fdb00, 0xc0000ad220, 0x0)\n\t/Users/mo/go/src/tomm/core/server/binding/form_map.go:10 +0x81\ntomm/core/server/binding.formBinding.Bind(0xc0000fa500, 0x15c6a20, 0xc0000ad220, 0xc, 0x1b06e80)\n\t/Users/mo/go/src/tomm/core/server/binding/form.go:90 +0x7b\ntomm/core/server.(*Context).mustBind(...)\n\t/Users/mo/go/src/tomm/core/server/context.go:104\ntomm/core/server.(*Context).Bind(0xc00012d7a0, 0x15c6a20, 0xc0000ad220, 0xc0000ad220, 0x8)\n\t/Users/mo/go/src/tomm/core/server/context.go:100 +0xb1\ntomm/core/server.TestEngine.func2(0xc00012d7a0)\n\t/Users/mo/go/src/tomm/core/server/server_test.go:29 +0x89\ntomm/core/server.(*Context).Next(0xc00012d7a0)\n\t/Users/mo/go/src/tomm/core/server/context.go:58 +0x6e\ntomm/core/server.(*Engine).HandlerContext(0xc00018c000, 0xc00012d7a0)\n\t/Users/mo/go/src/tomm/core/server/server.go:197 +0x1ab\ntomm/core/server.(*Engine).ServeHTTP(0xc00018c000, 0x1714360, 0xc0000f22a0, 0xc0000fa500)\n\t/Users/mo/go/src/tomm/core/server/server.go:179 +0xb2\nnet/http.serverHandler.ServeHTTP(0xc0001a8000, 0x1714360, 0xc0000f22a0, 0xc0000fa500)\n\t/usr/local/go/src/net/http/server.go:2802 +0xa4\nnet/http.(*conn).serve(0xc0001b6000, 0x1715b20, 0xc000020280)\n\t/usr/local/go/src/net/http/server.go:1890 +0x875\ncreated by net/http.(*Server).Serve\n\t/usr/local/go/src/net/http/server.go:2928 +0x384\n"}
-{"level":"info","time":"2020-06-22T15:06:05.719+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-22T15:06:05.719+0800","msg":"Http Server Start","Addr is ":":8086"}
-{"level":"debug","time":"2020-06-22T15:06:13.747+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"debug","time":"2020-06-22T15:06:22.998+0800","msg":"router ","method is ":"GET","path is ":"/binding"}
-{"level":"info","time":"2020-06-23T17:38:41.403+0800","msg":"Error 1366: Incorrect string value: '\\xC1\\xB5\\xBF,\\xE6q...' for column 'app_key' at row 1"}
-{"level":"info","time":"2020-06-23T17:41:00.127+0800","msg":"Error 1366: Incorrect string value: '\\xFF\\xC2\\xC3@7i...' for column 'app_key' at row 1"}
-{"level":"info","time":"2020-06-23T17:42:21.046+0800","msg":"secretInfo","secretKey":"44b893f32fc68d339a35cbeca4894f1b","appKey":"a49514e2e7fda40eb379c04cdda4e4a6"}
-{"level":"debug","time":"2020-06-24T11:01:44.107+0800","msg":"ExpTime is ","ExpTime ":5}
-{"level":"debug","time":"2020-06-24T11:01:44.109+0800","msg":"Success"}
-{"level":"debug","time":"2020-06-24T11:02:27.047+0800","msg":"Success"}
-{"level":"info","time":"2020-06-24T11:09:23.583+0800","msg":"Redis Get ","res":"11111"}
-{"level":"info","time":"2020-06-28T17:24:03.918+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-28T17:27:11.345+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-28T17:27:55.886+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-28T17:33:14.906+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-28T17:34:18.123+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-28T17:34:18.124+0800","msg":"Http Server Start","Addr is ":":8086"}
-{"level":"info","time":"2020-06-28T17:34:39.410+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-28T17:34:39.411+0800","msg":"Http Server Start","Addr is ":":8086"}
-{"level":"debug","time":"2020-06-28T17:35:05.628+0800","msg":"router ","method is ":"GET","path is ":"/getToken"}
-{"level":"debug","time":"2020-06-28T17:37:17.304+0800","msg":"router ","method is ":"GET","path is ":"/getToken"}
-{"level":"error","time":"2020-06-28T17:37:17.305+0800","msg":"http server recover ","ecode":"goroutine 52 [running]:\ntomm/core/server.(*Context).Next.func1(0xc0001f20e0)\n\t/Users/mo/go/src/tomm/core/server/context.go:50 +0xb1\npanic(0x16c7800, 0x1d22230)\n\t/usr/local/go/src/runtime/panic.go:679 +0x1b2\ntomm/redis.Get(0x1881760, 0xc000028210, 0xc0001862f0, 0xb, 0x1673060, 0xc00017a2c0, 0xb, 0x16746a0)\n\t/Users/mo/go/src/tomm/redis/redis.go:124 +0x28\ntomm/service/oauth.getSecretInfo(0xc00020c156, 0x4, 0xc00017e2a0, 0x0, 0x0)\n\t/Users/mo/go/src/tomm/service/oauth/model.go:43 +0x11f\ntomm/service/oauth.GetOAuthInfo(...)\n\t/Users/mo/go/src/tomm/service/oauth/oauth.go:15\ntomm/service.(*Ser).getToken(0xc0000102f8, 0xc0001f20e0)\n\t/Users/mo/go/src/tomm/service/service.go:90 +0x212\ntomm/core/server.(*Context).Next(0xc0001f20e0)\n\t/Users/mo/go/src/tomm/core/server/context.go:58 +0x6e\ntomm/core/server.(*Engine).HandlerContext(0xc000196770, 0xc0001f20e0)\n\t/Users/mo/go/src/tomm/core/server/server.go:196 +0x1ab\ntomm/core/server.(*Engine).ServeHTTP(0xc000196770, 0x187fc20, 0xc0001e80e0, 0xc0001f0100)\n\t/Users/mo/go/src/tomm/core/server/server.go:178 +0xb2\nnet/http.serverHandler.ServeHTTP(0xc0000e81c0, 0x187fc20, 0xc0001e80e0, 0xc0001f0100)\n\t/usr/local/go/src/net/http/server.go:2802 +0xa4\nnet/http.(*conn).serve(0xc000206140, 0x1881720, 0xc000188180)\n\t/usr/local/go/src/net/http/server.go:1890 +0x875\ncreated by net/http.(*Server).Serve\n\t/usr/local/go/src/net/http/server.go:2928 +0x384\n"}
-{"level":"info","time":"2020-06-28T17:40:23.730+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-28T17:40:23.730+0800","msg":"Http Server Start","Addr is ":":8086"}
-{"level":"debug","time":"2020-06-28T17:40:32.802+0800","msg":"router ","method is ":"GET","path is ":"/getToken"}
-{"level":"warn","time":"2020-06-28T17:40:32.808+0800","msg":"GetToken","Redis Get Key Fail AppKey is ":"1111","Redis Key Get Fail err is ":"redis: nil"}
-{"level":"info","time":"2020-06-28T17:46:55.244+0800","msg":"pprof start ","addr is ":":9000"}
-{"level":"info","time":"2020-06-28T17:46:55.244+0800","msg":"Http Server Start","Addr is ":":8086"}
-{"level":"debug","time":"2020-06-28T17:47:03.430+0800","msg":"router ","method is ":"GET","path is ":"/getToken"}
-{"level":"warn","time":"2020-06-28T17:47:03.433+0800","msg":"GetToken","Redis Get Key Fail AppKey is ":"1111","Redis Key Get Fail err is ":"redis: nil"}
+{"level":"info","time":"2020-06-29T11:19:49.009+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T11:19:49.009+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"error","time":"2020-06-29T11:19:51.012+0800","msg":"http Get Fail err is parse 127.0.0.1:8086/getToken?app_key=055285a69ec81f6477e49fe95da22eba&data=laX2AhoKH1mTm1XO/dWD8tY7GpzeZTy+HAU6rEsLJOETuJsAl2IIeNOHiiA+oKVcib5vFTP+D/FSxr6auVGBxA==: first path segment in URL cannot contain colon"}
+{"level":"info","time":"2020-06-29T11:24:52.266+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T11:24:52.267+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T11:24:54.282+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T11:24:54.292+0800","msg":"http server recover  is http server panic: runtime error: invalid memory address or nil pointer dereference\ngoroutine 50 [running]:\ntomm/core/server.(*Context).Next.func1(0xc000234000)\n\t/Users/mo/go/src/tomm/core/server/context.go:50 +0xc2\npanic(0x16d9100, 0x1d44350)\n\t/usr/local/go/src/runtime/panic.go:679 +0x1b2\ntomm/service.(*Ser).getToken(0xc000136090, 0xc000234000)\n\t/Users/mo/go/src/tomm/service/service.go:111 +0x4f7\ntomm/core/server.(*Context).Next(0xc000234000)\n\t/Users/mo/go/src/tomm/core/server/context.go:59 +0x6e\ntomm/core/server.(*Engine).HandlerContext(0xc000188620, 0xc000234000)\n\t/Users/mo/go/src/tomm/core/server/server.go:195 +0x1ab\ntomm/core/server.(*Engine).ServeHTTP(0xc000188620, 0x1896680, 0xc000230000, 0xc000220000)\n\t/Users/mo/go/src/tomm/core/server/server.go:177 +0xb2\nnet/http.serverHandler.ServeHTTP(0xc0001900e0, 0x1896680, 0xc000230000, 0xc000220000)\n\t/usr/local/go/src/net/http/server.go:2802 +0xa4\nnet/http.(*conn).serve(0xc00020e000, 0x18981c0, 0xc000216000)\n\t/usr/local/go/src/net/http/server.go:1890 +0x875\ncreated by net/http.(*Server).Serve\n\t/usr/local/go/src/net/http/server.go:2928 +0x384\n\n"}
+{"level":"info","time":"2020-06-29T11:24:54.293+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T11:25:48.861+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T11:25:48.861+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T11:25:50.863+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T11:25:50.866+0800","msg":"http server recover  is http server panic: runtime error: invalid memory address or nil pointer dereference\ngoroutine 21 [running]:\ntomm/core/server.(*Context).Next.func1(0xc0001158f0)\n\t/Users/mo/go/src/tomm/core/server/context.go:50 +0xc2\npanic(0x16d9100, 0x1d44350)\n\t/usr/local/go/src/runtime/panic.go:679 +0x1b2\ntomm/service.(*Ser).getToken(0xc00012c040, 0xc0001158f0)\n\t/Users/mo/go/src/tomm/service/service.go:111 +0x4f7\ntomm/core/server.(*Context).Next(0xc0001158f0)\n\t/Users/mo/go/src/tomm/core/server/context.go:59 +0x6e\ntomm/core/server.(*Engine).HandlerContext(0xc0001f01c0, 0xc0001158f0)\n\t/Users/mo/go/src/tomm/core/server/server.go:195 +0x1ab\ntomm/core/server.(*Engine).ServeHTTP(0xc0001f01c0, 0x1896680, 0xc0000dc1c0, 0xc000172200)\n\t/Users/mo/go/src/tomm/core/server/server.go:177 +0xb2\nnet/http.serverHandler.ServeHTTP(0xc00022e000, 0x1896680, 0xc0000dc1c0, 0xc000172200)\n\t/usr/local/go/src/net/http/server.go:2802 +0xa4\nnet/http.(*conn).serve(0xc000174140, 0x18981c0, 0xc00016e380)\n\t/usr/local/go/src/net/http/server.go:1890 +0x875\ncreated by net/http.(*Server).Serve\n\t/usr/local/go/src/net/http/server.go:2928 +0x384\n\n"}
+{"level":"info","time":"2020-06-29T11:25:50.866+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T11:25:56.605+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T11:25:56.606+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T11:25:58.611+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T11:27:19.133+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T11:27:19.133+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T11:27:21.135+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T11:27:44.254+0800","msg":"http Get Fail err is Get http://127.0.0.1:8086/getToken?app_key=055285a69ec81f6477e49fe95da22eba&data=laX2AhoKH1mTm1XO/dWD8szfzwLVl6KZ9YZx8Qcz30tX1qUjKkX96WQxtA6b/Jj3aiYACeMzetYk3kOpo62Yig==: EOF"}
+{"level":"info","time":"2020-06-29T11:28:00.098+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T11:28:00.099+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T11:28:02.103+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T11:28:02.107+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T11:28:08.289+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T11:28:08.290+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T11:28:10.292+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T11:28:10.300+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T14:08:11.047+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:08:11.048+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:08:13.057+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:08:15.868+0800","msg":"Return Token is 07e3e8d8fd5be62b59f7ba04d664d64a"}
+{"level":"info","time":"2020-06-29T14:08:15.869+0800","msg":"status Code is 200 "}
+{"level":"error","time":"2020-06-29T14:08:15.869+0800","msg":"unmarshal body Fail err is unexpected end of JSON input"}
+{"level":"info","time":"2020-06-29T14:09:12.284+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:09:12.284+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:09:14.287+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:09:14.290+0800","msg":"status Code is 200 "}
+{"level":"error","time":"2020-06-29T14:09:14.290+0800","msg":"unmarshal body Fail err is unexpected end of JSON input"}
+{"level":"info","time":"2020-06-29T14:11:03.656+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:11:03.657+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:11:05.663+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:11:05.672+0800","msg":"Return Token is "}
+{"level":"info","time":"2020-06-29T14:11:05.673+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T14:11:58.076+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:11:58.077+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:12:00.083+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:12:00.086+0800","msg":"status Code is 200 "}
+{"level":"error","time":"2020-06-29T14:12:05.375+0800","msg":"unmarshal body Fail err is unexpected end of JSON input"}
+{"level":"info","time":"2020-06-29T14:12:18.399+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:12:18.400+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:12:20.407+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:12:30.059+0800","msg":"Return Token is "}
+{"level":"info","time":"2020-06-29T14:16:22.466+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:16:22.467+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:16:24.469+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:16:24.473+0800","msg":"status Code is 200 "}
+{"level":"error","time":"2020-06-29T14:16:29.666+0800","msg":"unmarshal body Fail err is unexpected end of JSON input"}
+{"level":"info","time":"2020-06-29T14:16:42.777+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:16:42.778+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:16:44.780+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:16:44.782+0800","msg":"status Code is 200 "}
+{"level":"error","time":"2020-06-29T14:16:44.782+0800","msg":"unmarshal body Fail err is unexpected end of JSON input"}
+{"level":"info","time":"2020-06-29T14:17:08.659+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:17:08.660+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:17:10.666+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:17:10.671+0800","msg":"status Code is 200 "}
+{"level":"error","time":"2020-06-29T14:17:48.442+0800","msg":"unmarshal body Fail err is unexpected end of JSON input"}
+{"level":"info","time":"2020-06-29T14:17:52.853+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:17:52.853+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:17:54.858+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:24:54.957+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:24:54.958+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:24:56.959+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:24:56.962+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T14:24:56.962+0800","msg":"GetToken is token "}
+{"level":"info","time":"2020-06-29T14:25:55.026+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:25:55.027+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:25:57.028+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T14:25:57.031+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
+{"level":"info","time":"2020-06-29T14:25:57.033+0800","msg":"Return Token is f0b15fd7b1865a7aca93cb2a8790015d"}
+{"level":"info","time":"2020-06-29T14:25:57.033+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T14:25:57.033+0800","msg":"GetToken Res is { 0 [] 0 }"}
+{"level":"info","time":"2020-06-29T14:26:25.398+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:26:25.399+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:26:27.403+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:28:06.093+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:28:06.093+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:28:08.095+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:29:05.994+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:29:05.994+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:29:08.000+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T14:29:20.774+0800","msg":"http Get Fail err is Get http://127.0.0.1:8086/getToken?app_key=055285a69ec81f6477e49fe95da22eba&data=laX2AhoKH1mTm1XO/dWD8tk5TpTFtaOb+SeAgKH8pj1lXE0ek/pbMDJ0EvD1OVQL01eoV0F03nk4QdtOGG+Tiw==: EOF"}
+{"level":"info","time":"2020-06-29T14:29:34.831+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:29:34.831+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:29:36.836+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:29:36.840+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T14:29:36.840+0800","msg":"GetToken Res is { 0 [] 0 }"}
+{"level":"info","time":"2020-06-29T14:29:58.787+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:29:58.787+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"info","time":"2020-06-29T14:31:21.973+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:31:21.973+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"info","time":"2020-06-29T14:31:23.976+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8qdhJBSHjO89Sx/9Mz6pCXNgFUpIaWM4XpHYAbDo/bHp8q3Ycorl8I6UHZRSeV0l2A== "}
+{"level":"debug","time":"2020-06-29T14:31:23.977+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:31:24.018+0800","msg":"Return Token is f0b15fd7b1865a7aca93cb2a8790015d"}
+{"level":"info","time":"2020-06-29T14:31:24.019+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T14:31:24.019+0800","msg":"GetToken Res is { 0 [] 0 }"}
+{"level":"info","time":"2020-06-29T14:31:43.813+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:31:43.814+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"info","time":"2020-06-29T14:31:45.816+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8oOuc+CI8ul1jItB9NF9nN2Murn0EkyMHocpj6Zd/aGwjBTiM+Fds1sasETUg3Zx7Q== "}
+{"level":"debug","time":"2020-06-29T14:31:45.817+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:31:45.824+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T14:31:45.824+0800","msg":"GetToken Res is { 0 [] 0 }"}
+{"level":"info","time":"2020-06-29T14:32:13.414+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:32:13.415+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:32:18.335+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:49:34.874+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8gBiVx3xA6dzQjLpoXJDLeKUgSGMzjODnnvvthugLo6hm8/VrMM+Rof23wiVB7gLsA== "}
+{"level":"info","time":"2020-06-29T14:51:47.259+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8qzpgzHFWO29v47+Flq0y5qVdcuRNaDa1sqB83V5Oxcdo3V6rBg86yoeuEx4USn56Q== "}
+{"level":"info","time":"2020-06-29T14:51:47.259+0800","msg":"Get Data is abc"}
+{"level":"info","time":"2020-06-29T14:52:17.629+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:52:17.630+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"error","time":"2020-06-29T14:52:17.630+0800","msg":"pprof error is listen tcp :9000: bind: address already in use"}
+{"level":"error","time":"2020-06-29T14:52:17.630+0800","msg":"RunServer ListenAndServer Err is listen tcp :8086: bind: address already in use "}
+{"level":"info","time":"2020-06-29T14:52:19.634+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8gzskRfzswmQ/kl3P7sCD+x1QG5FVz/dA6Tekbg43l8UX6odQsqmndIa1Lwf+1u57Q== "}
+{"level":"debug","time":"2020-06-29T14:52:19.635+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:52:19.643+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T14:52:19.643+0800","msg":"GetToken Res is { 0 [] 0 }"}
+{"level":"info","time":"2020-06-29T14:53:07.403+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:53:07.403+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"error","time":"2020-06-29T14:53:07.403+0800","msg":"RunServer ListenAndServer Err is listen tcp :8086: bind: address already in use "}
+{"level":"error","time":"2020-06-29T14:53:07.403+0800","msg":"pprof error is listen tcp :9000: bind: address already in use"}
+{"level":"info","time":"2020-06-29T14:53:09.406+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8tIABgEW0m2sYVfht9y5CRkNSAdncYspMI54XCixSwi7Ef+qEh0dp7KcGKjE5AHlXQ== "}
+{"level":"debug","time":"2020-06-29T14:53:09.408+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T14:53:09.410+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T14:53:18.040+0800","msg":"GetToken Res is { 0 [] 0 }"}
+{"level":"info","time":"2020-06-29T14:55:07.968+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8nz2Ur7J8CYiA0AEM6kJ5zMT89hVczGOa2nq91ZwbOnkINK5LN+lE67t14ypEPKtpg== "}
+{"level":"info","time":"2020-06-29T14:55:07.969+0800","msg":"Get Data is abc"}
+{"level":"info","time":"2020-06-29T14:56:37.720+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8lFJLweSuMM1NXKWER71leqRXflx5ykPQTA23OnYk0SaAYfN3zS7y8mhq0A9uNfQjg== "}
+{"level":"info","time":"2020-06-29T14:56:37.720+0800","msg":"Get Data is abc"}
+{"level":"info","time":"2020-06-29T14:58:01.097+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:58:01.097+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"error","time":"2020-06-29T14:58:01.097+0800","msg":"pprof error is listen tcp :9000: bind: address already in use"}
+{"level":"error","time":"2020-06-29T14:58:01.097+0800","msg":"RunServer ListenAndServer Err is listen tcp :8086: bind: address already in use "}
+{"level":"info","time":"2020-06-29T14:58:14.621+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T14:58:14.621+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T14:58:33.417+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T14:58:33.468+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
+{"level":"info","time":"2020-06-29T14:58:33.471+0800","msg":"Return Token is 3943fc55bdfd09f187f17e3b4676d9f6"}
+{"level":"debug","time":"2020-06-29T15:13:25.919+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T15:13:35.324+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T15:14:17.582+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8rnybxC/gcVUJu32Uf45XY+h3+8KsdcAOnqfkb9w3UjuWu+EYPkN9H9K7ctwezseDw== "}
+{"level":"info","time":"2020-06-29T15:14:17.583+0800","msg":"Get Data is abc"}
+{"level":"debug","time":"2020-06-29T15:14:29.773+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T15:14:36.375+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T15:14:58.160+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T15:16:06.933+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8uskTWtXd+ysmJIcVmU1fyIz6IeRj6xuTcDojOzF9nDnHtsdviFOOVWpr/Li3v3LpA== "}
+{"level":"info","time":"2020-06-29T15:16:06.934+0800","msg":"Get Data is abc"}
+{"level":"debug","time":"2020-06-29T15:16:21.524+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T15:18:58.822+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T15:18:58.822+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"info","time":"2020-06-29T15:19:33.434+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8obwT4ViTI04sfWZlBvFBnan789CUbVuwZDVRCo5lsveZLNFwGJnXA/QRypm9g9PgA== "}
+{"level":"info","time":"2020-06-29T15:19:33.434+0800","msg":"Get Data is abc"}
+{"level":"debug","time":"2020-06-29T15:19:48.506+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T15:20:20.649+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
+{"level":"debug","time":"2020-06-29T15:20:35.107+0800","msg":"Return Token is 0ce1bb8547ef1d38554d2917e80bc1af"}
+{"level":"debug","time":"2020-06-29T15:21:24.256+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T15:21:24.272+0800","msg":"Return Token is 0ce1bb8547ef1d38554d2917e80bc1af"}
+{"level":"debug","time":"2020-06-29T15:21:38.442+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T15:21:38.462+0800","msg":"Return Token is 0ce1bb8547ef1d38554d2917e80bc1af"}
+{"level":"debug","time":"2020-06-29T15:21:43.228+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T15:21:43.247+0800","msg":"Return Token is 0ce1bb8547ef1d38554d2917e80bc1af"}
+{"level":"debug","time":"2020-06-29T15:21:48.385+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T15:26:25.631+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T15:26:37.330+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T15:26:37.330+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T15:26:42.045+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T15:26:42.147+0800","msg":"Return Token is 0ce1bb8547ef1d38554d2917e80bc1af"}
+{"level":"info","time":"2020-06-29T15:28:38.159+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8rj9qNv4g1xp7t4q0OWC/N0o3aSvsapuMCLV28XLAWe4tmJPgnnPM1SXT+TljCn2uw== "}
+{"level":"debug","time":"2020-06-29T15:28:38.162+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T15:28:38.164+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T15:28:38.164+0800","msg":"GetToken Res is { 0 }"}
+{"level":"info","time":"2020-06-29T15:29:37.720+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8v6cV8HI7+tvggtOWG4r4P9RjmD7VfBfQSUigrbyry8aaaA8j7S/fVACKOHvohrbhQ== "}
+{"level":"debug","time":"2020-06-29T15:29:37.721+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T15:29:37.723+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T15:29:37.723+0800","msg":"GetToken Res is ErrCode 0 , errMsg "}
+{"level":"info","time":"2020-06-29T15:30:41.829+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T15:30:41.829+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"info","time":"2020-06-29T15:30:55.647+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8k0DMyIfCZlYhPXw+83RsiaLBtVDBBirWbs+JXupEZthUiKJVhc9KZX20wPrNQqbKA== "}
+{"level":"debug","time":"2020-06-29T15:30:55.648+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T15:30:55.650+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T15:30:55.650+0800","msg":"GetToken Res is ErrCode 0 , errMsg "}
+{"level":"info","time":"2020-06-29T15:33:21.177+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T15:33:21.177+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"info","time":"2020-06-29T15:33:33.040+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8jPc3LVUWwe8m/QQtQF68RHfcjAkjhH1m8E7BlpkBT2pgv9SdLQGb3T5y1YLFKMutQ== "}
+{"level":"debug","time":"2020-06-29T15:33:33.042+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T15:33:33.047+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
+{"level":"debug","time":"2020-06-29T15:33:33.071+0800","msg":"Return Token is 82240a2acd3cc5f9e87cc5b1ac3b5cf5"}
+{"level":"error","time":"2020-06-29T15:33:33.072+0800","msg":"Cur Res is {slKu802B5+w9geY7iqlxvO4fQ6nyxlNtiWAsU1m1fO5BQfB0862AVYTJNFBUMELbTyJH8Vpj13k0xJWUDBzikw== 200 Success}"}
+{"level":"info","time":"2020-06-29T15:33:33.072+0800","msg":"status Code is 200 "}
+{"level":"info","time":"2020-06-29T15:33:33.072+0800","msg":"GetToken Res is ErrCode 0 , errMsg "}
+{"level":"info","time":"2020-06-29T15:40:23.022+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8i8vjbrPGg2Sfcb2mQqb3rL8bEXzOJ7fkUu3UXtCTHRgZZjf7bSTbwDP9A0f7ItaKg== "}
+{"level":"debug","time":"2020-06-29T15:40:23.024+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T15:40:23.045+0800","msg":"Return Token is 82240a2acd3cc5f9e87cc5b1ac3b5cf5"}
+{"level":"error","time":"2020-06-29T15:40:23.046+0800","msg":"Cur Res is {slKu802B5+w9geY7iqlxvO4fQ6nyxlNtiWAsU1m1fO5BQfB0862AVYTJNFBUMELbTyJH8Vpj13k0xJWUDBzikw== 200 Success}"}
+{"level":"info","time":"2020-06-29T15:40:23.046+0800","msg":"GetToken Res is ErrCode 0 , errMsg "}
+{"level":"info","time":"2020-06-29T15:40:28.934+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8m09dAeV3qglzrBec0W7JitKEpuShKaOOe78zcOSiFXuSVOiN8o2az4rAh4OjVx2XA== "}
+{"level":"debug","time":"2020-06-29T15:40:28.939+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T15:40:28.953+0800","msg":"Return Token is 82240a2acd3cc5f9e87cc5b1ac3b5cf5"}
+{"level":"error","time":"2020-06-29T15:40:28.953+0800","msg":"Cur Res is {slKu802B5+w9geY7iqlxvO4fQ6nyxlNtiWAsU1m1fO5BQfB0862AVYTJNFBUMELbTyJH8Vpj13k0xJWUDBzikw== 200 Success}"}
+{"level":"info","time":"2020-06-29T15:42:40.641+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T15:42:40.641+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T15:42:49.197+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T15:42:49.201+0800","msg":"Package Timeout "}
+{"level":"info","time":"2020-06-29T15:42:58.875+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8vIulwr9ICD19IEBkUsHSP+qqfLgLBnpd6kS1vmDEFRrHfsF/1wthUnZbLJiCgwNdw== "}
+{"level":"info","time":"2020-06-29T15:42:58.875+0800","msg":"Get Data is abc"}
+{"level":"debug","time":"2020-06-29T15:43:09.892+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T15:43:09.895+0800","msg":"Get Data Info Fail "}
+{"level":"debug","time":"2020-06-29T15:43:11.454+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T15:43:11.460+0800","msg":"Get Data Info Fail "}
+{"level":"debug","time":"2020-06-29T15:43:12.326+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T15:43:12.328+0800","msg":"Get Data Info Fail "}
+{"level":"debug","time":"2020-06-29T15:43:45.723+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T15:43:45.725+0800","msg":"Get Data Info Fail "}
+{"level":"info","time":"2020-06-29T15:43:55.499+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8r6LS+LAik5vfRT7unWNSEZXArdINxfbuBLKLMRydBWXSLSNQRMGYgNXnGIVNrGLnA== "}
+{"level":"info","time":"2020-06-29T15:43:55.499+0800","msg":"Get Data is abc"}
+{"level":"debug","time":"2020-06-29T15:44:10.036+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T15:44:10.040+0800","msg":"Get Data Info Fail "}
+{"level":"debug","time":"2020-06-29T15:45:40.905+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T15:45:40.907+0800","msg":"Get Data Info Fail "}
+{"level":"debug","time":"2020-06-29T15:45:52.605+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T15:45:52.623+0800","msg":"Get Data Info Fail "}
+{"level":"info","time":"2020-06-29T15:46:00.500+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T15:46:00.500+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T15:46:04.194+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T15:46:04.197+0800","msg":"Get Data Info Fail "}
+{"level":"debug","time":"2020-06-29T15:46:17.790+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T15:47:34.531+0800","msg":"Get Data Info Fail "}
+{"level":"info","time":"2020-06-29T15:50:07.686+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T15:50:07.687+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T15:50:15.290+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T15:50:37.791+0800","msg":"Get Data Info Fail "}
+{"level":"info","time":"2020-06-29T15:55:20.639+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8q97pRfuDl8AY_D2oZoQKLNMt20kJEGs0qSe1uawuOXCQVQI4iBY4fFYjgSpxAcEeA== "}
+{"level":"info","time":"2020-06-29T15:55:20.640+0800","msg":"Get Data is abc"}
+{"level":"debug","time":"2020-06-29T15:55:34.133+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-06-29T15:56:38.866+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8qo9BdrZeZVJb-m0hIPXZ33LGZwflvbNudpGL9qQGVNoHBrR6i3xL9fr28APxq1vbw "}
+{"level":"info","time":"2020-06-29T15:56:38.866+0800","msg":"Get Data is abc"}
+{"level":"info","time":"2020-06-29T15:57:04.135+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T15:57:04.135+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-29T15:57:07.953+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T15:57:14.534+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
+{"level":"debug","time":"2020-06-29T15:57:14.623+0800","msg":"Return Token is fe3d5bd8a9a36f049e86339468474016"}
+{"level":"error","time":"2020-06-29T15:57:14.623+0800","msg":"Cur Res is {qcOtpNRY2kg_0lGRL20USPCfqVad4kLqFAHla8lHMskiT7bQePoxNEIqQ7sRsWvc5O4Q4iGUJTmmiAqLzNhunA 200 Success}"}
+{"level":"debug","time":"2020-06-29T15:57:24.161+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T15:57:24.194+0800","msg":"Return Token is fe3d5bd8a9a36f049e86339468474016"}
+{"level":"error","time":"2020-06-29T15:57:24.194+0800","msg":"Cur Res is {qcOtpNRY2kg_0lGRL20USPCfqVad4kLqFAHla8lHMskiT7bQePoxNEIqQ7sRsWvc5O4Q4iGUJTmmiAqLzNhunA 200 Success}"}
+{"level":"info","time":"2020-06-29T15:58:06.399+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8qd_oE-fNeSWl8Gn5Yulys6CV7m6XM12u-MArGk1-b9tzm6J7BRQYo6F0iZfqbppMw "}
+{"level":"debug","time":"2020-06-29T15:58:06.401+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T15:58:06.418+0800","msg":"Return Token is fe3d5bd8a9a36f049e86339468474016"}
+{"level":"error","time":"2020-06-29T15:58:06.419+0800","msg":"Cur Res is {qcOtpNRY2kg_0lGRL20USPCfqVad4kLqFAHla8lHMskiT7bQePoxNEIqQ7sRsWvc5O4Q4iGUJTmmiAqLzNhunA 200 Success}"}
+{"level":"info","time":"2020-06-29T15:58:06.421+0800","msg":"GetToken Res is ErrCode 200 , errMsg Success"}
+{"level":"info","time":"2020-06-29T15:59:17.867+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8umaH2F7maIJGkcu9ky_HOrNIoXbwbwtv6kDP_uVFnLMDt1ejr5CzguAlqZFBs2N3Q "}
+{"level":"debug","time":"2020-06-29T15:59:17.868+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T15:59:17.883+0800","msg":"Return Token is fe3d5bd8a9a36f049e86339468474016"}
+{"level":"error","time":"2020-06-29T15:59:17.883+0800","msg":"Cur Res is {qcOtpNRY2kg_0lGRL20USPCfqVad4kLqFAHla8lHMskiT7bQePoxNEIqQ7sRsWvc5O4Q4iGUJTmmiAqLzNhunA 200 Success}"}
+{"level":"info","time":"2020-06-29T15:59:17.884+0800","msg":"GetToken Res is ErrCode 200 , errMsg Success , TokenInfo is qcOtpNRY2kg_0lGRL20USPCfqVad4kLqFAHla8lHMskiT7bQePoxNEIqQ7sRsWvc5O4Q4iGUJTmmiAqLzNhunA"}
+{"level":"info","time":"2020-06-29T16:04:41.331+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8ttnaz6D-JBWhtkyhaFjXrfQlO7MZof6tNBqwcwLkXOubMiVvAgyE32pwiAg8Za3QQ "}
+{"level":"debug","time":"2020-06-29T16:04:41.333+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T16:04:41.354+0800","msg":"Return Token is fe3d5bd8a9a36f049e86339468474016"}
+{"level":"error","time":"2020-06-29T16:04:41.354+0800","msg":"Cur Res is {qcOtpNRY2kg_0lGRL20USPCfqVad4kLqFAHla8lHMskiT7bQePoxNEIqQ7sRsWvc5O4Q4iGUJTmmiAqLzNhunA 200 Success}"}
+{"level":"info","time":"2020-06-29T16:04:41.355+0800","msg":"GetToken Res is ErrCode 200 , errMsg Success , TokenInfo is qcOtpNRY2kg_0lGRL20USPCfqVad4kLqFAHla8lHMskiT7bQePoxNEIqQ7sRsWvc5O4Q4iGUJTmmiAqLzNhunA"}
+{"level":"info","time":"2020-06-29T16:04:41.355+0800","msg":"Token is fe3d5bd8a9a36f049e86339468474016 , ExpTime is 600"}
+{"level":"info","time":"2020-06-29T16:13:17.702+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T16:13:17.703+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"info","time":"2020-06-29T16:13:34.581+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8qlhwsoT0iNIhUn9-F-_f2f--e9QV3rgPgLkHzifSfw4YmwHDvSaglhwEe1Ocrfl7w "}
+{"level":"debug","time":"2020-06-29T16:13:34.582+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T16:13:34.587+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
+{"level":"debug","time":"2020-06-29T16:13:34.611+0800","msg":"Return Token is ef78ef30d748782b4fade1a841bb2fb0"}
+{"level":"error","time":"2020-06-29T16:13:34.611+0800","msg":"Cur Res is {I5UUATpxhIM2IAOozMPOIdqkqZFGsX_lQPjoRhZOISrfnBrW88GLYdjJ6pvX2msgoZqsIjWkFI-K5v231ce29g {200 Success}}"}
+{"level":"info","time":"2020-06-29T16:13:34.611+0800","msg":"GetToken Res is ErrCode 200 , errMsg Success , TokenInfo is I5UUATpxhIM2IAOozMPOIdqkqZFGsX_lQPjoRhZOISrfnBrW88GLYdjJ6pvX2msgoZqsIjWkFI-K5v231ce29g"}
+{"level":"info","time":"2020-06-29T16:13:34.612+0800","msg":"Token is ef78ef30d748782b4fade1a841bb2fb0 , ExpTime is 600"}
+{"level":"info","time":"2020-06-29T16:17:14.439+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8tHX01x8yn4DLPIB1atQLG32jTCqNf9KRAO-DRQEyOh9Ef7t42MXxsgztHmY6i9xTQ "}
+{"level":"debug","time":"2020-06-29T16:17:14.440+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T16:17:40.490+0800","msg":"Return Token is ef78ef30d748782b4fade1a841bb2fb0"}
+{"level":"error","time":"2020-06-29T16:17:40.492+0800","msg":"Cur Res is {I5UUATpxhIM2IAOozMPOIdqkqZFGsX_lQPjoRhZOISrfnBrW88GLYdjJ6pvX2msgoZqsIjWkFI-K5v231ce29g {200 Success}}"}
+{"level":"error","time":"2020-06-29T16:17:40.497+0800","msg":"http Get Fail err is Get http://127.0.0.1:8086/getToken?app_key=055285a69ec81f6477e49fe95da22eba&data=laX2AhoKH1mTm1XO_dWD8tHX01x8yn4DLPIB1atQLG32jTCqNf9KRAO-DRQEyOh9Ef7t42MXxsgztHmY6i9xTQ: EOF"}
+{"level":"info","time":"2020-06-29T16:17:46.417+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8nqiB4tc64gDTcYy8ErUQNvKRk26WyTiDUowiyHP8KgPTwHws6s4GiE7s_PI9L0-cA "}
+{"level":"debug","time":"2020-06-29T16:17:46.418+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T16:18:31.203+0800","msg":"Return Token is ef78ef30d748782b4fade1a841bb2fb0"}
+{"level":"error","time":"2020-06-29T16:18:31.203+0800","msg":"Cur Res is {I5UUATpxhIM2IAOozMPOIdqkqZFGsX_lQPjoRhZOISrfnBrW88GLYdjJ6pvX2msgoZqsIjWkFI-K5v231ce29g {200 Success}}"}
+{"level":"error","time":"2020-06-29T16:18:31.204+0800","msg":"http Get Fail err is Get http://127.0.0.1:8086/getToken?app_key=055285a69ec81f6477e49fe95da22eba&data=laX2AhoKH1mTm1XO_dWD8nqiB4tc64gDTcYy8ErUQNvKRk26WyTiDUowiyHP8KgPTwHws6s4GiE7s_PI9L0-cA: EOF"}
+{"level":"info","time":"2020-06-29T16:18:36.387+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-29T16:18:36.387+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"info","time":"2020-06-29T16:19:44.706+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8idfHMRMVXSEaJT_Z1Mn789PnW7vaOyFUbC1nsdub21aP6EqPVcQbysESnWgyJbLzQ "}
+{"level":"debug","time":"2020-06-29T16:19:44.709+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T16:20:01.555+0800","msg":"Return Token is ef78ef30d748782b4fade1a841bb2fb0"}
+{"level":"error","time":"2020-06-29T16:20:01.555+0800","msg":"Cur Res is {I5UUATpxhIM2IAOozMPOIdqkqZFGsX_lQPjoRhZOISrfnBrW88GLYdjJ6pvX2msgoZqsIjWkFI-K5v231ce29g {200 Success}}"}
+{"level":"error","time":"2020-06-29T16:20:01.555+0800","msg":"http Get Fail err is Get http://127.0.0.1:8086/getToken?app_key=055285a69ec81f6477e49fe95da22eba&data=laX2AhoKH1mTm1XO_dWD8idfHMRMVXSEaJT_Z1Mn789PnW7vaOyFUbC1nsdub21aP6EqPVcQbysESnWgyJbLzQ: EOF"}
+{"level":"info","time":"2020-06-29T16:20:29.925+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8kcje0N-7yBR8Ua3Of8GIIhgOMB2jcUPTxyWgnj644ARZiuSEmeNdmC9rqT6bg9oKQ "}
+{"level":"debug","time":"2020-06-29T16:20:29.926+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-29T16:20:29.940+0800","msg":"Return Token is ef78ef30d748782b4fade1a841bb2fb0"}
+{"level":"error","time":"2020-06-29T16:20:29.940+0800","msg":"Cur Res is {I5UUATpxhIM2IAOozMPOIdqkqZFGsX_lQPjoRhZOISrfnBrW88GLYdjJ6pvX2msgoZqsIjWkFI-K5v231ce29g {200 Success}}"}
+{"level":"info","time":"2020-06-29T16:20:29.940+0800","msg":"GetToken Res is ErrCode 200 , errMsg Success , TokenInfo is I5UUATpxhIM2IAOozMPOIdqkqZFGsX_lQPjoRhZOISrfnBrW88GLYdjJ6pvX2msgoZqsIjWkFI-K5v231ce29g"}
+{"level":"info","time":"2020-06-29T16:20:29.940+0800","msg":"Token is ef78ef30d748782b4fade1a841bb2fb0 , ExpTime is 600"}
+{"level":"info","time":"2020-06-29T17:57:28.516+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8gKfLd7hS3HGpznQI6dVJfeSObc6j0dObpJpPO7TJbWsnpaRKMdkTfCmgLp_qtkqN94YpW9zRKBE2EVsz8x_r8EJo7vaj-TlN609FCRTTnJJJMmvr70X2FokVjNEjuX_Cw52fmYkZZ8uGuyUWniIJLA "}
+{"level":"debug","time":"2020-06-29T17:57:28.519+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-29T17:57:28.540+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
+{"level":"debug","time":"2020-06-29T17:57:28.564+0800","msg":"Return Token is bec2fb8350eede3f66aa4c7f3c8349c9"}
+{"level":"error","time":"2020-06-29T17:57:28.565+0800","msg":"Cur Res is {iv6gTMMeLEYFbUXU3uTlDY_71-GZe-4lInc4MoGGFKN2oKp-1c7JGgDAeOmtOFmPOGGPg-swsT7gGpJxT4S4RA {200 Success}}"}
+{"level":"info","time":"2020-06-29T17:57:28.565+0800","msg":"GetToken Res is ErrCode 200 , errMsg Success , TokenInfo is iv6gTMMeLEYFbUXU3uTlDY_71-GZe-4lInc4MoGGFKN2oKp-1c7JGgDAeOmtOFmPOGGPg-swsT7gGpJxT4S4RA"}
+{"level":"info","time":"2020-06-29T17:57:28.565+0800","msg":"Token is bec2fb8350eede3f66aa4c7f3c8349c9 , ExpTime is 600"}
+{"level":"info","time":"2020-06-30T16:26:29.647+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-30T16:26:29.648+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"error","time":"2020-06-30T16:26:29.648+0800","msg":"pprof error is listen tcp :9000: bind: address already in use"}
+{"level":"error","time":"2020-06-30T16:26:29.648+0800","msg":"RunServer ListenAndServer Err is listen tcp :8086: bind: address already in use "}
+{"level":"info","time":"2020-06-30T16:26:53.994+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-30T16:26:53.995+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-30T16:27:10.658+0800","msg":"router method is GET , path is /test1 "}
+{"level":"info","time":"2020-06-30T16:27:40.375+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-30T16:27:40.375+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-30T16:27:45.233+0800","msg":"router method is GET , path is /test1 "}
+{"level":"info","time":"2020-06-30T17:16:16.164+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-06-30T17:16:16.165+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-06-30T17:16:26.119+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-30T17:16:26.126+0800","msg":"Package Timeout "}
+{"level":"info","time":"2020-06-30T17:17:56.805+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8viNDkNFfr0Fsh1CJAXo8ThsuRZlXXZ9AERgCItXW9aFDRnR1hdyF-W_nn9QbKndm2qKPFQamtY98evbZkkBoG_9g8q1jFI-FSR60Rx-853fQofMpNWmJn8Dvbzv73PrwM20vO-glGDaG1I5aDF-aBM "}
+{"level":"debug","time":"2020-06-30T17:17:56.806+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-06-30T17:17:56.810+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
+{"level":"debug","time":"2020-06-30T17:17:56.909+0800","msg":"Return Token is 16bf5f5feeb4f20c72f838b31c2877d9"}
+{"level":"error","time":"2020-06-30T17:17:56.909+0800","msg":"Cur Res is {dptI_hZxU1PA8_OIi5CCO1oFBt-mmcMimT8FWSWECapAoROn1g1mOBHFuT2u40UMinwEt9nXTNTKnMiHyo9l8A}"}
+{"level":"info","time":"2020-06-30T17:18:40.936+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8m_G8BgF5EA7U2dG6uvyxlSk4ouzdwCFOal2vSkvjfL6jEYFlDkD0ot1dyiPYpvPYJ0kuJDsuSnxOHrSyqCebPd2n1w7ozhjLewnMVPaKEduiZqr8Fjk8tBddtZsgslzH24pehwzy4YAJnLEmXRa2NA"}
+{"level":"info","time":"2020-06-30T17:18:40.937+0800","msg":"Get Data is abc"}
+{"level":"debug","time":"2020-06-30T17:18:59.958+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-30T17:18:59.979+0800","msg":"Return Token is 16bf5f5feeb4f20c72f838b31c2877d9"}
+{"level":"error","time":"2020-06-30T17:18:59.979+0800","msg":"Cur Res is {dptI_hZxU1PA8_OIi5CCO1oFBt-mmcMimT8FWSWECapAoROn1g1mOBHFuT2u40UMinwEt9nXTNTKnMiHyo9l8A}"}
+{"level":"info","time":"2020-06-30T17:22:13.966+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8vprTjEJrrhZHKS7hiBy1cmudKiZCj58hF3oaZtW5xqiZBAsrwk5gOLKpdG4QPWMA3MC3qgOSBkX9mUUiBOLmN0pqI5r_y057q6DHgys1RJ9H81fcrCkeQgs24Gh2eG38-qwLVe1NtlzMXCd9qyoojc "}
+{"level":"debug","time":"2020-06-30T17:22:13.967+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-30T17:22:13.979+0800","msg":"Return Token is 16bf5f5feeb4f20c72f838b31c2877d9"}
+{"level":"error","time":"2020-06-30T17:22:13.979+0800","msg":"Cur Res is {dptI_hZxU1PA8_OIi5CCO1oFBt-mmcMimT8FWSWECapAoROn1g1mOBHFuT2u40UMinwEt9nXTNTKnMiHyo9l8A}"}
+{"level":"debug","time":"2020-06-30T17:22:35.240+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-06-30T17:22:35.274+0800","msg":"Return Token is 16bf5f5feeb4f20c72f838b31c2877d9"}
+{"level":"error","time":"2020-06-30T17:22:35.274+0800","msg":"Cur Res is {dptI_hZxU1PA8_OIi5CCO1oFBt-mmcMimT8FWSWECapAoROn1g1mOBHFuT2u40UMinwEt9nXTNTKnMiHyo9l8A}"}

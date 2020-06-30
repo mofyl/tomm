@@ -77,11 +77,11 @@ func pKCS5UnPadding(origData []byte) []byte {
 }
 
 func Base64Encode(data []byte) string {
-	return base64.StdEncoding.EncodeToString(data)
+	return base64.RawURLEncoding.EncodeToString(data)
 }
 
 func Base64Decode(data string) ([]byte, error) {
-	return base64.StdEncoding.DecodeString(data)
+	return base64.RawURLEncoding.DecodeString(data)
 }
 
 func AESCBCBase64Encode(key string, data []byte) (string, error) {

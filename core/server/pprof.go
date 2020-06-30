@@ -1,7 +1,6 @@
 package server
 
 import (
-	"go.uber.org/zap"
 	"net/http"
 	"net/http/pprof"
 	"tomm/log"
@@ -16,11 +15,11 @@ func startPProf(e *Engine) {
 	e.wg.Add(1)
 	go func() {
 		if err := http.ListenAndServe(":9000", nil); err != nil {
-			log.Error("pprof error", zap.String("error", err.Error()))
+			log.Error("pprof error is %s", err.Error())
 		}
 		e.wg.Done()
 	}()
-	log.Info("pprof start ", zap.String("addr is ", ":9000"))
+	log.Info("pprof start addr is :9000 ")
 }
 
 func pprofHandler(h http.HandlerFunc) HandlerFunc {

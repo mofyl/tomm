@@ -2,7 +2,6 @@ package jwt
 
 import (
 	"errors"
-	"go.uber.org/zap"
 	"gopkg.in/dgrijalva/jwt-go.v3"
 	"time"
 	"tomm/log"
@@ -79,7 +78,7 @@ func (j *Jwt) decode(token string) error {
 	expTime := customClaims.ExpiresAt
 	auth := customClaims.Issuer
 
-	log.Info("Decode ", zap.Int64("expTime", expTime), zap.String("secret", auth))
+	log.Info("Decode expTime is %d , secret is %s", expTime, auth)
 	return nil
 }
 

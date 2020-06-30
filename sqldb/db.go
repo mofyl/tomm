@@ -5,9 +5,15 @@ import (
 	"sync"
 )
 
+type ExecResult interface {
+	LastInsertId() (int64, error)
+
+	RowsAffected() (int64, error)
+}
+
 type SqlDB interface {
 	//getConnStr() string
-	Exec(ctx context.Context, sql string, args ...interface{}) error
+	Exec(ctx context.Context, sql string, args ...interface{}) (ExecResult, error)
 	Query(ctx context.Context, sql string, res interface{}, args ...interface{}) error
 }
 

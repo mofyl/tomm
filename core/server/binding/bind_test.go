@@ -1,7 +1,6 @@
 package binding
 
 import (
-	"go.uber.org/zap"
 	"testing"
 	"tomm/log"
 )
@@ -14,15 +13,15 @@ type TestStruct struct {
 func TestDefaultBind(t *testing.T) {
 	ts := TestStruct{}
 
-	log.Info("TestDefaultBind", zap.String("binding Name", formBind.Name()))
+	log.Info("TestDefaultBind Bind Name is %s", formBind.Name())
 	testForm := make(map[string][]string)
 	testForm["a_field"] = []string{""}
 	testForm["b_field"] = []string{""}
 	err := formBind.testInterface(testForm, &ts)
 	if err != nil {
-		log.Error("testInterface error ", zap.String("ecode", err.Error()))
+		log.Error("testInterface error %s ", err.Error())
 		return
 	}
 
-	log.Info("TestStruct ", zap.Any("content", ts))
+	log.Info("TestStruct content is %v ", ts)
 }

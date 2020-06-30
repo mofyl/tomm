@@ -3,7 +3,6 @@ package server
 import (
 	"context"
 	"fmt"
-	"go.uber.org/zap"
 	"math"
 	"net/http"
 	"strings"
@@ -114,7 +113,7 @@ func (e *Engine) addRouter(method string, path string, handler ...HandlerFunc) {
 	prelude := func(c *Context) {
 		c.Method = method
 		c.RouterPath = path
-		log.Debug("router ", zap.String("method is ", method), zap.String("path is ", path))
+		log.Debug("router method is %s , path is %s ", method, path)
 	}
 
 	handlers := append([]HandlerFunc{prelude}, handler...)
@@ -231,16 +230,16 @@ func (e *Engine) RunServer() {
 	e.wg.Add(1)
 	go func() {
 		if err := ser.ListenAndServe(); err != nil {
-			log.Error("RunServer ListenAndServer ", zap.String("error", err.Error()))
+			log.Error("RunServer ListenAndServer Err is %s ", err.Error())
 		}
 		e.wg.Done()
 	}()
-	log.Info("Http Server Start", zap.String("Addr is ", e.cfg.Addr))
+	log.Info("Http Server Start Addr is %s", e.cfg.Addr)
 }
 
 func (e *Engine) Close() {
 	s := e.serve.Load().(*http.Server)
 	s.Close()
 	e.wg.Wait()
-	log.Info("Http Serve Stop", zap.String("Addr is ", e.cfg.Addr))
+	log.Info("Http Serve Stop Addr is %s", e.cfg.Addr)
 }

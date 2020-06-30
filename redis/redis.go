@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/go-redis/redis/v8"
-	"go.uber.org/zap"
 	"math/rand"
 	"time"
 	"tomm/config"
@@ -89,7 +88,7 @@ func Set(ctx context.Context, key string, data interface{}, expTime int64) error
 	if expTime == -1 {
 		// 给随机值
 		expTime = defaultConf.MinExpTime + getRandomTime()
-		log.Debug("ExpTime is ", zap.Int64("ExpTime ", expTime))
+		log.Debug("ExpTime is %d ", expTime)
 	}
 	res := cli.Set(ctx, key, data, time.Duration(expTime)*time.Second)
 	if res.Err() != nil {

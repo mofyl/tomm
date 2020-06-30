@@ -8,53 +8,37 @@ var (
 	_code = map[int64]struct{}{}
 )
 
-type ECodeOp interface {
-	SetMsg(msg string)
-}
-
 type ECodes interface {
 	Error() string
 	Code() int64
+	Equal(ECodes) bool
 }
 
-type ECode struct {
-	ErrCode int64
-	ErrMsg  string
-}
+type ECode int64
 
-func addCode(code int64) ECodes {
+func addCode(code int64) ECode {
 	_, ok := _code[code]
 
 	if ok {
-		panic("Cur ECode is Registered")
+		panic("Cur errMsg is Registered")
 	}
 
 	_code[code] = struct{}{}
-	return ECode{
-		ErrCode: code,
-	}
-}
-
-func (e ECode) Code() int64 {
-	return e.ErrCode
+	return FromInt(code)
 }
 
 func (e ECode) Error() string {
-	if e.ErrMsg != "" {
-		return e.ErrMsg
+	return strconv.FormatInt(int64(e), 10)
+}
+
+func (e ECode) Code() int64 { return int64(e) }
+
+func (e ECode) Equal(code ECodes) bool {
+	if code == nil {
+		code = OK
 	}
-	return strconv.FormatInt(e.ErrCode, 10)
+
+	return e.Code() == code.Code()
 }
 
-func Warp(code ECodes, message string) ECodes {
-	if op, ok := code.(ECodeOp); ok {
-		op.SetMsg(message)
-	}
-	return code
-}
-
-func (e ECode) SetMsg(msg string) {
-	e.ErrMsg = msg
-}
-
-type Code int
+func FromInt(code int64) ECode { return ECode(code) }

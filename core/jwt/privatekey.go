@@ -2,7 +2,6 @@ package jwt
 
 import (
 	"crypto/md5"
-	"go.uber.org/zap"
 	"sync"
 	"time"
 	"tomm/config"
@@ -73,7 +72,7 @@ func (p *PrivateKey) GetKey() []byte {
 	key, err := p.getPrivateKey()
 
 	if err != nil {
-		log.Error("Get Private Key Fail", zap.String("error", err.Error()))
+		log.Error("Get Private Key Fail Err is %s", err.Error())
 		return nil
 	}
 
