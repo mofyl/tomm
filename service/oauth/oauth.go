@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"tomm/log"
 	"tomm/redis"
+	"tomm/utils"
 )
 
 const (
@@ -32,7 +33,7 @@ func GetToken(appKey string) (string, int64, error) {
 	}
 	if token == "" {
 		// 表示不存在
-		token, err = getUUID()
+		token, err = utils.StrUUID()
 		if err != nil {
 			return "", 0, err
 		}
@@ -65,11 +66,11 @@ func LeaseRenewKey(key string, expTime int64) error {
 }
 
 func CreateOAuthInfo(channelInfo string) (*SecretInfo, error) {
-	appKey, err := getUUID()
+	appKey, err := utils.StrUUID()
 	if err != nil {
 		return nil, err
 	}
-	secretKey, err := getUUID()
+	secretKey, err := utils.StrUUID()
 
 	if err != nil {
 		return nil, err

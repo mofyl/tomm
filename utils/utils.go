@@ -4,7 +4,9 @@ import (
 	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
+	"crypto/md5"
 	"encoding/base64"
+	"encoding/hex"
 	"github.com/google/uuid"
 	"os"
 	"path/filepath"
@@ -106,4 +108,16 @@ func AESCBCBase64Decode(key string, data string) ([]byte, error) {
 		return nil, err
 	}
 	return orig, nil
+}
+
+func StrUUID() (string, error) {
+
+	uuid, err := GetUUID()
+	if err != nil {
+		return "", nil
+	}
+
+	uuidB, _ := uuid.MarshalText()
+	res := md5.Sum(uuidB)
+	return hex.EncodeToString(res[:]), nil
 }

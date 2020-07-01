@@ -24,6 +24,6 @@ log:
   logFormat: "JSON"
   filePath: ""
 pool:
-  wrokerNum: 10
+  workerNum: 10
   workerContent: 100
-  
+

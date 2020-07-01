@@ -2,8 +2,6 @@ package oauth
 
 import (
 	"context"
-	"crypto/md5"
-	"encoding/hex"
 	"fmt"
 	"github.com/pkg/errors"
 	"time"
@@ -81,18 +79,19 @@ func getSecretInfo(appKey string) (*SecretInfo, error) {
 }
 
 func createToken(appKey string) string {
-	token, _ := getUUID()
+	token, _ := utils.StrUUID()
 	return token
 }
 
-func getUUID() (string, error) {
-
-	uuid, err := utils.GetUUID()
-	if err != nil {
-		return "", nil
-	}
-
-	uuidB, _ := uuid.MarshalText()
-	res := md5.Sum(uuidB)
-	return hex.EncodeToString(res[:]), nil
-}
+//
+//func getUUID() (string, error) {
+//
+//	uuid, err := utils.GetUUID()
+//	if err != nil {
+//		return "", nil
+//	}
+//
+//	uuidB, _ := uuid.MarshalText()
+//	res := md5.Sum(uuidB)
+//	return hex.EncodeToString(res[:]), nil
+//}

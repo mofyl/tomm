@@ -1,341 +1,330 @@
-{"level":"info","time":"2020-06-29T11:19:49.009+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T11:19:49.009+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"error","time":"2020-06-29T11:19:51.012+0800","msg":"http Get Fail err is parse 127.0.0.1:8086/getToken?app_key=055285a69ec81f6477e49fe95da22eba&data=laX2AhoKH1mTm1XO/dWD8tY7GpzeZTy+HAU6rEsLJOETuJsAl2IIeNOHiiA+oKVcib5vFTP+D/FSxr6auVGBxA==: first path segment in URL cannot contain colon"}
-{"level":"info","time":"2020-06-29T11:24:52.266+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T11:24:52.267+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T11:24:54.282+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T11:24:54.292+0800","msg":"http server recover  is http server panic: runtime error: invalid memory address or nil pointer dereference\ngoroutine 50 [running]:\ntomm/core/server.(*Context).Next.func1(0xc000234000)\n\t/Users/mo/go/src/tomm/core/server/context.go:50 +0xc2\npanic(0x16d9100, 0x1d44350)\n\t/usr/local/go/src/runtime/panic.go:679 +0x1b2\ntomm/service.(*Ser).getToken(0xc000136090, 0xc000234000)\n\t/Users/mo/go/src/tomm/service/service.go:111 +0x4f7\ntomm/core/server.(*Context).Next(0xc000234000)\n\t/Users/mo/go/src/tomm/core/server/context.go:59 +0x6e\ntomm/core/server.(*Engine).HandlerContext(0xc000188620, 0xc000234000)\n\t/Users/mo/go/src/tomm/core/server/server.go:195 +0x1ab\ntomm/core/server.(*Engine).ServeHTTP(0xc000188620, 0x1896680, 0xc000230000, 0xc000220000)\n\t/Users/mo/go/src/tomm/core/server/server.go:177 +0xb2\nnet/http.serverHandler.ServeHTTP(0xc0001900e0, 0x1896680, 0xc000230000, 0xc000220000)\n\t/usr/local/go/src/net/http/server.go:2802 +0xa4\nnet/http.(*conn).serve(0xc00020e000, 0x18981c0, 0xc000216000)\n\t/usr/local/go/src/net/http/server.go:1890 +0x875\ncreated by net/http.(*Server).Serve\n\t/usr/local/go/src/net/http/server.go:2928 +0x384\n\n"}
-{"level":"info","time":"2020-06-29T11:24:54.293+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T11:25:48.861+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T11:25:48.861+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T11:25:50.863+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T11:25:50.866+0800","msg":"http server recover  is http server panic: runtime error: invalid memory address or nil pointer dereference\ngoroutine 21 [running]:\ntomm/core/server.(*Context).Next.func1(0xc0001158f0)\n\t/Users/mo/go/src/tomm/core/server/context.go:50 +0xc2\npanic(0x16d9100, 0x1d44350)\n\t/usr/local/go/src/runtime/panic.go:679 +0x1b2\ntomm/service.(*Ser).getToken(0xc00012c040, 0xc0001158f0)\n\t/Users/mo/go/src/tomm/service/service.go:111 +0x4f7\ntomm/core/server.(*Context).Next(0xc0001158f0)\n\t/Users/mo/go/src/tomm/core/server/context.go:59 +0x6e\ntomm/core/server.(*Engine).HandlerContext(0xc0001f01c0, 0xc0001158f0)\n\t/Users/mo/go/src/tomm/core/server/server.go:195 +0x1ab\ntomm/core/server.(*Engine).ServeHTTP(0xc0001f01c0, 0x1896680, 0xc0000dc1c0, 0xc000172200)\n\t/Users/mo/go/src/tomm/core/server/server.go:177 +0xb2\nnet/http.serverHandler.ServeHTTP(0xc00022e000, 0x1896680, 0xc0000dc1c0, 0xc000172200)\n\t/usr/local/go/src/net/http/server.go:2802 +0xa4\nnet/http.(*conn).serve(0xc000174140, 0x18981c0, 0xc00016e380)\n\t/usr/local/go/src/net/http/server.go:1890 +0x875\ncreated by net/http.(*Server).Serve\n\t/usr/local/go/src/net/http/server.go:2928 +0x384\n\n"}
-{"level":"info","time":"2020-06-29T11:25:50.866+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T11:25:56.605+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T11:25:56.606+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T11:25:58.611+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T11:27:19.133+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T11:27:19.133+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T11:27:21.135+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T11:27:44.254+0800","msg":"http Get Fail err is Get http://127.0.0.1:8086/getToken?app_key=055285a69ec81f6477e49fe95da22eba&data=laX2AhoKH1mTm1XO/dWD8szfzwLVl6KZ9YZx8Qcz30tX1qUjKkX96WQxtA6b/Jj3aiYACeMzetYk3kOpo62Yig==: EOF"}
-{"level":"info","time":"2020-06-29T11:28:00.098+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T11:28:00.099+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T11:28:02.103+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T11:28:02.107+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T11:28:08.289+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T11:28:08.290+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T11:28:10.292+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T11:28:10.300+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T14:08:11.047+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:08:11.048+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:08:13.057+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:08:15.868+0800","msg":"Return Token is 07e3e8d8fd5be62b59f7ba04d664d64a"}
-{"level":"info","time":"2020-06-29T14:08:15.869+0800","msg":"status Code is 200 "}
-{"level":"error","time":"2020-06-29T14:08:15.869+0800","msg":"unmarshal body Fail err is unexpected end of JSON input"}
-{"level":"info","time":"2020-06-29T14:09:12.284+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:09:12.284+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:09:14.287+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:09:14.290+0800","msg":"status Code is 200 "}
-{"level":"error","time":"2020-06-29T14:09:14.290+0800","msg":"unmarshal body Fail err is unexpected end of JSON input"}
-{"level":"info","time":"2020-06-29T14:11:03.656+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:11:03.657+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:11:05.663+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:11:05.672+0800","msg":"Return Token is "}
-{"level":"info","time":"2020-06-29T14:11:05.673+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T14:11:58.076+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:11:58.077+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:12:00.083+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:12:00.086+0800","msg":"status Code is 200 "}
-{"level":"error","time":"2020-06-29T14:12:05.375+0800","msg":"unmarshal body Fail err is unexpected end of JSON input"}
-{"level":"info","time":"2020-06-29T14:12:18.399+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:12:18.400+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:12:20.407+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:12:30.059+0800","msg":"Return Token is "}
-{"level":"info","time":"2020-06-29T14:16:22.466+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:16:22.467+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:16:24.469+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:16:24.473+0800","msg":"status Code is 200 "}
-{"level":"error","time":"2020-06-29T14:16:29.666+0800","msg":"unmarshal body Fail err is unexpected end of JSON input"}
-{"level":"info","time":"2020-06-29T14:16:42.777+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:16:42.778+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:16:44.780+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:16:44.782+0800","msg":"status Code is 200 "}
-{"level":"error","time":"2020-06-29T14:16:44.782+0800","msg":"unmarshal body Fail err is unexpected end of JSON input"}
-{"level":"info","time":"2020-06-29T14:17:08.659+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:17:08.660+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:17:10.666+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:17:10.671+0800","msg":"status Code is 200 "}
-{"level":"error","time":"2020-06-29T14:17:48.442+0800","msg":"unmarshal body Fail err is unexpected end of JSON input"}
-{"level":"info","time":"2020-06-29T14:17:52.853+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:17:52.853+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:17:54.858+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:24:54.957+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:24:54.958+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:24:56.959+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:24:56.962+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T14:24:56.962+0800","msg":"GetToken is token "}
-{"level":"info","time":"2020-06-29T14:25:55.026+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:25:55.027+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:25:57.028+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T14:25:57.031+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
-{"level":"info","time":"2020-06-29T14:25:57.033+0800","msg":"Return Token is f0b15fd7b1865a7aca93cb2a8790015d"}
-{"level":"info","time":"2020-06-29T14:25:57.033+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T14:25:57.033+0800","msg":"GetToken Res is { 0 [] 0 }"}
-{"level":"info","time":"2020-06-29T14:26:25.398+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:26:25.399+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:26:27.403+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:28:06.093+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:28:06.093+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:28:08.095+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:29:05.994+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:29:05.994+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:29:08.000+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T14:29:20.774+0800","msg":"http Get Fail err is Get http://127.0.0.1:8086/getToken?app_key=055285a69ec81f6477e49fe95da22eba&data=laX2AhoKH1mTm1XO/dWD8tk5TpTFtaOb+SeAgKH8pj1lXE0ek/pbMDJ0EvD1OVQL01eoV0F03nk4QdtOGG+Tiw==: EOF"}
-{"level":"info","time":"2020-06-29T14:29:34.831+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:29:34.831+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:29:36.836+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:29:36.840+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T14:29:36.840+0800","msg":"GetToken Res is { 0 [] 0 }"}
-{"level":"info","time":"2020-06-29T14:29:58.787+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:29:58.787+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"info","time":"2020-06-29T14:31:21.973+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:31:21.973+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"info","time":"2020-06-29T14:31:23.976+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8qdhJBSHjO89Sx/9Mz6pCXNgFUpIaWM4XpHYAbDo/bHp8q3Ycorl8I6UHZRSeV0l2A== "}
-{"level":"debug","time":"2020-06-29T14:31:23.977+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:31:24.018+0800","msg":"Return Token is f0b15fd7b1865a7aca93cb2a8790015d"}
-{"level":"info","time":"2020-06-29T14:31:24.019+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T14:31:24.019+0800","msg":"GetToken Res is { 0 [] 0 }"}
-{"level":"info","time":"2020-06-29T14:31:43.813+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:31:43.814+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"info","time":"2020-06-29T14:31:45.816+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8oOuc+CI8ul1jItB9NF9nN2Murn0EkyMHocpj6Zd/aGwjBTiM+Fds1sasETUg3Zx7Q== "}
-{"level":"debug","time":"2020-06-29T14:31:45.817+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:31:45.824+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T14:31:45.824+0800","msg":"GetToken Res is { 0 [] 0 }"}
-{"level":"info","time":"2020-06-29T14:32:13.414+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:32:13.415+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:32:18.335+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:49:34.874+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8gBiVx3xA6dzQjLpoXJDLeKUgSGMzjODnnvvthugLo6hm8/VrMM+Rof23wiVB7gLsA== "}
-{"level":"info","time":"2020-06-29T14:51:47.259+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8qzpgzHFWO29v47+Flq0y5qVdcuRNaDa1sqB83V5Oxcdo3V6rBg86yoeuEx4USn56Q== "}
-{"level":"info","time":"2020-06-29T14:51:47.259+0800","msg":"Get Data is abc"}
-{"level":"info","time":"2020-06-29T14:52:17.629+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:52:17.630+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"error","time":"2020-06-29T14:52:17.630+0800","msg":"pprof error is listen tcp :9000: bind: address already in use"}
-{"level":"error","time":"2020-06-29T14:52:17.630+0800","msg":"RunServer ListenAndServer Err is listen tcp :8086: bind: address already in use "}
-{"level":"info","time":"2020-06-29T14:52:19.634+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8gzskRfzswmQ/kl3P7sCD+x1QG5FVz/dA6Tekbg43l8UX6odQsqmndIa1Lwf+1u57Q== "}
-{"level":"debug","time":"2020-06-29T14:52:19.635+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:52:19.643+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T14:52:19.643+0800","msg":"GetToken Res is { 0 [] 0 }"}
-{"level":"info","time":"2020-06-29T14:53:07.403+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:53:07.403+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"error","time":"2020-06-29T14:53:07.403+0800","msg":"RunServer ListenAndServer Err is listen tcp :8086: bind: address already in use "}
-{"level":"error","time":"2020-06-29T14:53:07.403+0800","msg":"pprof error is listen tcp :9000: bind: address already in use"}
-{"level":"info","time":"2020-06-29T14:53:09.406+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8tIABgEW0m2sYVfht9y5CRkNSAdncYspMI54XCixSwi7Ef+qEh0dp7KcGKjE5AHlXQ== "}
-{"level":"debug","time":"2020-06-29T14:53:09.408+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T14:53:09.410+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T14:53:18.040+0800","msg":"GetToken Res is { 0 [] 0 }"}
-{"level":"info","time":"2020-06-29T14:55:07.968+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8nz2Ur7J8CYiA0AEM6kJ5zMT89hVczGOa2nq91ZwbOnkINK5LN+lE67t14ypEPKtpg== "}
-{"level":"info","time":"2020-06-29T14:55:07.969+0800","msg":"Get Data is abc"}
-{"level":"info","time":"2020-06-29T14:56:37.720+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8lFJLweSuMM1NXKWER71leqRXflx5ykPQTA23OnYk0SaAYfN3zS7y8mhq0A9uNfQjg== "}
-{"level":"info","time":"2020-06-29T14:56:37.720+0800","msg":"Get Data is abc"}
-{"level":"info","time":"2020-06-29T14:58:01.097+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:58:01.097+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"error","time":"2020-06-29T14:58:01.097+0800","msg":"pprof error is listen tcp :9000: bind: address already in use"}
-{"level":"error","time":"2020-06-29T14:58:01.097+0800","msg":"RunServer ListenAndServer Err is listen tcp :8086: bind: address already in use "}
-{"level":"info","time":"2020-06-29T14:58:14.621+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T14:58:14.621+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T14:58:33.417+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T14:58:33.468+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
-{"level":"info","time":"2020-06-29T14:58:33.471+0800","msg":"Return Token is 3943fc55bdfd09f187f17e3b4676d9f6"}
-{"level":"debug","time":"2020-06-29T15:13:25.919+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T15:13:35.324+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T15:14:17.582+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8rnybxC/gcVUJu32Uf45XY+h3+8KsdcAOnqfkb9w3UjuWu+EYPkN9H9K7ctwezseDw== "}
-{"level":"info","time":"2020-06-29T15:14:17.583+0800","msg":"Get Data is abc"}
-{"level":"debug","time":"2020-06-29T15:14:29.773+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T15:14:36.375+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T15:14:58.160+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T15:16:06.933+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8uskTWtXd+ysmJIcVmU1fyIz6IeRj6xuTcDojOzF9nDnHtsdviFOOVWpr/Li3v3LpA== "}
-{"level":"info","time":"2020-06-29T15:16:06.934+0800","msg":"Get Data is abc"}
-{"level":"debug","time":"2020-06-29T15:16:21.524+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T15:18:58.822+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T15:18:58.822+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"info","time":"2020-06-29T15:19:33.434+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8obwT4ViTI04sfWZlBvFBnan789CUbVuwZDVRCo5lsveZLNFwGJnXA/QRypm9g9PgA== "}
-{"level":"info","time":"2020-06-29T15:19:33.434+0800","msg":"Get Data is abc"}
-{"level":"debug","time":"2020-06-29T15:19:48.506+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T15:20:20.649+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
-{"level":"debug","time":"2020-06-29T15:20:35.107+0800","msg":"Return Token is 0ce1bb8547ef1d38554d2917e80bc1af"}
-{"level":"debug","time":"2020-06-29T15:21:24.256+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T15:21:24.272+0800","msg":"Return Token is 0ce1bb8547ef1d38554d2917e80bc1af"}
-{"level":"debug","time":"2020-06-29T15:21:38.442+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T15:21:38.462+0800","msg":"Return Token is 0ce1bb8547ef1d38554d2917e80bc1af"}
-{"level":"debug","time":"2020-06-29T15:21:43.228+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T15:21:43.247+0800","msg":"Return Token is 0ce1bb8547ef1d38554d2917e80bc1af"}
-{"level":"debug","time":"2020-06-29T15:21:48.385+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T15:26:25.631+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T15:26:37.330+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T15:26:37.330+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T15:26:42.045+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T15:26:42.147+0800","msg":"Return Token is 0ce1bb8547ef1d38554d2917e80bc1af"}
-{"level":"info","time":"2020-06-29T15:28:38.159+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8rj9qNv4g1xp7t4q0OWC/N0o3aSvsapuMCLV28XLAWe4tmJPgnnPM1SXT+TljCn2uw== "}
-{"level":"debug","time":"2020-06-29T15:28:38.162+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T15:28:38.164+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T15:28:38.164+0800","msg":"GetToken Res is { 0 }"}
-{"level":"info","time":"2020-06-29T15:29:37.720+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8v6cV8HI7+tvggtOWG4r4P9RjmD7VfBfQSUigrbyry8aaaA8j7S/fVACKOHvohrbhQ== "}
-{"level":"debug","time":"2020-06-29T15:29:37.721+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T15:29:37.723+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T15:29:37.723+0800","msg":"GetToken Res is ErrCode 0 , errMsg "}
-{"level":"info","time":"2020-06-29T15:30:41.829+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T15:30:41.829+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"info","time":"2020-06-29T15:30:55.647+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8k0DMyIfCZlYhPXw+83RsiaLBtVDBBirWbs+JXupEZthUiKJVhc9KZX20wPrNQqbKA== "}
-{"level":"debug","time":"2020-06-29T15:30:55.648+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T15:30:55.650+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T15:30:55.650+0800","msg":"GetToken Res is ErrCode 0 , errMsg "}
-{"level":"info","time":"2020-06-29T15:33:21.177+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T15:33:21.177+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"info","time":"2020-06-29T15:33:33.040+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8jPc3LVUWwe8m/QQtQF68RHfcjAkjhH1m8E7BlpkBT2pgv9SdLQGb3T5y1YLFKMutQ== "}
-{"level":"debug","time":"2020-06-29T15:33:33.042+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T15:33:33.047+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
-{"level":"debug","time":"2020-06-29T15:33:33.071+0800","msg":"Return Token is 82240a2acd3cc5f9e87cc5b1ac3b5cf5"}
-{"level":"error","time":"2020-06-29T15:33:33.072+0800","msg":"Cur Res is {slKu802B5+w9geY7iqlxvO4fQ6nyxlNtiWAsU1m1fO5BQfB0862AVYTJNFBUMELbTyJH8Vpj13k0xJWUDBzikw== 200 Success}"}
-{"level":"info","time":"2020-06-29T15:33:33.072+0800","msg":"status Code is 200 "}
-{"level":"info","time":"2020-06-29T15:33:33.072+0800","msg":"GetToken Res is ErrCode 0 , errMsg "}
-{"level":"info","time":"2020-06-29T15:40:23.022+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8i8vjbrPGg2Sfcb2mQqb3rL8bEXzOJ7fkUu3UXtCTHRgZZjf7bSTbwDP9A0f7ItaKg== "}
-{"level":"debug","time":"2020-06-29T15:40:23.024+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T15:40:23.045+0800","msg":"Return Token is 82240a2acd3cc5f9e87cc5b1ac3b5cf5"}
-{"level":"error","time":"2020-06-29T15:40:23.046+0800","msg":"Cur Res is {slKu802B5+w9geY7iqlxvO4fQ6nyxlNtiWAsU1m1fO5BQfB0862AVYTJNFBUMELbTyJH8Vpj13k0xJWUDBzikw== 200 Success}"}
-{"level":"info","time":"2020-06-29T15:40:23.046+0800","msg":"GetToken Res is ErrCode 0 , errMsg "}
-{"level":"info","time":"2020-06-29T15:40:28.934+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8m09dAeV3qglzrBec0W7JitKEpuShKaOOe78zcOSiFXuSVOiN8o2az4rAh4OjVx2XA== "}
-{"level":"debug","time":"2020-06-29T15:40:28.939+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T15:40:28.953+0800","msg":"Return Token is 82240a2acd3cc5f9e87cc5b1ac3b5cf5"}
-{"level":"error","time":"2020-06-29T15:40:28.953+0800","msg":"Cur Res is {slKu802B5+w9geY7iqlxvO4fQ6nyxlNtiWAsU1m1fO5BQfB0862AVYTJNFBUMELbTyJH8Vpj13k0xJWUDBzikw== 200 Success}"}
-{"level":"info","time":"2020-06-29T15:42:40.641+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T15:42:40.641+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T15:42:49.197+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T15:42:49.201+0800","msg":"Package Timeout "}
-{"level":"info","time":"2020-06-29T15:42:58.875+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8vIulwr9ICD19IEBkUsHSP+qqfLgLBnpd6kS1vmDEFRrHfsF/1wthUnZbLJiCgwNdw== "}
-{"level":"info","time":"2020-06-29T15:42:58.875+0800","msg":"Get Data is abc"}
-{"level":"debug","time":"2020-06-29T15:43:09.892+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T15:43:09.895+0800","msg":"Get Data Info Fail "}
-{"level":"debug","time":"2020-06-29T15:43:11.454+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T15:43:11.460+0800","msg":"Get Data Info Fail "}
-{"level":"debug","time":"2020-06-29T15:43:12.326+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T15:43:12.328+0800","msg":"Get Data Info Fail "}
-{"level":"debug","time":"2020-06-29T15:43:45.723+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T15:43:45.725+0800","msg":"Get Data Info Fail "}
-{"level":"info","time":"2020-06-29T15:43:55.499+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO/dWD8r6LS+LAik5vfRT7unWNSEZXArdINxfbuBLKLMRydBWXSLSNQRMGYgNXnGIVNrGLnA== "}
-{"level":"info","time":"2020-06-29T15:43:55.499+0800","msg":"Get Data is abc"}
-{"level":"debug","time":"2020-06-29T15:44:10.036+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T15:44:10.040+0800","msg":"Get Data Info Fail "}
-{"level":"debug","time":"2020-06-29T15:45:40.905+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T15:45:40.907+0800","msg":"Get Data Info Fail "}
-{"level":"debug","time":"2020-06-29T15:45:52.605+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T15:45:52.623+0800","msg":"Get Data Info Fail "}
-{"level":"info","time":"2020-06-29T15:46:00.500+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T15:46:00.500+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T15:46:04.194+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T15:46:04.197+0800","msg":"Get Data Info Fail "}
-{"level":"debug","time":"2020-06-29T15:46:17.790+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T15:47:34.531+0800","msg":"Get Data Info Fail "}
-{"level":"info","time":"2020-06-29T15:50:07.686+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T15:50:07.687+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T15:50:15.290+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T15:50:37.791+0800","msg":"Get Data Info Fail "}
-{"level":"info","time":"2020-06-29T15:55:20.639+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8q97pRfuDl8AY_D2oZoQKLNMt20kJEGs0qSe1uawuOXCQVQI4iBY4fFYjgSpxAcEeA== "}
-{"level":"info","time":"2020-06-29T15:55:20.640+0800","msg":"Get Data is abc"}
-{"level":"debug","time":"2020-06-29T15:55:34.133+0800","msg":"router method is GET , path is /getToken "}
-{"level":"info","time":"2020-06-29T15:56:38.866+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8qo9BdrZeZVJb-m0hIPXZ33LGZwflvbNudpGL9qQGVNoHBrR6i3xL9fr28APxq1vbw "}
-{"level":"info","time":"2020-06-29T15:56:38.866+0800","msg":"Get Data is abc"}
-{"level":"info","time":"2020-06-29T15:57:04.135+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T15:57:04.135+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-29T15:57:07.953+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T15:57:14.534+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
-{"level":"debug","time":"2020-06-29T15:57:14.623+0800","msg":"Return Token is fe3d5bd8a9a36f049e86339468474016"}
-{"level":"error","time":"2020-06-29T15:57:14.623+0800","msg":"Cur Res is {qcOtpNRY2kg_0lGRL20USPCfqVad4kLqFAHla8lHMskiT7bQePoxNEIqQ7sRsWvc5O4Q4iGUJTmmiAqLzNhunA 200 Success}"}
-{"level":"debug","time":"2020-06-29T15:57:24.161+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T15:57:24.194+0800","msg":"Return Token is fe3d5bd8a9a36f049e86339468474016"}
-{"level":"error","time":"2020-06-29T15:57:24.194+0800","msg":"Cur Res is {qcOtpNRY2kg_0lGRL20USPCfqVad4kLqFAHla8lHMskiT7bQePoxNEIqQ7sRsWvc5O4Q4iGUJTmmiAqLzNhunA 200 Success}"}
-{"level":"info","time":"2020-06-29T15:58:06.399+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8qd_oE-fNeSWl8Gn5Yulys6CV7m6XM12u-MArGk1-b9tzm6J7BRQYo6F0iZfqbppMw "}
-{"level":"debug","time":"2020-06-29T15:58:06.401+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T15:58:06.418+0800","msg":"Return Token is fe3d5bd8a9a36f049e86339468474016"}
-{"level":"error","time":"2020-06-29T15:58:06.419+0800","msg":"Cur Res is {qcOtpNRY2kg_0lGRL20USPCfqVad4kLqFAHla8lHMskiT7bQePoxNEIqQ7sRsWvc5O4Q4iGUJTmmiAqLzNhunA 200 Success}"}
-{"level":"info","time":"2020-06-29T15:58:06.421+0800","msg":"GetToken Res is ErrCode 200 , errMsg Success"}
-{"level":"info","time":"2020-06-29T15:59:17.867+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8umaH2F7maIJGkcu9ky_HOrNIoXbwbwtv6kDP_uVFnLMDt1ejr5CzguAlqZFBs2N3Q "}
-{"level":"debug","time":"2020-06-29T15:59:17.868+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T15:59:17.883+0800","msg":"Return Token is fe3d5bd8a9a36f049e86339468474016"}
-{"level":"error","time":"2020-06-29T15:59:17.883+0800","msg":"Cur Res is {qcOtpNRY2kg_0lGRL20USPCfqVad4kLqFAHla8lHMskiT7bQePoxNEIqQ7sRsWvc5O4Q4iGUJTmmiAqLzNhunA 200 Success}"}
-{"level":"info","time":"2020-06-29T15:59:17.884+0800","msg":"GetToken Res is ErrCode 200 , errMsg Success , TokenInfo is qcOtpNRY2kg_0lGRL20USPCfqVad4kLqFAHla8lHMskiT7bQePoxNEIqQ7sRsWvc5O4Q4iGUJTmmiAqLzNhunA"}
-{"level":"info","time":"2020-06-29T16:04:41.331+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8ttnaz6D-JBWhtkyhaFjXrfQlO7MZof6tNBqwcwLkXOubMiVvAgyE32pwiAg8Za3QQ "}
-{"level":"debug","time":"2020-06-29T16:04:41.333+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T16:04:41.354+0800","msg":"Return Token is fe3d5bd8a9a36f049e86339468474016"}
-{"level":"error","time":"2020-06-29T16:04:41.354+0800","msg":"Cur Res is {qcOtpNRY2kg_0lGRL20USPCfqVad4kLqFAHla8lHMskiT7bQePoxNEIqQ7sRsWvc5O4Q4iGUJTmmiAqLzNhunA 200 Success}"}
-{"level":"info","time":"2020-06-29T16:04:41.355+0800","msg":"GetToken Res is ErrCode 200 , errMsg Success , TokenInfo is qcOtpNRY2kg_0lGRL20USPCfqVad4kLqFAHla8lHMskiT7bQePoxNEIqQ7sRsWvc5O4Q4iGUJTmmiAqLzNhunA"}
-{"level":"info","time":"2020-06-29T16:04:41.355+0800","msg":"Token is fe3d5bd8a9a36f049e86339468474016 , ExpTime is 600"}
-{"level":"info","time":"2020-06-29T16:13:17.702+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T16:13:17.703+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"info","time":"2020-06-29T16:13:34.581+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8qlhwsoT0iNIhUn9-F-_f2f--e9QV3rgPgLkHzifSfw4YmwHDvSaglhwEe1Ocrfl7w "}
-{"level":"debug","time":"2020-06-29T16:13:34.582+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T16:13:34.587+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
-{"level":"debug","time":"2020-06-29T16:13:34.611+0800","msg":"Return Token is ef78ef30d748782b4fade1a841bb2fb0"}
-{"level":"error","time":"2020-06-29T16:13:34.611+0800","msg":"Cur Res is {I5UUATpxhIM2IAOozMPOIdqkqZFGsX_lQPjoRhZOISrfnBrW88GLYdjJ6pvX2msgoZqsIjWkFI-K5v231ce29g {200 Success}}"}
-{"level":"info","time":"2020-06-29T16:13:34.611+0800","msg":"GetToken Res is ErrCode 200 , errMsg Success , TokenInfo is I5UUATpxhIM2IAOozMPOIdqkqZFGsX_lQPjoRhZOISrfnBrW88GLYdjJ6pvX2msgoZqsIjWkFI-K5v231ce29g"}
-{"level":"info","time":"2020-06-29T16:13:34.612+0800","msg":"Token is ef78ef30d748782b4fade1a841bb2fb0 , ExpTime is 600"}
-{"level":"info","time":"2020-06-29T16:17:14.439+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8tHX01x8yn4DLPIB1atQLG32jTCqNf9KRAO-DRQEyOh9Ef7t42MXxsgztHmY6i9xTQ "}
-{"level":"debug","time":"2020-06-29T16:17:14.440+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T16:17:40.490+0800","msg":"Return Token is ef78ef30d748782b4fade1a841bb2fb0"}
-{"level":"error","time":"2020-06-29T16:17:40.492+0800","msg":"Cur Res is {I5UUATpxhIM2IAOozMPOIdqkqZFGsX_lQPjoRhZOISrfnBrW88GLYdjJ6pvX2msgoZqsIjWkFI-K5v231ce29g {200 Success}}"}
-{"level":"error","time":"2020-06-29T16:17:40.497+0800","msg":"http Get Fail err is Get http://127.0.0.1:8086/getToken?app_key=055285a69ec81f6477e49fe95da22eba&data=laX2AhoKH1mTm1XO_dWD8tHX01x8yn4DLPIB1atQLG32jTCqNf9KRAO-DRQEyOh9Ef7t42MXxsgztHmY6i9xTQ: EOF"}
-{"level":"info","time":"2020-06-29T16:17:46.417+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8nqiB4tc64gDTcYy8ErUQNvKRk26WyTiDUowiyHP8KgPTwHws6s4GiE7s_PI9L0-cA "}
-{"level":"debug","time":"2020-06-29T16:17:46.418+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T16:18:31.203+0800","msg":"Return Token is ef78ef30d748782b4fade1a841bb2fb0"}
-{"level":"error","time":"2020-06-29T16:18:31.203+0800","msg":"Cur Res is {I5UUATpxhIM2IAOozMPOIdqkqZFGsX_lQPjoRhZOISrfnBrW88GLYdjJ6pvX2msgoZqsIjWkFI-K5v231ce29g {200 Success}}"}
-{"level":"error","time":"2020-06-29T16:18:31.204+0800","msg":"http Get Fail err is Get http://127.0.0.1:8086/getToken?app_key=055285a69ec81f6477e49fe95da22eba&data=laX2AhoKH1mTm1XO_dWD8nqiB4tc64gDTcYy8ErUQNvKRk26WyTiDUowiyHP8KgPTwHws6s4GiE7s_PI9L0-cA: EOF"}
-{"level":"info","time":"2020-06-29T16:18:36.387+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-29T16:18:36.387+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"info","time":"2020-06-29T16:19:44.706+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8idfHMRMVXSEaJT_Z1Mn789PnW7vaOyFUbC1nsdub21aP6EqPVcQbysESnWgyJbLzQ "}
-{"level":"debug","time":"2020-06-29T16:19:44.709+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T16:20:01.555+0800","msg":"Return Token is ef78ef30d748782b4fade1a841bb2fb0"}
-{"level":"error","time":"2020-06-29T16:20:01.555+0800","msg":"Cur Res is {I5UUATpxhIM2IAOozMPOIdqkqZFGsX_lQPjoRhZOISrfnBrW88GLYdjJ6pvX2msgoZqsIjWkFI-K5v231ce29g {200 Success}}"}
-{"level":"error","time":"2020-06-29T16:20:01.555+0800","msg":"http Get Fail err is Get http://127.0.0.1:8086/getToken?app_key=055285a69ec81f6477e49fe95da22eba&data=laX2AhoKH1mTm1XO_dWD8idfHMRMVXSEaJT_Z1Mn789PnW7vaOyFUbC1nsdub21aP6EqPVcQbysESnWgyJbLzQ: EOF"}
-{"level":"info","time":"2020-06-29T16:20:29.925+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8kcje0N-7yBR8Ua3Of8GIIhgOMB2jcUPTxyWgnj644ARZiuSEmeNdmC9rqT6bg9oKQ "}
-{"level":"debug","time":"2020-06-29T16:20:29.926+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-29T16:20:29.940+0800","msg":"Return Token is ef78ef30d748782b4fade1a841bb2fb0"}
-{"level":"error","time":"2020-06-29T16:20:29.940+0800","msg":"Cur Res is {I5UUATpxhIM2IAOozMPOIdqkqZFGsX_lQPjoRhZOISrfnBrW88GLYdjJ6pvX2msgoZqsIjWkFI-K5v231ce29g {200 Success}}"}
-{"level":"info","time":"2020-06-29T16:20:29.940+0800","msg":"GetToken Res is ErrCode 200 , errMsg Success , TokenInfo is I5UUATpxhIM2IAOozMPOIdqkqZFGsX_lQPjoRhZOISrfnBrW88GLYdjJ6pvX2msgoZqsIjWkFI-K5v231ce29g"}
-{"level":"info","time":"2020-06-29T16:20:29.940+0800","msg":"Token is ef78ef30d748782b4fade1a841bb2fb0 , ExpTime is 600"}
-{"level":"info","time":"2020-06-29T17:57:28.516+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8gKfLd7hS3HGpznQI6dVJfeSObc6j0dObpJpPO7TJbWsnpaRKMdkTfCmgLp_qtkqN94YpW9zRKBE2EVsz8x_r8EJo7vaj-TlN609FCRTTnJJJMmvr70X2FokVjNEjuX_Cw52fmYkZZ8uGuyUWniIJLA "}
-{"level":"debug","time":"2020-06-29T17:57:28.519+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-29T17:57:28.540+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
-{"level":"debug","time":"2020-06-29T17:57:28.564+0800","msg":"Return Token is bec2fb8350eede3f66aa4c7f3c8349c9"}
-{"level":"error","time":"2020-06-29T17:57:28.565+0800","msg":"Cur Res is {iv6gTMMeLEYFbUXU3uTlDY_71-GZe-4lInc4MoGGFKN2oKp-1c7JGgDAeOmtOFmPOGGPg-swsT7gGpJxT4S4RA {200 Success}}"}
-{"level":"info","time":"2020-06-29T17:57:28.565+0800","msg":"GetToken Res is ErrCode 200 , errMsg Success , TokenInfo is iv6gTMMeLEYFbUXU3uTlDY_71-GZe-4lInc4MoGGFKN2oKp-1c7JGgDAeOmtOFmPOGGPg-swsT7gGpJxT4S4RA"}
-{"level":"info","time":"2020-06-29T17:57:28.565+0800","msg":"Token is bec2fb8350eede3f66aa4c7f3c8349c9 , ExpTime is 600"}
-{"level":"info","time":"2020-06-30T16:26:29.647+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-30T16:26:29.648+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"error","time":"2020-06-30T16:26:29.648+0800","msg":"pprof error is listen tcp :9000: bind: address already in use"}
-{"level":"error","time":"2020-06-30T16:26:29.648+0800","msg":"RunServer ListenAndServer Err is listen tcp :8086: bind: address already in use "}
-{"level":"info","time":"2020-06-30T16:26:53.994+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-30T16:26:53.995+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-30T16:27:10.658+0800","msg":"router method is GET , path is /test1 "}
-{"level":"info","time":"2020-06-30T16:27:40.375+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-30T16:27:40.375+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-30T16:27:45.233+0800","msg":"router method is GET , path is /test1 "}
-{"level":"info","time":"2020-06-30T17:16:16.164+0800","msg":"pprof start addr is :9000 "}
-{"level":"info","time":"2020-06-30T17:16:16.165+0800","msg":"Http Server Start Addr is :8086"}
-{"level":"debug","time":"2020-06-30T17:16:26.119+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-30T17:16:26.126+0800","msg":"Package Timeout "}
-{"level":"info","time":"2020-06-30T17:17:56.805+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8viNDkNFfr0Fsh1CJAXo8ThsuRZlXXZ9AERgCItXW9aFDRnR1hdyF-W_nn9QbKndm2qKPFQamtY98evbZkkBoG_9g8q1jFI-FSR60Rx-853fQofMpNWmJn8Dvbzv73PrwM20vO-glGDaG1I5aDF-aBM "}
-{"level":"debug","time":"2020-06-30T17:17:56.806+0800","msg":"router method is GET , path is /getToken "}
-{"level":"error","time":"2020-06-30T17:17:56.810+0800","msg":"GetToken Redis Get Fail Err is redis: nil"}
-{"level":"debug","time":"2020-06-30T17:17:56.909+0800","msg":"Return Token is 16bf5f5feeb4f20c72f838b31c2877d9"}
-{"level":"error","time":"2020-06-30T17:17:56.909+0800","msg":"Cur Res is {dptI_hZxU1PA8_OIi5CCO1oFBt-mmcMimT8FWSWECapAoROn1g1mOBHFuT2u40UMinwEt9nXTNTKnMiHyo9l8A}"}
-{"level":"info","time":"2020-06-30T17:18:40.936+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8m_G8BgF5EA7U2dG6uvyxlSk4ouzdwCFOal2vSkvjfL6jEYFlDkD0ot1dyiPYpvPYJ0kuJDsuSnxOHrSyqCebPd2n1w7ozhjLewnMVPaKEduiZqr8Fjk8tBddtZsgslzH24pehwzy4YAJnLEmXRa2NA"}
-{"level":"info","time":"2020-06-30T17:18:40.937+0800","msg":"Get Data is abc"}
-{"level":"debug","time":"2020-06-30T17:18:59.958+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-30T17:18:59.979+0800","msg":"Return Token is 16bf5f5feeb4f20c72f838b31c2877d9"}
-{"level":"error","time":"2020-06-30T17:18:59.979+0800","msg":"Cur Res is {dptI_hZxU1PA8_OIi5CCO1oFBt-mmcMimT8FWSWECapAoROn1g1mOBHFuT2u40UMinwEt9nXTNTKnMiHyo9l8A}"}
-{"level":"info","time":"2020-06-30T17:22:13.966+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8vprTjEJrrhZHKS7hiBy1cmudKiZCj58hF3oaZtW5xqiZBAsrwk5gOLKpdG4QPWMA3MC3qgOSBkX9mUUiBOLmN0pqI5r_y057q6DHgys1RJ9H81fcrCkeQgs24Gh2eG38-qwLVe1NtlzMXCd9qyoojc "}
-{"level":"debug","time":"2020-06-30T17:22:13.967+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-30T17:22:13.979+0800","msg":"Return Token is 16bf5f5feeb4f20c72f838b31c2877d9"}
-{"level":"error","time":"2020-06-30T17:22:13.979+0800","msg":"Cur Res is {dptI_hZxU1PA8_OIi5CCO1oFBt-mmcMimT8FWSWECapAoROn1g1mOBHFuT2u40UMinwEt9nXTNTKnMiHyo9l8A}"}
-{"level":"debug","time":"2020-06-30T17:22:35.240+0800","msg":"router method is GET , path is /getToken "}
-{"level":"debug","time":"2020-06-30T17:22:35.274+0800","msg":"Return Token is 16bf5f5feeb4f20c72f838b31c2877d9"}
-{"level":"error","time":"2020-06-30T17:22:35.274+0800","msg":"Cur Res is {dptI_hZxU1PA8_OIi5CCO1oFBt-mmcMimT8FWSWECapAoROn1g1mOBHFuT2u40UMinwEt9nXTNTKnMiHyo9l8A}"}
+{"level":"info","time":"2020-07-01T11:16:37.939+0800","msg":"Worker Start ID is c80b2184f5ce02e03c1606b0ca816b23"}
+{"level":"info","time":"2020-07-01T11:16:37.939+0800","msg":"Worker Start ID is 1d418d833b6fa80f4af4adc0afb5d118"}
+{"level":"info","time":"2020-07-01T11:16:37.939+0800","msg":"Worker Start ID is 85cbd91e902f2b4d84e4581d7326fb8e"}
+{"level":"info","time":"2020-07-01T11:16:37.939+0800","msg":"Worker Start ID is 2487eb9ae925c066b48d853a714c37f7"}
+{"level":"info","time":"2020-07-01T11:16:37.939+0800","msg":"Worker Start ID is 4e64cfdd5b80ae672658641f076dd6bb"}
+{"level":"info","time":"2020-07-01T11:16:37.939+0800","msg":"Worker Start ID is c67559789fe0353619457a9ee4aaace6"}
+{"level":"info","time":"2020-07-01T11:16:37.939+0800","msg":"Worker Start ID is e7249913443dd5859388a1ee39ee9d05"}
+{"level":"info","time":"2020-07-01T11:16:37.939+0800","msg":"Worker Start ID is 1f95e1cb4592edd3734ea7327f0a4cfc"}
+{"level":"info","time":"2020-07-01T11:16:37.939+0800","msg":"Worker Start ID is ffafd6b1920668402f7c10adb6906566"}
+{"level":"info","time":"2020-07-01T11:16:37.939+0800","msg":"Worker Start ID is c2475f764f47b6142bfd3e56d215ecb4"}
+{"level":"info","time":"2020-07-01T11:16:39.946+0800","msg":"Worker is Closed Id is e7249913443dd5859388a1ee39ee9d05"}
+{"level":"info","time":"2020-07-01T11:16:39.946+0800","msg":"Worker is Closed Id is c2475f764f47b6142bfd3e56d215ecb4"}
+{"level":"info","time":"2020-07-01T11:16:39.946+0800","msg":"Worker is Closed Id is 1d418d833b6fa80f4af4adc0afb5d118"}
+{"level":"info","time":"2020-07-01T11:16:39.946+0800","msg":"Worker is Closed Id is c80b2184f5ce02e03c1606b0ca816b23"}
+{"level":"debug","time":"2020-07-01T11:16:39.946+0800","msg":"Do Job JobID is 0"}
+{"level":"info","time":"2020-07-01T11:16:39.946+0800","msg":"Worker is Closed Id is 2487eb9ae925c066b48d853a714c37f7"}
+{"level":"debug","time":"2020-07-01T11:16:39.946+0800","msg":"Finish Job JobID is 0"}
+{"level":"info","time":"2020-07-01T11:16:39.946+0800","msg":"Worker is Closed Id is ffafd6b1920668402f7c10adb6906566"}
+{"level":"info","time":"2020-07-01T11:16:39.946+0800","msg":"Worker is Closed Id is 85cbd91e902f2b4d84e4581d7326fb8e"}
+{"level":"info","time":"2020-07-01T11:16:39.946+0800","msg":"Worker is Closed Id is 4e64cfdd5b80ae672658641f076dd6bb"}
+{"level":"info","time":"2020-07-01T11:16:39.946+0800","msg":"Worker is Closed Id is c67559789fe0353619457a9ee4aaace6"}
+{"level":"info","time":"2020-07-01T11:16:39.946+0800","msg":"Worker is Closed Id is 1f95e1cb4592edd3734ea7327f0a4cfc"}
+{"level":"info","time":"2020-07-01T11:16:56.552+0800","msg":"Worker Start ID is 4b293cd0fcd1caf05588420bcb42bc32"}
+{"level":"info","time":"2020-07-01T11:16:56.552+0800","msg":"Worker Start ID is 0e07472eb7ffd6af8eeb6e5cf0681ce0"}
+{"level":"info","time":"2020-07-01T11:16:56.552+0800","msg":"Worker Start ID is 7e5b97656e6435208e4eb9a87f958bf3"}
+{"level":"info","time":"2020-07-01T11:16:56.552+0800","msg":"Worker Start ID is 7267fac8806536e6045c7fb844c99b94"}
+{"level":"info","time":"2020-07-01T11:16:56.552+0800","msg":"Worker Start ID is 4708a05aa4018c3509742302238b9a15"}
+{"level":"info","time":"2020-07-01T11:16:56.552+0800","msg":"Worker Start ID is a94a75b9592d5aebd20e48ab8ff6fa45"}
+{"level":"info","time":"2020-07-01T11:16:56.552+0800","msg":"Worker Start ID is 656b4e019698f4aee12c032362c289ae"}
+{"level":"info","time":"2020-07-01T11:16:56.552+0800","msg":"Worker Start ID is c56891288168df9f07c7e6875a33c4d9"}
+{"level":"info","time":"2020-07-01T11:16:56.552+0800","msg":"Worker Start ID is 08726c594d886ad80e3756833c9117ba"}
+{"level":"info","time":"2020-07-01T11:16:56.552+0800","msg":"Worker Start ID is 7ce3abd40d606abddc8321c20b31a2e0"}
+{"level":"debug","time":"2020-07-01T11:16:58.555+0800","msg":"Do Job JobID is 0"}
+{"level":"info","time":"2020-07-01T11:16:58.555+0800","msg":"Worker is Closed Id is 4b293cd0fcd1caf05588420bcb42bc32"}
+{"level":"info","time":"2020-07-01T11:16:58.555+0800","msg":"Worker is Closed Id is 7ce3abd40d606abddc8321c20b31a2e0"}
+{"level":"info","time":"2020-07-01T11:16:58.555+0800","msg":"Worker is Closed Id is a94a75b9592d5aebd20e48ab8ff6fa45"}
+{"level":"info","time":"2020-07-01T11:16:58.555+0800","msg":"Worker is Closed Id is 4708a05aa4018c3509742302238b9a15"}
+{"level":"info","time":"2020-07-01T11:16:58.555+0800","msg":"Worker is Closed Id is 0e07472eb7ffd6af8eeb6e5cf0681ce0"}
+{"level":"info","time":"2020-07-01T11:16:58.555+0800","msg":"Worker is Closed Id is 7267fac8806536e6045c7fb844c99b94"}
+{"level":"debug","time":"2020-07-01T11:16:58.555+0800","msg":"Finish Job JobID is 0"}
+{"level":"info","time":"2020-07-01T11:16:58.556+0800","msg":"Worker is Closed Id is 7e5b97656e6435208e4eb9a87f958bf3"}
+{"level":"info","time":"2020-07-01T11:16:58.555+0800","msg":"Worker is Closed Id is c56891288168df9f07c7e6875a33c4d9"}
+{"level":"info","time":"2020-07-01T11:16:58.555+0800","msg":"Worker is Closed Id is 08726c594d886ad80e3756833c9117ba"}
+{"level":"info","time":"2020-07-01T11:16:58.555+0800","msg":"Worker is Closed Id is 656b4e019698f4aee12c032362c289ae"}
+{"level":"info","time":"2020-07-01T11:17:16.654+0800","msg":"Worker Start ID is c09535d7be282f19a57fbd6a66a1523b"}
+{"level":"info","time":"2020-07-01T11:17:16.654+0800","msg":"Worker Start ID is eebb38cd54f67e4a5adb892544664294"}
+{"level":"info","time":"2020-07-01T11:17:16.654+0800","msg":"Worker Start ID is 013c97d42156cc719f9365b58fa6cee1"}
+{"level":"info","time":"2020-07-01T11:17:16.654+0800","msg":"Worker Start ID is 1205684f12c03ed6b4108f4133ceb4b7"}
+{"level":"info","time":"2020-07-01T11:17:16.654+0800","msg":"Worker Start ID is 9ee967082aef3455b590a4fcfbfdef4b"}
+{"level":"info","time":"2020-07-01T11:17:16.654+0800","msg":"Worker Start ID is a84fd1304482c74e4c22f0feb6ae20fc"}
+{"level":"info","time":"2020-07-01T11:17:16.654+0800","msg":"Worker Start ID is ae43037e9f2ace55e74639d8065d1a41"}
+{"level":"info","time":"2020-07-01T11:17:16.654+0800","msg":"Worker Start ID is df14e152388dddd4788269cd0e14d3b3"}
+{"level":"info","time":"2020-07-01T11:17:16.654+0800","msg":"Worker Start ID is 01266d142f32496d97913407575591b6"}
+{"level":"info","time":"2020-07-01T11:17:16.654+0800","msg":"Worker Start ID is 5295cbb43c90d28a6bf4faa785faaf2f"}
+{"level":"debug","time":"2020-07-01T11:17:18.660+0800","msg":"Do Job JobID is 0"}
+{"level":"info","time":"2020-07-01T11:17:18.660+0800","msg":"Worker is Closed Id is df14e152388dddd4788269cd0e14d3b3"}
+{"level":"debug","time":"2020-07-01T11:17:18.660+0800","msg":"Finish Job JobID is 0"}
+{"level":"info","time":"2020-07-01T11:17:18.660+0800","msg":"Worker is Closed Id is c09535d7be282f19a57fbd6a66a1523b"}
+{"level":"info","time":"2020-07-01T11:17:18.660+0800","msg":"Worker is Closed Id is 9ee967082aef3455b590a4fcfbfdef4b"}
+{"level":"info","time":"2020-07-01T11:17:18.660+0800","msg":"Worker is Closed Id is 1205684f12c03ed6b4108f4133ceb4b7"}
+{"level":"info","time":"2020-07-01T11:17:18.660+0800","msg":"Worker is Closed Id is 013c97d42156cc719f9365b58fa6cee1"}
+{"level":"info","time":"2020-07-01T11:17:18.660+0800","msg":"Worker is Closed Id is 5295cbb43c90d28a6bf4faa785faaf2f"}
+{"level":"info","time":"2020-07-01T11:17:18.660+0800","msg":"Worker is Closed Id is eebb38cd54f67e4a5adb892544664294"}
+{"level":"info","time":"2020-07-01T11:17:18.660+0800","msg":"Worker is Closed Id is a84fd1304482c74e4c22f0feb6ae20fc"}
+{"level":"info","time":"2020-07-01T11:17:18.660+0800","msg":"Worker is Closed Id is ae43037e9f2ace55e74639d8065d1a41"}
+{"level":"info","time":"2020-07-01T11:17:18.660+0800","msg":"Worker is Closed Id is 01266d142f32496d97913407575591b6"}
+{"level":"info","time":"2020-07-01T11:17:48.273+0800","msg":"Worker Start ID is 4026e79a489842226732aef3744e58e3"}
+{"level":"info","time":"2020-07-01T11:17:48.273+0800","msg":"Worker Start ID is 86eec3bc3482fec25c6471641c66e923"}
+{"level":"debug","time":"2020-07-01T11:17:48.273+0800","msg":"Do Job JobID is 16"}
+{"level":"debug","time":"2020-07-01T11:17:48.273+0800","msg":"Finish Job JobID is 16"}
+{"level":"debug","time":"2020-07-01T11:17:48.273+0800","msg":"Do Job JobID is 27"}
+{"level":"debug","time":"2020-07-01T11:17:48.273+0800","msg":"Finish Job JobID is 27"}
+{"level":"info","time":"2020-07-01T11:17:48.273+0800","msg":"Worker Start ID is bc3c01fc87a149366d0368492a736bfb"}
+{"level":"debug","time":"2020-07-01T11:17:48.273+0800","msg":"Do Job JobID is 10"}
+{"level":"debug","time":"2020-07-01T11:17:48.273+0800","msg":"Finish Job JobID is 10"}
+{"level":"info","time":"2020-07-01T11:17:48.273+0800","msg":"Worker Start ID is 77dba7dc7aa03e15ca1beb078d8f0b6b"}
+{"level":"debug","time":"2020-07-01T11:17:48.273+0800","msg":"Do Job JobID is 18"}
+{"level":"info","time":"2020-07-01T11:17:48.273+0800","msg":"Worker Start ID is 19935b484256637aeb561e19ccdf29dd"}
+{"level":"debug","time":"2020-07-01T11:17:48.273+0800","msg":"Do Job JobID is 4"}
+{"level":"debug","time":"2020-07-01T11:17:48.273+0800","msg":"Finish Job JobID is 18"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 4"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 38"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 5"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 38"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 5"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 39"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 9"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 39"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 50"}
+{"level":"info","time":"2020-07-01T11:17:48.273+0800","msg":"Worker Start ID is 58830b26a6d23ba023ab465ff691eaf2"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 50"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 8"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 8"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 17"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 17"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 23"}
+{"level":"info","time":"2020-07-01T11:17:48.273+0800","msg":"Worker Start ID is 4beff1c79b4f2236ac939e75a440b01a"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 23"}
+{"level":"info","time":"2020-07-01T11:17:48.273+0800","msg":"Worker Start ID is e00c530c8dce996791d9abc9f34c0b0d"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 3"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 3"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 7"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 7"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 28"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 28"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 36"}
+{"level":"info","time":"2020-07-01T11:17:48.273+0800","msg":"Worker Start ID is 10eccc0943efb27ad61d0fe5aac9e194"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 0"}
+{"level":"debug","time":"2020-07-01T11:17:48.273+0800","msg":"Do Job JobID is 11"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 0"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 11"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 2"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 2"}
+{"level":"debug","time":"2020-07-01T11:17:48.273+0800","msg":"Do Job JobID is 45"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 14"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 45"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 14"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 31"}
+{"level":"debug","time":"2020-07-01T11:17:48.273+0800","msg":"Do Job JobID is 15"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 31"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 35"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 35"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 9"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 43"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 12"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 43"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 12"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 47"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 13"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 47"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 13"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 48"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 21"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 48"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 21"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 22"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 54"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 22"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 6"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 6"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 54"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 64"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 36"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 40"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 60"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 40"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 60"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 57"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 69"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 57"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 69"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 58"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 72"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 58"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 72"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 76"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 76"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 77"}
+{"level":"info","time":"2020-07-01T11:17:48.274+0800","msg":"Worker is Closed Id is 86eec3bc3482fec25c6471641c66e923"}
+{"level":"info","time":"2020-07-01T11:17:48.274+0800","msg":"Worker is Closed Id is 77dba7dc7aa03e15ca1beb078d8f0b6b"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 15"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 25"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 25"}
+{"level":"info","time":"2020-07-01T11:17:48.273+0800","msg":"Worker Start ID is 1ac04f7cbff94c80e96c019f2af50ad4"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 1"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 1"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 19"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 19"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 20"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 32"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 20"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 32"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 51"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 24"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 24"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 34"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 26"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 26"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 64"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 30"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 70"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 70"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 30"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 75"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 33"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 75"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 33"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 80"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 42"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 80"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 42"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 83"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 61"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 83"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 61"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 90"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 67"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 90"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 67"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 98"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 68"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 98"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 68"}
+{"level":"info","time":"2020-07-01T11:17:48.275+0800","msg":"Worker is Closed Id is 10eccc0943efb27ad61d0fe5aac9e194"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 71"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 71"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Finish Job JobID is 77"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 78"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 79"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 78"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 79"}
+{"level":"info","time":"2020-07-01T11:17:48.275+0800","msg":"Worker is Closed Id is e00c530c8dce996791d9abc9f34c0b0d"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 81"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 29"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 29"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 46"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 46"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 51"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 52"}
+{"level":"debug","time":"2020-07-01T11:17:48.274+0800","msg":"Do Job JobID is 65"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 65"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 81"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 84"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 37"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 37"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 62"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 41"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 62"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 41"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 63"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 56"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 63"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 56"}
+{"level":"info","time":"2020-07-01T11:17:48.275+0800","msg":"Worker is Closed Id is bc3c01fc87a149366d0368492a736bfb"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 52"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 53"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 53"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 73"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 55"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 73"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 55"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 74"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 59"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 74"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 59"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 91"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 82"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 91"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 82"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 34"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 66"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 84"}
+{"level":"info","time":"2020-07-01T11:17:48.275+0800","msg":"Worker is Closed Id is 4beff1c79b4f2236ac939e75a440b01a"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 87"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 87"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 44"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 66"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 85"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 44"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Finish Job JobID is 85"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 92"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Finish Job JobID is 92"}
+{"level":"info","time":"2020-07-01T11:17:48.275+0800","msg":"Worker is Closed Id is 58830b26a6d23ba023ab465ff691eaf2"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 89"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Finish Job JobID is 89"}
+{"level":"debug","time":"2020-07-01T11:17:48.275+0800","msg":"Do Job JobID is 49"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Finish Job JobID is 49"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Do Job JobID is 86"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Do Job JobID is 93"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Finish Job JobID is 93"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Do Job JobID is 99"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Do Job JobID is 97"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Finish Job JobID is 99"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Finish Job JobID is 97"}
+{"level":"info","time":"2020-07-01T11:17:48.276+0800","msg":"Worker is Closed Id is 4026e79a489842226732aef3744e58e3"}
+{"level":"info","time":"2020-07-01T11:17:48.276+0800","msg":"Worker is Closed Id is 19935b484256637aeb561e19ccdf29dd"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Finish Job JobID is 86"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Do Job JobID is 88"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Finish Job JobID is 88"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Do Job JobID is 94"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Finish Job JobID is 94"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Do Job JobID is 95"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Finish Job JobID is 95"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Do Job JobID is 96"}
+{"level":"debug","time":"2020-07-01T11:17:48.276+0800","msg":"Finish Job JobID is 96"}
+{"level":"info","time":"2020-07-01T11:17:48.276+0800","msg":"Worker is Closed Id is 1ac04f7cbff94c80e96c019f2af50ad4"}
+{"level":"info","time":"2020-07-01T14:11:25.811+0800","msg":"Worker Start ID is 66bf2d9a6ca8d148e6c8baf3c7661951"}
+{"level":"info","time":"2020-07-01T14:11:25.811+0800","msg":"Worker Start ID is 53712553ce6b69f84c06ef0d091bb7cc"}
+{"level":"info","time":"2020-07-01T14:11:25.811+0800","msg":"Worker Start ID is 8d2fa382bf89490ae8fff4e7185f9cd4"}
+{"level":"info","time":"2020-07-01T14:11:25.811+0800","msg":"Worker Start ID is 42e9324503fdfe29402a6649edfd10f2"}
+{"level":"info","time":"2020-07-01T14:11:25.811+0800","msg":"Worker Start ID is be96554f1e3830f8a5566fd7b8b0c768"}
+{"level":"info","time":"2020-07-01T14:11:25.811+0800","msg":"Worker Start ID is 4ab9a09ebd4704dacf90b996d17929eb"}
+{"level":"info","time":"2020-07-01T14:11:25.811+0800","msg":"Worker Start ID is 9b839f0461e603cdb016ff0cd50bac05"}
+{"level":"info","time":"2020-07-01T14:11:25.811+0800","msg":"Worker Start ID is 52473165b914d9c7386fe1cd56d5bee9"}
+{"level":"info","time":"2020-07-01T14:11:25.811+0800","msg":"Worker Start ID is 5695a6294aecb1825b95606e5c40fef2"}
+{"level":"info","time":"2020-07-01T14:11:25.811+0800","msg":"Worker Start ID is 181c8b6adfbaaf9c67db16669802711d"}
+{"level":"debug","time":"2020-07-01T14:11:27.816+0800","msg":"Do Job JobID is 0"}
+{"level":"info","time":"2020-07-01T14:11:27.816+0800","msg":"Worker is Closed Id is 5695a6294aecb1825b95606e5c40fef2"}
+{"level":"debug","time":"2020-07-01T14:11:27.816+0800","msg":"Finish Job JobID is 0"}
+{"level":"info","time":"2020-07-01T14:11:27.816+0800","msg":"Worker is Closed Id is 181c8b6adfbaaf9c67db16669802711d"}
+{"level":"info","time":"2020-07-01T14:11:27.816+0800","msg":"Worker is Closed Id is 4ab9a09ebd4704dacf90b996d17929eb"}
+{"level":"info","time":"2020-07-01T14:11:27.816+0800","msg":"Worker is Closed Id is 8d2fa382bf89490ae8fff4e7185f9cd4"}
+{"level":"info","time":"2020-07-01T14:11:27.816+0800","msg":"Worker is Closed Id is 42e9324503fdfe29402a6649edfd10f2"}
+{"level":"info","time":"2020-07-01T14:11:27.816+0800","msg":"Worker is Closed Id is 9b839f0461e603cdb016ff0cd50bac05"}
+{"level":"info","time":"2020-07-01T14:11:27.816+0800","msg":"Worker is Closed Id is 66bf2d9a6ca8d148e6c8baf3c7661951"}
+{"level":"info","time":"2020-07-01T14:11:27.816+0800","msg":"Worker is Closed Id is 52473165b914d9c7386fe1cd56d5bee9"}
+{"level":"info","time":"2020-07-01T14:11:27.816+0800","msg":"Worker is Closed Id is be96554f1e3830f8a5566fd7b8b0c768"}
+{"level":"info","time":"2020-07-01T14:11:27.816+0800","msg":"Worker is Closed Id is 53712553ce6b69f84c06ef0d091bb7cc"}
+{"level":"info","time":"2020-07-01T14:12:42.529+0800","msg":"Worker Start ID is 888a79c04d9d1cde656c7390854fcb3e"}
+{"level":"info","time":"2020-07-01T14:12:42.529+0800","msg":"Worker Start ID is ba990d6a47ae52df1605b10699144d91"}
+{"level":"info","time":"2020-07-01T14:12:42.529+0800","msg":"Worker Start ID is 54110de3ec625e232a0ff8bcd998c6df"}
+{"level":"info","time":"2020-07-01T14:12:42.529+0800","msg":"Worker Start ID is 52a0d09cac5bd2d10a63bb11a6d53dde"}
+{"level":"info","time":"2020-07-01T14:12:42.529+0800","msg":"Worker Start ID is 68d1c799ca3915d0fac44c8c084137e0"}
+{"level":"info","time":"2020-07-01T14:12:42.529+0800","msg":"Worker Start ID is 671f30abf4aef7c671e7cc431739ab37"}
+{"level":"info","time":"2020-07-01T14:12:42.529+0800","msg":"Worker Start ID is a8b44c5c3670cf026072308a08b3c483"}
+{"level":"info","time":"2020-07-01T14:12:42.529+0800","msg":"Worker Start ID is d699d77308f4c0a76a2bfbb4d5cd5115"}
+{"level":"info","time":"2020-07-01T14:12:42.529+0800","msg":"Worker Start ID is 416237a4603ae40c0d154c668c7b048f"}
+{"level":"info","time":"2020-07-01T14:12:42.529+0800","msg":"Worker Start ID is 26b3f14f149a24d7a1e3989639d1b535"}
+{"level":"info","time":"2020-07-01T14:12:44.534+0800","msg":"Worker is Closed Id is d699d77308f4c0a76a2bfbb4d5cd5115"}
+{"level":"debug","time":"2020-07-01T14:12:44.534+0800","msg":"Do Job JobID is 0"}
+{"level":"info","time":"2020-07-01T14:12:44.534+0800","msg":"Worker is Closed Id is 416237a4603ae40c0d154c668c7b048f"}
+{"level":"debug","time":"2020-07-01T14:12:44.534+0800","msg":"Finish Job JobID is 0"}
+{"level":"info","time":"2020-07-01T14:12:44.534+0800","msg":"Worker is Closed Id is 54110de3ec625e232a0ff8bcd998c6df"}
+{"level":"info","time":"2020-07-01T14:12:44.534+0800","msg":"Worker is Closed Id is 26b3f14f149a24d7a1e3989639d1b535"}
+{"level":"info","time":"2020-07-01T14:12:44.534+0800","msg":"Worker is Closed Id is 52a0d09cac5bd2d10a63bb11a6d53dde"}
+{"level":"info","time":"2020-07-01T14:12:44.534+0800","msg":"Worker is Closed Id is 68d1c799ca3915d0fac44c8c084137e0"}
+{"level":"info","time":"2020-07-01T14:12:44.534+0800","msg":"Worker is Closed Id is ba990d6a47ae52df1605b10699144d91"}
+{"level":"info","time":"2020-07-01T14:12:44.534+0800","msg":"Worker is Closed Id is 671f30abf4aef7c671e7cc431739ab37"}
+{"level":"info","time":"2020-07-01T14:12:44.534+0800","msg":"Worker is Closed Id is a8b44c5c3670cf026072308a08b3c483"}
+{"level":"info","time":"2020-07-01T14:12:44.534+0800","msg":"Worker is Closed Id is 888a79c04d9d1cde656c7390854fcb3e"}

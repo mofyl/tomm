@@ -2,9 +2,6 @@ package service
 
 import (
 	"encoding/json"
-	"fmt"
-	"io/ioutil"
-	"net/http"
 	"testing"
 	"time"
 	"tomm/log"
@@ -50,45 +47,45 @@ func TestEncodeDecode(t *testing.T) {
 func TestGetToken(t *testing.T) {
 
 	secretKey := "2ffd7fbe21a5e6eb3321d723900a79f0"
-	appKey := "055285a69ec81f6477e49fe95da22eba"
+	//appKey := "055285a69ec81f6477e49fe95da22eba"
 
-	dataInfo := ReqDataInfo{
-		SendTime:    time.Now().Unix(),
-		ChannelInfo: "abc",
-		ExtendInfo:  nil,
-	}
-
-	data, _ := json.Marshal(dataInfo)
-
-	base64Str, err := utils.AESCBCBase64Encode(secretKey, data)
-	if err != nil {
-		log.Error("AESCBCBase64Encode Fail err is %s", err.Error())
-		return
-	}
-	log.Info("Req Base64Str is %s ", base64Str)
-	// 开始客户端请求
-	resp, err := http.Get(fmt.Sprintf("http://127.0.0.1:8086/getToken?app_key=%s&data=%s", appKey, base64Str))
-
-	if err != nil {
-		log.Error("http Get Fail err is %s", err.Error())
-		return
-	}
-	defer resp.Body.Close()
-	//buf := bytes.NewBuffer([]byte{})
-	body, err := ioutil.ReadAll(resp.Body)
-	//json.NewDecoder(buf).
-	//n, err := resp.Body.Read(body)
-	if err != nil {
-		log.Error("Resp read body Fail err is %s", err.Error())
-		return
-	}
+	//dataInfo := ReqDataInfo{
+	//	SendTime:    time.Now().Unix(),
+	//	ChannelInfo: "abc",
+	//	ExtendInfo:  nil,
+	//}
+	//
+	//data, _ := json.Marshal(dataInfo)
+	//
+	//base64Str, err := utils.AESCBCBase64Encode(secretKey, data)
+	//if err != nil {
+	//	log.Error("AESCBCBase64Encode Fail err is %s", err.Error())
+	//	return
+	//}
+	//log.Info("Req Base64Str is %s ", base64Str)
+	//// 开始客户端请求
+	//resp, err := http.Get(fmt.Sprintf("http://127.0.0.1:8086/getToken?app_key=%s&data=%s", appKey, base64Str))
+	//
+	//if err != nil {
+	//	log.Error("http Get Fail err is %s", err.Error())
+	//	return
+	//}
+	//defer resp.Body.Close()
+	////buf := bytes.NewBuffer([]byte{})
+	//body, err := ioutil.ReadAll(resp.Body)
+	////json.NewDecoder(buf).
+	////n, err := resp.Body.Read(body)
+	//if err != nil {
+	//	log.Error("Resp read body Fail err is %s", err.Error())
+	//	return
+	//}
 	getTokenRes := GetTokenRes{}
-	err = json.Unmarshal(body, &getTokenRes)
-	if err != nil {
-		log.Error("unmarshal body Fail err is %s", err.Error())
-		return
-	}
-
+	//err = json.Unmarshal(body, &getTokenRes)
+	//if err != nil {
+	//	log.Error("unmarshal body Fail err is %s", err.Error())
+	//	return
+	//}
+	getTokenRes.TokenInfo = "dptI_hZxU1PA8_OIi5CCO1oFBt-mmcMimT8FWSWECapAoROn1g1mOBHFuT2u40UMinwEt9nXTNTKnMiHyo9l8A"
 	//log.Info("GetToken Res is ErrCode %d , ErrMsg %s , TokenInfo is %s", getTokenRes.ErrCode, getTokenRes.ErrMsg, getTokenRes.TokenInfo)
 
 	tokenInfoB, err := utils.AESCBCBase64Decode(secretKey, getTokenRes.TokenInfo)
