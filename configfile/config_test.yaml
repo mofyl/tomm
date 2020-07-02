@@ -1,3 +1,10 @@
+server:
+  network: "tcp"
+  addr: ":8086"
+  idleTimeout: 3600 # 3600s 1*Hour
+  readTimeout: 180 # 10min
+  writeTimeout: 180 # 3min
+  notifyChan: 100
 redis:
   addr: "127.0.0.1:6379"
 #  userName: "redis"

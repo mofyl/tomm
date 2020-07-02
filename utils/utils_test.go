@@ -58,3 +58,15 @@ func TestAESCBC(t *testing.T) {
 
 	fmt.Println(string(origData))
 }
+
+func TestCheckUrl(t *testing.T) {
+
+	//url := "https://www.baiduqzxc232.com.cn"
+	url := "1.0.0.1.1"
+
+	if CheckUrl(url) {
+		fmt.Println("Success")
+	} else {
+		fmt.Println("Fail")
+	}
+}

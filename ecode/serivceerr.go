@@ -13,6 +13,7 @@ const (
 )
 
 var (
+	// 8000~ 8999
 	ParamFail      = NewErrWithMsg(param_fail, addCode(-8000))
 	SecretKeyFail  = NewErrWithMsg(secret_key_fail, addCode(-8001))
 	DeCodeFail     = NewErrWithMsg(decode_fail, addCode(-8002))

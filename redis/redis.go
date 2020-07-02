@@ -106,6 +106,7 @@ func Exist(ctx context.Context, key ...string) bool {
 	cmd := cli.Exists(ctx, key...)
 
 	if cmd.Err() != nil {
+		log.Warn("redis Exists Error is %s ,Key is %s", cmd.Err().Error(), key)
 		return false
 	}
 
@@ -123,9 +124,12 @@ func Expire(ctx context.Context, key string, expTime int64) bool {
 
 func Get(ctx context.Context, key string, data interface{}) error {
 	res := cli.Get(ctx, key)
-
-	if res.Err() != nil {
-		return res.Err()
+	// 这里不能直接判断 err, Key过期了go-redis也会返回err
+	//if res.Err() != nil {
+	//	return res.Err()
+	//}
+	if res.Val() == "" {
+		return nil
 	}
 
 	return res.Scan(data)
@@ -146,12 +150,17 @@ func HSet(ctx context.Context, key string, field string, value interface{}) erro
 	return cmd.Err()
 }
 
+func HExist(ctx context.Context, key string, field string) bool {
+	cmd := cli.HExists(ctx, key, field)
+	return cmd.Val()
+}
+
 func HGet(ctx context.Context, key string, field string, value interface{}) error {
 	cmd := cli.HGet(ctx, key, field)
-	if cmd.Err() != nil {
-		return cmd.Err()
-	}
 
+	if cmd.Val() == "" {
+		return nil
+	}
 	return cmd.Scan(value)
 }
 

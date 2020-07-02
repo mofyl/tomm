@@ -4,13 +4,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"tomm/log"
 	"tomm/redis"
 	"tomm/utils"
 )
 
 const (
-	TOKEN_EXP_TIME = 10 * 60 // 10min
+	RESOURCE_TOKEN_EXP = 10 * 60 // 10min
 )
 
 func GetOAuthInfo(appKey string) (*SecretInfo, error) {
@@ -21,15 +20,13 @@ func GetToken(appKey string) (string, int64, error) {
 	// 查看该Appkey 是否已经存在Token
 	var token string
 	var err error
-	key := fmt.Sprintf(redis.TOKEN_KEY, appKey)
+	key := fmt.Sprintf(redis.RESOURCE_KEY, appKey)
 	err = redis.Get(context.TODO(), key, &token)
 	//exist := redis.Exist(context.TODO(), key)
-	if err != nil {
-		log.Error("GetToken Redis Get Fail Err is %s", err.Error())
-	}
+
 	if token != "" && err == nil {
-		LeaseRenewKey(key, TOKEN_EXP_TIME)
-		return token, TOKEN_EXP_TIME, nil
+		LeaseRenewKey(key, RESOURCE_TOKEN_EXP)
+		return token, RESOURCE_TOKEN_EXP, nil
 	}
 	if token == "" {
 		// 表示不存在
@@ -39,13 +36,13 @@ func GetToken(appKey string) (string, int64, error) {
 		}
 	}
 	// 保存到redis中
-	err = redis.Set(context.TODO(), fmt.Sprintf(redis.TOKEN_KEY, appKey), token, TOKEN_EXP_TIME)
+	err = redis.Set(context.TODO(), fmt.Sprintf(redis.RESOURCE_KEY, appKey), token, RESOURCE_TOKEN_EXP)
 
 	if err != nil {
 		return "", 0, err
 	}
 
-	return token, TOKEN_EXP_TIME, nil
+	return token, RESOURCE_TOKEN_EXP, nil
 }
 
 func LeaseRenewKey(key string, expTime int64) error {

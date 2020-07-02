@@ -82,7 +82,14 @@ func (c *Context) Render(code int, render rending.Render) error {
 func (c *Context) Json(data interface{}, err error) error {
 	code := http.StatusOK
 
-	eCode, ok := err.(ecode.ErrMsgs)
+	var eCode ecode.ErrMsgs
+	var ok bool
+	if err == nil {
+		eCode = ecode.OK
+		ok = true
+	} else {
+		eCode, ok = err.(ecode.ErrMsgs)
+	}
 
 	if ok {
 		c.Err = eCode

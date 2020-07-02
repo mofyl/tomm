@@ -9,4 +9,5 @@ var (
 	OK        = NewErrWithMsg(ok, addCode(1))             // 成功
 	SystemErr = NewErrWithMsg(system_fail, addCode(-500)) // 服务器错误
 
+	UNKNOW = addCode(-1000)
 )

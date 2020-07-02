@@ -11,9 +11,10 @@ import (
 )
 
 type SecretInfo struct {
-	ChannelInfo string
-	SecretKey   string
-	AppKey      string
+	ID          int64  `db:"id"`
+	ChannelInfo string `db:"channel_info"`
+	SecretKey   string `db:"secret_key"`
+	AppKey      string `db:"app_key"`
 }
 
 func SaveSecretInfo(info *SecretInfo) error {
@@ -68,11 +69,12 @@ func getSecretInfo(appKey string) (*SecretInfo, error) {
 	}
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
-	err = sqldb.GetDB(sqldb.MYSQL).Query(ctx, "select * from tomm.channel_infos where app_key = ?", appKey, sInfo)
+	err = sqldb.GetDB(sqldb.MYSQL).Query(ctx, sInfo, "select * from tomm.channel_infos where app_key = ?", appKey)
 	cancel()
 	if err != nil {
 		return nil, err
 	}
+	res = sInfo.SecretKey
 	// 回写到redis中
 	redis.Set(context.TODO(), key, res, 0)
 	return sInfo, nil

@@ -1,19 +1,23 @@
 package rending
 
 import (
-	"encoding/json"
 	"net/http"
 	"tomm/log"
+	"tomm/utils"
 )
 
 var (
 	jsonContentType = []string{"application/json"}
 )
 
+type JsonEncode interface {
+	ToJson() []byte
+}
+
 type Json struct {
-	Code int64       `json:"code"`
-	Msg  string      `json:"msg"`
-	Data interface{} `json:"json,omitempty"`
+	Code int64  `json:"code"`
+	Msg  string `json:"msg"`
+	Data JsonEncode
 }
 
 func (j *Json) WriteContentType(w http.ResponseWriter) {
@@ -23,7 +27,7 @@ func (j *Json) WriteContentType(w http.ResponseWriter) {
 func (j *Json) Render(w http.ResponseWriter) error {
 	writeContentType(w, jsonContentType)
 
-	b, err := json.Marshal(j)
+	b, err := utils.Json.Marshal(j)
 	//b, ecode := msgpack.Marshal(j)
 
 	if err != nil {

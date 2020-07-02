@@ -2,7 +2,6 @@ package redis
 
 import (
 	"context"
-
 	"testing"
 	"time"
 	"tomm/log"
@@ -35,7 +34,7 @@ func TestRedisCmd(t *testing.T) {
 	//if err != nil {
 	//	log.Error("Redis Set Fail", zap.String("error", err.Error()))
 	//}
-
+	//
 	var res string
 	err := HGet(context.TODO(), "appkey", "test", &res)
 
@@ -43,5 +42,24 @@ func TestRedisCmd(t *testing.T) {
 		log.Error("Redis Get Fail Err is %s", err.Error())
 	}
 
-	log.Info("Redis Get res is %s", res)
+	//log.Info("Redis Get res is %s", res)
+	//var str string
+	//err := Get(context.TODO(), "appkey", &str)
+	//
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
+
+	//err := Exist(context.TODO(), "asda")
+	//fmt.Println(err)
+
+	//affRow, err := Del(context.TODO(), "test")
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
+	//
+	//fmt.Println(affRow)
+
 }

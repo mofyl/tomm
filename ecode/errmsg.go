@@ -30,9 +30,9 @@ func (e errMsg) SetMsg(msg string) {
 	e.ErrMsg = msg
 }
 
-func NewErr(err error, code ECode) ErrMsgs {
+func NewErr(err error) ErrMsgs {
 	return errMsg{
-		ECode:  code,
+		ECode:  UNKNOW,
 		ErrMsg: err.Error(),
 	}
 }

@@ -57,7 +57,7 @@ func TestServer(t *testing.T) {
 		c.String(200, "%s", "helloworld")
 	})
 	e.GET("/test1", func(c *Context) {
-		c.Json(nil, ecode.NewErrWithMsg("Success", ecode.OK))
+		c.Json(nil, ecode.OK)
 	})
 	e.GET("/test2", func(c *Context) {
 		c.Byte(200, "application/json; chatset=utf-8", []byte("test2"))
@@ -67,4 +67,23 @@ func TestServer(t *testing.T) {
 
 	select {}
 
+}
+
+func TestRouterGroup(t *testing.T) {
+	e := NewEngine(nil)
+
+	g1 := e.NewGroup("/api/")
+
+	g1.POST("/test3", func(c *Context) {
+		c.String(200, "%s", "helloworld")
+	})
+	g1.GET("/test1", func(c *Context) {
+		c.Json(nil, ecode.OK)
+	})
+	g1.GET("/test2", func(c *Context) {
+		c.Byte(200, "application/json; chatset=utf-8", []byte("test2"))
+	})
+
+	e.RunServer()
+	select {}
 }

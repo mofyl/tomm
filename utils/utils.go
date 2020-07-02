@@ -8,13 +8,22 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"github.com/google/uuid"
+	jsoniter "github.com/json-iterator/go"
 	"os"
+	"path"
 	"path/filepath"
+	"regexp"
 	"strings"
 )
 
 const (
-	PRO_NAME = "tomm"
+	PRO_NAME       = "tomm"
+	MM_PRIVATE_KEY = "32ed87bdb5fdc5e9cba88547376818d4"
+	MM_SERVER_URL  = "http://127.0.0.1:8080"
+)
+
+var (
+	Json = jsoniter.ConfigCompatibleWithStandardLibrary
 )
 
 func GetProDirAbs() string {
@@ -120,4 +129,34 @@ func StrUUID() (string, error) {
 	uuidB, _ := uuid.MarshalText()
 	res := md5.Sum(uuidB)
 	return hex.EncodeToString(res[:]), nil
+}
+
+func CheckUrl(url string) bool {
+	//b, _ := regexp.MatchString("^http:////[a-zA-Z0-9](/.[a-z]*)|https:////[a-zA-Z0-9](/.[a-z]*)|[1-9]{1,3}(/.[0-9]{1,3}){3}$", url)
+	b, _ := regexp.MatchString(`^http:\/\/www\.[a-zA-Z0-9]+(\.[a-z]+)+$|^https:\/\/www\.[a-zA-Z0-9]+(\.[a-z]+)+$|^[1-9]{1,3}(\.[0-9]{1,3}){3}$`, url)
+	return b
+}
+
+func lastChar(str string) uint8 {
+	if str == "" {
+		panic("str can not empty")
+	}
+
+	return str[len(str)-1]
+
+}
+
+func JoinPath(absPath string, relativePath string) string {
+	if relativePath == "" {
+		return absPath
+	}
+
+	finalPath := path.Join(absPath, relativePath)
+
+	appendSlash := lastChar(finalPath) != '/' && lastChar(relativePath) == '/'
+
+	if appendSlash {
+		return finalPath + "/"
+	}
+	return finalPath
 }

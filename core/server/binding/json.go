@@ -4,6 +4,7 @@ import (
 	jsoniter "github.com/json-iterator/go"
 	"github.com/pkg/errors"
 	"net/http"
+	"tomm/utils"
 )
 
 var (
@@ -18,7 +19,7 @@ func (j jsonBinding) Name() string {
 }
 
 func (j jsonBinding) Bind(r *http.Request, data interface{}) error {
-	decoder := json.NewDecoder(r.Body)
+	decoder := utils.Json.NewDecoder(r.Body)
 
 	if err := decoder.Decode(data); err != nil {
 		return errors.WithStack(err)

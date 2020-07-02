@@ -328,3 +328,256 @@
 {"level":"info","time":"2020-07-01T14:12:44.534+0800","msg":"Worker is Closed Id is 671f30abf4aef7c671e7cc431739ab37"}
 {"level":"info","time":"2020-07-01T14:12:44.534+0800","msg":"Worker is Closed Id is a8b44c5c3670cf026072308a08b3c483"}
 {"level":"info","time":"2020-07-01T14:12:44.534+0800","msg":"Worker is Closed Id is 888a79c04d9d1cde656c7390854fcb3e"}
+{"level":"info","time":"2020-07-01T14:33:43.584+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-01T14:33:43.585+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"info","time":"2020-07-01T14:34:06.944+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8sVuMzC_ql5fthEizWBS6jL6F6YNlC7Tm13chvE-mQmv9Dm00NRjk-jyiVdIZHfFNBCAwLBlk76Irdp1S1SfFGULxYJCaqR8JPQ57FLouh2L0KP_DqN6ZQdaGutay2kI82y8uqwK3VLrjUbS01bzrQw"}
+{"level":"info","time":"2020-07-01T14:34:06.945+0800","msg":"Get Data is abc"}
+{"level":"debug","time":"2020-07-01T14:34:47.022+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-07-01T14:34:47.036+0800","msg":"GetToken Fail AppKey is 055285a69ec81f6477e49fe95da22eba , Err is redis: nil"}
+{"level":"debug","time":"2020-07-01T14:35:03.442+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-07-01T14:35:03.444+0800","msg":"GetToken Fail AppKey is 055285a69ec81f6477e49fe95da22eba , Err is redis: nil"}
+{"level":"info","time":"2020-07-01T14:36:53.999+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8rlnazV6JIbJvzk5YA9R44zLeskco-1dete2Z3bPA4Qgk6YRj8ss_Lh5WFt6b-9e4yuFV0wAfGh03PumjFF-lleTBXv-1LQ6roYJBwFt6aRJ82l8cTkngk7KQZjvMIsl1FdEJbUj9JlkMtY6OxLnYoo"}
+{"level":"info","time":"2020-07-01T14:36:53.999+0800","msg":"Get Data is abc"}
+{"level":"info","time":"2020-07-01T14:37:13.778+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-01T14:37:13.779+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-07-01T14:37:26.903+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-07-01T14:39:01.676+0800","msg":"GetToken Fail AppKey is 055285a69ec81f6477e49fe95da22eba , Err is redis: nil"}
+{"level":"debug","time":"2020-07-01T14:39:05.020+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-07-01T14:40:16.569+0800","msg":"GetToken Fail AppKey is 055285a69ec81f6477e49fe95da22eba , Err is redis: nil"}
+{"level":"info","time":"2020-07-01T14:40:51.991+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-01T14:40:51.992+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-07-01T14:41:15.952+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-07-01T14:45:32.618+0800","msg":"GetToken Fail AppKey is 055285a69ec81f6477e49fe95da22eba , Err is context deadline exceeded"}
+{"level":"info","time":"2020-07-01T14:54:56.623+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-01T14:54:56.623+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-07-01T14:55:03.471+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-07-01T14:55:08.666+0800","msg":"GetToken Fail AppKey is 055285a69ec81f6477e49fe95da22eba , Err is sql: converting argument $1 type: unsupported type []interface {}, a slice of interface"}
+{"level":"info","time":"2020-07-01T14:57:27.215+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-01T14:57:27.216+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-07-01T14:57:38.365+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-07-01T14:57:38.376+0800","msg":"GetToken Fail AppKey is 055285a69ec81f6477e49fe95da22eba , Err is sql: converting argument $1 type: unsupported type []interface {}, a slice of interface"}
+{"level":"debug","time":"2020-07-01T14:57:56.288+0800","msg":"router method is GET , path is /getToken "}
+{"level":"info","time":"2020-07-01T15:01:59.296+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-01T15:01:59.296+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-07-01T15:02:08.251+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-07-01T15:02:11.619+0800","msg":"GetToken Fail AppKey is 055285a69ec81f6477e49fe95da22eba , Err is missing destination name id in *oauth.SecretInfo"}
+{"level":"info","time":"2020-07-01T15:03:35.755+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-01T15:03:35.756+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-07-01T15:03:42.493+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-07-01T15:03:42.513+0800","msg":"GetToken Fail AppKey is 055285a69ec81f6477e49fe95da22eba , Err is missing destination name channel_info in *oauth.SecretInfo"}
+{"level":"info","time":"2020-07-01T15:05:31.844+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-01T15:05:31.845+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-07-01T15:05:38.684+0800","msg":"router method is GET , path is /getToken "}
+{"level":"error","time":"2020-07-01T15:05:38.739+0800","msg":"Package Timeout "}
+{"level":"info","time":"2020-07-01T15:05:48.527+0800","msg":"Req Base64Str is laX2AhoKH1mTm1XO_dWD8pe8LI9nwzNDI-NGg_nLvpCch6lV1sR_95inCY6g148CRYZlFhTlvAipQV80meYJ3ZT_uy7_7OrnV3KJVSoNBf5OlyH0p7p0_JOXHUQSENeKU02vdJ-s5D0k9mnDb6cb_Wytxy4qj5Rwi5kUyOldBMc"}
+{"level":"info","time":"2020-07-01T15:05:48.527+0800","msg":"Get Data is abc"}
+{"level":"debug","time":"2020-07-01T15:06:04.109+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-07-01T15:06:04.127+0800","msg":"Return Token is 8586f8098d1750b2b2741d4a9af4aac1"}
+{"level":"error","time":"2020-07-01T15:06:04.128+0800","msg":"Cur Res is {9IzGNxXoPdL3hoYhnlj5Ag0LBvvgNnd4n10o1LgZJAUQxY8aQQ6CIXG5pqIgFOnzUdMPqtR4mSK9VK5PnqNicA}"}
+{"level":"info","time":"2020-07-01T15:06:47.225+0800","msg":"Token is 8586f8098d1750b2b2741d4a9af4aac1 , ExpTime is 600"}
+{"level":"debug","time":"2020-07-01T15:07:16.578+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-07-01T15:07:20.795+0800","msg":"Return Token is 8586f8098d1750b2b2741d4a9af4aac1"}
+{"level":"error","time":"2020-07-01T15:07:20.795+0800","msg":"Cur Res is {9IzGNxXoPdL3hoYhnlj5Ag0LBvvgNnd4n10o1LgZJAUQxY8aQQ6CIXG5pqIgFOnzUdMPqtR4mSK9VK5PnqNicA}"}
+{"level":"debug","time":"2020-07-01T15:07:35.598+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-07-01T15:07:35.640+0800","msg":"Return Token is 8586f8098d1750b2b2741d4a9af4aac1"}
+{"level":"error","time":"2020-07-01T15:07:35.640+0800","msg":"Cur Res is {9IzGNxXoPdL3hoYhnlj5Ag0LBvvgNnd4n10o1LgZJAUQxY8aQQ6CIXG5pqIgFOnzUdMPqtR4mSK9VK5PnqNicA}"}
+{"level":"debug","time":"2020-07-01T15:08:07.877+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-07-01T15:09:10.379+0800","msg":"Return Token is 8586f8098d1750b2b2741d4a9af4aac1"}
+{"level":"error","time":"2020-07-01T15:09:10.379+0800","msg":"Cur Res is {9IzGNxXoPdL3hoYhnlj5Ag0LBvvgNnd4n10o1LgZJAUQxY8aQQ6CIXG5pqIgFOnzUdMPqtR4mSK9VK5PnqNicA}"}
+{"level":"info","time":"2020-07-01T15:09:51.258+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-01T15:09:51.258+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-07-01T15:09:56.935+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-07-01T15:10:00.960+0800","msg":"Return Token is 8586f8098d1750b2b2741d4a9af4aac1"}
+{"level":"error","time":"2020-07-01T15:10:00.961+0800","msg":"Cur Res is {9IzGNxXoPdL3hoYhnlj5Ag0LBvvgNnd4n10o1LgZJAUQxY8aQQ6CIXG5pqIgFOnzUdMPqtR4mSK9VK5PnqNicA}"}
+{"level":"debug","time":"2020-07-01T15:10:37.998+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-07-01T15:10:38.035+0800","msg":"Return Token is 8586f8098d1750b2b2741d4a9af4aac1"}
+{"level":"error","time":"2020-07-01T15:10:38.036+0800","msg":"Cur Res is {9IzGNxXoPdL3hoYhnlj5Ag0LBvvgNnd4n10o1LgZJAUQxY8aQQ6CIXG5pqIgFOnzUdMPqtR4mSK9VK5PnqNicA}"}
+{"level":"info","time":"2020-07-01T15:11:05.451+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-01T15:11:05.451+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-07-01T15:11:08.602+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-07-01T15:11:08.630+0800","msg":"Return Token is 8586f8098d1750b2b2741d4a9af4aac1"}
+{"level":"error","time":"2020-07-01T15:11:08.631+0800","msg":"Cur Res is {9IzGNxXoPdL3hoYhnlj5Ag0LBvvgNnd4n10o1LgZJAUQxY8aQQ6CIXG5pqIgFOnzUdMPqtR4mSK9VK5PnqNicA}"}
+{"level":"info","time":"2020-07-01T15:14:20.496+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-01T15:14:20.497+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-07-01T15:14:27.519+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-07-01T15:14:27.547+0800","msg":"Return Token is 8586f8098d1750b2b2741d4a9af4aac1"}
+{"level":"error","time":"2020-07-01T15:14:27.548+0800","msg":"Cur Res is {9IzGNxXoPdL3hoYhnlj5Ag0LBvvgNnd4n10o1LgZJAUQxY8aQQ6CIXG5pqIgFOnzUdMPqtR4mSK9VK5PnqNicA}"}
+{"level":"info","time":"2020-07-01T15:14:59.696+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-01T15:14:59.696+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-07-01T15:15:05.159+0800","msg":"router method is GET , path is /getToken "}
+{"level":"debug","time":"2020-07-01T15:15:05.191+0800","msg":"Return Token is 8586f8098d1750b2b2741d4a9af4aac1"}
+{"level":"error","time":"2020-07-01T15:15:05.192+0800","msg":"Cur Res is {9IzGNxXoPdL3hoYhnlj5Ag0LBvvgNnd4n10o1LgZJAUQxY8aQQ6CIXG5pqIgFOnzUdMPqtR4mSK9VK5PnqNicA}"}
+{"level":"info","time":"2020-07-01T15:56:47.748+0800","msg":"Worker Start ID is 10a659fe46b74ca4a19e450a78e8bca0"}
+{"level":"info","time":"2020-07-01T15:56:47.748+0800","msg":"Worker Start ID is 4c48676a69eb90337871df7f2c78f7fc"}
+{"level":"info","time":"2020-07-01T15:56:47.748+0800","msg":"Worker Start ID is b456237119a996ca59e840abf01b5a8e"}
+{"level":"info","time":"2020-07-01T15:56:47.748+0800","msg":"Worker Start ID is 4367f7e0dbc877e0ce0b60425153d31e"}
+{"level":"info","time":"2020-07-01T15:56:47.748+0800","msg":"Worker Start ID is 1ea01c1cfda47591f7a42a56aa96aacc"}
+{"level":"info","time":"2020-07-01T15:56:47.748+0800","msg":"Worker Start ID is a96f2ebc6559ba68267e1a0222cd144c"}
+{"level":"info","time":"2020-07-01T15:56:47.748+0800","msg":"Worker Start ID is e05414d9afdceff149c0926ba8a42b27"}
+{"level":"info","time":"2020-07-01T15:56:47.748+0800","msg":"Worker Start ID is 1fc96f3c5940f90b69327ab733113520"}
+{"level":"info","time":"2020-07-01T15:56:47.748+0800","msg":"Worker Start ID is c1377f086847aaecc1fe63ca58c5e2d1"}
+{"level":"info","time":"2020-07-01T15:56:47.748+0800","msg":"Worker Start ID is 957b1a0332f63fc7a1eae514dbfa6596"}
+{"level":"info","time":"2020-07-01T15:57:05.508+0800","msg":"Worker Start ID is 48adf282318393bffefd4828d6b402d6"}
+{"level":"info","time":"2020-07-01T15:57:05.508+0800","msg":"Worker Start ID is 1cd4e2bbae0c2b94a4ee61a887152971"}
+{"level":"info","time":"2020-07-01T15:57:05.508+0800","msg":"Worker Start ID is 3ff9fe66323e60f476bcc80fc2de5af6"}
+{"level":"info","time":"2020-07-01T15:57:05.509+0800","msg":"Worker Start ID is e31c2032199ee4cfcd75921ae591d4da"}
+{"level":"info","time":"2020-07-01T15:57:05.509+0800","msg":"Worker Start ID is bc967b625eb2f311bcc9eb188132ce60"}
+{"level":"info","time":"2020-07-01T15:57:05.508+0800","msg":"Worker Start ID is 3e57e48f75f9670e9aec110763455dd9"}
+{"level":"info","time":"2020-07-01T15:57:05.509+0800","msg":"Worker Start ID is 25dff168b3cd1646815300f77ea23985"}
+{"level":"info","time":"2020-07-01T15:57:05.509+0800","msg":"Worker Start ID is 5911b6187a0f364425c3d4c1ea9f4ff8"}
+{"level":"info","time":"2020-07-01T15:57:05.509+0800","msg":"Worker Start ID is c939330ee33192cbdcd9bdb4257a0d18"}
+{"level":"info","time":"2020-07-01T15:57:05.509+0800","msg":"Worker Start ID is 7c4111321d31bb276053dd8c2289fb11"}
+{"level":"info","time":"2020-07-01T15:57:14.882+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-01T15:57:14.882+0800","msg":"Http Server Start Addr is "}
+{"level":"info","time":"2020-07-01T15:57:45.992+0800","msg":"Worker Start ID is 9e4c095e3ff926a5b62a5dbe602df77a"}
+{"level":"info","time":"2020-07-01T15:57:45.992+0800","msg":"Worker Start ID is ade1795f58f52103f49a79e2174062c7"}
+{"level":"info","time":"2020-07-01T15:57:45.992+0800","msg":"Worker Start ID is 0851a73e13602377bcae98784039007d"}
+{"level":"info","time":"2020-07-01T15:57:45.992+0800","msg":"Worker Start ID is b83771564b53c02b47cee00fda2b4cd6"}
+{"level":"info","time":"2020-07-01T15:57:45.992+0800","msg":"Worker Start ID is 1e4a429c52a3e40669e38c0aa26ad86f"}
+{"level":"info","time":"2020-07-01T15:57:45.992+0800","msg":"Worker Start ID is ba04411dd32fb4060d3d61af04adcf37"}
+{"level":"info","time":"2020-07-01T15:57:45.992+0800","msg":"Worker Start ID is d51de91f09ec687789c0232f36b28fe0"}
+{"level":"info","time":"2020-07-01T15:57:45.992+0800","msg":"Worker Start ID is e7e62bc7b6e3f75c5cf77f12eef45588"}
+{"level":"info","time":"2020-07-01T15:57:45.992+0800","msg":"Worker Start ID is 47416b41b35e853c5dff0b56b8575e16"}
+{"level":"info","time":"2020-07-01T15:57:45.992+0800","msg":"Worker Start ID is 1873543a84f1af65eee997c6c12a0577"}
+{"level":"info","time":"2020-07-01T15:58:41.485+0800","msg":"Worker Start ID is ddccacaaea4c6ad60397dd5e3e26feaf"}
+{"level":"info","time":"2020-07-01T15:58:41.486+0800","msg":"Worker Start ID is acace5d728dce06d2c2a429a9639ef49"}
+{"level":"info","time":"2020-07-01T15:58:41.486+0800","msg":"Worker Start ID is a7bbef8956cf20fdb9586ec5bc1d1988"}
+{"level":"info","time":"2020-07-01T15:58:41.486+0800","msg":"Worker Start ID is a91c5b7e34d2c270a5a377cacc2c9a75"}
+{"level":"info","time":"2020-07-01T15:58:41.486+0800","msg":"Worker Start ID is ee6a9cb987b1f288a0836b5bc305e6c1"}
+{"level":"info","time":"2020-07-01T15:58:41.486+0800","msg":"Worker Start ID is 8db4852f57ea244d692b713da6fbe3d6"}
+{"level":"info","time":"2020-07-01T15:58:41.485+0800","msg":"Worker Start ID is e3f5d8e0d6a32d9ba616909a94393d76"}
+{"level":"info","time":"2020-07-01T15:58:41.486+0800","msg":"Worker Start ID is d2d4be58dc6a8592af1be6d3a5a91cb5"}
+{"level":"info","time":"2020-07-01T15:58:41.486+0800","msg":"Worker Start ID is f9d61104275b2911da7f315a5e415bb6"}
+{"level":"info","time":"2020-07-01T15:58:41.486+0800","msg":"Worker Start ID is d6bf27abfcdc8d29835ca4be878afba1"}
+{"level":"info","time":"2020-07-01T16:03:24.637+0800","msg":"Worker Start ID is 902a1f91e0239aa4c3770229c72fddb1"}
+{"level":"info","time":"2020-07-01T16:03:24.638+0800","msg":"Worker Start ID is 07a584e23aa05419ba77876d6cf99db0"}
+{"level":"info","time":"2020-07-01T16:03:24.638+0800","msg":"Worker Start ID is 072b80d8c1641c264dba261fb0555525"}
+{"level":"info","time":"2020-07-01T16:03:24.638+0800","msg":"Worker Start ID is 209f66e813c0fd7bd2786ce8db161d99"}
+{"level":"info","time":"2020-07-01T16:03:24.637+0800","msg":"Worker Start ID is 0b30e96afbade3ccf5d355d305144caa"}
+{"level":"info","time":"2020-07-01T16:03:24.637+0800","msg":"Worker Start ID is 44573fcbfcfe96f65681c1f68c9f0cd8"}
+{"level":"info","time":"2020-07-01T16:03:24.637+0800","msg":"Worker Start ID is cd2537a64ec7091aa7f1e71ccf04132e"}
+{"level":"info","time":"2020-07-01T16:03:24.638+0800","msg":"Worker Start ID is b08667cd34255a54b2bbbbf9fc7d9fea"}
+{"level":"info","time":"2020-07-01T16:03:24.639+0800","msg":"Worker Start ID is dab468478e992ec7b4e19160901e7a7c"}
+{"level":"info","time":"2020-07-01T16:03:24.641+0800","msg":"Worker Start ID is 2b5eb7c3505b64e25315382830ab1510"}
+{"level":"info","time":"2020-07-02T14:09:22.634+0800","msg":"Add Router  method is GET , path is /debug/pprof/"}
+{"level":"info","time":"2020-07-02T14:09:22.634+0800","msg":"Add Router  method is GET , path is /debug/pprof/cmdline"}
+{"level":"info","time":"2020-07-02T14:09:22.634+0800","msg":"Add Router  method is GET , path is /debug/pprof/profile"}
+{"level":"info","time":"2020-07-02T14:09:22.634+0800","msg":"Add Router  method is GET , path is /debug/pprof/symbol"}
+{"level":"info","time":"2020-07-02T14:09:22.634+0800","msg":"Add Router  method is GET , path is /debug/pprof/trace"}
+{"level":"info","time":"2020-07-02T14:09:22.634+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-02T14:09:22.634+0800","msg":"Add Router  method is GET , path is /allRouter"}
+{"level":"info","time":"2020-07-02T14:09:22.634+0800","msg":"Add Router  method is GET , path is /getToken"}
+{"level":"info","time":"2020-07-02T14:09:22.635+0800","msg":"Worker Start ID is d6cfeb970c8def5043e7cdd56b37fb77"}
+{"level":"info","time":"2020-07-02T14:09:22.635+0800","msg":"Add Router  method is GET , path is /verifyToken"}
+{"level":"info","time":"2020-07-02T14:09:22.635+0800","msg":"Worker Start ID is 74406e730e002c5aaa2b92382037a3cb"}
+{"level":"info","time":"2020-07-02T14:09:22.635+0800","msg":"Worker Start ID is d20b5619d2d2a540a6ac7b73fae4043a"}
+{"level":"info","time":"2020-07-02T14:09:22.635+0800","msg":"Worker Start ID is b33b0b50e7535fd1df4a0aa226295f5c"}
+{"level":"info","time":"2020-07-02T14:09:22.635+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"info","time":"2020-07-02T14:09:22.635+0800","msg":"Worker Start ID is b0976049490d4f663fa1e429c5341521"}
+{"level":"info","time":"2020-07-02T14:09:22.635+0800","msg":"Worker Start ID is ff400a2037d64d782b83bd848e7be9ca"}
+{"level":"info","time":"2020-07-02T14:09:22.635+0800","msg":"Worker Start ID is 7976530b2a07a79208eb8390294e4d27"}
+{"level":"info","time":"2020-07-02T14:09:22.635+0800","msg":"Worker Start ID is 976f94b1f552a7c7a078617d341b5f25"}
+{"level":"info","time":"2020-07-02T14:09:22.635+0800","msg":"Worker Start ID is e48bcd12eecd403605b74392061f238a"}
+{"level":"info","time":"2020-07-02T14:09:22.635+0800","msg":"Worker Start ID is a291bca64c084af11fc339de2f2b000f"}
+{"level":"debug","time":"2020-07-02T14:10:06.883+0800","msg":"router method is GET , path is /allRouter "}
+{"level":"debug","time":"2020-07-02T14:10:44.933+0800","msg":"router method is GET , path is /debug/pprof/ "}
+{"level":"info","time":"2020-07-02T14:12:04.538+0800","msg":"Add Router  method is GET , path is /debug/pprof/"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Add Router  method is GET , path is /debug/pprof/cmdline"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Add Router  method is GET , path is /debug/pprof/profile"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Add Router  method is GET , path is /debug/pprof/symbol"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Add Router  method is GET , path is /debug/pprof/trace"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Add Router  method is GET , path is /allRouter"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Worker Start ID is a87b10abc7aea08a873c6c92cfdf86a3"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Worker Start ID is b0d0836ca23ae04e253a23d9134bf72b"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Add Router  method is GET , path is /getToken"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Worker Start ID is ecf34304de4b23a9b925ea6e2c784759"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Add Router  method is GET , path is /verifyToken"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Worker Start ID is 383f40327025cb1a8d6b5da1973a1a23"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Worker Start ID is d727782e795cf32434ff095629a2378d"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Worker Start ID is a96bb6de2a56609f1da8af781362853c"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Worker Start ID is 40c69eaf43e009a54a7cc410b9502372"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Worker Start ID is 3028e163ac5706da8d6653a248f8151a"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Worker Start ID is f958e7c6e159be58816e896f1280a1b9"}
+{"level":"info","time":"2020-07-02T14:12:04.539+0800","msg":"Worker Start ID is 901d6d3e9a2af108a0e8a10c47e5016b"}
+{"level":"debug","time":"2020-07-02T14:12:19.413+0800","msg":"router method is GET , path is /allRouter "}
+{"level":"error","time":"2020-07-02T14:12:19.413+0800","msg":"all Routers Fail err is System Fail"}
+{"level":"info","time":"2020-07-02T14:14:07.566+0800","msg":"Add Router  method is GET , path is /debug/pprof/"}
+{"level":"info","time":"2020-07-02T14:14:07.566+0800","msg":"Add Router  method is GET , path is /debug/pprof/cmdline"}
+{"level":"info","time":"2020-07-02T14:14:07.566+0800","msg":"Add Router  method is GET , path is /debug/pprof/profile"}
+{"level":"info","time":"2020-07-02T14:14:07.566+0800","msg":"Add Router  method is GET , path is /debug/pprof/symbol"}
+{"level":"info","time":"2020-07-02T14:14:07.566+0800","msg":"Add Router  method is GET , path is /debug/pprof/trace"}
+{"level":"info","time":"2020-07-02T14:14:07.566+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-02T14:14:07.566+0800","msg":"Add Router  method is GET , path is /allRouter"}
+{"level":"info","time":"2020-07-02T14:14:07.566+0800","msg":"Add Router  method is GET , path is /getToken"}
+{"level":"info","time":"2020-07-02T14:14:07.566+0800","msg":"Add Router  method is GET , path is /verifyToken"}
+{"level":"info","time":"2020-07-02T14:14:07.567+0800","msg":"Worker Start ID is 3b5f50d847a36613592a123ce1796418"}
+{"level":"info","time":"2020-07-02T14:14:07.567+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"info","time":"2020-07-02T14:14:07.567+0800","msg":"Worker Start ID is de772dc6d51718936df0d31600e34c1e"}
+{"level":"info","time":"2020-07-02T14:14:07.567+0800","msg":"Worker Start ID is 5dbc0859eca76f4695e326f951a4a2de"}
+{"level":"info","time":"2020-07-02T14:14:07.567+0800","msg":"Worker Start ID is 7e381dbab11d6d5062d3fdae0a627766"}
+{"level":"info","time":"2020-07-02T14:14:07.567+0800","msg":"Worker Start ID is 353d3c2742f5caab4eea1826c5d6b06b"}
+{"level":"info","time":"2020-07-02T14:14:07.567+0800","msg":"Worker Start ID is 94a39d10d38691b977a72bacd3db1824"}
+{"level":"info","time":"2020-07-02T14:14:07.567+0800","msg":"Worker Start ID is be6e2f3c7a7c7cae4bb5ad0c75985007"}
+{"level":"info","time":"2020-07-02T14:14:07.567+0800","msg":"Worker Start ID is d47e47e37c54c20c3ac7084567200de6"}
+{"level":"info","time":"2020-07-02T14:14:07.567+0800","msg":"Worker Start ID is 23b3ab0e1c106bf74c2ad5d2914a6a16"}
+{"level":"info","time":"2020-07-02T14:14:07.567+0800","msg":"Worker Start ID is d6d1bed9dda0df690e1adaf02016c7f4"}
+{"level":"debug","time":"2020-07-02T14:14:20.903+0800","msg":"router method is GET , path is /allRouter "}
+{"level":"info","time":"2020-07-02T14:48:42.007+0800","msg":"Add Router  method is GET , path is /debug/pprof/"}
+{"level":"info","time":"2020-07-02T14:48:42.007+0800","msg":"Add Router  method is GET , path is /debug/pprof/cmdline"}
+{"level":"info","time":"2020-07-02T14:48:42.007+0800","msg":"Add Router  method is GET , path is /debug/pprof/profile"}
+{"level":"info","time":"2020-07-02T14:48:42.007+0800","msg":"Add Router  method is GET , path is /debug/pprof/symbol"}
+{"level":"info","time":"2020-07-02T14:48:42.007+0800","msg":"Add Router  method is GET , path is /debug/pprof/trace"}
+{"level":"info","time":"2020-07-02T14:48:42.007+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-02T14:48:42.007+0800","msg":"Add Router  method is GET , path is /allRouter"}
+{"level":"info","time":"2020-07-02T14:48:42.007+0800","msg":"Add Router  method is GET , path is /"}
+{"level":"info","time":"2020-07-02T14:48:42.007+0800","msg":"Add Router  method is GET , path is /test1"}
+{"level":"info","time":"2020-07-02T14:48:42.007+0800","msg":"Add Router  method is GET , path is /test2"}
+{"level":"info","time":"2020-07-02T14:49:30.461+0800","msg":"Add Router  method is GET , path is /debug/pprof/"}
+{"level":"info","time":"2020-07-02T14:49:30.462+0800","msg":"Add Router  method is GET , path is /debug/pprof/cmdline"}
+{"level":"info","time":"2020-07-02T14:49:30.462+0800","msg":"Add Router  method is GET , path is /debug/pprof/profile"}
+{"level":"info","time":"2020-07-02T14:49:30.462+0800","msg":"Add Router  method is GET , path is /debug/pprof/symbol"}
+{"level":"info","time":"2020-07-02T14:49:30.462+0800","msg":"Add Router  method is GET , path is /debug/pprof/trace"}
+{"level":"info","time":"2020-07-02T14:49:30.462+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-02T14:49:30.462+0800","msg":"Add Router  method is GET , path is /allRouter"}
+{"level":"info","time":"2020-07-02T14:49:30.462+0800","msg":"Add Router  method is GET , path is /"}
+{"level":"info","time":"2020-07-02T14:49:30.462+0800","msg":"Add Router  method is GET , path is /test1"}
+{"level":"info","time":"2020-07-02T14:49:30.462+0800","msg":"Add Router  method is GET , path is /test2"}
+{"level":"info","time":"2020-07-02T14:49:30.462+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-07-02T14:49:43.493+0800","msg":"router method is GET , path is /test1 "}
+{"level":"info","time":"2020-07-02T14:58:42.344+0800","msg":"Add Router  method is GET , path is /debug/pprof/"}
+{"level":"info","time":"2020-07-02T14:58:42.345+0800","msg":"Add Router  method is GET , path is /debug/pprof/cmdline"}
+{"level":"info","time":"2020-07-02T14:58:42.345+0800","msg":"Add Router  method is GET , path is /debug/pprof/profile"}
+{"level":"info","time":"2020-07-02T14:58:42.345+0800","msg":"Add Router  method is GET , path is /debug/pprof/symbol"}
+{"level":"info","time":"2020-07-02T14:58:42.345+0800","msg":"Add Router  method is GET , path is /debug/pprof/trace"}
+{"level":"info","time":"2020-07-02T14:58:42.345+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-02T14:58:42.345+0800","msg":"Add Router  method is GET , path is /allRouter"}
+{"level":"info","time":"2020-07-02T14:58:42.345+0800","msg":"Add Router  method is DELETE , path is /api/test3"}
+{"level":"info","time":"2020-07-02T14:58:42.345+0800","msg":"Add Router  method is GET , path is /api/test1"}
+{"level":"info","time":"2020-07-02T14:58:42.345+0800","msg":"Add Router  method is GET , path is /api/test2"}
+{"level":"info","time":"2020-07-02T14:58:42.345+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"debug","time":"2020-07-02T14:59:56.655+0800","msg":"router method is GET , path is /api/test2 "}
+{"level":"debug","time":"2020-07-02T15:00:00.214+0800","msg":"router method is GET , path is /api/test1 "}
+{"level":"info","time":"2020-07-02T15:00:54.404+0800","msg":"Add Router  method is GET , path is /debug/pprof/"}
+{"level":"info","time":"2020-07-02T15:00:54.405+0800","msg":"Add Router  method is GET , path is /debug/pprof/cmdline"}
+{"level":"info","time":"2020-07-02T15:00:54.405+0800","msg":"Add Router  method is GET , path is /debug/pprof/profile"}
+{"level":"info","time":"2020-07-02T15:00:54.405+0800","msg":"Add Router  method is GET , path is /debug/pprof/symbol"}
+{"level":"info","time":"2020-07-02T15:00:54.405+0800","msg":"Add Router  method is GET , path is /debug/pprof/trace"}
+{"level":"info","time":"2020-07-02T15:00:54.405+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-02T15:00:54.405+0800","msg":"Add Router  method is GET , path is /allRouter"}
+{"level":"info","time":"2020-07-02T15:00:54.405+0800","msg":"Add Router  method is POST , path is /api/test3"}
+{"level":"info","time":"2020-07-02T15:00:54.405+0800","msg":"Add Router  method is GET , path is /api/test1"}
+{"level":"info","time":"2020-07-02T15:00:54.405+0800","msg":"Add Router  method is GET , path is /api/test2"}
+{"level":"info","time":"2020-07-02T15:00:54.405+0800","msg":"Http Server Start Addr is :8086"}
+{"level":"info","time":"2020-07-02T15:02:30.127+0800","msg":"Add Router  method is GET , path is /debug/pprof/"}
+{"level":"info","time":"2020-07-02T15:02:30.923+0800","msg":"Add Router  method is GET , path is /debug/pprof/cmdline"}
+{"level":"info","time":"2020-07-02T15:02:31.554+0800","msg":"Add Router  method is GET , path is /debug/pprof/profile"}
+{"level":"info","time":"2020-07-02T15:02:32.161+0800","msg":"Add Router  method is GET , path is /debug/pprof/symbol"}
+{"level":"info","time":"2020-07-02T15:02:32.781+0800","msg":"Add Router  method is GET , path is /debug/pprof/trace"}
+{"level":"info","time":"2020-07-02T15:02:32.781+0800","msg":"pprof start addr is :9000 "}
+{"level":"info","time":"2020-07-02T15:02:34.142+0800","msg":"Add Router  method is GET , path is /allRouter"}
+{"level":"info","time":"2020-07-02T15:04:11.249+0800","msg":"Add Router  method is POST , path is /api/test3"}
+{"level":"info","time":"2020-07-02T15:04:15.010+0800","msg":"Add Router  method is GET , path is /api/test1"}
+{"level":"info","time":"2020-07-02T15:04:15.010+0800","msg":"Add Router  method is GET , path is /api/test2"}
+{"level":"info","time":"2020-07-02T15:04:15.011+0800","msg":"Http Server Start Addr is :8086"}

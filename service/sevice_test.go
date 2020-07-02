@@ -1,7 +1,6 @@
 package service
 
 import (
-	"encoding/json"
 	"testing"
 	"time"
 	"tomm/log"
@@ -19,7 +18,7 @@ func TestEncodeDecode(t *testing.T) {
 		ExtendInfo:  nil,
 	}
 
-	data, _ := json.Marshal(dataInfo)
+	data, _ := utils.Json.Marshal(dataInfo)
 
 	base64Str, err := utils.AESCBCBase64Encode(secretKey, data)
 	if err != nil {
@@ -35,7 +34,7 @@ func TestEncodeDecode(t *testing.T) {
 		return
 	}
 	res := ReqDataInfo{}
-	err = json.Unmarshal(origData, &res)
+	err = utils.Json.Unmarshal(origData, &res)
 	if err != nil {
 		log.Info("Json Unmarshal err is %s", err)
 		return
@@ -85,7 +84,7 @@ func TestGetToken(t *testing.T) {
 	//	log.Error("unmarshal body Fail err is %s", err.Error())
 	//	return
 	//}
-	getTokenRes.TokenInfo = "dptI_hZxU1PA8_OIi5CCO1oFBt-mmcMimT8FWSWECapAoROn1g1mOBHFuT2u40UMinwEt9nXTNTKnMiHyo9l8A"
+	getTokenRes.TokenInfo = "9IzGNxXoPdL3hoYhnlj5Ag0LBvvgNnd4n10o1LgZJAUQxY8aQQ6CIXG5pqIgFOnzUdMPqtR4mSK9VK5PnqNicA"
 	//log.Info("GetToken Res is ErrCode %d , ErrMsg %s , TokenInfo is %s", getTokenRes.ErrCode, getTokenRes.ErrMsg, getTokenRes.TokenInfo)
 
 	tokenInfoB, err := utils.AESCBCBase64Decode(secretKey, getTokenRes.TokenInfo)
@@ -95,7 +94,7 @@ func TestGetToken(t *testing.T) {
 	}
 	info := TokenInfo{}
 
-	json.Unmarshal(tokenInfoB, &info)
+	utils.Json.Unmarshal(tokenInfoB, &info)
 
 	log.Info("Token is %s , ExpTime is %d", info.Token, info.ExpTime)
 }

@@ -11,7 +11,6 @@ import (
 
 var (
 	defaultConf *PoolConf
-	p           *Pool
 )
 
 func init() {
@@ -21,8 +20,6 @@ func init() {
 		panic("Pool Load Config Fail Err is " + err.Error())
 	}
 
-	p = newPool(nil)
-	p.startPool()
 }
 
 type PoolConf struct {
@@ -39,17 +36,20 @@ type Pool struct {
 	isClose int32 // 1 表示关闭 2 表示开启
 }
 
-func newPool(conf *PoolConf) *Pool {
+func NewPool(conf *PoolConf, wg *sync.WaitGroup) *Pool {
+
 	if conf == nil {
 		conf = defaultConf
 	}
 	p := &Pool{
 		wids:    make([]string, 0, conf.WorkerNum),
 		worker:  make(map[string]*worker, conf.WorkerNum),
-		wg:      &sync.WaitGroup{},
+		wg:      wg,
 		conf:    conf,
 		isClose: 1,
 	}
+
+	p.startPool()
 
 	return p
 }
@@ -68,7 +68,7 @@ func (p *Pool) startPool() {
 	atomic.AddInt32(&p.isClose, 1)
 }
 
-func (p *Pool) doJob(job *Job) bool {
+func (p *Pool) DoJob(job *Job) bool {
 	if atomic.LoadInt32(&p.isClose) == 1 {
 		return false
 	}
@@ -124,7 +124,7 @@ func (p *Pool) getWork() *worker {
 	return w2
 }
 
-func (p *Pool) close() {
+func (p *Pool) Close() {
 	if atomic.LoadInt32(&p.isClose) == 1 {
 		return
 	}
@@ -136,11 +136,4 @@ func (p *Pool) close() {
 	}
 	p.wg.Wait()
 
-}
-
-func DoJob(job *Job) bool {
-	return p.doJob(job)
-}
-func Close() {
-	p.close()
 }

@@ -1,36 +1,64 @@
 package service
 
 import (
-	"encoding/json"
+	"sync"
 	"time"
+	"tomm/config"
 	"tomm/core/server"
 	"tomm/ecode"
 	"tomm/log"
+	"tomm/pool"
 	"tomm/service/oauth"
 	"tomm/utils"
 )
 
+var (
+	defaultConf *ServiceConf
+)
+
+func init() {
+	defaultConf = &ServiceConf{}
+
+	if err := config.Decode(config.CONFIG_FILE_NAME, "server", defaultConf); err != nil {
+		panic("Service Load Config Fail " + err.Error())
+	}
+}
+
+type ServiceConf struct {
+	NotifyChan int64 `yaml:"notifyChan"`
+}
+
 type Ser struct {
-	e *server.Engine
+	e         *server.Engine
+	conf      *ServiceConf
+	jobNotify chan *pool.JobRes
+	wg        *sync.WaitGroup
+	p         *pool.Pool
 }
 
 func NewService() *Ser {
-	s := &Ser{}
-
+	s := &Ser{
+		jobNotify: make(chan *pool.JobRes, defaultConf.NotifyChan),
+		wg:        &sync.WaitGroup{},
+	}
 	e := server.NewEngine(nil)
-
 	s.e = e
+	s.conf = defaultConf
+	s.p = pool.NewPool(nil, s.wg)
+
 	s.registerRouter()
 	return s
 }
 
 func (s *Ser) registerRouter() {
-	s.e.GET("/getToken", s.getToken)
+	s.e.GET("/getToken", s.getResourceToken)
 	s.e.GET("/verifyToken", s.verifyToken)
 }
 
 func (s *Ser) Close() {
 	s.e.Close()
+	s.p.Close()
+	cli.CloseIdleConnections()
 }
 
 func (s *Ser) Start() {
@@ -61,20 +89,72 @@ func (s *Ser) verifyToken(c *server.Context) {
 	httpData(c, res)
 }
 
-func (s *Ser) getToken(c *server.Context) {
-	req := GetTokenReq{}
-	err := c.Bind(&req)
+func (s *Ser) getResourceToken(c *server.Context) {
+
+	secretInfo, reqDataInfo, eCode := checkGetTokenReq(c)
+	if eCode != nil {
+		httpCode(c, eCode)
+	}
+
+	httpCode(c, ecode.OK)
+
+	// 解密完成 第三方等待回调
+	// 到资源服务器请求 查看是否授权
+	s.p.DoJob(&pool.Job{
+		ID:        111,
+		ResNotify: s.jobNotify,
+		Do: func() *pool.JobRes {
+			//
+
+			mmUserInfo, err := GetUserInfo()
+			if err != nil {
+
+			}
+			token, expTime, err := oauth.GetToken(secretInfo.AppKey)
+			if err != nil {
+				httpCode(c, ecode.SystemErr)
+				log.Error("Get Token Fail err is %s", err.Error())
+			}
+			//// 更新ChannelInfo
+			//if token != "" && reqDataInfo.ChannelInfo != "" {
+			//	secretInfo.ChannelInfo = reqDataInfo.ChannelInfo
+			//	oauth.UpdateChannelInfo(secretInfo)
+			//}
+
+			log.Debug("Return Token is %s", token)
+			// 构造返回值
+			// 返回值包括 token + expTime + extendInfo
+			tokenInfo := TokenInfo{
+				Token:      token,
+				ExpTime:    expTime,
+				ExtendInfo: reqDataInfo.ExtendInfo,
+			}
+			tokenB, err := utils.Json.Marshal(tokenInfo)
+			resBase64Str, err := utils.AESCBCBase64Encode(secretInfo.SecretKey, tokenB)
+			if err != nil {
+				log.Error("AESCBCBase64Encode Fail Err is %s", err.Error())
+				httpCode(c, ecode.SystemErr)
+			}
+			res := GetTokenRes{}
+			res.TokenInfo = resBase64Str
+			httpData(c, res)
+			log.Error("Cur Res is %v", res)
+		},
+	})
+	return
+}
+
+func checkGetTokenReq(c *server.Context) (*oauth.SecretInfo, *ReqDataInfo, ecode.ErrMsgs) {
+	req := &GetTokenReq{}
+	err := c.Bind(req)
 
 	if err != nil {
 		log.Warn("GetToken Bind Err is %s ", err.Error())
-
-		httpCode(c, ecode.ParamFail)
-		return
+		return nil, nil, ecode.ParamFail
 	}
 
 	if req.AppKey == "" || req.Data == "" {
-		httpCode(c, ecode.ParamFail)
-		return
+		return nil, nil, ecode.ParamFail
 	}
 
 	// 获取该appKey
@@ -83,54 +163,31 @@ func (s *Ser) getToken(c *server.Context) {
 		if err != nil {
 			log.Error("GetToken Fail AppKey is %s , Err is %s", req.AppKey, err.Error())
 		}
-		httpCode(c, ecode.SecretKeyFail)
-		return
+		return nil, nil, ecode.SecretKeyFail
 	}
 
 	reqDataInfo, eCode := GetDataInfo(secretInfo.SecretKey, req.Data)
 	if eCode != nil {
 		log.Error("Get Data Info Fail ")
-		httpCode(c, eCode)
-		return
+		return nil, nil, eCode
+	}
+
+	if reqDataInfo.ChannelInfo == "" ||
+		reqDataInfo.SendTime == 0 ||
+		!utils.CheckUrl(reqDataInfo.BackUrl) {
+		return nil, nil, ecode.ParamFail
 	}
 	// 超过10分钟就不处理了
 	if time.Now().Unix()-int64(reqDataInfo.SendTime) > MAX_TTL {
-		httpCode(c, ecode.PackageTimeout)
 		log.Error("Package Timeout ")
-		return
+		return nil, nil, ecode.PackageTimeout
 	}
 
-	token, expTime, err := oauth.GetToken(req.AppKey)
-	if err != nil {
-		httpCode(c, ecode.SystemErr)
-		log.Error("Get Token Fail ")
-		return
-	}
-	// 更新ChannelInfo
-	if token != "" && reqDataInfo.ChannelInfo != "" {
-		secretInfo.ChannelInfo = reqDataInfo.ChannelInfo
-		oauth.UpdateChannelInfo(secretInfo)
-	}
+	return secretInfo, reqDataInfo, nil
+}
 
-	log.Debug("Return Token is %s", token)
-	// 构造返回值
-	// 返回值包括 token + expTime + extendInfo
-	tokenInfo := TokenInfo{
-		Token:      token,
-		ExpTime:    expTime,
-		ExtendInfo: reqDataInfo.ExtendInfo,
-	}
-	tokenB, err := json.Marshal(tokenInfo)
-	resBase64Str, err := utils.AESCBCBase64Encode(secretInfo.SecretKey, tokenB)
-	if err != nil {
-		log.Error("AESCBCBase64Encode Fail Err is %s", err.Error())
-		httpCode(c, ecode.SystemErr)
-		return
-	}
-	res := GetTokenRes{}
-	res.TokenInfo = resBase64Str
-	httpData(c, res)
-	log.Error("Cur Res is %v", res)
+func getResourceUrl(resourceUrl string) string {
+	return resourceUrl + ""
 }
 
 //
@@ -180,7 +237,7 @@ func GetDataInfo(secretKey string, data string) (*ReqDataInfo, ecode.ErrMsgs) {
 	//}
 
 	reqInfo := &ReqDataInfo{}
-	err = json.Unmarshal(origData, reqInfo)
+	err = utils.Json.Unmarshal(origData, reqInfo)
 
 	if err != nil {
 		return nil, ecode.ParamFail

@@ -1,6 +1,8 @@
 package main
 
-import "tomm/service"
+import (
+	"tomm/service"
+)
 
 func main() {
 	s := service.NewService()

@@ -62,8 +62,8 @@ func (m *mysqlDB) getConnStr() string {
 	return fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8", m.conf.UserName, m.conf.Pwd, m.conf.Addr, m.conf.DBName)
 }
 
-func (m *mysqlDB) Query(ctx context.Context, sql string, res interface{}, args ...interface{}) error {
-	return m.engine.GetContext(ctx, res, sql, args)
+func (m *mysqlDB) Query(ctx context.Context, res interface{}, sql string, args ...interface{}) error {
+	return m.engine.GetContext(ctx, res, sql, args...)
 
 }
 
