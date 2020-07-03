@@ -1,4 +1,4 @@
-package pool
+package task
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ func TestPool(t *testing.T) {
 	//res := make(chan []byte, 100)
 	for i := 0; i < 100; i++ {
 		id := int64(i)
-		job := &Job{
+		job := &PoolJob{
 			ID:        id,
 			ResNotify: nil,
 			Do: func() []byte {
@@ -32,7 +32,7 @@ func BenchmarkDoJob(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		id := int64(i)
-		job := &Job{
+		job := &PoolJob{
 			ID:        id,
 			ResNotify: nil,
 			Do: func() []byte {

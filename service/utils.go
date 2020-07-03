@@ -1,11 +1,13 @@
 package service
 
 import (
+	"bytes"
 	"fmt"
 	"net/http"
 	"strings"
 	"time"
 	"tomm/core/server"
+	"tomm/core/server/rending"
 	"tomm/ecode"
 )
 
@@ -24,6 +26,29 @@ func httpCode(c *server.Context, msgs ecode.ErrMsgs) {
 
 func httpData(c *server.Context, data interface{}) {
 	c.Json(data, ecode.OK)
+}
+
+func backCode(urlStr string, code ecode.ErrMsgs) (*http.Response, error) {
+	return HttpJsonPost(urlStr, &rending.Json{
+		Code: code.Code(),
+		Msg:  code.Error(),
+		Data: nil,
+	})
+}
+
+func backData(urlStr string, data interface{}) (*http.Response, error) {
+	return HttpJsonPost(urlStr, &rending.Json{
+		Code: ecode.OK.Code(),
+		Msg:  ecode.OK.Error(),
+		Data: data,
+	})
+}
+
+func HttpJsonPost(urlStr string, data *rending.Json) (*http.Response, error) {
+
+	b, _ := data.ToJson()
+
+	return cli.Post(urlStr, "application/json", bytes.NewReader(b))
 }
 
 func HttpGet(url string, arg map[string]string) (*http.Response, error) {

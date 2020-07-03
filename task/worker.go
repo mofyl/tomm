@@ -1,4 +1,4 @@
-package pool
+package task
 
 import (
 	"fmt"
@@ -39,7 +39,6 @@ func (w *worker) doJob(j *Job) bool {
 	default:
 		return false
 	}
-	return false
 }
 
 func (w *worker) startWorker() {
@@ -58,7 +57,7 @@ func (w *worker) startWorker() {
 	for {
 		select {
 
-		case j, ok := <-w.job:
+		case job, ok := <-w.job:
 			if !ok {
 				log.Info("Worker is Closed Id is %s", w.ID)
 				w.wg.Done()
@@ -67,11 +66,11 @@ func (w *worker) startWorker() {
 			// Do pool
 			atomic.AddInt64(&w.jobNum, 1)
 			for atomic.CompareAndSwapInt64(&w.jobNum, w.jobNum, w.jobNum+1) {
-				log.Debug("Do Job JobID is %d", j.ID)
-				res := j.Do()
-				if res != nil && j.ResNotify != nil {
+				log.Debug("Do PoolJob JobID is %d", job.ID)
+				res := job.Do()
+				if res != nil && job.ResNotify != nil {
 					select {
-					case j.ResNotify <- res:
+					case job.ResNotify <- res:
 					default:
 					}
 				}
@@ -80,7 +79,7 @@ func (w *worker) startWorker() {
 
 			atomic.AddInt64(&w.jobNum, -1)
 
-			log.Debug("Finish Job JobID is %d", j.ID)
+			log.Debug("Finish PoolJob JobID is %d", job.ID)
 		}
 	}
 }

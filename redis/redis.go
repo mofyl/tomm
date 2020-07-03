@@ -147,6 +147,7 @@ func Del(ctx context.Context, key string) (int64, error) {
 
 func HSet(ctx context.Context, key string, field string, value interface{}) error {
 	cmd := cli.HSet(ctx, key, field, value)
+
 	return cmd.Err()
 }
 

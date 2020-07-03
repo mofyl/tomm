@@ -20,7 +20,6 @@ type ReqDataInfo struct {
 	ExtendInfo  []byte
 	// 两个url
 	//ResourceUrl string // 表示资源服务器的资源  这里的资源服务器一定要实现 /verify
-
 	BackUrl string // 第三方回调地址 该回调地址需要使用 urlEncode 处理
 }
 

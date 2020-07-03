@@ -1,14 +1,17 @@
 package service
 
 import (
+	"context"
 	"sync"
 	"time"
 	"tomm/config"
 	"tomm/core/server"
 	"tomm/ecode"
 	"tomm/log"
-	"tomm/pool"
+	"tomm/redis"
+	"tomm/service/api"
 	"tomm/service/oauth"
+	"tomm/task"
 	"tomm/utils"
 )
 
@@ -31,20 +34,20 @@ type ServiceConf struct {
 type Ser struct {
 	e         *server.Engine
 	conf      *ServiceConf
-	jobNotify chan *pool.JobRes
+	jobNotify chan *task.TaskOut
 	wg        *sync.WaitGroup
-	p         *pool.Pool
+	p         *task.Pool
 }
 
 func NewService() *Ser {
 	s := &Ser{
-		jobNotify: make(chan *pool.JobRes, defaultConf.NotifyChan),
+		jobNotify: make(chan *task.TaskOut, defaultConf.NotifyChan),
 		wg:        &sync.WaitGroup{},
 	}
 	e := server.NewEngine(nil)
 	s.e = e
 	s.conf = defaultConf
-	s.p = pool.NewPool(nil, s.wg)
+	s.p = task.NewPool(nil, s.wg)
 
 	s.registerRouter()
 	return s
@@ -59,10 +62,17 @@ func (s *Ser) Close() {
 	s.e.Close()
 	s.p.Close()
 	cli.CloseIdleConnections()
+	close(s.jobNotify)
+
+	s.wg.Wait()
 }
 
 func (s *Ser) Start() {
 	s.e.RunServer()
+
+	s.wg.Add(1)
+
+	go s.job()
 }
 
 func (s *Ser) verifyToken(c *server.Context) {
@@ -100,26 +110,26 @@ func (s *Ser) getResourceToken(c *server.Context) {
 
 	// 解密完成 第三方等待回调
 	// 到资源服务器请求 查看是否授权
-	s.p.DoJob(&pool.Job{
+	s.p.DoJob(&task.PoolJob{
 		ID:        111,
 		ResNotify: s.jobNotify,
-		Do: func() *pool.JobRes {
+		Do: func() *task.TaskOut {
 			//
-
-			mmUserInfo, err := GetUserInfo()
-			if err != nil {
-
+			jobInfo := &api.JobUserInfo{
+				CallBack: reqDataInfo.BackUrl,
 			}
+			mmUserInfo, errMsg := GetUserInfo()
+			if errMsg != nil {
+				return NewJobUserInfo(errMsg, jobInfo)
+			}
+
 			token, expTime, err := oauth.GetToken(secretInfo.AppKey)
 			if err != nil {
-				httpCode(c, ecode.SystemErr)
 				log.Error("Get Token Fail err is %s", err.Error())
+				return NewJobUserInfo(errMsg, jobInfo)
 			}
-			//// 更新ChannelInfo
-			//if token != "" && reqDataInfo.ChannelInfo != "" {
-			//	secretInfo.ChannelInfo = reqDataInfo.ChannelInfo
-			//	oauth.UpdateChannelInfo(secretInfo)
-			//}
+			// 关联token 和 userID
+			redis.Set(context.TODO(), token, mmUserInfo, oauth.RESOURCE_TOKEN_EXP)
 
 			log.Debug("Return Token is %s", token)
 			// 构造返回值
@@ -129,16 +139,18 @@ func (s *Ser) getResourceToken(c *server.Context) {
 				ExpTime:    expTime,
 				ExtendInfo: reqDataInfo.ExtendInfo,
 			}
-			tokenB, err := utils.Json.Marshal(tokenInfo)
+			tokenB, _ := utils.Json.Marshal(tokenInfo)
+
 			resBase64Str, err := utils.AESCBCBase64Encode(secretInfo.SecretKey, tokenB)
 			if err != nil {
 				log.Error("AESCBCBase64Encode Fail Err is %s", err.Error())
-				httpCode(c, ecode.SystemErr)
+				return NewJobUserInfo(errMsg, jobInfo)
 			}
-			res := GetTokenRes{}
-			res.TokenInfo = resBase64Str
-			httpData(c, res)
-			log.Error("Cur Res is %v", res)
+			//res := GetTokenRes{}
+			//res.TokenInfo = resBase64Str
+			jobInfo.Base64Str = resBase64Str
+			return NewJobUserInfo(ecode.OK, jobInfo)
+			//httpData(c, res)
 		},
 	})
 	return

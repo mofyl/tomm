@@ -6,6 +6,7 @@ require (
 	github.com/fsnotify/fsnotify v1.4.9
 	github.com/go-redis/redis/v8 v8.0.0-beta.5
 	github.com/go-sql-driver/mysql v1.5.0
+	github.com/golang/protobuf v1.3.3
 	github.com/google/uuid v1.1.1
 	github.com/jmoiron/sqlx v1.2.0
 	github.com/json-iterator/go v1.1.10

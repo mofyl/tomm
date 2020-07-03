@@ -15,9 +15,13 @@ type JsonEncode interface {
 }
 
 type Json struct {
-	Code int64  `json:"code"`
-	Msg  string `json:"msg"`
-	Data JsonEncode
+	Code int64       `json:"code,omitempty"`
+	Msg  string      `json:"msg,omitempty"`
+	Data interface{} `json:"data,omitempty"`
+}
+
+func (j *Json) ToJson() ([]byte, error) {
+	return utils.Json.Marshal(j)
 }
 
 func (j *Json) WriteContentType(w http.ResponseWriter) {
@@ -28,7 +32,6 @@ func (j *Json) Render(w http.ResponseWriter) error {
 	writeContentType(w, jsonContentType)
 
 	b, err := utils.Json.Marshal(j)
-	//b, ecode := msgpack.Marshal(j)
 
 	if err != nil {
 		log.Error("WriteResponse msgPack Marshal Err is %s ", err.Error())
