@@ -68,7 +68,7 @@ func (p *Pool) startPool() {
 	atomic.AddInt32(&p.isClose, 1)
 }
 
-func (p *Pool) DoJob(job *PoolJob) bool {
+func (p *Pool) DoJob(job *Job) bool {
 	if atomic.LoadInt32(&p.isClose) == 1 {
 		return false
 	}

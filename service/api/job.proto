@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package api;
-
-message JobUserInfo {
-    string call_back = 1;
-    string base64_str = 2;
-}

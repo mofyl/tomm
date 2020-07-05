@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package job;
+
+enum JobApi {
+    JobUserInfo = 0;
+}
+
+message JobGetUserInfo {
+    string call_back = 1;
+    string base64_str = 2;
+}

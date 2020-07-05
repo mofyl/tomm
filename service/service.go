@@ -4,12 +4,12 @@ import (
 	"context"
 	"sync"
 	"time"
+	"tomm/api/job"
 	"tomm/config"
 	"tomm/core/server"
 	"tomm/ecode"
 	"tomm/log"
 	"tomm/redis"
-	"tomm/service/api"
 	"tomm/service/oauth"
 	"tomm/task"
 	"tomm/utils"
@@ -115,7 +115,7 @@ func (s *Ser) getResourceToken(c *server.Context) {
 		ResNotify: s.jobNotify,
 		Do: func() *task.TaskOut {
 			//
-			jobInfo := &api.JobUserInfo{
+			jobInfo := &job.JobUserInfo{
 				CallBack: reqDataInfo.BackUrl,
 			}
 			mmUserInfo, errMsg := GetUserInfo()

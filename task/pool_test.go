@@ -2,49 +2,63 @@ package task
 
 import (
 	"fmt"
-	"strconv"
+	"sync"
 	"testing"
 	"time"
 )
 
+var (
+	test_wg *sync.WaitGroup
+)
+
+func newPool() *Pool{
+	test_wg = &sync.WaitGroup{}
+	p := NewPool(nil , test_wg)
+	return p
+}
+
 func TestPool(t *testing.T) {
 	//res := make(chan []byte, 100)
+	p := newPool()
 	for i := 0; i < 100; i++ {
 		id := int64(i)
-		job := &PoolJob{
+		job := &Job{
 			ID:        id,
 			ResNotify: nil,
-			Do: func() []byte {
+			Do: func() *TaskContext {
 				//time.Sleep(3 * time.Second)
-				ids := strconv.FormatInt(id, 10)
-				return []byte(ids)
+				//ids := strconv.FormatInt(id, 10)
+				return nil
 			},
 		}
-		DoJob(job)
+		p.DoJob(job)
 	}
 	fmt.Println("Send Finish")
-	Close()
+	p.Close()
+	test_wg.Wait()
 }
 
 func BenchmarkDoJob(b *testing.B) {
 	//b.ResetTimer()
+	p := newPool()
 	time.Sleep(2 * time.Second)
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		id := int64(i)
-		job := &PoolJob{
+		job := &Job{
 			ID:        id,
 			ResNotify: nil,
-			Do: func() []byte {
+			Do: func() *TaskContext {
 				//time.Sleep(3 * time.Second)
-				ids := strconv.FormatInt(id, 10)
-				return []byte(ids)
+				//ids := strconv.FormatInt(id, 10)
+				return nil
 			},
 		}
-		DoJob(job)
+		p.DoJob(job)
 	}
 	fmt.Println("Send Finish")
-	Close()
+	p.Close()
+	test_wg.Wait()
 }
 
 func TestSelect(t *testing.T) {

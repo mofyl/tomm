@@ -1,13 +1,13 @@
 package service
 
 import (
+	"tomm/api/job"
 	"tomm/ecode"
 	"tomm/log"
-	"tomm/service/api"
 	"tomm/task"
 )
 
-func NewJobUserInfo(err ecode.ErrMsgs, info *api.JobUserInfo) *task.TaskOut {
+func NewJobUserInfo(err ecode.ErrMsgs, info *job.JobUserInfo) *task.TaskOut {
 
 	b, _ := info.Marshal()
 	return task.NewTaskOut(task.GetUserJob, err, b)
@@ -33,7 +33,7 @@ func (s *Ser) job() {
 
 func (s *Ser) getUserJob(res *task.TaskOut) {
 
-	job := api.JobUserInfo{}
+	job := job.JobUserInfo{}
 
 	err := job.Unmarshal(res.Data)
 
