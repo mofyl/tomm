@@ -34,14 +34,14 @@ type ServiceConf struct {
 type Ser struct {
 	e         *server.Engine
 	conf      *ServiceConf
-	jobNotify chan *task.TaskOut
+	jobNotify chan task.TaskContext
 	wg        *sync.WaitGroup
 	p         *task.Pool
 }
 
 func NewService() *Ser {
 	s := &Ser{
-		jobNotify: make(chan *task.TaskOut, defaultConf.NotifyChan),
+		jobNotify: make(chan task.TaskContext, defaultConf.NotifyChan),
 		wg:        &sync.WaitGroup{},
 	}
 	e := server.NewEngine(nil)
@@ -56,6 +56,9 @@ func NewService() *Ser {
 func (s *Ser) registerRouter() {
 	s.e.GET("/getToken", s.getResourceToken)
 	s.e.GET("/verifyToken", s.verifyToken)
+
+	//
+	s.e.POST("/register")
 }
 
 func (s *Ser) Close() {
@@ -110,6 +113,7 @@ func (s *Ser) getResourceToken(c *server.Context) {
 
 	// 解密完成 第三方等待回调
 	// 到资源服务器请求 查看是否授权
+
 	s.p.DoJob(&task.PoolJob{
 		ID:        111,
 		ResNotify: s.jobNotify,

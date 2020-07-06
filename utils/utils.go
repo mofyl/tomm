@@ -27,8 +27,13 @@ var (
 )
 
 func GetProDirAbs() string {
+
+	goPath := os.Getenv("GOPATH")
+	if goPath == "" {
+		panic("Can not Read GOPATH")
+	}
 	sbuilder := strings.Builder{}
-	sbuilder.WriteString(os.Getenv("GOPATH"))
+	sbuilder.WriteString(goPath)
 	sbuilder.WriteString(string(filepath.Separator))
 	sbuilder.WriteString("src")
 	sbuilder.WriteString(string(filepath.Separator))

@@ -69,9 +69,11 @@ func (p *Pool) startPool() {
 }
 
 func (p *Pool) DoJob(job *Job) bool {
-	if atomic.LoadInt32(&p.isClose) == 1 {
+
+	if p.isClosed() {
 		return false
 	}
+
 	w := p.getWork()
 	if w == nil {
 		return false
@@ -125,9 +127,11 @@ func (p *Pool) getWork() *worker {
 }
 
 func (p *Pool) Close() {
-	if atomic.LoadInt32(&p.isClose) == 1 {
+
+	if p.isClosed() {
 		return
 	}
+
 	atomic.AddInt32(&p.isClose, -1)
 	//p.cancel()
 	for _, v := range p.worker {
@@ -136,4 +140,11 @@ func (p *Pool) Close() {
 	}
 	p.wg.Wait()
 
+}
+
+func (p *Pool) isClosed() bool {
+	if atomic.LoadInt32(&p.isClose) == 1 {
+		return true
+	}
+	return false
 }
