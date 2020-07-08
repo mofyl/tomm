@@ -3,10 +3,10 @@ syntax = "proto3";
 package job;
 
 enum JobApi {
-    JobUserInfo = 0;
+    UnKnown = 0;
+    JobUserInfo = 1;
 }
 
 message JobGetUserInfo {
-    string call_back = 1;
     string base64_str = 2;
 }

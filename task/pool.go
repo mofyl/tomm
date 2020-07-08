@@ -5,27 +5,17 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
-	"tomm/config"
 	"tomm/utils"
 )
-
-var (
-	defaultConf *PoolConf
-)
-
-func init() {
-	defaultConf = &PoolConf{}
-	err := config.Decode(config.CONFIG_FILE_NAME, "pool", defaultConf)
-	if err != nil {
-		panic("Pool Load Config Fail Err is " + err.Error())
-	}
-
-}
 
 type PoolConf struct {
 	WorkerNum     int32 `yaml:"workerNum"`
 	WorkerContent int64 `yaml:"workerContent"`
 }
+
+var (
+	defaultConf *PoolConf
+)
 
 type Pool struct {
 	worker map[string]*worker

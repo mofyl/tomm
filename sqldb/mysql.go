@@ -64,7 +64,6 @@ func (m *mysqlDB) getConnStr() string {
 
 func (m *mysqlDB) Query(ctx context.Context, res interface{}, sql string, args ...interface{}) error {
 	return m.engine.GetContext(ctx, res, sql, args...)
-
 }
 
 func (m *mysqlDB) Exec(ctx context.Context, sql string, args ...interface{}) (ExecResult, error) {

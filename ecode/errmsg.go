@@ -32,7 +32,7 @@ func (e errMsg) SetMsg(msg string) {
 
 func NewErr(err error) ErrMsgs {
 	return errMsg{
-		ECode:  UNKNOW,
+		ECode:  RESOURCE_ERR,
 		ErrMsg: err.Error(),
 	}
 }

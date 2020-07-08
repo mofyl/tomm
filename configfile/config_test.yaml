@@ -14,7 +14,7 @@ redis:
   writeTimeout: 3
   dialTimeout: 5
   readTimeout: 3
-  minExpTime: 3
+  minExpTime: 60
 mysql:
   addr: "127.0.0.1:3306"
   userName: "root"
@@ -33,4 +33,5 @@ log:
 pool:
   workerNum: 10
   workerContent: 100
+mmServer: 127.0.0.1:8000
 

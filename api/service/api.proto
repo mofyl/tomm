@@ -1,0 +1,148 @@
+syntax = "proto3";
+
+package service;
+
+
+message PlatformInfo {
+    // @inject_tag: db:"id"
+    int64 id = 1 ;
+    // @inject_tag: db:"memo"
+    string memo = 2;
+    // @inject_tag: db:"secret_key"
+    string secret_key = 3;
+    // @inject_tag: db:"app_key"
+    string app_key = 4;
+    // @inject_tag: db:"index_url"
+    string index_url = 5;
+    // @inject_tag: db:"channel_name"
+    string channel_name = 6;
+    // @inject_tag: db:"back_url"
+    string sign_url = 7;
+    // @inject_tag: db:"create_time"
+    int64 create_time = 8;
+    // 1 表示未删除  2表示删除
+    // @inject_tag: db:"deleted"
+    int32 deleted = 9;
+    // @inject_tag: db:"deleted_time"
+    int64 deleted_time = 10;
+}
+
+
+message RegisterPlatformReq {
+    // @inject_tag: form:"platform_name"
+    string platform_name = 1;
+    // @inject_tag: form:"memo"
+    string memo = 2;
+    // @inject_tag: form:"index_url"
+    string index_url =3;
+    // @inject_tag: form:"sign_url"
+    string sign_url = 4;
+}
+
+message RegisterPlatformRes {
+    string secret_key  = 1;
+    string app_key = 2;
+}
+
+message CheckPlatformNameReq {
+    // @inject_tag: form:"name"
+    string name = 1;
+}
+
+message CheckPlatformNameRes {
+    // 1 为已占用 2 为可使用
+    int32 res = 1;
+}
+
+
+message DeletePlatformReq{
+    // @inject_tag: form:"channel_id"
+    int64 channel_id= 1;
+    // @inject_tag: form:"user_id"
+    int64 user_id = 2;
+}
+
+message DeletePlatformRes{
+    // 1 表示失败  2 表示成功
+    int32 res = 1;
+}
+
+ message GetTokenReq {
+    // @inject_tag: form:"app_key"
+    string app_key = 1;
+    // @inject_tag: form:"data"
+    string data = 2;
+}
+
+message TokenDataInfo{
+    int64 send_time = 1;
+    string code = 2;
+    bytes extend_info = 3;
+}
+
+message GetTokenRes{
+   string token = 1;
+}
+
+message TokenInfo{
+    string token = 1;
+    int64 exp_time = 2;
+    bytes extend_info = 3;
+}
+
+message VerifyTokenReq{
+    // @inject_tag: form:"app_key"
+   string app_key = 1;
+    // @inject_tag: form:"token"
+   string token = 2;
+}
+
+message VerifyTokenRes {
+   int64 exp_time = 1;
+}
+
+
+message GetCodeReq {
+    // @inject_tag: form:"user_id"
+    string user_id = 1;
+    // @inject_tag: form:"app_key"
+    string app_key = 2;
+}
+
+message GetCodeRes{
+    string code = 1;
+    string back_url = 2;
+}
+
+
+message CodeInfo {
+    // @inject_tag: db:"id"
+    int64 id = 1;
+    // @inject_tag: db:"app_key"
+    string app_key = 2;
+    // @inject_tag: db:"code"
+    string code = 3;
+    // @inject_tag: db:"create_time"
+    int64 create_time = 4;
+    // @inject_tag: db:"mm_user_id"
+    string mm_user_id = 5;
+}
+
+message UserBaseInfo{
+    string id = 1;
+    string user_name = 2;
+    int64 create_at = 3;
+    string email = 4;
+    string nick_name = 5;
+    string first_name = 6;
+    string last_name = 7;
+ }
+
+ message GetUserInfoReq{
+    // @inject_tag: form:"token"
+    string token = 1;
+    // @inject_tag: form:"app_key"
+    string app_key = 2;
+}
+
+

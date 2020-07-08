@@ -3,7 +3,6 @@ package task
 import (
 	"sync"
 	"sync/atomic"
-	"tomm/api/job"
 )
 
 const (
@@ -15,8 +14,6 @@ type StartTask interface {
 }
 
 type TaskManager struct {
-	TaskMap       map[string]*TaskMD
-	TaskLock      *sync.RWMutex
 	pool          *Pool
 	TaskChan      chan *TaskContext
 	doneChan      chan struct{}
@@ -28,14 +25,11 @@ type TaskManager struct {
 
 func NewTaskManager() *TaskManager {
 	tm := &TaskManager{}
-	tm.TaskMap = make(map[string]*TaskMD)
 	tm.wg = &sync.WaitGroup{}
 	tm.TaskChan = make(chan *TaskContext, MAX_TASK_NUM)
 	tm.doneChan = make(chan struct{})
 	tm.resNotifyChan = make(chan *TaskContext, MAX_TASK_NUM)
-	tm.TaskLock = &sync.RWMutex{}
 	tm.pool = NewPool(nil, tm.wg)
-	tm.pool.startPool()
 
 	tm.wg.Add(1)
 	go tm.doTask()
@@ -43,47 +37,48 @@ func NewTaskManager() *TaskManager {
 	return tm
 }
 
-func (t *TaskManager) RegisterTaskMD(md *TaskMD, notifyChan chan TaskContext) *TaskContext {
-
-	if t.isClose() {
-		return nil
-	}
-
-	if md.TaskName == "" {
-		md.TaskName = ""
-	}
-
-	if md.TaskStage <= 0 {
-		panic("Register Task Fail: task stage must be more than zero")
-	}
-
-	if md.TaskHandlers == nil {
-		panic("Register Task Fail: task handlers is nil")
-	}
-
-	t.TaskLock.Lock()
-	_, ok := t.TaskMap[md.TaskName]
-	if ok {
-		t.TaskLock.Unlock()
-		panic("Register Task Fail: task already registered")
-	}
-
-	t.TaskMap[md.TaskName] = md
-	t.TaskLock.Unlock()
-
-	ctx := &TaskContext{
-		TaskName:       md.TaskName,
-		TaskID:         "1111",
-		Err:            nil,
-		CurStage:       0,
-		Type:           job.JobApi_JobUserInfo,
-		md:             make(map[string]interface{}),
-		NotifyUserChan: notifyChan,
-		st:             t,
-	}
-
-	return ctx
-}
+//
+//func (t *TaskManager) RegisterTaskMD(md *TaskMD, notifyChan chan TaskContext, taskType job.JobApi) *TaskContext {
+//
+//	if t.isClose() {
+//		return nil
+//	}
+//
+//	if md.TaskName == "" {
+//		md.TaskName = ""
+//	}
+//
+//	if md.TaskStage <= 0 {
+//		panic("Register Task Fail: task stage must be more than zero")
+//	}
+//
+//	if md.TaskHandlers == nil {
+//		panic("Register Task Fail: task handlers is nil")
+//	}
+//
+//	t.TaskLock.Lock()
+//	_, ok := t.TaskMap[md.TaskName]
+//	if ok {
+//		t.TaskLock.Unlock()
+//		panic("Register Task Fail: task already registered")
+//	}
+//
+//	t.TaskMap[md.TaskName] = md
+//	t.TaskLock.Unlock()
+//
+//	ctx := &TaskContext{
+//		TaskName:       md.TaskName,
+//		TaskID:         "",
+//		Err:            nil,
+//		curStage:       0,
+//		Type:           taskType,
+//		md:             make(map[string]interface{}),
+//		NotifyUserChan: notifyChan,
+//		st:             t,
+//	}
+//
+//	return ctx
+//}
 
 func (t *TaskManager) StartTask(ctx *TaskContext) bool {
 
@@ -111,18 +106,13 @@ func (t *TaskManager) doTask() {
 				return
 			}
 
-			taskInfo, ok := t.checkTask(ctx)
-			if !ok {
-				break
-			}
-
 			t.pool.DoJob(&Job{
 				ID:        111,
 				ResNotify: t.resNotifyChan,
 				Do: func() *TaskContext {
-					for ctx.CurStage < taskInfo.TaskStage &&
-						taskInfo.TaskHandlers[ctx.CurStage](ctx) {
-						ctx.CurStage++
+					for ctx.curStage < ctx.TaskStage &&
+						ctx.TaskHandlers[ctx.curStage](ctx) {
+						ctx.curStage++
 					}
 					return ctx
 				},
@@ -136,29 +126,13 @@ func (t *TaskManager) doTask() {
 
 			if task.NotifyUserChan != nil && task != nil {
 				select {
-				case task.NotifyUserChan <- *task:
+				case task.NotifyUserChan <- task:
 				default:
 				}
 			}
 
 		}
 	}
-}
-
-func (t *TaskManager) checkTask(task *TaskContext) (*TaskMD, bool) {
-
-	t.TaskLock.RLock()
-	taskInfo, ok := t.TaskMap[task.TaskName]
-	t.TaskLock.RUnlock()
-	if !ok {
-		return nil, false
-	}
-
-	if taskInfo.TaskStage < task.CurStage {
-		return nil, false
-	}
-
-	return taskInfo, true
 }
 
 func (t *TaskManager) Close() {

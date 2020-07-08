@@ -91,16 +91,17 @@ func (c *Context) Json(data interface{}, err error) error {
 		eCode, ok = err.(ecode.ErrMsgs)
 	}
 
-	if ok {
-		c.Err = eCode
-		return c.Render(code, &rending.Json{
-			Code: eCode.Code(),
-			Msg:  eCode.Error(),
-			Data: data,
-		})
+	if !ok {
+		eCode = ecode.NewErr(err)
 	}
 
-	return ecode.SystemErr
+	c.Err = eCode
+	return c.Render(code, &rending.Json{
+		Code: eCode.Code(),
+		Msg:  eCode.Error(),
+		Data: data,
+	})
+
 }
 
 func (c *Context) String(code int, format string, data ...interface{}) error {
