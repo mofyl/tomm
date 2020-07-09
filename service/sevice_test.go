@@ -13,8 +13,9 @@ func getAESBaseStr() string {
 	secretKey := "2ffd7fbe21a5e6eb3321d723900a79f0"
 	//appKey := "055285a69ec81f6477e49fe95da22eba"
 	sendTime := time.Now().Unix()
-	dataInfo := service.ReqDataInfo{
+	dataInfo := service.TokenDataInfo{
 		SendTime:   sendTime,
+		Code:       "59e3675398689141aad9e659cb3d23ee",
 		ExtendInfo: nil,
 	}
 
@@ -33,7 +34,7 @@ func getAESBaseStr() string {
 		log.Info("Decode err is %s", err)
 		return ""
 	}
-	res := service.ReqDataInfo{}
+	res := service.TokenDataInfo{}
 	err = utils.Json.Unmarshal(origData, &res)
 	if err != nil {
 		log.Info("Json Unmarshal err is %s", err)
@@ -44,7 +45,7 @@ func getAESBaseStr() string {
 		panic("AESBase Fail")
 	}
 
-	log.Info("Get Data is %s", res.SendTime)
+	log.Info("Get Data is %d", res.SendTime)
 	return base64Str
 }
 
@@ -53,12 +54,8 @@ func TestGetToken(t *testing.T) {
 	if str == "" {
 		panic("Get AESBaseStr Fail")
 	}
-
 }
 
-//
-//func TestGetToken(t *testing.T) {
-//
 //	secretKey := "2ffd7fbe21a5e6eb3321d723900a79f0"
 //
 //	getTokenRes := service.GetTokenRes{}

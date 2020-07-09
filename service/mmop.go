@@ -5,12 +5,11 @@ import (
 	"io/ioutil"
 	"tomm/api/service"
 	"tomm/ecode"
+	"tomm/log"
 	"tomm/utils"
 )
 
-const (
-	GET_LOGINED_USER_INFO = utils.MM_SERVER_URL + "/getUserInfo"
-)
+var mmSerUrl string
 
 type MMRsp struct {
 	ErrCode int    `json:"err_code"`
@@ -22,8 +21,9 @@ func GetBaseUserInfo(userID string) (*service.UserBaseInfo, ecode.ErrMsgs) {
 	arg := make(map[string]string, 1)
 	arg["key"] = utils.MM_PRIVATE_KEY
 	arg["user_id"] = userID
-	rsp, err := getMMRsp(GET_LOGINED_USER_INFO, arg)
+	rsp, err := getMMRsp(mmSerUrl+"/getUserInfo", arg)
 	if err != nil {
+		log.Error("GetBaseUserInfo Err is %s", err.Error())
 		return nil, ecode.MMFail
 	}
 
@@ -34,8 +34,10 @@ func GetBaseUserInfo(userID string) (*service.UserBaseInfo, ecode.ErrMsgs) {
 	info := &service.UserBaseInfo{}
 
 	err = utils.Json.Unmarshal(rsp.Data, info)
-
-	return info, ecode.NewErr(err)
+	if err != nil {
+		return nil, ecode.NewErr(err)
+	}
+	return info, nil
 }
 
 func getMMRsp(url string, args map[string]string) (*MMRsp, error) {

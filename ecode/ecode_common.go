@@ -4,6 +4,8 @@ const (
 	system_fail   = "System Fail"
 	ok            = "Success"
 	resource_fail = "resource_fail"
+	param_fail    = "Parameter error"
+	app_key_fail  = "AppKey error"
 )
 
 var (
@@ -12,4 +14,8 @@ var (
 
 	RESOURCE_ERR = addCode(-501) // 服务器对于某个请求 可能某些部分不支持
 	//UNKNOW      = addCode(-1000)
+
+	// 1000 ~ 2000  共用的Msg预留
+	ParamFail  = NewErrWithMsg(param_fail, addCode(-1000))
+	AppKeyFail = NewErrWithMsg(app_key_fail, addCode(-1001))
 )

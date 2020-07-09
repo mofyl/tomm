@@ -16,7 +16,7 @@ message PlatformInfo {
     string index_url = 5;
     // @inject_tag: db:"channel_name"
     string channel_name = 6;
-    // @inject_tag: db:"back_url"
+    // @inject_tag: db:"sign_url"
     string sign_url = 7;
     // @inject_tag: db:"create_time"
     int64 create_time = 8;
@@ -120,12 +120,10 @@ message CodeInfo {
     int64 id = 1;
     // @inject_tag: db:"app_key"
     string app_key = 2;
-    // @inject_tag: db:"code"
-    string code = 3;
     // @inject_tag: db:"create_time"
-    int64 create_time = 4;
+    int64 create_time = 3;
     // @inject_tag: db:"mm_user_id"
-    string mm_user_id = 5;
+    string mm_user_id = 4;
 }
 
 message UserBaseInfo{
@@ -143,6 +141,17 @@ message UserBaseInfo{
     string token = 1;
     // @inject_tag: form:"app_key"
     string app_key = 2;
+}
+
+message CheckCodeReq{
+    // @inject_tag: form:"app_key"
+    string app_key = 1;
+    // @inject_tag: form:"code"
+    string code = 2;
+}
+
+message CheckCodeRes{
+    int32 res = 1;
 }
 
 

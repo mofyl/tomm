@@ -62,10 +62,28 @@ func (m *mysqlDB) getConnStr() string {
 	return fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8", m.conf.UserName, m.conf.Pwd, m.conf.Addr, m.conf.DBName)
 }
 
-func (m *mysqlDB) Query(ctx context.Context, res interface{}, sql string, args ...interface{}) error {
-	return m.engine.GetContext(ctx, res, sql, args...)
+func (m *mysqlDB) QueryOne(ctx context.Context, res interface{}, sql string, args ...interface{}) error {
+	row, err := m.engine.QueryxContext(ctx, sql, args...)
+	if err != nil {
+		return err
+	}
+
+	if row.Next() {
+		return row.StructScan(res)
+	}
+
+	return nil
+
+}
+
+func (m *mysqlDB) QueryAll(ctx context.Context, res interface{}, sql string, args ...interface{}) error {
+	return m.engine.SelectContext(ctx, res, sql, args...)
 }
 
 func (m *mysqlDB) Exec(ctx context.Context, sql string, args ...interface{}) (ExecResult, error) {
 	return m.engine.ExecContext(ctx, sql, args...)
+}
+
+func (m *mysqlDB) Count(ctx context.Context, res interface{}, sql string, args ...interface{}) error {
+	return m.engine.GetContext(ctx, res, sql, args...)
 }

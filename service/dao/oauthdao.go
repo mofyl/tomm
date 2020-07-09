@@ -14,7 +14,7 @@ const (
 	RESOURCE_TOKEN_EXP = 10 * 60 // 10min
 )
 
-func GetToken(appKey string) (string, int64, error) {
+func GetTokenAndCreate(appKey string) (string, int64, error) {
 	// 查看该Appkey 是否已经存在Token
 	var token string
 	var err error
@@ -47,6 +47,14 @@ func TokenExist(appKey string) bool {
 	key := fmt.Sprintf(redis.RESOURCE_KEY, appKey)
 	exist := redis.Exist(context.TODO(), key)
 	return exist
+}
+
+func GetToken(appKey string) (string, error) {
+	key := fmt.Sprintf(redis.RESOURCE_KEY, appKey)
+	var token string
+	err := redis.Get(context.TODO(), key, &token)
+
+	return token, err
 }
 
 func LeaseRenewKey(key string, expTime int64) error {

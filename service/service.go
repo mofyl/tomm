@@ -1,10 +1,8 @@
 package service
 
 import (
-	"sync"
 	"tomm/config"
 	"tomm/core/server"
-	"tomm/task"
 )
 
 const (
@@ -27,6 +25,10 @@ func init() {
 	if err := config.Decode(config.CONFIG_FILE_NAME, "server", defaultConf); err != nil {
 		panic("Service Load Config Fail " + err.Error())
 	}
+
+	if err := config.Decode(config.CONFIG_FILE_NAME, "mmServer", &mmSerUrl); err != nil {
+		panic("Service Load mm Server Url Fail " + err.Error())
+	}
 }
 
 type ServiceConf struct {
@@ -34,10 +36,10 @@ type ServiceConf struct {
 }
 
 type Ser struct {
-	e         *server.Engine
-	conf      *ServiceConf
-	jobNotify chan *task.TaskContext
-	wg        *sync.WaitGroup
+	e    *server.Engine
+	conf *ServiceConf
+	//jobNotify chan *task.TaskContext
+	//wg *sync.WaitGroup
 	//p         *task.TaskManager
 
 	userGroup     server.IRouter
@@ -47,8 +49,8 @@ type Ser struct {
 
 func NewService() *Ser {
 	s := &Ser{
-		jobNotify: make(chan *task.TaskContext, defaultConf.NotifyChan),
-		wg:        &sync.WaitGroup{},
+		//jobNotify: make(chan *task.TaskContext, defaultConf.NotifyChan),
+		//wg: &sync.WaitGroup{},
 	}
 	e := server.NewEngine(nil)
 	s.e = e
@@ -65,11 +67,13 @@ func (s *Ser) registerRouter() {
 	s.tokenGroup.GET("/getToken", s.getResourceToken)
 	s.tokenGroup.GET("/verifyToken", s.verifyToken)
 	s.tokenGroup.GET("/getUserInfo", s.getUserInfo)
+	// checkCode Appkey+Code
 	//
 	s.platformGroup.POST("/register", s.registerPlatform)
 	s.platformGroup.GET("/checkPlatformName", s.checkPlatformName)
 
 	s.userGroup.GET("/getCode", s.getCode)
+	s.userGroup.GET("/checkCode", s.checkCode)
 
 }
 
@@ -77,15 +81,12 @@ func (s *Ser) Close() {
 	s.e.Close()
 	cli.CloseIdleConnections()
 
-	task.Close()
-	close(s.jobNotify)
+	//task.Close()
+	//close(s.jobNotify)
 
-	s.wg.Wait()
+	//s.wg.Wait()
 }
 
 func (s *Ser) Start() {
 	s.e.RunServer()
-
-	s.wg.Add(1)
-
 }

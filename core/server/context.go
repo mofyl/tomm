@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"math"
 	"net/http"
@@ -47,7 +48,7 @@ func (c *Context) Next() {
 
 		if err := recover(); err != nil {
 			runtime.Caller(1)
-			buf := make([]byte, 1024)
+			buf := make([]byte, 4086)
 			n := runtime.Stack(buf, false)
 			pl := fmt.Sprintf("http server panic: %v\n%s\n", err, buf[:n])
 			log.Error("http server recover  is %s", pl)
@@ -89,10 +90,11 @@ func (c *Context) Json(data interface{}, err error) error {
 		ok = true
 	} else {
 		eCode, ok = err.(ecode.ErrMsgs)
-	}
+		if !ok {
+			log.Error("Context Json Fail Convert Err Fail")
+			return errors.New("Context Json Fail Convert Err Fail")
+		}
 
-	if !ok {
-		eCode = ecode.NewErr(err)
 	}
 
 	c.Err = eCode

@@ -4,6 +4,7 @@ import (
 	"tomm/api/service"
 	"tomm/core/server"
 	"tomm/ecode"
+	"tomm/log"
 	"tomm/service/dao"
 )
 
@@ -12,7 +13,8 @@ func (s *Ser) registerPlatform(c *server.Context) {
 	err := c.Bind(&req)
 
 	if err != nil {
-		httpCode(c, ecode.NewErr(err))
+		log.Error("RegisterPlatForm Fail Parameter Wrong Err is %s", err.Error())
+		httpCode(c, ecode.ParamFail)
 		return
 	}
 
@@ -26,7 +28,8 @@ func (s *Ser) registerPlatform(c *server.Context) {
 	err = dao.CreateOAuthInfo(&info)
 
 	if err != nil {
-		httpCode(c, ecode.NewErr(err))
+		log.Error("RegisterPlatForm Create OAuthInfo Fail Err is %s , info is %v", err.Error(), info)
+		httpCode(c, ecode.SystemErr)
 		return
 	}
 
@@ -44,7 +47,8 @@ func (s *Ser) checkPlatformName(c *server.Context) {
 	err := c.Bind(&req)
 
 	if err != nil {
-		httpCode(c, ecode.NewErr(err))
+		log.Error("checkPlatformName Bind Parameter Fail Err is %s", err.Error())
+		httpCode(c, ecode.ParamFail)
 		return
 	}
 	canUsed := dao.CheckPlatformName(req.Name)

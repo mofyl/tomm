@@ -3,23 +3,38 @@ package server
 import (
 	"net/http"
 	"net/http/pprof"
-	"tomm/log"
 )
 
 func startPProf(e *Engine) {
+
+	/*
+
+
+		Count	Profile
+		1	allocs
+		0	block
+		0	cmdline
+		22	goroutine
+		1	heap
+		0	mutex
+		0	profile
+		15	threadcreate
+		0	trace
+
+
+	*/
+
 	e.GET("/debug/pprof/", pprofHandler(pprof.Index))
+
+	e.GET("/debug/pprof/allocs", pprofHandler(pprof.Handler("allocs").ServeHTTP))
+	e.GET("/debug/pprof/block", pprofHandler(pprof.Handler("block").ServeHTTP))
 	e.GET("/debug/pprof/cmdline", pprofHandler(pprof.Cmdline))
+	e.GET("/debug/pprof/goroutine", pprofHandler(pprof.Handler("goroutine").ServeHTTP))
+	e.GET("/debug/pprof/heap", pprofHandler(pprof.Handler("heap").ServeHTTP))
+	e.GET("/debug/pprof/mutex", pprofHandler(pprof.Handler("mutex").ServeHTTP))
 	e.GET("/debug/pprof/profile", pprofHandler(pprof.Profile))
-	e.GET("/debug/pprof/symbol", pprofHandler(pprof.Symbol))
+	e.GET("/debug/pprof/threadcreate", pprofHandler(pprof.Handler("threadcreate").ServeHTTP))
 	e.GET("/debug/pprof/trace", pprofHandler(pprof.Trace))
-	e.wg.Add(1)
-	go func() {
-		if err := http.ListenAndServe(":9000", nil); err != nil {
-			log.Error("pprof error is %s", err.Error())
-		}
-		e.wg.Done()
-	}()
-	log.Info("pprof start addr is :9000 ")
 }
 
 func pprofHandler(h http.HandlerFunc) HandlerFunc {

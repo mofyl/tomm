@@ -14,7 +14,9 @@ type ExecResult interface {
 type SqlDB interface {
 	//getConnStr() string
 	Exec(ctx context.Context, sql string, args ...interface{}) (ExecResult, error)
-	Query(ctx context.Context, res interface{}, sql string, args ...interface{}) error
+	QueryOne(ctx context.Context, res interface{}, sql string, args ...interface{}) error
+	QueryAll(ctx context.Context, res interface{}, sql string, args ...interface{}) error
+	Count(ctx context.Context, res interface{}, sql string, args ...interface{}) error
 }
 
 type baseConf struct {

@@ -20,8 +20,7 @@ CREATE TABLE `code_infos` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `app_key` varchar(32) NOT NULL,
   `create_time` bigint(20) NOT NULL,
-  `code` int(1) NOT NULL ,
-  `mm_user_id` bigint(20),
+  `mm_user_id` varchar(256),
   PRIMARY KEY (`id`),
   KEY `idx_app_key` (`app_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

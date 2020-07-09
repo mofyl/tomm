@@ -1,7 +1,8 @@
 package redis
 
 const (
-	SECRET_KEY   = "Secret_%s"   // secret_ + appKey
+	CODE_KEY     = "Code_%s_%s"  // appKey + code
+	CODE_EXP     = 300           // 5min
 	RESOURCE_KEY = "Resource_%s" // TOKEN_ + appKey
 
 	PLATFORM_INFO_KEY = "Platform_info_%s" // app_key

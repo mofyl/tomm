@@ -25,14 +25,14 @@ func getTokenJob1(ctx *task.TaskContext) bool {
 		reqDataInfo, _ = reqData.(*service.TokenDataInfo)
 	}
 
-	mmUserInfo, errMsg := GetUserInfo()
+	mmUserInfo, errMsg := GetBaseUserInfo("")
 
 	if errMsg != nil {
 		ctx.Err = errMsg
 		return true
 	}
 
-	token, expTime, err := dao.GetToken(platformInfo.AppKey)
+	token, expTime, err := dao.GetTokenAndCreate(platformInfo.AppKey)
 	if err != nil {
 		log.Error("Get Token Fail err is %s", err.Error())
 		ctx.Err = errMsg

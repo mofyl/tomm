@@ -228,7 +228,7 @@ func (e *Engine) RunServer() {
 	e.wg.Add(1)
 	go func() {
 		if err := ser.ListenAndServe(); err != nil {
-			log.Error("RunServer ListenAndServer Err is %s ", err.Error())
+			log.Debug("RunServer ListenAndServer Err is %s ", err.Error())
 		}
 		e.wg.Done()
 	}()
@@ -238,6 +238,7 @@ func (e *Engine) RunServer() {
 func (e *Engine) Close() {
 	s := e.serve.Load().(*http.Server)
 	s.Close()
+
 	e.wg.Wait()
 	log.Info("Http Serve Stop Addr is %s", e.cfg.Addr)
 }

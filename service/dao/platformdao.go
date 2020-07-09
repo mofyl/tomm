@@ -52,8 +52,15 @@ func UpdatePlatformInfo(info *service.PlatformInfo) error {
 func GetPlatformInfo(appKey string) (*service.PlatformInfo, error) {
 	//var res string
 	res := &service.PlatformInfo{}
+	resB1 := make([]byte, 0)
 	key := fmt.Sprintf(redis.PLATFORM_INFO_KEY, appKey)
-	err := redis.Get(context.TODO(), key, res)
+	err := redis.Get(context.TODO(), key, &resB1)
+	//
+	if err != nil {
+		return nil, err
+	}
+	//
+	err = res.Unmarshal(resB1)
 
 	//sInfo := &service.PlatformInfo{}
 	if err != nil {
@@ -65,15 +72,26 @@ func GetPlatformInfo(appKey string) (*service.PlatformInfo, error) {
 	}
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
-	err = sqldb.GetDB(sqldb.MYSQL).Query(ctx, res, "select * from tomm.platform_infos where app_key = ?", appKey)
+	err = sqldb.GetDB(sqldb.MYSQL).QueryOne(ctx, res, "select * from tomm.platform_infos where app_key = ? and deleted=1", appKey)
 	cancel()
 	if err != nil {
 		return nil, err
 	}
+	if res.Id == 0 {
+		return nil, errors.New("PlatForm Not illegal")
+	}
+
 	resB, _ := res.Marshal()
 	// 回写到redis中
-	redis.Set(context.TODO(), key, resB, -1)
+	err = redis.Set(context.TODO(), key, resB, -1)
+	if err != nil {
+		log.Error("redis Set Fail err is %s", err.Error())
+	}
 	return res, nil
+
+}
+
+func PlatFormExist() {
 
 }
 
@@ -82,7 +100,7 @@ func CheckPlatformName(platformName string) bool {
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
 	res := &service.PlatformInfo{}
-	err := sqldb.GetDB(sqldb.MYSQL).Query(ctx, res, "select channel_name from tomm.platform_infos where channel_name = ?", platformName)
+	err := sqldb.GetDB(sqldb.MYSQL).QueryOne(ctx, res, "select channel_name from tomm.platform_infos where channel_name = ?", platformName)
 	cancel()
 	if err != nil {
 		log.Error("Check PlatformName Fail Error is %s", err.Error())
