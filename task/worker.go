@@ -66,7 +66,7 @@ func (w *worker) startWorker() {
 			// Do pool
 			atomic.AddInt64(&w.jobNum, 1)
 			for atomic.CompareAndSwapInt64(&w.jobNum, w.jobNum, w.jobNum+1) {
-				log.Debug("Do PoolJob JobID is %d", job.ID)
+				//log.Debug("Do PoolJob JobID is %d", job.ID)
 				res := job.Do()
 				if res != nil && job.ResNotify != nil {
 					select {
@@ -79,7 +79,7 @@ func (w *worker) startWorker() {
 
 			atomic.AddInt64(&w.jobNum, -1)
 
-			log.Debug("Finish PoolJob JobID is %d", job.ID)
+			//log.Debug("Finish PoolJob JobID is %d", job.ID)
 		}
 	}
 }

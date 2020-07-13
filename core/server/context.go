@@ -57,10 +57,12 @@ func (c *Context) Next() {
 
 	}()
 
+	// 计算时间
 	for c.handler != nil && c.index < int8(len(c.handler)) {
 		c.handler[c.index](c)
 		c.index++
 	}
+	// 采集rtt
 }
 
 func (c *Context) Render(code int, render rending.Render) error {

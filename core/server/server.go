@@ -14,6 +14,8 @@ import (
 
 const (
 	MAX_MEM = 32 << 20 // 32M
+	CLOSED  = 1
+	START   = 2
 )
 
 var (
@@ -47,10 +49,12 @@ type Engine struct {
 	wg        *sync.WaitGroup
 	router    methodTrees
 	allRouter map[string]map[string]struct{} // method -> path
-
+	closed    int32                          // 1 为关闭 2为开启
 	//Handlers []HandlerFunc
 	noRouter []HandlerFunc
 	noMethod []HandlerFunc
+
+	reqChan chan *Context
 }
 
 //
@@ -83,6 +87,8 @@ func NewEngine(cfg *EngConfig) *Engine {
 		allRouter: make(map[string]map[string]struct{}),
 		noRouter:  make([]HandlerFunc, 0),
 		noMethod:  make([]HandlerFunc, 0),
+		reqChan:   make(chan *Context, 1000), // 这里的1000 现在是随便给的
+		closed:    CLOSED,
 	}
 	e.e = e
 	// 加入pprof路由
@@ -169,7 +175,19 @@ func (e *Engine) rebuild405Handler() {
 	e.noMethod = e.combineHandlers(e.noMethod...)
 }
 
+func (e *Engine) isClosed() bool {
+
+	if atomic.LoadInt32(&e.closed) == CLOSED {
+		return true
+	}
+	return false
+}
+
 func (e *Engine) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+
+	if e.isClosed() {
+		return
+	}
 
 	c := &Context{
 		Res:     w,
@@ -180,7 +198,28 @@ func (e *Engine) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		Ctx:     nil,
 	}
 
-	e.HandlerContext(c)
+	// 进行一个排队
+	select {
+	case e.reqChan <- c:
+	default:
+	}
+
+}
+
+func (e *Engine) handler() {
+
+	for {
+		select {
+		case ctx, ok := <-e.reqChan:
+			if !ok {
+				e.wg.Done()
+				return
+			}
+			e.HandlerContext(ctx)
+		}
+
+	}
+
 }
 
 func (e *Engine) HandlerContext(ctx *Context) {
@@ -225,6 +264,11 @@ func (e *Engine) RunServer() {
 	}
 
 	e.serve.Store(ser)
+	atomic.StoreInt32(&e.closed, START)
+
+	e.wg.Add(1)
+	go e.handler()
+
 	e.wg.Add(1)
 	go func() {
 		if err := ser.ListenAndServe(); err != nil {
@@ -236,8 +280,17 @@ func (e *Engine) RunServer() {
 }
 
 func (e *Engine) Close() {
+
+	if e.isClosed() {
+		return
+	}
+
+	atomic.StoreInt32(&e.closed, CLOSED)
+
 	s := e.serve.Load().(*http.Server)
 	s.Close()
+
+	close(e.reqChan)
 
 	e.wg.Wait()
 	log.Info("Http Serve Stop Addr is %s", e.cfg.Addr)
