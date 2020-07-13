@@ -1,7 +1,6 @@
 package limit
 
 import (
-	"sync/atomic"
 	"time"
 )
 
@@ -57,7 +56,8 @@ func (l *Limit) limitJob() {
 
 func (l *Limit) Allow() bool {
 
-	gradientRatio := max(1.0, min(2.0, l.RTTActual/l.RTTOnload))
+	//gradientRatio := max(1.0, min(2.0, l.RTTActual/l.RTTOnload))
+	return false
 }
 
 func max(num1, num2 float32) float32 {

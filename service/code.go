@@ -1,10 +1,13 @@
 package service
 
 import (
+	"context"
+	"fmt"
 	"tomm/api/service"
 	"tomm/core/server"
 	"tomm/ecode"
 	"tomm/log"
+	"tomm/redis"
 	"tomm/service/dao"
 	"tomm/utils"
 )
@@ -17,8 +20,18 @@ func (s *Ser) getCode(c *server.Context) {
 		return
 	}
 
+	// 检查 该用户是否存在
+
+	_, errMsg := GetBaseUserInfo(req.UserId)
+
+	if errMsg != nil {
+		log.Error("GetCode Check Fail errCode is %d errMsg is %s", errMsg.Code(), errMsg.Error())
+		httpCode(c, ecode.MMFail)
+		return
+	}
+
 	// 检查 app_key 是否存在
-	_, err := dao.GetPlatformInfo(req.AppKey)
+	platFormInfo, err := dao.GetPlatformInfo(req.AppKey)
 	if err != nil {
 		log.Error("GetPlatformInfo Fail Err is %s , AppKey is %s", err.Error(), req.AppKey)
 		httpCode(c, ecode.AppKeyFail)
@@ -38,7 +51,7 @@ func (s *Ser) getCode(c *server.Context) {
 		// 开始授权
 		codeInfo.AppKey = req.AppKey
 		codeInfo.MmUserId = req.UserId
-		err = dao.SaveCodeInfo(codeInfo, code)
+		err = dao.SaveCodeInfo(codeInfo)
 		if err != nil {
 			log.Error("SaveCodeInfo Fail Err is %s , Code Info is %v", err.Error(), codeInfo)
 			httpCode(c, ecode.SystemErr)
@@ -46,8 +59,14 @@ func (s *Ser) getCode(c *server.Context) {
 		}
 	}
 
-	httpData(c, code)
+	// 将Code保存到redis
+	err = redis.Set(context.TODO(), fmt.Sprintf(redis.CODE_KEY, codeInfo.AppKey, code), codeInfo.MmUserId, redis.CODE_EXP)
 
+	res := service.GetCodeRes{
+		Code:    code,
+		BackUrl: platFormInfo.SignUrl,
+	}
+	httpData(c, res)
 }
 
 func (s *Ser) checkCode(c *server.Context) {
@@ -75,7 +94,10 @@ func (s *Ser) checkCode(c *server.Context) {
 		return
 	}
 
+	res := service.CheckCodeRes{
+		UserId: userID,
+	}
 	// 检查成功返回userID
-	httpData(c, userID)
+	httpData(c, res)
 
 }

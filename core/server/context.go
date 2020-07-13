@@ -68,7 +68,7 @@ func (c *Context) Next() {
 func (c *Context) Render(code int, render rending.Render) error {
 	render.WriteContentType(c.Res)
 
-	if code > 0 {
+	if code != http.StatusOK {
 		c.Status(code)
 	}
 	if c.Err != nil {

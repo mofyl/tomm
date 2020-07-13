@@ -198,29 +198,33 @@ func (e *Engine) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		Ctx:     nil,
 	}
 
-	// 进行一个排队
-	select {
-	case e.reqChan <- c:
-	default:
-	}
+	e.HandlerContext(c)
+	//
+	//// 进行一个排队
+	// TODO: 这里不能这样排队 应为过channel 会发生复制 放到channel后本次ServerHTTP就退出了 GC会把w也释放掉，所以会造成Write报错
+	//select {
+	//case e.reqChan <- c:
+	//default:
+	//}
 
 }
 
-func (e *Engine) handler() {
-
-	for {
-		select {
-		case ctx, ok := <-e.reqChan:
-			if !ok {
-				e.wg.Done()
-				return
-			}
-			e.HandlerContext(ctx)
-		}
-
-	}
-
-}
+//
+//func (e *Engine) handler() {
+//
+//	for {
+//		select {
+//		case ctx, ok := <-e.reqChan:
+//			if !ok {
+//				e.wg.Done()
+//				return
+//			}
+//			e.HandlerContext(ctx)
+//		}
+//
+//	}
+//
+//}
 
 func (e *Engine) HandlerContext(ctx *Context) {
 
@@ -266,8 +270,8 @@ func (e *Engine) RunServer() {
 	e.serve.Store(ser)
 	atomic.StoreInt32(&e.closed, START)
 
-	e.wg.Add(1)
-	go e.handler()
+	//e.wg.Add(1)
+	//go e.handler()
 
 	e.wg.Add(1)
 	go func() {

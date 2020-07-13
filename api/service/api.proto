@@ -151,7 +151,7 @@ message CheckCodeReq{
 }
 
 message CheckCodeRes{
-    int32 res = 1;
+    string user_id = 1;
 }
 
 

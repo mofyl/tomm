@@ -42,7 +42,6 @@ type Ser struct {
 	//wg *sync.WaitGroup
 	//p         *task.TaskManager
 
-	userGroup     server.IRouter
 	tokenGroup    server.IRouter
 	platformGroup server.IRouter
 }
@@ -55,7 +54,6 @@ func NewService() *Ser {
 	e := server.NewEngine(nil)
 	s.e = e
 	s.conf = defaultConf
-	s.userGroup = s.e.NewGroup("/user")
 	s.platformGroup = s.e.NewGroup("/platform")
 	s.tokenGroup = s.e.NewGroup("/token")
 	s.registerRouter()
@@ -67,13 +65,14 @@ func (s *Ser) registerRouter() {
 	s.tokenGroup.GET("/getToken", s.getResourceToken)
 	s.tokenGroup.GET("/verifyToken", s.verifyToken)
 	s.tokenGroup.GET("/getUserInfo", s.getUserInfo)
+	s.tokenGroup.GET("/getCode", s.getCode)
+	s.tokenGroup.GET("/checkCode", s.checkCode)
 	// checkCode Appkey+Code
 	//
 	s.platformGroup.POST("/register", s.registerPlatform)
 	s.platformGroup.GET("/checkPlatformName", s.checkPlatformName)
 
-	s.userGroup.GET("/getCode", s.getCode)
-	s.userGroup.GET("/checkCode", s.checkCode)
+	//s.userGroup.GET("/getCode", s.getCode)
 
 }
 

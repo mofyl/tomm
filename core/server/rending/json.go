@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	jsonContentType = []string{"application/json"}
+	jsonContentType = []string{"application/json; chatset=utf-8"}
 )
 
 type JsonEncode interface {
@@ -40,6 +40,5 @@ func (j *Json) Render(w http.ResponseWriter) error {
 	if _, err := w.Write(b); err != nil {
 		return err
 	}
-
 	return nil
 }

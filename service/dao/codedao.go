@@ -73,7 +73,7 @@ func buildSql(args service.CodeInfo) string {
 	return sql.String()
 }
 
-func SaveCodeInfo(codeInfo *service.CodeInfo, code string) error {
+func SaveCodeInfo(codeInfo *service.CodeInfo) error {
 	ctx, cancel := context.WithTimeout(context.TODO(), sqldb.EXPTIME*time.Second)
 
 	if codeInfo.CreateTime == 0 {
@@ -86,9 +86,6 @@ func SaveCodeInfo(codeInfo *service.CodeInfo, code string) error {
 	if err != nil {
 		return err
 	}
-
-	// 将Code保存到redis
-	err = redis.Set(context.TODO(), fmt.Sprintf(redis.CODE_KEY, codeInfo.AppKey, code), codeInfo.MmUserId, redis.CODE_EXP)
 
 	return err
 

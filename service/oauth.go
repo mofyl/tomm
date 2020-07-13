@@ -123,20 +123,21 @@ func (s *Ser) getUserInfo(c *server.Context) {
 	codeInfo, err := dao.GetCodeInfo(service.CodeInfo{AppKey: req.AppKey, MmUserId: req.Token})
 	if err != nil {
 		log.Error("Get UserInfo Code Info Get Fail Err is %s", err.Error())
-		httpCode(c, ecode.AppKeyFail)
+		httpCode(c, ecode.ParamFail)
 		return
 	}
 
 	if codeInfo.Id == 0 {
 		log.Error("Get UserInfo Code Info Get Fail")
-		httpCode(c, ecode.AppKeyFail)
+		httpCode(c, ecode.ParamFail)
 		return
 	}
 
 	userInfo, errMsg := GetBaseUserInfo(codeInfo.MmUserId)
 
 	if errMsg != nil {
-		httpCode(c, errMsg)
+		log.Error("getUserInfo Fail errCode is %d errMsg is %s", errMsg.Code(), errMsg.Error())
+		httpCode(c, ecode.MMFail)
 		return
 	}
 
