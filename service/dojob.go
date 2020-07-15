@@ -4,7 +4,8 @@ import (
 	"context"
 	"io/ioutil"
 	"net/http"
-	"tomm/api/service"
+	"tomm/api/api"
+	"tomm/api/model"
 	"tomm/ecode"
 	"tomm/log"
 	"tomm/redis"
@@ -14,15 +15,15 @@ import (
 )
 
 func getTokenJob1(ctx *task.TaskContext) bool {
-	// *service.PlatformInfo, *service.ReqDataInfo,
-	var platformInfo *service.PlatformInfo
-	var reqDataInfo *service.TokenDataInfo
+	// *api.PlatformInfo, *api.ReqDataInfo,
+	var platformInfo *model.PlatformInfo
+	var reqDataInfo *api.TokenDataInfo
 	if plat, ok := ctx.Get("secretInfo"); ok {
-		platformInfo, _ = plat.(*service.PlatformInfo)
+		platformInfo, _ = plat.(*model.PlatformInfo)
 	}
 
 	if reqData, ok := ctx.Get("reqDataInfo"); ok {
-		reqDataInfo, _ = reqData.(*service.TokenDataInfo)
+		reqDataInfo, _ = reqData.(*api.TokenDataInfo)
 	}
 
 	mmUserInfo, errMsg := GetBaseUserInfo("")
@@ -44,7 +45,7 @@ func getTokenJob1(ctx *task.TaskContext) bool {
 	log.Debug("Return Token is %s", token)
 	// 构造返回值
 	// 返回值包括 token + expTime + extendInfo
-	tokenInfo := service.TokenInfo{
+	tokenInfo := model.TokenInfo{
 		Token:      token,
 		ExpTime:    expTime,
 		ExtendInfo: reqDataInfo.ExtendInfo,
@@ -57,7 +58,7 @@ func getTokenJob1(ctx *task.TaskContext) bool {
 		ctx.Err = ecode.NewErr(err)
 		return true
 	}
-	res := service.GetTokenRes{}
+	res := api.GetTokenRes{}
 	//res.TokenInfo = resBase64Str
 	res.Token = resBase64Str
 	ctx.Err = nil
@@ -67,18 +68,18 @@ func getTokenJob1(ctx *task.TaskContext) bool {
 }
 
 func getTokenJob2(ctx *task.TaskContext) bool {
-	var platformInfo *service.PlatformInfo
-	var tokenRes *service.GetTokenRes
+	var platformInfo *model.PlatformInfo
+	var tokenRes *api.GetTokenRes
 	if plat, ok := ctx.Get("secretInfo"); ok {
-		platformInfo, _ = plat.(*service.PlatformInfo)
+		platformInfo, _ = plat.(*model.PlatformInfo)
 	}
 	//
 	//if reqData, ok := ctx.Get("reqDataInfo"); ok {
-	//	reqDataInfo, _ = reqData.(*service.ReqDataInfo)
+	//	reqDataInfo, _ = reqData.(*api.ReqDataInfo)
 	//}
 
 	if resInterface, ok := ctx.Get("res"); ok {
-		tokenRes = resInterface.(*service.GetTokenRes)
+		tokenRes = resInterface.(*api.GetTokenRes)
 	}
 
 	var rsp *http.Response

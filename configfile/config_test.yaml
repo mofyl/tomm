@@ -14,7 +14,7 @@ redis:
   writeTimeout: 3
   dialTimeout: 5
   readTimeout: 3
-  minExpTime: 60
+  minExpTime: 180 # 3*60 单位s
 mysql:
   addr: "127.0.0.1:3306"
   userName: "root"

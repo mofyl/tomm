@@ -2,8 +2,11 @@ package service
 
 import (
 	"context"
+	"encoding/binary"
 	"fmt"
-	"tomm/api/service"
+	"time"
+	"tomm/api/api"
+	"tomm/api/model"
 	"tomm/core/server"
 	"tomm/ecode"
 	"tomm/log"
@@ -12,16 +15,20 @@ import (
 	"tomm/utils"
 )
 
+const (
+	CODE_DATA_LEN = 12
+	CODE_TIME_LEN = 8
+	CODE_EXP_TIME = 180 // 3*60s  3min
+)
+
 func (s *Ser) getCode(c *server.Context) {
-	req := service.GetCodeReq{}
+	req := api.GetCodeReq{}
 
 	if err := c.Bind(&req); err != nil {
 		httpCode(c, ecode.NewErr(err))
 		return
 	}
-
 	// 检查 该用户是否存在
-
 	_, errMsg := GetBaseUserInfo(req.UserId)
 
 	if errMsg != nil {
@@ -39,7 +46,7 @@ func (s *Ser) getCode(c *server.Context) {
 	}
 
 	// 检查 code是否存在
-	codeInfo, err := dao.GetCodeInfo(service.CodeInfo{MmUserId: req.UserId, AppKey: req.AppKey})
+	codeInfo, err := dao.GetCodeInfo(model.CodeInfo{MmUserId: req.UserId, AppKey: req.AppKey})
 	if err != nil {
 		log.Error("GetCodeInfoByUserID Fail Err is %s , UserID is %s", err.Error(), req.UserId)
 		httpCode(c, ecode.SystemErr)
@@ -62,7 +69,7 @@ func (s *Ser) getCode(c *server.Context) {
 	// 将Code保存到redis
 	err = redis.Set(context.TODO(), fmt.Sprintf(redis.CODE_KEY, codeInfo.AppKey, code), codeInfo.MmUserId, redis.CODE_EXP)
 
-	res := service.GetCodeRes{
+	res := api.GetCodeRes{
 		Code:    code,
 		BackUrl: platFormInfo.SignUrl,
 	}
@@ -70,7 +77,7 @@ func (s *Ser) getCode(c *server.Context) {
 }
 
 func (s *Ser) checkCode(c *server.Context) {
-	req := service.CheckCodeReq{}
+	req := api.CheckCodeReq{}
 
 	err := c.Bind(&req)
 
@@ -79,25 +86,68 @@ func (s *Ser) checkCode(c *server.Context) {
 		httpCode(c, ecode.ParamFail)
 		return
 	}
+	platformInfo, err := dao.GetPlatformInfo(req.AppKey)
 
-	// 查看是否授权
-	exist, userID, err := dao.CheckCode(req.AppKey, req.Code)
 	if err != nil {
-		log.Error("checkCode CheckCode Fail err is %s, AppKey is %s , Code is %s", err.Error(), req.AppKey, req.Code)
+		log.Error("CheckCode GetPlatformInfo Fail err is %s", err.Error())
+		httpCode(c, ecode.AppKeyFail)
+		return
+	}
+
+	// TimeStamp+Code
+
+	dataInfo, errCode := getDataInfo(platformInfo.SecretKey, req.Data)
+	if errCode != nil {
+		httpCode(c, errCode)
+		return
+	}
+	// 查看是否授权
+	exist, userID, err := dao.CheckCode(req.AppKey, dataInfo.Code)
+	if err != nil {
+		log.Error("checkCode CheckCode Fail err is %s, AppKey is %s , Code is %s", err.Error(), req.AppKey, dataInfo.Code)
 		httpCode(c, ecode.CodeFail)
 		return
 	}
 
 	if !exist {
-		log.Error("checkCode CheckCode Fail AppKey is %s , Code is %s", req.AppKey, req.Code)
+		log.Error("checkCode CheckCode Fail AppKey is %s , Code is %s", req.AppKey, dataInfo.Code)
 		httpCode(c, ecode.CodeFail)
 		return
 	}
 
-	res := service.CheckCodeRes{
+	res := api.CheckCodeRes{
 		UserId: userID,
 	}
 	// 检查成功返回userID
 	httpData(c, res)
+}
 
+func getDataInfo(secretKey string, data string) (model.CheckCodeData, ecode.ErrMsgs) {
+
+	res := model.CheckCodeData{}
+	oriData, err := utils.AESCBCBase64Decode(secretKey, data)
+
+	if err != nil {
+		log.Error("GetDataInfo data AESCBCBase64Decode Fail err is %s", err.Error())
+		return res, ecode.DeCodeFail
+	}
+
+	if oriData == nil || len(oriData) < CODE_DATA_LEN {
+		log.Error("GetDataInfo data too small")
+		return res, ecode.DeCodeFail
+	}
+
+	timeStamp := int64(binary.BigEndian.Uint64(oriData[:CODE_TIME_LEN]))
+
+	nowTime := time.Now().Unix()
+
+	if nowTime-timeStamp > CODE_EXP_TIME {
+		log.Error("GetDataInfo timeStamp Wrong")
+		return res, ecode.DeCodeFail
+	}
+
+	//code :=
+	res.TimeStamp = timeStamp
+	res.Code = string(oriData[CODE_TIME_LEN:])
+	return res, nil
 }

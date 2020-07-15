@@ -5,13 +5,13 @@ import (
 	"errors"
 	"fmt"
 	"time"
-	"tomm/api/service"
+	"tomm/api/model"
 	"tomm/log"
 	"tomm/redis"
 	"tomm/sqldb"
 )
 
-func SavePlatformInfo(info *service.PlatformInfo) error {
+func SavePlatformInfo(info *model.PlatformInfo) error {
 	// save DB
 	res, err := sqldb.GetDB(sqldb.MYSQL).Exec(context.TODO(),
 		"insert into platform_infos(`memo`,`app_key`,`secret_key`,`index_url`,`channel_name`,`sign_url`,`create_time`,`deleted`)values(?,?,?,?,?,?,?,?)",
@@ -30,7 +30,7 @@ func SavePlatformInfo(info *service.PlatformInfo) error {
 	return err
 }
 
-func UpdatePlatformInfo(info *service.PlatformInfo) error {
+func UpdatePlatformInfo(info *model.PlatformInfo) error {
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
 	defer cancel()
@@ -49,9 +49,9 @@ func UpdatePlatformInfo(info *service.PlatformInfo) error {
 
 }
 
-func GetPlatformInfo(appKey string) (*service.PlatformInfo, error) {
+func GetPlatformInfo(appKey string) (*model.PlatformInfo, error) {
 	//var res string
-	res := &service.PlatformInfo{}
+	res := &model.PlatformInfo{}
 	resB1 := make([]byte, 0)
 	key := fmt.Sprintf(redis.PLATFORM_INFO_KEY, appKey)
 	err := redis.Get(context.TODO(), key, &resB1)
@@ -62,7 +62,7 @@ func GetPlatformInfo(appKey string) (*service.PlatformInfo, error) {
 	//
 	err = res.Unmarshal(resB1)
 
-	//sInfo := &service.PlatformInfo{}
+	//sInfo := &api.PlatformInfo{}
 	if err != nil {
 		return nil, err
 	} else if res.AppKey != "" {
@@ -91,15 +91,11 @@ func GetPlatformInfo(appKey string) (*service.PlatformInfo, error) {
 
 }
 
-func PlatFormExist() {
-
-}
-
 // true 表示可用 false 表示不可用
 func CheckPlatformName(platformName string) bool {
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
-	res := &service.PlatformInfo{}
+	res := &model.PlatformInfo{}
 	err := sqldb.GetDB(sqldb.MYSQL).QueryOne(ctx, res, "select channel_name from tomm.platform_infos where channel_name = ?", platformName)
 	cancel()
 	if err != nil {

@@ -6,24 +6,24 @@ import (
 	"fmt"
 	"strings"
 	"time"
-	"tomm/api/service"
+	"tomm/api/model"
 	"tomm/redis"
 	"tomm/sqldb"
 )
 
-func GetCodeInfoByUserID(mmUserID string) (*service.CodeInfo, error) {
+func GetCodeInfoByUserID(mmUserID string) (*model.CodeInfo, error) {
 	ctx, cancel := context.WithTimeout(context.TODO(), sqldb.EXPTIME*time.Second)
-	codeInfo := &service.CodeInfo{}
+	codeInfo := &model.CodeInfo{}
 	err := sqldb.GetDB(sqldb.MYSQL).QueryOne(ctx, codeInfo, "select * from tomm.code_infos where mm_user_id=?", mmUserID)
 	cancel()
 
 	return codeInfo, err
 }
 
-func GetCodeInfo(args service.CodeInfo) (*service.CodeInfo, error) {
+func GetCodeInfo(args model.CodeInfo) (*model.CodeInfo, error) {
 
 	ctx, cancel := context.WithTimeout(context.TODO(), sqldb.EXPTIME*time.Second)
-	codeInfo := &service.CodeInfo{}
+	codeInfo := &model.CodeInfo{}
 	sqlTotal := strings.Builder{}
 	sqlTotal.WriteString("select * from tomm.code_infos where ")
 	sql := buildSql(args)
@@ -34,7 +34,7 @@ func GetCodeInfo(args service.CodeInfo) (*service.CodeInfo, error) {
 	return codeInfo, err
 }
 
-func CodeExistDB(args service.CodeInfo) (bool, error) {
+func CodeExistDB(args model.CodeInfo) (bool, error) {
 	ctx, cancel := context.WithTimeout(context.TODO(), sqldb.EXPTIME*time.Second)
 	sqlTotal := strings.Builder{}
 	sqlTotal.WriteString("select count(*) from tomm.code_infos where ")
@@ -50,7 +50,7 @@ func CodeExistDB(args service.CodeInfo) (bool, error) {
 	return res == 1, nil
 }
 
-func buildSql(args service.CodeInfo) string {
+func buildSql(args model.CodeInfo) string {
 	sql := strings.Builder{}
 
 	if args.Id != 0 {
@@ -73,7 +73,7 @@ func buildSql(args service.CodeInfo) string {
 	return sql.String()
 }
 
-func SaveCodeInfo(codeInfo *service.CodeInfo) error {
+func SaveCodeInfo(codeInfo *model.CodeInfo) error {
 	ctx, cancel := context.WithTimeout(context.TODO(), sqldb.EXPTIME*time.Second)
 
 	if codeInfo.CreateTime == 0 {

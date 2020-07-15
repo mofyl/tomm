@@ -165,3 +165,7 @@ func JoinPath(absPath string, relativePath string) string {
 	}
 	return finalPath
 }
+
+func RemoveSpace(str string) string {
+	return strings.TrimSpace(str)
+}

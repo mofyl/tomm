@@ -22,9 +22,12 @@ type sInfo struct {
 	fields []*field
 }
 
+type option map[string]struct{}
+
 type field struct {
-	tp   reflect.StructField
-	name string
+	tp      reflect.StructField
+	name    string
+	options option
 
 	hasDefault   bool
 	defaultValue reflect.Value
@@ -52,7 +55,11 @@ func (c *cache) set(p reflect.Type) *sInfo {
 	for i := 0; i < tp.NumField(); i++ {
 		fd := &field{}
 		fd.tp = tp.Field(i)
-		fd.name = fd.tp.Tag.Get("form")
+		//fd.name = fd.tp.Tag.Get("form")
+		info := fd.tp.Tag.Get("form")
+		name, op := splitNameAndOption(info)
+		fd.name = name
+		fd.options = op
 		if dev := fd.tp.Tag.Get("default"); dev != "" {
 			dv := reflect.New(fd.tp.Type).Elem()
 			err := setWithProperType(fd.tp.Type.Kind(), []string{dev}, dv)

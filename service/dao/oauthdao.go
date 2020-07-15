@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"time"
-	"tomm/api/service"
+	"tomm/api/model"
 	"tomm/redis"
 	"tomm/utils"
 )
@@ -74,7 +74,7 @@ func LeaseRenewKey(key string, expTime int64) error {
 	return nil
 }
 
-func CreateOAuthInfo(info *service.PlatformInfo) error {
+func CreateOAuthInfo(info *model.PlatformInfo) error {
 	appKey, err := utils.StrUUID()
 	if err != nil {
 		return err

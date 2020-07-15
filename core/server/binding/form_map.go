@@ -9,6 +9,7 @@ import (
 func mapForm(ptr interface{}, form map[string][]string) error {
 	sInfo := sCache.get(reflect.TypeOf(ptr))
 	val := reflect.ValueOf(ptr).Elem()
+	var err error
 	for i, fd := range sInfo.fields {
 		structVal := val.Field(i)
 		if !structVal.CanSet() {
@@ -22,9 +23,17 @@ func mapForm(ptr interface{}, form map[string][]string) error {
 		if !ok {
 			if fd.hasDefault {
 				structVal.Set(fd.defaultValue)
+				continue
 			}
-			continue
 		}
+		// 检查Op
+		if !fd.hasDefault {
+			err = CheckOptions(fd.options, formV)
+			if err != nil {
+				return err
+			}
+		}
+
 		if formV[0] == "" && fd.hasDefault {
 			structVal.Set(fd.defaultValue)
 			continue

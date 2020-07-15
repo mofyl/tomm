@@ -2,7 +2,8 @@ package service
 
 import (
 	"time"
-	"tomm/api/service"
+	"tomm/api/api"
+	"tomm/api/model"
 	"tomm/core/server"
 	"tomm/ecode"
 	"tomm/log"
@@ -11,7 +12,7 @@ import (
 )
 
 func (s *Ser) verifyToken(c *server.Context) {
-	req := service.VerifyTokenReq{}
+	req := api.VerifyTokenReq{}
 	err := c.Bind(&req)
 	if err != nil {
 		log.Warn("VerifyToken Bind Err is %s", err.Error())
@@ -29,7 +30,7 @@ func (s *Ser) verifyToken(c *server.Context) {
 		// 校验失败
 		httpCode(c, ecode.VerifyFail)
 	}
-	res := service.VerifyTokenRes{}
+	res := api.VerifyTokenRes{}
 	res.ExpTime = expTime
 	httpData(c, res)
 }
@@ -43,7 +44,7 @@ func (s *Ser) getResourceToken(c *server.Context) {
 	}
 
 	// 查看该Code是否存在
-	exist, err := dao.CodeExistDB(service.CodeInfo{AppKey: req.AppKey})
+	exist, err := dao.CodeExistDB(model.CodeInfo{AppKey: req.AppKey})
 	if err != nil {
 		log.Error("Get Resource Token CodeExistDB Fail err is %s , Code is %s", err.Error(), reqDataInfo.Code)
 		httpCode(c, ecode.CodeFail)
@@ -63,7 +64,7 @@ func (s *Ser) getResourceToken(c *server.Context) {
 		return
 	}
 
-	tokenInfo := service.TokenInfo{
+	tokenInfo := model.TokenInfo{
 		Token:      token,
 		ExpTime:    expTime,
 		ExtendInfo: reqDataInfo.ExtendInfo,
@@ -77,7 +78,7 @@ func (s *Ser) getResourceToken(c *server.Context) {
 		return
 	}
 
-	res := service.GetTokenRes{
+	res := api.GetTokenRes{
 		Token: resBase64Str,
 	}
 
@@ -97,7 +98,7 @@ func (s *Ser) getResourceToken(c *server.Context) {
 }
 
 func (s *Ser) getUserInfo(c *server.Context) {
-	req := service.GetUserInfoReq{}
+	req := api.GetUserInfoReq{}
 	err := c.Bind(&req)
 
 	if err != nil {
@@ -120,7 +121,7 @@ func (s *Ser) getUserInfo(c *server.Context) {
 
 	// 使用appkey 获取userID
 	// TODO: 这里的Token 先改成userID
-	codeInfo, err := dao.GetCodeInfo(service.CodeInfo{AppKey: req.AppKey, MmUserId: req.Token})
+	codeInfo, err := dao.GetCodeInfo(model.CodeInfo{AppKey: req.AppKey, MmUserId: req.Token})
 	if err != nil {
 		log.Error("Get UserInfo Code Info Get Fail Err is %s", err.Error())
 		httpCode(c, ecode.ParamFail)
@@ -145,8 +146,8 @@ func (s *Ser) getUserInfo(c *server.Context) {
 
 }
 
-func checkGetTokenReq(c *server.Context) (*service.GetTokenReq, *service.PlatformInfo, *service.TokenDataInfo, ecode.ErrMsgs) {
-	req := &service.GetTokenReq{}
+func checkGetTokenReq(c *server.Context) (*api.GetTokenReq, *model.PlatformInfo, *api.TokenDataInfo, ecode.ErrMsgs) {
+	req := &api.GetTokenReq{}
 	err := c.Bind(req)
 
 	if err != nil {
@@ -194,7 +195,7 @@ func checkGetTokenReq(c *server.Context) (*service.GetTokenReq, *service.Platfor
 	return req, secretInfo, reqDataInfo, nil
 }
 
-func GetDataInfo(secretKey string, data string) (*service.TokenDataInfo, ecode.ErrMsgs) {
+func GetDataInfo(secretKey string, data string) (*api.TokenDataInfo, ecode.ErrMsgs) {
 
 	// 使用 secretKey 进行 AES解密
 	origData, err := utils.AESCBCBase64Decode(secretKey, data)
@@ -220,7 +221,7 @@ func GetDataInfo(secretKey string, data string) (*service.TokenDataInfo, ecode.E
 	//	ExtendInfo:  extendInfo,
 	//}
 
-	reqInfo := &service.TokenDataInfo{}
+	reqInfo := &api.TokenDataInfo{}
 	err = utils.Json.Unmarshal(origData, reqInfo)
 
 	if err != nil {

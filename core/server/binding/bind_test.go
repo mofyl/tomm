@@ -1,19 +1,20 @@
 package binding
 
 import (
+	"fmt"
 	"testing"
 	"tomm/log"
 )
 
 type TestStruct struct {
-	A string `form:"a_field" default:"aaaa"`
+	A string `form:"a_field,required"`
 	B string `form:"b_field" default:"bbbb"`
 }
 
 func TestDefaultBind(t *testing.T) {
 	ts := TestStruct{}
 
-	log.Info("TestDefaultBind Bind Name is %s", formBind.Name())
+	log.Debug("TestDefaultBind Bind Name is %s", formBind.Name())
 	testForm := make(map[string][]string)
 	testForm["a_field"] = []string{""}
 	testForm["b_field"] = []string{""}
@@ -24,4 +25,19 @@ func TestDefaultBind(t *testing.T) {
 	}
 
 	log.Info("TestStruct content is %v ", ts)
+}
+
+func TestStructPoint(t *testing.T) {
+
+	temp := make(map[string]struct{}, 0)
+
+	temp["11"] = struct{}{}
+	temp["22"] = struct{}{}
+	temp["33"] = struct{}{}
+	temp["44"] = struct{}{}
+
+	for k, v := range temp {
+		fmt.Println("k ", k)
+		fmt.Printf("v %p \n", &v)
+	}
 }

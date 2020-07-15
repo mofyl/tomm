@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package api;
+
+
+message RegisterPlatformReq {
+    // @inject_tag: form:"platform_name,required"
+    string platform_name = 1;
+    // @inject_tag: form:"memo,required"
+    string memo = 2;
+    // @inject_tag: form:"index_url,required"
+    string index_url =3;
+    // @inject_tag: form:"sign_url,required"
+    string sign_url = 4;
+}
+
+message RegisterPlatformRes {
+    string secret_key  = 1;
+    string app_key = 2;
+}
+
+message CheckPlatformNameReq {
+    // @inject_tag: form:"name,required"
+    string name = 1;
+}
+
+message CheckPlatformNameRes {
+    // 1 为已占用 2 为可使用
+    int32 res = 1;
+}
+
+
+message DeletePlatformReq{
+    // @inject_tag: form:"channel_id,required"
+    int64 channel_id= 1;
+    // @inject_tag: form:"user_id,required"
+    int64 user_id = 2;
+}
+
+message DeletePlatformRes{
+    // 1 表示失败  2 表示成功
+    int32 res = 1;
+}
+
+ message GetTokenReq {
+    // @inject_tag: form:"app_key,required"
+    string app_key = 1;
+    // @inject_tag: form:"data,required"
+    string data = 2;
+}
+
+message TokenDataInfo{
+    int64 send_time = 1;
+    string code = 2;
+    bytes extend_info = 3;
+}
+
+message GetTokenRes{
+   string token = 1;
+}
+
+message VerifyTokenReq{
+    // @inject_tag: form:"app_key,required"
+   string app_key = 1;
+    // @inject_tag: form:"token,required"
+   string token = 2;
+}
+
+message VerifyTokenRes {
+   int64 exp_time = 1;
+}
+
+
+message GetCodeReq {
+    // @inject_tag: form:"user_id,required"
+    string user_id = 1;
+    // @inject_tag: form:"app_key,required"
+    string app_key = 2;
+}
+
+message GetCodeRes{
+    string code = 1;
+    string back_url = 2;
+}
+
+
+ message GetUserInfoReq{
+    // @inject_tag: form:"token,required"
+    string token = 1;
+    // @inject_tag: form:"app_key,required"
+    string app_key = 2;
+}
+
+message CheckCodeReq{
+    // @inject_tag: form:"app_key,required"
+    string app_key = 1;
+    // @inject_tag: form:"data,required"
+    string data = 2;
+}
+
+message CheckCodeRes{
+    string user_id = 1;
+}
+
+
+

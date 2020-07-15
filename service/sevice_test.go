@@ -3,7 +3,7 @@ package service
 import (
 	"testing"
 	"time"
-	"tomm/api/service"
+	"tomm/api/api"
 	"tomm/log"
 	"tomm/utils"
 )
@@ -13,7 +13,7 @@ func getAESBaseStr() string {
 	secretKey := "2ffd7fbe21a5e6eb3321d723900a79f0"
 	//appKey := "055285a69ec81f6477e49fe95da22eba"
 	sendTime := time.Now().Unix()
-	dataInfo := service.TokenDataInfo{
+	dataInfo := api.TokenDataInfo{
 		SendTime:   sendTime,
 		Code:       "59e3675398689141aad9e659cb3d23ee",
 		ExtendInfo: nil,
@@ -34,7 +34,7 @@ func getAESBaseStr() string {
 		log.Info("Decode err is %s", err)
 		return ""
 	}
-	res := service.TokenDataInfo{}
+	res := api.TokenDataInfo{}
 	err = utils.Json.Unmarshal(origData, &res)
 	if err != nil {
 		log.Info("Json Unmarshal err is %s", err)
@@ -58,7 +58,7 @@ func TestGetToken(t *testing.T) {
 
 //	secretKey := "2ffd7fbe21a5e6eb3321d723900a79f0"
 //
-//	getTokenRes := service.GetTokenRes{}
+//	getTokenRes := api.GetTokenRes{}
 //
 //	getTokenRes.Token = "9IzGNxXoPdL3hoYhnlj5Ag0LBvvgNnd4n10o1LgZJAUQxY8aQQ6CIXG5pqIgFOnzUdMPqtR4mSK9VK5PnqNicA"
 //
@@ -67,7 +67,7 @@ func TestGetToken(t *testing.T) {
 //		log.Info("Decode Fail Err is %s", err.Error())
 //		return
 //	}
-//	info := service.TokenInfo{}
+//	info := api.TokenInfo{}
 //
 //	utils.Json.Unmarshal(tokenInfoB, &info)
 //

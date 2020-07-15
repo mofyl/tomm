@@ -3,22 +3,22 @@ package task
 import (
 	"errors"
 	"tomm/api/job"
-	"tomm/config"
 )
 
 var (
 	tm *TaskManager
 )
 
-func init() {
-
-	defaultConf = &PoolConf{}
-	err := config.Decode(config.CONFIG_FILE_NAME, "pool", defaultConf)
-	if err != nil {
-		panic("Pool Load Config Fail Err is " + err.Error())
-	}
-	tm = NewTaskManager()
-}
+//
+//func init() {
+//
+//	defaultConf = &PoolConf{}
+//	err := config.Decode(config.CONFIG_FILE_NAME, "pool", defaultConf)
+//	if err != nil {
+//		panic("Pool Load Config Fail Err is " + err.Error())
+//	}
+//	tm = NewTaskManager()
+//}
 
 func NewTaskContext(notifyChan chan *TaskContext, taskType job.JobApi, taskStage int32, taskHandlers ...TaskHandler) (error, *TaskContext) {
 

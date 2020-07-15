@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"testing"
-	"tomm/api/service"
+	"tomm/api/model"
 )
 
 func TestMysql(t *testing.T) {
@@ -19,14 +19,14 @@ func TestMysql(t *testing.T) {
 	//fmt.Println(11111)
 
 	db := GetDB(MYSQL)
-	//codeInfo := service.CodeInfo{}
+	//codeInfo := api.CodeInfo{}
 	//err := db.QueryOne(context.TODO(), &codeInfo, "select * from tomm.code_infos where code=?", "qweqwe")
 	//if err != nil {
 	//	fmt.Println(err)
 	//	return
 	//}
 
-	codeInfos := make([]service.CodeInfo, 0)
+	codeInfos := make([]model.CodeInfo, 0)
 
 	err := db.QueryAll(context.TODO(), &codeInfos, "select * from tomm.code_infos where code=?", "qweqwe")
 

@@ -1,7 +1,8 @@
 package service
 
 import (
-	"tomm/api/service"
+	"tomm/api/api"
+	"tomm/api/model"
 	"tomm/core/server"
 	"tomm/ecode"
 	"tomm/log"
@@ -9,7 +10,7 @@ import (
 )
 
 func (s *Ser) registerPlatform(c *server.Context) {
-	req := service.RegisterPlatformReq{}
+	req := api.RegisterPlatformReq{}
 	err := c.Bind(&req)
 
 	if err != nil {
@@ -18,7 +19,7 @@ func (s *Ser) registerPlatform(c *server.Context) {
 		return
 	}
 
-	info := service.PlatformInfo{
+	info := model.PlatformInfo{
 		Memo:        req.Memo,
 		IndexUrl:    req.IndexUrl,
 		ChannelName: req.PlatformName,
@@ -33,7 +34,7 @@ func (s *Ser) registerPlatform(c *server.Context) {
 		return
 	}
 
-	res := service.RegisterPlatformRes{
+	res := api.RegisterPlatformRes{
 		SecretKey: info.SecretKey,
 		AppKey:    info.AppKey,
 	}
@@ -43,7 +44,7 @@ func (s *Ser) registerPlatform(c *server.Context) {
 }
 
 func (s *Ser) checkPlatformName(c *server.Context) {
-	req := service.CheckPlatformNameReq{}
+	req := api.CheckPlatformNameReq{}
 	err := c.Bind(&req)
 
 	if err != nil {
@@ -53,7 +54,7 @@ func (s *Ser) checkPlatformName(c *server.Context) {
 	}
 	canUsed := dao.CheckPlatformName(req.Name)
 
-	res := &service.CheckPlatformNameRes{}
+	res := &api.CheckPlatformNameRes{}
 
 	if canUsed {
 		res.Res = 2
@@ -65,5 +66,11 @@ func (s *Ser) checkPlatformName(c *server.Context) {
 }
 
 func (s *Ser) deletePlatformName(c *server.Context) {
+
+}
+
+func (s *Ser) getPlatformByUserID(c *server.Context) {
+
+	// 将用户的UserID传过来
 
 }

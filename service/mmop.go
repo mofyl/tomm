@@ -3,7 +3,7 @@ package service
 import (
 	"errors"
 	"io/ioutil"
-	"tomm/api/service"
+	"tomm/api/model"
 	"tomm/ecode"
 	"tomm/log"
 	"tomm/utils"
@@ -17,7 +17,7 @@ type MMRsp struct {
 	Data    []byte `json:"data"`
 }
 
-func GetBaseUserInfo(userID string) (*service.UserBaseInfo, ecode.ErrMsgs) {
+func GetBaseUserInfo(userID string) (*model.UserBaseInfo, ecode.ErrMsgs) {
 	arg := make(map[string]string, 1)
 	arg["key"] = utils.MM_PRIVATE_KEY
 	arg["user_id"] = userID
@@ -31,7 +31,7 @@ func GetBaseUserInfo(userID string) (*service.UserBaseInfo, ecode.ErrMsgs) {
 		return nil, ecode.NewErrWithMsg(rsp.ErrMsg, ecode.FromInt(int64(rsp.ErrCode)))
 	}
 
-	info := &service.UserBaseInfo{}
+	info := &model.UserBaseInfo{}
 
 	err = utils.Json.Unmarshal(rsp.Data, info)
 	if err != nil {

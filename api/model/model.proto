@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package model;
+
+
+
+message PlatformInfo {
+    // @inject_tag: db:"id"
+    int64 id = 1 ;
+    // @inject_tag: db:"memo"
+    string memo = 2;
+    // @inject_tag: db:"secret_key"
+    string secret_key = 3;
+    // @inject_tag: db:"app_key"
+    string app_key = 4;
+    // @inject_tag: db:"index_url"
+    string index_url = 5;
+    // @inject_tag: db:"channel_name"
+    string channel_name = 6;
+    // @inject_tag: db:"sign_url"
+    string sign_url = 7;
+    // @inject_tag: db:"create_time"
+    int64 create_time = 8;
+    // 1 表示未删除  2表示删除
+    // @inject_tag: db:"deleted"
+    int32 deleted = 9;
+    // @inject_tag: db:"deleted_time"
+    int64 deleted_time = 10;
+}
+
+
+
+message TokenInfo{
+    string token = 1;
+    int64 exp_time = 2;
+    bytes extend_info = 3;
+}
+
+
+message CodeInfo {
+    // @inject_tag: db:"id"
+    int64 id = 1;
+    // @inject_tag: db:"app_key"
+    string app_key = 2;
+    // @inject_tag: db:"create_time"
+    int64 create_time = 3;
+    // @inject_tag: db:"mm_user_id"
+    string mm_user_id = 4;
+}
+
+
+
+message UserBaseInfo{
+    string id = 1;
+    string user_name = 2;
+    int64 create_at = 3;
+    string email = 4;
+    string nick_name = 5;
+    string first_name = 6;
+    string last_name = 7;
+}
+
+
+message CheckCodeData{
+    int64 time_stamp = 1;
+    string code = 2;
+}
