@@ -4,6 +4,7 @@ import (
 	"errors"
 	"io/ioutil"
 	"tomm/api/model"
+	"tomm/core/server"
 	"tomm/ecode"
 	"tomm/log"
 	"tomm/utils"
@@ -41,7 +42,7 @@ func GetBaseUserInfo(userID string) (*model.UserBaseInfo, ecode.ErrMsgs) {
 }
 
 func getMMRsp(url string, args map[string]string) (*MMRsp, error) {
-	rsp, err := HttpGet(url, args)
+	rsp, err := server.HttpGet(url, args)
 
 	if err != nil {
 		return nil, err

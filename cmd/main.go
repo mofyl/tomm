@@ -4,6 +4,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"tomm/core/server"
 	"tomm/service"
 )
 
@@ -18,4 +19,5 @@ func main() {
 	<-c
 
 	s.Close()
+	server.Close()
 }

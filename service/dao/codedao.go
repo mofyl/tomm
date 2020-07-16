@@ -14,7 +14,7 @@ import (
 func GetCodeInfoByUserID(mmUserID string) (*model.CodeInfo, error) {
 	ctx, cancel := context.WithTimeout(context.TODO(), sqldb.EXPTIME*time.Second)
 	codeInfo := &model.CodeInfo{}
-	err := sqldb.GetDB(sqldb.MYSQL).QueryOne(ctx, codeInfo, "select * from tomm.code_infos where mm_user_id=?", mmUserID)
+	err := sqldb.GetDB(sqldb.MYSQL).QueryOne(ctx, codeInfo, "select * from tomm.mm_user_authorize_infos where mm_user_id=?", mmUserID)
 	cancel()
 
 	return codeInfo, err
@@ -25,7 +25,7 @@ func GetCodeInfo(args model.CodeInfo) (*model.CodeInfo, error) {
 	ctx, cancel := context.WithTimeout(context.TODO(), sqldb.EXPTIME*time.Second)
 	codeInfo := &model.CodeInfo{}
 	sqlTotal := strings.Builder{}
-	sqlTotal.WriteString("select * from tomm.code_infos where ")
+	sqlTotal.WriteString("select * from tomm.mm_user_authorize_infos where ")
 	sql := buildSql(args)
 	sqlTotal.WriteString(sql)
 	err := sqldb.GetDB(sqldb.MYSQL).QueryOne(ctx, codeInfo, sqlTotal.String())
@@ -37,7 +37,7 @@ func GetCodeInfo(args model.CodeInfo) (*model.CodeInfo, error) {
 func CodeExistDB(args model.CodeInfo) (bool, error) {
 	ctx, cancel := context.WithTimeout(context.TODO(), sqldb.EXPTIME*time.Second)
 	sqlTotal := strings.Builder{}
-	sqlTotal.WriteString("select count(*) from tomm.code_infos where ")
+	sqlTotal.WriteString("select count(*) from tomm.mm_user_authorize_infos where ")
 	sql := buildSql(args)
 	sqlTotal.WriteString(sql)
 	var res int64
@@ -80,7 +80,7 @@ func SaveCodeInfo(codeInfo *model.CodeInfo) error {
 		codeInfo.CreateTime = time.Now().Unix()
 	}
 
-	_, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, "insert into `tomm`.`code_infos`(`app_key`,`create_time`,`mm_user_id`) values(?,?,?)",
+	_, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, "insert into `tomm`.`mm_user_authorize_infos`(`app_key`,`create_time`,`mm_user_id`) values(?,?,?)",
 		codeInfo.AppKey, codeInfo.CreateTime, codeInfo.MmUserId)
 	cancel()
 	if err != nil {

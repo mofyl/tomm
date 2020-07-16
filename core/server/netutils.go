@@ -1,4 +1,4 @@
-package service
+package server
 
 import (
 	"bytes"
@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"strings"
 	"time"
-	"tomm/core/server"
 	"tomm/core/server/rending"
 	"tomm/ecode"
 )
@@ -20,15 +19,15 @@ func init() {
 	cli.Timeout = 5 * time.Second
 }
 
-func httpCode(c *server.Context, msgs ecode.ErrMsgs) {
+func HttpCode(c *Context, msgs ecode.ErrMsgs) {
 	c.Json(nil, msgs)
 }
 
-func httpData(c *server.Context, data interface{}) {
+func HttpData(c *Context, data interface{}) {
 	c.Json(data, ecode.OK)
 }
 
-func backCode(urlStr string, code ecode.ErrMsgs) (*http.Response, error) {
+func BackCode(urlStr string, code ecode.ErrMsgs) (*http.Response, error) {
 	return HttpJsonPost(urlStr, &rending.Json{
 		Code: code.Code(),
 		Msg:  code.Error(),
@@ -36,7 +35,7 @@ func backCode(urlStr string, code ecode.ErrMsgs) (*http.Response, error) {
 	})
 }
 
-func backData(urlStr string, data interface{}) (*http.Response, error) {
+func BackData(urlStr string, data interface{}) (*http.Response, error) {
 	return HttpJsonPost(urlStr, &rending.Json{
 		Code: ecode.OK.Code(),
 		Msg:  ecode.OK.Error(),
@@ -66,4 +65,10 @@ func HttpGet(url string, arg map[string]string) (*http.Response, error) {
 	urlStr = urlStr[:len(urlStr)-1]
 
 	return cli.Get(urlStr)
+}
+
+func Close() {
+	if cli != nil {
+		cli.CloseIdleConnections()
+	}
 }

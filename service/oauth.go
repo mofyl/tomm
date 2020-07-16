@@ -11,7 +11,7 @@ import (
 	"tomm/utils"
 )
 
-func (s *Ser) verifyToken(c *server.Context) {
+func VerifyToken(c *server.Context) {
 	req := api.VerifyTokenReq{}
 	err := c.Bind(&req)
 	if err != nil {
@@ -23,23 +23,25 @@ func (s *Ser) verifyToken(c *server.Context) {
 
 	if err != nil {
 		log.Error("Verify Token Fail Err is %s", err.Error())
-		httpCode(c, ecode.ParamFail)
+		server.HttpCode(c, ecode.ParamFail)
+		return
 	}
 
 	if token != token {
 		// 校验失败
-		httpCode(c, ecode.VerifyFail)
+		server.HttpCode(c, ecode.VerifyFail)
+		return
 	}
 	res := api.VerifyTokenRes{}
 	res.ExpTime = expTime
-	httpData(c, res)
+	server.HttpData(c, res)
 }
 
-func (s *Ser) getResourceToken(c *server.Context) {
+func GetResourceToken(c *server.Context) {
 
 	req, secretInfo, reqDataInfo, eCode := checkGetTokenReq(c)
 	if eCode != nil {
-		httpCode(c, eCode)
+		server.HttpCode(c, eCode)
 		return
 	}
 
@@ -47,20 +49,20 @@ func (s *Ser) getResourceToken(c *server.Context) {
 	exist, err := dao.CodeExistDB(model.CodeInfo{AppKey: req.AppKey})
 	if err != nil {
 		log.Error("Get Resource Token CodeExistDB Fail err is %s , Code is %s", err.Error(), reqDataInfo.Code)
-		httpCode(c, ecode.CodeFail)
+		server.HttpCode(c, ecode.CodeFail)
 		return
 	}
 
 	if !exist {
 		log.Error("Get Resource Token CodeExistDB Code Not Exist,AppKey is %s Code is %s", req.AppKey, reqDataInfo.Code)
-		httpCode(c, ecode.CodeFail)
+		server.HttpCode(c, ecode.CodeFail)
 		return
 	}
 
 	token, expTime, err := dao.GetTokenAndCreate(req.AppKey)
 	if err != nil {
 		log.Error("Get Token Fail err is %s", err.Error())
-		httpCode(c, ecode.SystemErr)
+		server.HttpCode(c, ecode.SystemErr)
 		return
 	}
 
@@ -74,7 +76,7 @@ func (s *Ser) getResourceToken(c *server.Context) {
 	resBase64Str, err := utils.AESCBCBase64Encode(secretInfo.SecretKey, tokenB)
 	if err != nil {
 		log.Error("AESCBCBase64Encode Fail Err is %s", err.Error())
-		httpCode(c, ecode.SystemErr)
+		server.HttpCode(c, ecode.SystemErr)
 		return
 	}
 
@@ -82,7 +84,7 @@ func (s *Ser) getResourceToken(c *server.Context) {
 		Token: resBase64Str,
 	}
 
-	httpData(c, res)
+	server.HttpData(c, res)
 	//
 	//err, ctx := task.NewTaskContext(s.jobNotify, job.JobApi_JobUserInfo, 3, getTokenJob1, getTokenJob2)
 	//
@@ -97,25 +99,25 @@ func (s *Ser) getResourceToken(c *server.Context) {
 	return
 }
 
-func (s *Ser) getUserInfo(c *server.Context) {
+func GetUserInfo(c *server.Context) {
 	req := api.GetUserInfoReq{}
 	err := c.Bind(&req)
 
 	if err != nil {
 		log.Error("Get UserInfo Bind Fail")
-		httpCode(c, ecode.ParamFail)
+		server.HttpCode(c, ecode.ParamFail)
 		return
 	}
 	//token, err := dao.GetToken(req.AppKey)
 	//if err != nil {
 	//	log.Error("Get UserInfo Token Not Exist Err is %s , AppKey is %s", err.Error(), req.AppKey)
-	//	httpCode(c, ecode.AppKeyFail)
+	//	utils.HttpCode(c, ecode.AppKeyFail)
 	//	return
 	//}
 	//
 	//if token != req.Token {
 	//	log.Error("Get UserInfo Token Not Exist AppKey is %s", req.AppKey)
-	//	httpCode(c, ecode.TokenFail)
+	//	utils.HttpCode(c, ecode.TokenFail)
 	//	return
 	//}
 
@@ -124,13 +126,13 @@ func (s *Ser) getUserInfo(c *server.Context) {
 	codeInfo, err := dao.GetCodeInfo(model.CodeInfo{AppKey: req.AppKey, MmUserId: req.Token})
 	if err != nil {
 		log.Error("Get UserInfo Code Info Get Fail Err is %s", err.Error())
-		httpCode(c, ecode.ParamFail)
+		server.HttpCode(c, ecode.ParamFail)
 		return
 	}
 
 	if codeInfo.Id == 0 {
 		log.Error("Get UserInfo Code Info Get Fail")
-		httpCode(c, ecode.ParamFail)
+		server.HttpCode(c, ecode.ParamFail)
 		return
 	}
 
@@ -138,11 +140,11 @@ func (s *Ser) getUserInfo(c *server.Context) {
 
 	if errMsg != nil {
 		log.Error("getUserInfo Fail errCode is %d errMsg is %s", errMsg.Code(), errMsg.Error())
-		httpCode(c, ecode.MMFail)
+		server.HttpCode(c, ecode.MMFail)
 		return
 	}
 
-	httpData(c, userInfo)
+	server.HttpData(c, userInfo)
 
 }
 
@@ -175,7 +177,7 @@ func checkGetTokenReq(c *server.Context) (*api.GetTokenReq, *model.PlatformInfo,
 	//	return nil, nil, nil, ecode.AppKeyFail
 	//}
 
-	reqDataInfo, eCode := GetDataInfo(secretInfo.SecretKey, req.Data)
+	reqDataInfo, eCode := getTokenDataInfo(secretInfo.SecretKey, req.Data)
 	if eCode != nil {
 		log.Error("Get Data Info Fail ")
 		return nil, nil, nil, eCode
@@ -195,7 +197,7 @@ func checkGetTokenReq(c *server.Context) (*api.GetTokenReq, *model.PlatformInfo,
 	return req, secretInfo, reqDataInfo, nil
 }
 
-func GetDataInfo(secretKey string, data string) (*api.TokenDataInfo, ecode.ErrMsgs) {
+func getTokenDataInfo(secretKey string, data string) (*api.TokenDataInfo, ecode.ErrMsgs) {
 
 	// 使用 secretKey 进行 AES解密
 	origData, err := utils.AESCBCBase64Decode(secretKey, data)

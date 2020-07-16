@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"tomm/api/api"
 	"tomm/api/model"
+	"tomm/core/server"
 	"tomm/ecode"
 	"tomm/log"
 	"tomm/redis"
@@ -64,7 +65,7 @@ func getTokenJob1(ctx *task.TaskContext) bool {
 	ctx.Err = nil
 	ctx.Set("res", res)
 	return true
-	//httpData(c, res)
+	//utils.HttpData(c, res)
 }
 
 func getTokenJob2(ctx *task.TaskContext) bool {
@@ -85,9 +86,9 @@ func getTokenJob2(ctx *task.TaskContext) bool {
 	var rsp *http.Response
 	var err error
 	if ctx.Err != nil {
-		rsp, err = backCode(platformInfo.SignUrl, ctx.Err)
+		rsp, err = server.BackCode(platformInfo.SignUrl, ctx.Err)
 	} else {
-		rsp, err = backData(platformInfo.SignUrl, tokenRes)
+		rsp, err = server.BackData(platformInfo.SignUrl, tokenRes)
 	}
 
 	if err != nil {

@@ -1,3 +1,4 @@
+CREATE DATABASE platform DEFAULT CHARSET utf8;
 
 CREATE TABLE `platform_infos` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -16,11 +17,11 @@ CREATE TABLE `platform_infos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE `code_infos` (
+CREATE TABLE `mm_user_authorize_infos` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `app_key` varchar(32) NOT NULL,
   `create_time` bigint(20) NOT NULL,
-  `mm_user_id` varchar(256),
+  `mm_user_id` varchar(256) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_app_key` (`app_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

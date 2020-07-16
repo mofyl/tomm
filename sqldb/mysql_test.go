@@ -20,7 +20,7 @@ func TestMysql(t *testing.T) {
 
 	db := GetDB(MYSQL)
 	//codeInfo := api.CodeInfo{}
-	//err := db.QueryOne(context.TODO(), &codeInfo, "select * from tomm.code_infos where code=?", "qweqwe")
+	//err := db.QueryOne(context.TODO(), &codeInfo, "select * from tomm.mm_user_authorize_infos where code=?", "qweqwe")
 	//if err != nil {
 	//	fmt.Println(err)
 	//	return
@@ -28,7 +28,7 @@ func TestMysql(t *testing.T) {
 
 	codeInfos := make([]model.CodeInfo, 0)
 
-	err := db.QueryAll(context.TODO(), &codeInfos, "select * from tomm.code_infos where code=?", "qweqwe")
+	err := db.QueryAll(context.TODO(), &codeInfos, "select * from tomm.mm_user_authorize_infos where code=?", "qweqwe")
 
 	if err != nil {
 		fmt.Println(err)
@@ -39,7 +39,7 @@ func TestMysql(t *testing.T) {
 		fmt.Println(v.CreateTime)
 	}
 
-	//res, err := db.Exec(context.TODO(), "insert into tomm.code_infos(`app_key` , `create_time` , `code` , `mm_user_id`) values('1111' , 1594257492, 'qweqwe' , 'asdasd')")
+	//res, err := db.Exec(context.TODO(), "insert into tomm.mm_user_authorize_infos(`app_key` , `create_time` , `code` , `mm_user_id`) values('1111' , 1594257492, 'qweqwe' , 'asdasd')")
 	//
 	//if err != nil {
 	//	fmt.Println(err)

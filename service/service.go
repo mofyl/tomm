@@ -62,15 +62,15 @@ func NewService() *Ser {
 }
 
 func (s *Ser) registerRouter() {
-	s.tokenGroup.GET("/getToken", s.getResourceToken)
-	s.tokenGroup.GET("/verifyToken", s.verifyToken)
-	s.tokenGroup.GET("/getUserInfo", s.getUserInfo)
-	s.tokenGroup.GET("/getCode", s.getCode)
-	s.tokenGroup.GET("/checkCode", s.checkCode)
+	s.tokenGroup.GET("/getToken", GetResourceToken)
+	s.tokenGroup.GET("/verifyToken", VerifyToken)
+	s.tokenGroup.GET("/getUserInfo", GetUserInfo)
+	s.tokenGroup.GET("/getCode", GetCode)
+	s.tokenGroup.GET("/checkCode", CheckCode)
 	// checkCode Appkey+Code
 	//
-	s.platformGroup.POST("/register", s.registerPlatform)
-	s.platformGroup.GET("/checkPlatformName", s.checkPlatformName)
+	s.platformGroup.POST("/register", RegisterPlatform)
+	s.platformGroup.GET("/checkPlatformName", CheckPlatformName)
 
 	//s.userGroup.GET("/getCode", s.getCode)
 
@@ -78,7 +78,6 @@ func (s *Ser) registerRouter() {
 
 func (s *Ser) Close() {
 	s.e.Close()
-	cli.CloseIdleConnections()
 
 	//task.Close()
 	//close(s.jobNotify)

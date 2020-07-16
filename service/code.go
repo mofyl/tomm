@@ -21,11 +21,11 @@ const (
 	CODE_EXP_TIME = 180 // 3*60s  3min
 )
 
-func (s *Ser) getCode(c *server.Context) {
+func GetCode(c *server.Context) {
 	req := api.GetCodeReq{}
 
 	if err := c.Bind(&req); err != nil {
-		httpCode(c, ecode.NewErr(err))
+		server.HttpCode(c, ecode.NewErr(err))
 		return
 	}
 	// 检查 该用户是否存在
@@ -33,7 +33,7 @@ func (s *Ser) getCode(c *server.Context) {
 
 	if errMsg != nil {
 		log.Error("GetCode Check Fail errCode is %d errMsg is %s", errMsg.Code(), errMsg.Error())
-		httpCode(c, ecode.MMFail)
+		server.HttpCode(c, ecode.MMFail)
 		return
 	}
 
@@ -41,7 +41,7 @@ func (s *Ser) getCode(c *server.Context) {
 	platFormInfo, err := dao.GetPlatformInfo(req.AppKey)
 	if err != nil {
 		log.Error("GetPlatformInfo Fail Err is %s , AppKey is %s", err.Error(), req.AppKey)
-		httpCode(c, ecode.AppKeyFail)
+		server.HttpCode(c, ecode.AppKeyFail)
 		return
 	}
 
@@ -49,7 +49,7 @@ func (s *Ser) getCode(c *server.Context) {
 	codeInfo, err := dao.GetCodeInfo(model.CodeInfo{MmUserId: req.UserId, AppKey: req.AppKey})
 	if err != nil {
 		log.Error("GetCodeInfoByUserID Fail Err is %s , UserID is %s", err.Error(), req.UserId)
-		httpCode(c, ecode.SystemErr)
+		server.HttpCode(c, ecode.SystemErr)
 		return
 	}
 
@@ -61,7 +61,7 @@ func (s *Ser) getCode(c *server.Context) {
 		err = dao.SaveCodeInfo(codeInfo)
 		if err != nil {
 			log.Error("SaveCodeInfo Fail Err is %s , Code Info is %v", err.Error(), codeInfo)
-			httpCode(c, ecode.SystemErr)
+			server.HttpCode(c, ecode.SystemErr)
 			return
 		}
 	}
@@ -73,45 +73,44 @@ func (s *Ser) getCode(c *server.Context) {
 		Code:    code,
 		BackUrl: platFormInfo.SignUrl,
 	}
-	httpData(c, res)
+	server.HttpData(c, res)
 }
 
-func (s *Ser) checkCode(c *server.Context) {
+func CheckCode(c *server.Context) {
 	req := api.CheckCodeReq{}
 
 	err := c.Bind(&req)
 
 	if err != nil {
 		log.Error("checkCode Bind Fail err is %s", err.Error())
-		httpCode(c, ecode.ParamFail)
+		server.HttpCode(c, ecode.ParamFail)
 		return
 	}
 	platformInfo, err := dao.GetPlatformInfo(req.AppKey)
 
 	if err != nil {
 		log.Error("CheckCode GetPlatformInfo Fail err is %s", err.Error())
-		httpCode(c, ecode.AppKeyFail)
+		server.HttpCode(c, ecode.AppKeyFail)
 		return
 	}
 
 	// TimeStamp+Code
-
-	dataInfo, errCode := getDataInfo(platformInfo.SecretKey, req.Data)
+	dataInfo, errCode := getCheckDataInfo(platformInfo.SecretKey, req.Data)
 	if errCode != nil {
-		httpCode(c, errCode)
+		server.HttpCode(c, errCode)
 		return
 	}
 	// 查看是否授权
 	exist, userID, err := dao.CheckCode(req.AppKey, dataInfo.Code)
 	if err != nil {
 		log.Error("checkCode CheckCode Fail err is %s, AppKey is %s , Code is %s", err.Error(), req.AppKey, dataInfo.Code)
-		httpCode(c, ecode.CodeFail)
+		server.HttpCode(c, ecode.CodeFail)
 		return
 	}
 
 	if !exist {
 		log.Error("checkCode CheckCode Fail AppKey is %s , Code is %s", req.AppKey, dataInfo.Code)
-		httpCode(c, ecode.CodeFail)
+		server.HttpCode(c, ecode.CodeFail)
 		return
 	}
 
@@ -119,10 +118,10 @@ func (s *Ser) checkCode(c *server.Context) {
 		UserId: userID,
 	}
 	// 检查成功返回userID
-	httpData(c, res)
+	server.HttpData(c, res)
 }
 
-func getDataInfo(secretKey string, data string) (model.CheckCodeData, ecode.ErrMsgs) {
+func getCheckDataInfo(secretKey string, data string) (model.CheckCodeData, ecode.ErrMsgs) {
 
 	res := model.CheckCodeData{}
 	oriData, err := utils.AESCBCBase64Decode(secretKey, data)

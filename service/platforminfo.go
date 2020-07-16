@@ -9,13 +9,13 @@ import (
 	"tomm/service/dao"
 )
 
-func (s *Ser) registerPlatform(c *server.Context) {
+func RegisterPlatform(c *server.Context) {
 	req := api.RegisterPlatformReq{}
 	err := c.Bind(&req)
 
 	if err != nil {
 		log.Error("RegisterPlatForm Fail Parameter Wrong Err is %s", err.Error())
-		httpCode(c, ecode.ParamFail)
+		server.HttpCode(c, ecode.ParamFail)
 		return
 	}
 
@@ -30,7 +30,7 @@ func (s *Ser) registerPlatform(c *server.Context) {
 
 	if err != nil {
 		log.Error("RegisterPlatForm Create OAuthInfo Fail Err is %s , info is %v", err.Error(), info)
-		httpCode(c, ecode.SystemErr)
+		server.HttpCode(c, ecode.SystemErr)
 		return
 	}
 
@@ -39,17 +39,17 @@ func (s *Ser) registerPlatform(c *server.Context) {
 		AppKey:    info.AppKey,
 	}
 
-	httpData(c, &res)
+	server.HttpData(c, &res)
 
 }
 
-func (s *Ser) checkPlatformName(c *server.Context) {
+func CheckPlatformName(c *server.Context) {
 	req := api.CheckPlatformNameReq{}
 	err := c.Bind(&req)
 
 	if err != nil {
 		log.Error("checkPlatformName Bind Parameter Fail Err is %s", err.Error())
-		httpCode(c, ecode.ParamFail)
+		server.HttpCode(c, ecode.ParamFail)
 		return
 	}
 	canUsed := dao.CheckPlatformName(req.Name)
@@ -62,7 +62,7 @@ func (s *Ser) checkPlatformName(c *server.Context) {
 		res.Res = 1
 	}
 
-	httpData(c, res)
+	server.HttpData(c, res)
 }
 
 func (s *Ser) deletePlatformName(c *server.Context) {
@@ -70,7 +70,6 @@ func (s *Ser) deletePlatformName(c *server.Context) {
 }
 
 func (s *Ser) getPlatformByUserID(c *server.Context) {
-
-	// 将用户的UserID传过来
+	// 通过 某个条件 查看 platForm的数据
 
 }
