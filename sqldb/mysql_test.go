@@ -19,14 +19,14 @@ func TestMysql(t *testing.T) {
 	//fmt.Println(11111)
 
 	db := GetDB(MYSQL)
-	//codeInfo := api.CodeInfo{}
+	//codeInfo := api.MMUserAuthInfo{}
 	//err := db.QueryOne(context.TODO(), &codeInfo, "select * from tomm.mm_user_authorize_infos where code=?", "qweqwe")
 	//if err != nil {
 	//	fmt.Println(err)
 	//	return
 	//}
 
-	codeInfos := make([]model.CodeInfo, 0)
+	codeInfos := make([]model.MMUserAuthInfo, 0)
 
 	err := db.QueryAll(context.TODO(), &codeInfos, "select * from tomm.mm_user_authorize_infos where code=?", "qweqwe")
 

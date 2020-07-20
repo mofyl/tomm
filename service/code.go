@@ -46,9 +46,9 @@ func GetCode(c *server.Context) {
 	}
 
 	// 检查 code是否存在
-	codeInfo, err := dao.GetCodeInfo(model.CodeInfo{MmUserId: req.UserId, AppKey: req.AppKey})
+	codeInfo, err := dao.GetUserAuthInfo(model.MMUserAuthInfo{MmUserId: req.UserId, AppKey: req.AppKey})
 	if err != nil {
-		log.Error("GetCodeInfoByUserID Fail Err is %s , UserID is %s", err.Error(), req.UserId)
+		log.Error("GetUserAuthInfoByUserID Fail Err is %s , UserID is %s", err.Error(), req.UserId)
 		server.HttpCode(c, ecode.SystemErr)
 		return
 	}
@@ -58,16 +58,16 @@ func GetCode(c *server.Context) {
 		// 开始授权
 		codeInfo.AppKey = req.AppKey
 		codeInfo.MmUserId = req.UserId
-		err = dao.SaveCodeInfo(codeInfo)
+		err = dao.SaveMMUserAuthInfo(codeInfo)
 		if err != nil {
-			log.Error("SaveCodeInfo Fail Err is %s , Code Info is %v", err.Error(), codeInfo)
+			log.Error("SaveMMUserAuthInfo Fail Err is %s , Code Info is %v", err.Error(), codeInfo)
 			server.HttpCode(c, ecode.SystemErr)
 			return
 		}
 	}
 
 	// 将Code保存到redis
-	err = redis.Set(context.TODO(), fmt.Sprintf(redis.CODE_KEY, codeInfo.AppKey, code), codeInfo.MmUserId, redis.CODE_EXP)
+	err = redis.Set(context.TODO(), fmt.Sprintf(dao.CODE_KEY, codeInfo.AppKey, code), codeInfo.MmUserId, dao.CODE_EXP)
 
 	res := api.GetCodeRes{
 		Code:    code,

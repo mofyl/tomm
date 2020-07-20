@@ -12,6 +12,9 @@ const (
 	code_fail = "Check Code Fail"
 
 	token_fail = "Token Check Fail Please Replace Token"
+
+	vcode_fail = "Verification Code Fail Please Reflush"
+	login_fail = "Login Name or PassWord Wrong"
 )
 
 var (
@@ -24,4 +27,7 @@ var (
 	CodeFail       = NewErrWithMsg(code_fail, addCode(-8005))
 	// TODO 这个Code 表示 Token过期 或非法
 	TokenFail = NewErrWithMsg(token_fail, addCode(-8010))
+
+	VCodeFail = NewErrWithMsg(vcode_fail, addCode(-8011))
+	LoginFail = NewErrWithMsg(login_fail, addCode(-8012))
 )

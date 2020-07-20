@@ -18,4 +18,5 @@ var (
 	// 1000 ~ 2000  共用的Msg预留
 	ParamFail  = NewErrWithMsg(param_fail, addCode(-1000))
 	AppKeyFail = NewErrWithMsg(app_key_fail, addCode(-1001))
+	SystemFail = NewErrWithMsg(system_fail, addCode(-1002))
 )

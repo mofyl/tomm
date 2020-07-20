@@ -215,7 +215,7 @@ func (m *TokenInfo) GetExtendInfo() []byte {
 	return nil
 }
 
-type CodeInfo struct {
+type MMUserAuthInfo struct {
 	// @inject_tag: db:"id"
 	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty" db:"id"`
 	// @inject_tag: db:"app_key"
@@ -229,18 +229,18 @@ type CodeInfo struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CodeInfo) Reset()         { *m = CodeInfo{} }
-func (m *CodeInfo) String() string { return proto.CompactTextString(m) }
-func (*CodeInfo) ProtoMessage()    {}
-func (*CodeInfo) Descriptor() ([]byte, []int) {
+func (m *MMUserAuthInfo) Reset()         { *m = MMUserAuthInfo{} }
+func (m *MMUserAuthInfo) String() string { return proto.CompactTextString(m) }
+func (*MMUserAuthInfo) ProtoMessage()    {}
+func (*MMUserAuthInfo) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4c16552f9fdb66d8, []int{2}
 }
-func (m *CodeInfo) XXX_Unmarshal(b []byte) error {
+func (m *MMUserAuthInfo) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *CodeInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *MMUserAuthInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_CodeInfo.Marshal(b, m, deterministic)
+		return xxx_messageInfo_MMUserAuthInfo.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -250,40 +250,40 @@ func (m *CodeInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *CodeInfo) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CodeInfo.Merge(m, src)
+func (m *MMUserAuthInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MMUserAuthInfo.Merge(m, src)
 }
-func (m *CodeInfo) XXX_Size() int {
+func (m *MMUserAuthInfo) XXX_Size() int {
 	return m.Size()
 }
-func (m *CodeInfo) XXX_DiscardUnknown() {
-	xxx_messageInfo_CodeInfo.DiscardUnknown(m)
+func (m *MMUserAuthInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_MMUserAuthInfo.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CodeInfo proto.InternalMessageInfo
+var xxx_messageInfo_MMUserAuthInfo proto.InternalMessageInfo
 
-func (m *CodeInfo) GetId() int64 {
+func (m *MMUserAuthInfo) GetId() int64 {
 	if m != nil {
 		return m.Id
 	}
 	return 0
 }
 
-func (m *CodeInfo) GetAppKey() string {
+func (m *MMUserAuthInfo) GetAppKey() string {
 	if m != nil {
 		return m.AppKey
 	}
 	return ""
 }
 
-func (m *CodeInfo) GetCreateTime() int64 {
+func (m *MMUserAuthInfo) GetCreateTime() int64 {
 	if m != nil {
 		return m.CreateTime
 	}
 	return 0
 }
 
-func (m *CodeInfo) GetMmUserId() string {
+func (m *MMUserAuthInfo) GetMmUserId() string {
 	if m != nil {
 		return m.MmUserId
 	}
@@ -440,48 +440,225 @@ func (m *CheckCodeData) GetCode() string {
 	return ""
 }
 
+type AdminInfos struct {
+	// @inject_tag: db:"id"
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty" db:"id"`
+	// @inject_tag: db:"login_name"
+	LoginName string `protobuf:"bytes,2,opt,name=login_name,json=loginName,proto3" json:"login_name,omitempty" db:"login_name"`
+	// @inject_tag: db:"login_pwd"
+	LoginPwd string `protobuf:"bytes,3,opt,name=login_pwd,json=loginPwd,proto3" json:"login_pwd,omitempty" db:"login_pwd"`
+	// @inject_tag: db:"name"
+	Name string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty" db:"name"`
+	// @inject_tag: db:"number"
+	Number string `protobuf:"bytes,5,opt,name=number,proto3" json:"number,omitempty" db:"number"`
+	// @inject_tag: db:"created"
+	Created              int64    `protobuf:"varint,6,opt,name=created,proto3" json:"created,omitempty" db:"created"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AdminInfos) Reset()         { *m = AdminInfos{} }
+func (m *AdminInfos) String() string { return proto.CompactTextString(m) }
+func (*AdminInfos) ProtoMessage()    {}
+func (*AdminInfos) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c16552f9fdb66d8, []int{5}
+}
+func (m *AdminInfos) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *AdminInfos) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_AdminInfos.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *AdminInfos) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AdminInfos.Merge(m, src)
+}
+func (m *AdminInfos) XXX_Size() int {
+	return m.Size()
+}
+func (m *AdminInfos) XXX_DiscardUnknown() {
+	xxx_messageInfo_AdminInfos.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AdminInfos proto.InternalMessageInfo
+
+func (m *AdminInfos) GetId() int64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *AdminInfos) GetLoginName() string {
+	if m != nil {
+		return m.LoginName
+	}
+	return ""
+}
+
+func (m *AdminInfos) GetLoginPwd() string {
+	if m != nil {
+		return m.LoginPwd
+	}
+	return ""
+}
+
+func (m *AdminInfos) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *AdminInfos) GetNumber() string {
+	if m != nil {
+		return m.Number
+	}
+	return ""
+}
+
+func (m *AdminInfos) GetCreated() int64 {
+	if m != nil {
+		return m.Created
+	}
+	return 0
+}
+
+type PlatformRole struct {
+	// @inject_tag: db:"id"
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty" db:"id"`
+	// @inject_tag: db:"role_name"
+	RoleName string `protobuf:"bytes,2,opt,name=role_name,json=roleName,proto3" json:"role_name,omitempty" db:"role_name"`
+	// @inject_tag: db:"platform_ids"
+	PlatformIds string `protobuf:"bytes,3,opt,name=platform_ids,json=platformIds,proto3" json:"platform_ids,omitempty" db:"platform_ids"`
+	// @inject_tag: db:"create_time"
+	CreateTime           int64    `protobuf:"varint,4,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty" db:"create_time"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PlatformRole) Reset()         { *m = PlatformRole{} }
+func (m *PlatformRole) String() string { return proto.CompactTextString(m) }
+func (*PlatformRole) ProtoMessage()    {}
+func (*PlatformRole) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4c16552f9fdb66d8, []int{6}
+}
+func (m *PlatformRole) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *PlatformRole) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_PlatformRole.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *PlatformRole) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PlatformRole.Merge(m, src)
+}
+func (m *PlatformRole) XXX_Size() int {
+	return m.Size()
+}
+func (m *PlatformRole) XXX_DiscardUnknown() {
+	xxx_messageInfo_PlatformRole.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PlatformRole proto.InternalMessageInfo
+
+func (m *PlatformRole) GetId() int64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *PlatformRole) GetRoleName() string {
+	if m != nil {
+		return m.RoleName
+	}
+	return ""
+}
+
+func (m *PlatformRole) GetPlatformIds() string {
+	if m != nil {
+		return m.PlatformIds
+	}
+	return ""
+}
+
+func (m *PlatformRole) GetCreateTime() int64 {
+	if m != nil {
+		return m.CreateTime
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*PlatformInfo)(nil), "model.PlatformInfo")
 	proto.RegisterType((*TokenInfo)(nil), "model.TokenInfo")
-	proto.RegisterType((*CodeInfo)(nil), "model.CodeInfo")
+	proto.RegisterType((*MMUserAuthInfo)(nil), "model.MMUserAuthInfo")
 	proto.RegisterType((*UserBaseInfo)(nil), "model.UserBaseInfo")
 	proto.RegisterType((*CheckCodeData)(nil), "model.CheckCodeData")
+	proto.RegisterType((*AdminInfos)(nil), "model.AdminInfos")
+	proto.RegisterType((*PlatformRole)(nil), "model.PlatformRole")
 }
 
 func init() { proto.RegisterFile("model.proto", fileDescriptor_4c16552f9fdb66d8) }
 
 var fileDescriptor_4c16552f9fdb66d8 = []byte{
-	// 471 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x53, 0xc1, 0x6e, 0xd3, 0x40,
-	0x10, 0xc5, 0x4e, 0x93, 0x78, 0x27, 0x01, 0x21, 0x0b, 0x09, 0xa3, 0xd0, 0x34, 0xf8, 0x94, 0x13,
-	0x17, 0xbe, 0x80, 0x94, 0x4b, 0x85, 0x84, 0x90, 0x69, 0x8f, 0xc8, 0x5a, 0xbc, 0x13, 0xba, 0x8a,
-	0x77, 0xd7, 0x5a, 0x6f, 0xa5, 0xf4, 0x4f, 0xb8, 0xf3, 0x31, 0x70, 0xe4, 0x13, 0x50, 0xf8, 0x11,
-	0x34, 0xb3, 0x8e, 0x54, 0x4a, 0x6f, 0x33, 0xef, 0xe9, 0xcd, 0xdb, 0x79, 0x63, 0xc3, 0xcc, 0x38,
-	0x85, 0xed, 0xeb, 0xce, 0xbb, 0xe0, 0xf2, 0x31, 0x37, 0xe5, 0xf7, 0x14, 0xe6, 0x1f, 0x5b, 0x19,
-	0xb6, 0xce, 0x9b, 0x0b, 0xbb, 0x75, 0xf9, 0x13, 0x48, 0xb5, 0x2a, 0x92, 0x55, 0xb2, 0x1e, 0x55,
-	0xa9, 0x56, 0x79, 0x0e, 0x27, 0x06, 0x8d, 0x2b, 0xd2, 0x55, 0xb2, 0x16, 0x15, 0xd7, 0xf9, 0x29,
-	0x40, 0x8f, 0x8d, 0xc7, 0x50, 0xef, 0xf0, 0xb6, 0x18, 0x31, 0x23, 0x22, 0xf2, 0x1e, 0x6f, 0xf3,
-	0xe7, 0x30, 0x95, 0x5d, 0xc7, 0xdc, 0x09, 0x73, 0x13, 0xd9, 0x75, 0x44, 0x2c, 0x40, 0x68, 0xab,
-	0x70, 0x5f, 0xdf, 0xf8, 0xb6, 0x18, 0x33, 0x95, 0x31, 0x70, 0xe5, 0xdb, 0xfc, 0x15, 0xcc, 0x9b,
-	0x6b, 0x69, 0x2d, 0xb6, 0xb5, 0x95, 0x06, 0x8b, 0x09, 0xf3, 0xb3, 0x01, 0xfb, 0x20, 0x0d, 0xe6,
-	0x2f, 0x20, 0xeb, 0xf5, 0x57, 0xcb, 0xf2, 0x29, 0xd3, 0x53, 0xea, 0x49, 0x7d, 0x06, 0xb3, 0xc6,
-	0xa3, 0x0c, 0x58, 0x07, 0x6d, 0xb0, 0xc8, 0xf8, 0xfd, 0x10, 0xa1, 0x4b, 0x6d, 0x30, 0x2f, 0x60,
-	0xaa, 0xb0, 0xc5, 0x80, 0xaa, 0x10, 0xab, 0x64, 0x3d, 0xae, 0x8e, 0x2d, 0x19, 0x0f, 0x65, 0xd4,
-	0x02, 0x6b, 0x67, 0x03, 0x46, 0xe2, 0xf2, 0x33, 0x88, 0x4b, 0xb7, 0x43, 0xcb, 0x09, 0x3d, 0x83,
-	0x71, 0xa0, 0x86, 0x43, 0x12, 0x55, 0x6c, 0xe8, 0x6d, 0xb8, 0xef, 0xe2, 0x84, 0x94, 0x27, 0x4c,
-	0x71, 0xdf, 0xb1, 0xf5, 0x19, 0xcc, 0x70, 0x1f, 0xd0, 0xaa, 0x5a, 0xdb, 0xad, 0xe3, 0xbc, 0xe6,
-	0x15, 0x44, 0x88, 0x26, 0x96, 0x1e, 0xb2, 0x73, 0xa7, 0xf0, 0xc1, 0xfc, 0xef, 0x84, 0x99, 0xfe,
-	0x13, 0xe6, 0xbd, 0x8d, 0x47, 0xff, 0x6d, 0xfc, 0x12, 0xc0, 0x98, 0xfa, 0xa6, 0x47, 0x5f, 0x6b,
-	0x35, 0x5c, 0x22, 0x33, 0xe6, 0xaa, 0x47, 0x7f, 0xa1, 0xca, 0x1f, 0x09, 0xcc, 0xa9, 0xdc, 0xc8,
-	0xfe, 0xbe, 0xb1, 0x60, 0xe3, 0x05, 0x08, 0xd6, 0xf2, 0x31, 0xa2, 0x75, 0x46, 0x00, 0x5f, 0x62,
-	0x01, 0x62, 0x30, 0x97, 0x61, 0xb0, 0xce, 0x22, 0xf0, 0x36, 0x50, 0x40, 0x68, 0xa4, 0x6e, 0x07,
-	0xcf, 0xd8, 0x90, 0xc4, 0xea, 0x66, 0x17, 0xe7, 0x0d, 0xc7, 0x27, 0x80, 0xe7, 0x9d, 0x02, 0x6c,
-	0xb5, 0xef, 0xc3, 0xdd, 0xd3, 0x0b, 0x46, 0x8e, 0x76, 0xad, 0x3c, 0xb2, 0xf1, 0xf2, 0x19, 0x01,
-	0x44, 0x96, 0x1b, 0x78, 0x7c, 0x7e, 0x8d, 0xcd, 0x8e, 0x22, 0x7c, 0x27, 0x83, 0xa4, 0x61, 0x14,
-	0x49, 0xdd, 0x07, 0x69, 0xba, 0x21, 0x4a, 0x41, 0xc8, 0x27, 0x02, 0xe8, 0x8b, 0x6e, 0x9c, 0x3a,
-	0xee, 0xc4, 0xf5, 0xe6, 0xe9, 0xcf, 0xc3, 0x32, 0xf9, 0x75, 0x58, 0x26, 0xbf, 0x0f, 0xcb, 0xe4,
-	0xdb, 0x9f, 0xe5, 0xa3, 0x2f, 0x13, 0xfe, 0x4d, 0xde, 0xfc, 0x0d, 0x00, 0x00, 0xff, 0xff, 0xbe,
-	0xed, 0xe3, 0xb9, 0x35, 0x03, 0x00, 0x00,
+	// 585 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x54, 0xc1, 0x6e, 0xd3, 0x40,
+	0x10, 0xc5, 0x49, 0x93, 0x78, 0xc7, 0xa1, 0x42, 0x16, 0x02, 0xa3, 0xd0, 0xb4, 0xf5, 0xa9, 0x27,
+	0x2e, 0x7c, 0x41, 0x5b, 0x2e, 0x15, 0x2a, 0xaa, 0x4c, 0x7b, 0x44, 0xd6, 0xd6, 0x3b, 0x69, 0x57,
+	0xf1, 0xee, 0x5a, 0xf6, 0x46, 0x4d, 0x4f, 0xfc, 0x06, 0x27, 0x2e, 0x7c, 0x0c, 0x1c, 0xf9, 0x04,
+	0x54, 0x7e, 0x04, 0xed, 0xec, 0x1a, 0xda, 0x94, 0xdb, 0xcc, 0x7b, 0x9a, 0x79, 0xe3, 0x37, 0xb3,
+	0x86, 0x44, 0x19, 0x81, 0xf5, 0x9b, 0xa6, 0x35, 0xd6, 0xa4, 0x23, 0x4a, 0xf2, 0x6f, 0x03, 0x98,
+	0x9e, 0xd5, 0xdc, 0x2e, 0x4c, 0xab, 0x4e, 0xf4, 0xc2, 0xa4, 0xdb, 0x30, 0x90, 0x22, 0x8b, 0xf6,
+	0xa2, 0x83, 0x61, 0x31, 0x90, 0x22, 0x4d, 0x61, 0x4b, 0xa1, 0x32, 0xd9, 0x60, 0x2f, 0x3a, 0x60,
+	0x05, 0xc5, 0xe9, 0x0e, 0x40, 0x87, 0x55, 0x8b, 0xb6, 0x5c, 0xe2, 0x6d, 0x36, 0x24, 0x86, 0x79,
+	0xe4, 0x3d, 0xde, 0xa6, 0x2f, 0x61, 0xc2, 0x9b, 0x86, 0xb8, 0x2d, 0xe2, 0xc6, 0xbc, 0x69, 0x1c,
+	0x31, 0x03, 0x26, 0xb5, 0xc0, 0x75, 0xb9, 0x6a, 0xeb, 0x6c, 0x44, 0x54, 0x4c, 0xc0, 0x45, 0x5b,
+	0xa7, 0xfb, 0x30, 0xad, 0xae, 0xb9, 0xd6, 0x58, 0x97, 0x9a, 0x2b, 0xcc, 0xc6, 0xc4, 0x27, 0x01,
+	0xfb, 0xc0, 0x15, 0xa6, 0xaf, 0x20, 0xee, 0xe4, 0x95, 0xa6, 0xf2, 0x09, 0xd1, 0x13, 0x97, 0xbb,
+	0xea, 0x5d, 0x48, 0xaa, 0x16, 0xb9, 0xc5, 0xd2, 0x4a, 0x85, 0x59, 0x4c, 0xf3, 0x83, 0x87, 0xce,
+	0xa5, 0xc2, 0x34, 0x83, 0x89, 0xc0, 0x1a, 0x2d, 0x8a, 0x8c, 0xed, 0x45, 0x07, 0xa3, 0xa2, 0x4f,
+	0x9d, 0x70, 0x08, 0x7d, 0x2d, 0x50, 0x6d, 0x12, 0x30, 0x57, 0x9c, 0x7f, 0x02, 0x76, 0x6e, 0x96,
+	0xa8, 0xc9, 0xa1, 0xe7, 0x30, 0xb2, 0x2e, 0x21, 0x93, 0x58, 0xe1, 0x13, 0x37, 0x1b, 0xae, 0x1b,
+	0xdf, 0x61, 0x40, 0x1d, 0x26, 0xb8, 0x6e, 0x48, 0x7a, 0x17, 0x12, 0x5c, 0x5b, 0xd4, 0xa2, 0x94,
+	0x7a, 0x61, 0xc8, 0xaf, 0x69, 0x01, 0x1e, 0x72, 0x1d, 0xf3, 0x35, 0x6c, 0x9f, 0x9e, 0x5e, 0x74,
+	0xd8, 0x1e, 0xae, 0xec, 0xf5, 0x7f, 0xb7, 0x70, 0xcf, 0xd2, 0xc1, 0x03, 0x4b, 0x37, 0xbe, 0x7b,
+	0xf8, 0xe8, 0xbb, 0x5f, 0x03, 0x28, 0x55, 0xae, 0x3a, 0x6c, 0x4b, 0x29, 0xc2, 0x3e, 0x62, 0xa5,
+	0x9c, 0xda, 0x89, 0xc8, 0xbf, 0x47, 0x30, 0x75, 0xe1, 0x11, 0xef, 0x70, 0x43, 0x98, 0x91, 0xf0,
+	0x0c, 0x18, 0xd5, 0xd2, 0x4a, 0xbc, 0x74, 0xec, 0x00, 0xda, 0xc7, 0x0c, 0x58, 0x10, 0xe7, 0x36,
+	0x48, 0xc7, 0x1e, 0x38, 0xb4, 0xce, 0x26, 0x54, 0x5c, 0xd6, 0x41, 0xd3, 0x27, 0xae, 0x44, 0xcb,
+	0x6a, 0xe9, 0xfb, 0x85, 0x13, 0x70, 0x00, 0xf5, 0xdb, 0x01, 0x58, 0xc8, 0xb6, 0xb3, 0xf7, 0x0f,
+	0x80, 0x11, 0xd2, 0xcb, 0xd5, 0xbc, 0x67, 0xfd, 0xfe, 0x63, 0x07, 0x38, 0x32, 0x3f, 0x82, 0xa7,
+	0xc7, 0xd7, 0x58, 0x2d, 0x8f, 0x8d, 0xc0, 0x77, 0xdc, 0x72, 0xd7, 0xcc, 0x59, 0x52, 0x76, 0x96,
+	0xab, 0x26, 0x58, 0xc9, 0x1c, 0xf2, 0xd1, 0x01, 0xee, 0xae, 0x2b, 0x23, 0xfa, 0x6f, 0xa2, 0x38,
+	0xff, 0x1a, 0x01, 0x1c, 0x0a, 0x25, 0x69, 0xcf, 0xdd, 0xa3, 0x25, 0xec, 0x00, 0xd4, 0xe6, 0x4a,
+	0xea, 0xfb, 0x66, 0x30, 0x42, 0xfe, 0x8e, 0x47, 0x74, 0x73, 0x23, 0xc2, 0xa3, 0x88, 0x09, 0x38,
+	0xbb, 0xa1, 0x67, 0x44, 0x55, 0xde, 0x0c, 0x8a, 0xd3, 0x17, 0x30, 0xd6, 0x2b, 0x75, 0x89, 0x6d,
+	0x30, 0x22, 0x64, 0xee, 0x54, 0xbd, 0x8b, 0x82, 0x3c, 0x18, 0x16, 0x7d, 0x9a, 0x7f, 0xfe, 0xf7,
+	0x58, 0x0b, 0x53, 0xe3, 0xa3, 0x09, 0x67, 0xc0, 0x5a, 0x53, 0xe3, 0x83, 0x6d, 0x39, 0x80, 0xe6,
+	0xdb, 0x87, 0x69, 0x13, 0x8a, 0x4b, 0x29, 0xba, 0x30, 0x62, 0xd2, 0x63, 0x27, 0xa2, 0xdb, 0xbc,
+	0xa6, 0xad, 0xcd, 0x6b, 0x3a, 0x7a, 0xf6, 0xe3, 0x6e, 0x1e, 0xfd, 0xbc, 0x9b, 0x47, 0xbf, 0xee,
+	0xe6, 0xd1, 0x97, 0xdf, 0xf3, 0x27, 0x97, 0x63, 0xfa, 0x9d, 0xbc, 0xfd, 0x13, 0x00, 0x00, 0xff,
+	0xff, 0x4c, 0x9e, 0x0d, 0x47, 0x5d, 0x04, 0x00, 0x00,
 }
 
 func (m *PlatformInfo) Marshal() (dAtA []byte, err error) {
@@ -619,7 +796,7 @@ func (m *TokenInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *CodeInfo) Marshal() (dAtA []byte, err error) {
+func (m *MMUserAuthInfo) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -629,12 +806,12 @@ func (m *CodeInfo) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *CodeInfo) MarshalTo(dAtA []byte) (int, error) {
+func (m *MMUserAuthInfo) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *CodeInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *MMUserAuthInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -783,6 +960,122 @@ func (m *CheckCodeData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *AdminInfos) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *AdminInfos) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *AdminInfos) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.Created != 0 {
+		i = encodeVarintModel(dAtA, i, uint64(m.Created))
+		i--
+		dAtA[i] = 0x30
+	}
+	if len(m.Number) > 0 {
+		i -= len(m.Number)
+		copy(dAtA[i:], m.Number)
+		i = encodeVarintModel(dAtA, i, uint64(len(m.Number)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintModel(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.LoginPwd) > 0 {
+		i -= len(m.LoginPwd)
+		copy(dAtA[i:], m.LoginPwd)
+		i = encodeVarintModel(dAtA, i, uint64(len(m.LoginPwd)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.LoginName) > 0 {
+		i -= len(m.LoginName)
+		copy(dAtA[i:], m.LoginName)
+		i = encodeVarintModel(dAtA, i, uint64(len(m.LoginName)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Id != 0 {
+		i = encodeVarintModel(dAtA, i, uint64(m.Id))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *PlatformRole) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *PlatformRole) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PlatformRole) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.CreateTime != 0 {
+		i = encodeVarintModel(dAtA, i, uint64(m.CreateTime))
+		i--
+		dAtA[i] = 0x20
+	}
+	if len(m.PlatformIds) > 0 {
+		i -= len(m.PlatformIds)
+		copy(dAtA[i:], m.PlatformIds)
+		i = encodeVarintModel(dAtA, i, uint64(len(m.PlatformIds)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.RoleName) > 0 {
+		i -= len(m.RoleName)
+		copy(dAtA[i:], m.RoleName)
+		i = encodeVarintModel(dAtA, i, uint64(len(m.RoleName)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Id != 0 {
+		i = encodeVarintModel(dAtA, i, uint64(m.Id))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintModel(dAtA []byte, offset int, v uint64) int {
 	offset -= sovModel(v)
 	base := offset
@@ -865,7 +1158,7 @@ func (m *TokenInfo) Size() (n int) {
 	return n
 }
 
-func (m *CodeInfo) Size() (n int) {
+func (m *MMUserAuthInfo) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -942,6 +1235,66 @@ func (m *CheckCodeData) Size() (n int) {
 	l = len(m.Code)
 	if l > 0 {
 		n += 1 + l + sovModel(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *AdminInfos) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Id != 0 {
+		n += 1 + sovModel(uint64(m.Id))
+	}
+	l = len(m.LoginName)
+	if l > 0 {
+		n += 1 + l + sovModel(uint64(l))
+	}
+	l = len(m.LoginPwd)
+	if l > 0 {
+		n += 1 + l + sovModel(uint64(l))
+	}
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovModel(uint64(l))
+	}
+	l = len(m.Number)
+	if l > 0 {
+		n += 1 + l + sovModel(uint64(l))
+	}
+	if m.Created != 0 {
+		n += 1 + sovModel(uint64(m.Created))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *PlatformRole) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Id != 0 {
+		n += 1 + sovModel(uint64(m.Id))
+	}
+	l = len(m.RoleName)
+	if l > 0 {
+		n += 1 + l + sovModel(uint64(l))
+	}
+	l = len(m.PlatformIds)
+	if l > 0 {
+		n += 1 + l + sovModel(uint64(l))
+	}
+	if m.CreateTime != 0 {
+		n += 1 + sovModel(uint64(m.CreateTime))
 	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
@@ -1416,7 +1769,7 @@ func (m *TokenInfo) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *CodeInfo) Unmarshal(dAtA []byte) error {
+func (m *MMUserAuthInfo) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1439,10 +1792,10 @@ func (m *CodeInfo) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: CodeInfo: wiretype end group for non-group")
+			return fmt.Errorf("proto: MMUserAuthInfo: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: CodeInfo: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: MMUserAuthInfo: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1917,6 +2270,382 @@ func (m *CheckCodeData) Unmarshal(dAtA []byte) error {
 			}
 			m.Code = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipModel(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthModel
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthModel
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *AdminInfos) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowModel
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: AdminInfos: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: AdminInfos: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			m.Id = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowModel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Id |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field LoginName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowModel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthModel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthModel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.LoginName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field LoginPwd", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowModel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthModel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthModel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.LoginPwd = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowModel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthModel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthModel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Number", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowModel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthModel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthModel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Number = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Created", wireType)
+			}
+			m.Created = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowModel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Created |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipModel(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthModel
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthModel
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *PlatformRole) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowModel
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: PlatformRole: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: PlatformRole: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			m.Id = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowModel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Id |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RoleName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowModel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthModel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthModel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.RoleName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PlatformIds", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowModel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthModel
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthModel
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.PlatformIds = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CreateTime", wireType)
+			}
+			m.CreateTime = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowModel
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.CreateTime |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipModel(dAtA[iNdEx:])

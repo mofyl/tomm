@@ -37,7 +37,7 @@ message TokenInfo{
 }
 
 
-message CodeInfo {
+message MMUserAuthInfo {
     // @inject_tag: db:"id"
     int64 id = 1;
     // @inject_tag: db:"app_key"
@@ -64,4 +64,30 @@ message UserBaseInfo{
 message CheckCodeData{
     int64 time_stamp = 1;
     string code = 2;
+}
+
+message AdminInfos {
+    // @inject_tag: db:"id"
+    int64 id = 1;
+    // @inject_tag: db:"login_name"
+    string login_name=2;
+    // @inject_tag: db:"login_pwd"
+    string login_pwd=3;
+    // @inject_tag: db:"name"
+    string name=4;
+    // @inject_tag: db:"number"
+    string number=5;
+    // @inject_tag: db:"created"
+    int64 created=6;
+}
+
+message PlatformRole{
+    // @inject_tag: db:"id"
+    int64 id = 1;
+    // @inject_tag: db:"role_name"
+    string role_name = 2;
+    // @inject_tag: db:"platform_ids"
+    string platform_ids = 3;
+    // @inject_tag: db:"create_time"
+    int64 create_time = 4;
 }

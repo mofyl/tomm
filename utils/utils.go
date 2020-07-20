@@ -14,6 +14,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+	"unsafe"
 )
 
 const (
@@ -168,4 +169,18 @@ func JoinPath(absPath string, relativePath string) string {
 
 func RemoveSpace(str string) string {
 	return strings.TrimSpace(str)
+}
+
+func StrToByte(str string) []byte {
+	var res []byte
+
+	*(*string)(unsafe.Pointer(&res)) = str
+
+	*(*int)(unsafe.Pointer(uintptr(unsafe.Pointer(&res)) + 2*unsafe.Sizeof(&res))) = len(str)
+
+	return res
+}
+
+func BytesToStr(b []byte) string {
+	return *(*string)(unsafe.Pointer(&b))
 }

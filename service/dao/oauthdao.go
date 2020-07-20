@@ -18,7 +18,7 @@ func GetTokenAndCreate(appKey string) (string, int64, error) {
 	// 查看该Appkey 是否已经存在Token
 	var token string
 	var err error
-	key := fmt.Sprintf(redis.RESOURCE_KEY, appKey)
+	key := fmt.Sprintf(RESOURCE_KEY, appKey)
 	err = redis.Get(context.TODO(), key, &token)
 	//exist := redis.Exist(context.TODO(), key)
 
@@ -34,7 +34,7 @@ func GetTokenAndCreate(appKey string) (string, int64, error) {
 		}
 	}
 	// 保存到redis中
-	err = redis.Set(context.TODO(), fmt.Sprintf(redis.RESOURCE_KEY, appKey), token, RESOURCE_TOKEN_EXP)
+	err = redis.Set(context.TODO(), fmt.Sprintf(RESOURCE_KEY, appKey), token, RESOURCE_TOKEN_EXP)
 
 	if err != nil {
 		return "", 0, err
@@ -44,13 +44,13 @@ func GetTokenAndCreate(appKey string) (string, int64, error) {
 }
 
 func TokenExist(appKey string) bool {
-	key := fmt.Sprintf(redis.RESOURCE_KEY, appKey)
+	key := fmt.Sprintf(RESOURCE_KEY, appKey)
 	exist := redis.Exist(context.TODO(), key)
 	return exist
 }
 
 func GetToken(appKey string) (string, error) {
-	key := fmt.Sprintf(redis.RESOURCE_KEY, appKey)
+	key := fmt.Sprintf(RESOURCE_KEY, appKey)
 	var token string
 	err := redis.Get(context.TODO(), key, &token)
 

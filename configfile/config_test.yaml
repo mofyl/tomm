@@ -19,7 +19,7 @@ mysql:
   addr: "127.0.0.1:3306"
   userName: "root"
   pwd: "123456"
-  dbName: "tomm"
+  dbName: "platform"
   maxOpenConn: 10
   maxIdleConn: 4
   connLiftTime: 3600 # 单位为秒 1* 3600 1Hour

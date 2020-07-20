@@ -42,8 +42,10 @@ type Ser struct {
 	//wg *sync.WaitGroup
 	//p         *task.TaskManager
 
-	tokenGroup    server.IRouter
-	platformGroup server.IRouter
+	token    server.IRouter
+	platform server.IRouter
+	admin    server.IRouter // 保存第三方平台管理员接口
+	auth     server.IRouter // 保存 mm用户对第三方平台的 权限
 }
 
 func NewService() *Ser {
@@ -54,25 +56,44 @@ func NewService() *Ser {
 	e := server.NewEngine(nil)
 	s.e = e
 	s.conf = defaultConf
-	s.platformGroup = s.e.NewGroup("/platform")
-	s.tokenGroup = s.e.NewGroup("/token")
+	s.platform = s.e.NewGroup("/platform")
+	s.token = s.e.NewGroup("/token")
+	s.admin = s.e.NewGroup("/admin")
+	s.auth = s.e.NewGroup("/auth")
 	s.registerRouter()
 
 	return s
 }
 
 func (s *Ser) registerRouter() {
-	s.tokenGroup.GET("/getToken", GetResourceToken)
-	s.tokenGroup.GET("/verifyToken", VerifyToken)
-	s.tokenGroup.GET("/getUserInfo", GetUserInfo)
-	s.tokenGroup.GET("/getCode", GetCode)
-	s.tokenGroup.GET("/checkCode", CheckCode)
+
+	// 建立session
+	// 小写 表示不对外公开的
+	//s.e.GET("/startSession")
+
+	s.token.GET("/token", GetResourceToken)
+	s.token.GET("/verifyToken", VerifyToken)
+	s.token.GET("/checkCode", CheckCode)
+
+	s.token.GET("/UserInfo", GetUserInfo_V2)
+	s.token.GET("/Code", GetCode)
 	// checkCode Appkey+Code
 	//
-	s.platformGroup.POST("/register", RegisterPlatform)
-	s.platformGroup.GET("/checkPlatformName", CheckPlatformName)
+	s.platform.POST("/Register", RegisterPlatform)
+	s.platform.GET("/CheckPlatformName", CheckPlatformName)
+	s.platform.GET("/PlatformInfos", GetPlatformInfos)
 
+	// 管理平台注册用户
+	s.admin.POST("/Register", RegisterAdmin)
+	// 管理平台用户获取验证码
+	s.admin.GET("/VCode", GetVerificationCode)
+	// 管理平台用户检查用户名是否存在
+	s.admin.GET("/CheckLoginName", CheckAdminName)
+	// 管理平台用户登录
+	s.admin.POST("/Login", AdminLogin)
 	//s.userGroup.GET("/getCode", s.getCode)
+	// 设置权限组
+	s.admin.POST("/PlatformRole", AddPlatformRole)
 
 }
 

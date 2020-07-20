@@ -65,11 +65,26 @@ func CheckPlatformName(c *server.Context) {
 	server.HttpData(c, res)
 }
 
-func (s *Ser) deletePlatformName(c *server.Context) {
+func GetPlatformInfos(c *server.Context) {
+
+	infos, err := dao.GetAllPlatform()
+
+	if err != nil {
+		log.Error("GetPlatformInfos Fail Err is %s", err.Error())
+		server.HttpCode(c, ecode.SystemFail)
+		return
+	}
+
+	server.HttpData(c, infos)
 
 }
 
-func (s *Ser) getPlatformByUserID(c *server.Context) {
+func deletePlatformName(c *server.Context) {
+
+}
+
+func getPlatformByUserID(c *server.Context) {
 	// 通过 某个条件 查看 platForm的数据
 
+	// 查询当前用户的权限组
 }

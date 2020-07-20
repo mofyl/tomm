@@ -42,7 +42,6 @@ func (c *Context) Status(code int) {
 }
 
 func (c *Context) Next() {
-	c.index++
 
 	defer func() {
 
@@ -57,6 +56,7 @@ func (c *Context) Next() {
 
 	}()
 
+	c.index++
 	// 计算时间
 	for c.handler != nil && c.index < int8(len(c.handler)) {
 		c.handler[c.index](c)

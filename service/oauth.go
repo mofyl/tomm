@@ -46,15 +46,15 @@ func GetResourceToken(c *server.Context) {
 	}
 
 	// 查看该Code是否存在
-	exist, err := dao.CodeExistDB(model.CodeInfo{AppKey: req.AppKey})
+	exist, err := dao.MMUserAuthExistDB(model.MMUserAuthInfo{AppKey: req.AppKey})
 	if err != nil {
-		log.Error("Get Resource Token CodeExistDB Fail err is %s , Code is %s", err.Error(), reqDataInfo.Code)
+		log.Error("Get Resource Token MMUserAuthExistDB Fail err is %s , Code is %s", err.Error(), reqDataInfo.Code)
 		server.HttpCode(c, ecode.CodeFail)
 		return
 	}
 
 	if !exist {
-		log.Error("Get Resource Token CodeExistDB Code Not Exist,AppKey is %s Code is %s", req.AppKey, reqDataInfo.Code)
+		log.Error("Get Resource Token MMUserAuthExistDB Code Not Exist,AppKey is %s Code is %s", req.AppKey, reqDataInfo.Code)
 		server.HttpCode(c, ecode.CodeFail)
 		return
 	}
@@ -123,7 +123,65 @@ func GetUserInfo(c *server.Context) {
 
 	// 使用appkey 获取userID
 	// TODO: 这里的Token 先改成userID
-	codeInfo, err := dao.GetCodeInfo(model.CodeInfo{AppKey: req.AppKey, MmUserId: req.Token})
+	codeInfo, err := dao.GetUserAuthInfo(model.MMUserAuthInfo{AppKey: req.AppKey, MmUserId: req.Token})
+	if err != nil {
+		log.Error("Get UserInfo Code Info Get Fail Err is %s", err.Error())
+		server.HttpCode(c, ecode.ParamFail)
+		return
+	}
+
+	if codeInfo.Id == 0 {
+		log.Error("Get UserInfo Code Info Get Fail")
+		server.HttpCode(c, ecode.ParamFail)
+		return
+	}
+
+	userInfo, errMsg := GetBaseUserInfo(codeInfo.MmUserId)
+
+	if errMsg != nil {
+		log.Error("getUserInfo Fail errCode is %d errMsg is %s", errMsg.Code(), errMsg.Error())
+		server.HttpCode(c, ecode.MMFail)
+		return
+	}
+
+	server.HttpData(c, userInfo)
+
+}
+
+func GetUserInfo_V2(c *server.Context) {
+	req := api.GetUserInfoReq_V2{}
+	err := c.Bind(&req)
+
+	if err != nil {
+		log.Error("Get UserInfo Bind Fail")
+		server.HttpCode(c, ecode.ParamFail)
+		return
+	}
+
+	_, err = dao.GetPlatformInfo(req.AppKey)
+
+	if err != nil {
+		log.Error("CheckCode GetPlatformInfo Fail err is %s", err.Error())
+		server.HttpCode(c, ecode.AppKeyFail)
+		return
+	}
+	// 查看是否授权
+	exist, userID, err := dao.CheckCode(req.AppKey, req.Code)
+	if err != nil {
+		log.Error("checkCode CheckCode Fail err is %s, AppKey is %s , Code is %s", err.Error(), req.AppKey, req.Code)
+		server.HttpCode(c, ecode.CodeFail)
+		return
+	}
+
+	if !exist {
+		log.Error("checkCode CheckCode Fail AppKey is %s , Code is %s", req.AppKey, req.Code)
+		server.HttpCode(c, ecode.CodeFail)
+		return
+	}
+
+	// 使用appkey 获取userID
+	// TODO: 这里的Token 先改成userID
+	codeInfo, err := dao.GetUserAuthInfo(model.MMUserAuthInfo{AppKey: req.AppKey, MmUserId: userID})
 	if err != nil {
 		log.Error("Get UserInfo Code Info Get Fail Err is %s", err.Error())
 		server.HttpCode(c, ecode.ParamFail)

@@ -136,19 +136,25 @@ func Get(ctx context.Context, key string, data interface{}) error {
 }
 
 func Del(ctx context.Context, key string) (int64, error) {
-	count, err := cli.Del(ctx, key).Result()
+	res := cli.Del(ctx, key)
 
-	if err != nil {
-		return 0, err
+	if res.Err() != nil {
+		return 0, res.Err()
 	} else {
-		return count, err
+		return res.Result()
 	}
 }
 
-func HSet(ctx context.Context, key string, field string, value interface{}) error {
-	cmd := cli.HSet(ctx, key, field, value)
+func HSet(ctx context.Context, key string, field string, value interface{}) (int64, error) {
 
-	return cmd.Err()
+	// 这里若是该key已经存在 则 受影响的行数为0
+	cmd := cli.HSet(ctx, key, field, value)
+	return cmd.Result()
+}
+
+func HSets(ctx context.Context, key string, fields ...interface{}) (int64, error) {
+	cmd := cli.HSet(ctx, key, fields...)
+	return cmd.Result()
 }
 
 func HExist(ctx context.Context, key string, field string) bool {
@@ -163,6 +169,39 @@ func HGet(ctx context.Context, key string, field string, value interface{}) erro
 		return nil
 	}
 	return cmd.Scan(value)
+}
+
+func HValues(ctx context.Context, key string) ([]string, error) {
+
+	res := cli.HVals(ctx, key)
+
+	if res.Err() != nil {
+		return nil, res.Err()
+	}
+
+	return res.Result()
+
+}
+
+func HKeys(ctx context.Context, key string) ([]string, error) {
+
+	res := cli.HKeys(ctx, key)
+
+	if res.Err() != nil {
+		return nil, res.Err()
+	}
+	return res.Val(), nil
+
+}
+
+func HDel(ctx context.Context, key string, field string) (int64, error) {
+	res := cli.HDel(ctx, key, field)
+
+	if res.Err() != nil {
+		return 0, res.Err()
+	}
+	return res.Result()
+
 }
 
 func getRandomTime() int64 {

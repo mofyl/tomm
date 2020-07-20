@@ -74,9 +74,37 @@ func setWithProperType(kind reflect.Kind, value []string, dv reflect.Value) erro
 		return setFloatValue(value[0], 64, dv)
 	case reflect.Bool:
 		return setBoolValue(value[0], dv)
+	case reflect.Slice:
+		// 过滤空值
+		val := sliceEmpty(value)
+		slice := reflect.MakeSlice(dv.Type(), len(val), len(val))
+		sliceKind := dv.Type().Elem().Kind()
+		for i := 0; i < len(val); i++ {
+			if err := setWithProperType(sliceKind, val[i:], slice.Index(i)); err != nil {
+				return err
+			}
+		}
+		dv.Set(slice)
 	default:
 		dv.SetString(value[0])
 	}
+	return nil
+}
+
+func setSlice(value []string, field reflect.Value) error {
+
+	valType := field.Type()
+
+	val := reflect.MakeSlice(valType, 0, len(value))
+
+	for _, v := range value {
+		ele := reflect.New(valType).Elem()
+		ele.Set(reflect.ValueOf(v))
+		reflect.Append(val, ele)
+	}
+
+	field = val
+
 	return nil
 }
 
@@ -135,4 +163,18 @@ func setUintValue(value string, bit int, dv reflect.Value) error {
 
 	dv.SetUint(uintV)
 	return nil
+}
+
+func sliceEmpty(value []string) []string {
+
+	res := make([]string, 0, len(value))
+
+	for _, v := range value {
+
+		if v != "" {
+			res = append(res, v)
+		}
+	}
+
+	return res
 }
