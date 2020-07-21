@@ -86,8 +86,28 @@ message PlatformRole{
     int64 id = 1;
     // @inject_tag: db:"role_name"
     string role_name = 2;
-    // @inject_tag: db:"platform_ids"
-    string platform_ids = 3;
+    // @inject_tag: db:"platform_app_key"
+    string platform_app_key = 3;
     // @inject_tag: db:"create_time"
     int64 create_time = 4;
+    // @inject_tag: db:"role_sign"
+    string role_sign = 5;
+}
+
+
+message PlatformRoleMidInfo{
+    // @inject_tag: db:"role_sign"
+    string role_sign = 1;
+    // @inject_tag: db:"roles_create"
+    int64 roles_create = 2;
+    // @inject_tag: db:"role_name"
+    string role_name = 3;
+    // @inject_tag: db:"platform_id"
+    int64 platform_id = 4;
+    // @inject_tag: db:"channel_name"
+    string channel_name = 5;
+    // @inject_tag: db:"app_key"
+    string app_key = 6;
+    // @inject_tag: db:"role_id"
+    int64 role_id = 7;
 }

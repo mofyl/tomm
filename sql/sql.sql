@@ -43,10 +43,25 @@ CREATE TABLE `platform`.`admin_infos` (
 CREATE TABLE `platform_roles` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(32) NOT NULL COMMENT '角色的名字',
-  `platform_ids` varchar(256) NOT NULL COMMENT '该角色可访问的平台ID，若有多个使用逗号分隔',
+  `role_id` varchar(32) NOT NULL COMMENT '角色的id'
+  `platform_id` varchar(256) NOT NULL COMMENT '该角色可访问的平台ID',
   `create_time` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `platform_roles` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(32) NOT NULL COMMENT '角色的名字',
+  `role_sign` varchar(32) NOT NULL COMMENT '角色的标识 若该角色可访问多个平台，则这些数据的 role_sign 相同',
+  `platform_app_key` varchar(256) NOT NULL COMMENT '该角色可访问的平台appkey',
+  `create_time` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_app_key` (`platform_app_key`),
+  KEY `idx_role_sign` (`role_sign`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 
 

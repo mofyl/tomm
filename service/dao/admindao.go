@@ -2,6 +2,7 @@ package dao
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"time"
 	"tomm/api/model"
@@ -52,19 +53,51 @@ func GetAdminInfoByLoginName(loginName string) (model.AdminInfos, error) {
 	return info, err
 }
 
-func SavePlatformRole(info model.PlatformRole) error {
+func UpdatePwdByLoginName(loginName string, pwd string) error {
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
 
-	info.CreateTime = time.Now().Unix()
+	aff, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("update %s set pwd=? where login_name=? ", ADMIN_INFOS), pwd, loginName)
 
-	_, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("insert into %s(`role_name`,`platform_ids`,`create_time`) values(?,?,?) ", PLATFORM_ROLE),
-		info.RoleName, info.PlatformIds, info.CreateTime)
 	cancel()
 
 	if err != nil {
 		return err
 	}
 
+	rows, err := aff.RowsAffected()
+
+	if err != nil {
+		return err
+	}
+
+	if rows != 1 {
+		return errors.New("Update Fail")
+	}
+
 	return nil
+}
+
+func DeleteAdminByID(adminID int64) error {
+	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
+
+	aff, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("delete from %s where id=?", ADMIN_INFOS), adminID)
+
+	cancel()
+	if err != nil {
+		return err
+	}
+
+	rows, err := aff.RowsAffected()
+
+	if err != nil {
+		return err
+	}
+
+	if rows != 1 {
+		return errors.New("Delete Fail")
+	}
+
+	return nil
+
 }

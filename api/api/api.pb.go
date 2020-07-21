@@ -1307,8 +1307,8 @@ type AddPlatformRoleReq struct {
 	// @inject_tag: form:"name,required"
 	RoleName string `protobuf:"bytes,1,opt,name=role_name,json=roleName,proto3" json:"role_name,omitempty" form:"name,required"`
 	// 多个中间以逗号隔开
-	// @inject_tag: form:"ids,required"
-	PlatformIds          string   `protobuf:"bytes,2,opt,name=platform_ids,json=platformIds,proto3" json:"platform_ids,omitempty" form:"ids,required"`
+	// @inject_tag: form:"appkeys,required"
+	PlatformIds          string   `protobuf:"bytes,2,opt,name=platform_ids,json=platformIds,proto3" json:"platform_ids,omitempty" form:"appkeys,required"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
