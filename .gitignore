@@ -1,4 +1,4 @@
 vendor
 logs/*
 .idea
-./cmd/main
+cmd/main

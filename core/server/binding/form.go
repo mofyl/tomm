@@ -62,7 +62,7 @@ func (c *cache) set(p reflect.Type) *sInfo {
 		fd.options = op
 		if dev := fd.tp.Tag.Get("default"); dev != "" {
 			dv := reflect.New(fd.tp.Type).Elem()
-			err := setWithProperType(fd.tp.Type.Kind(), []string{dev}, dv)
+			err := setWithProperType(fd.tp.Type.Kind(), []string{dev}, dv, fd.options)
 			if err != nil {
 				continue
 			}

@@ -4,6 +4,8 @@ import (
 	"github.com/pkg/errors"
 	"reflect"
 	"strconv"
+	"strings"
+	"tomm/utils"
 )
 
 func mapForm(ptr interface{}, form map[string][]string) error {
@@ -26,6 +28,7 @@ func mapForm(ptr interface{}, form map[string][]string) error {
 				continue
 			}
 		}
+
 		// 检查Op
 		if !fd.hasDefault {
 			err = CheckOptions(fd.options, formV)
@@ -34,18 +37,22 @@ func mapForm(ptr interface{}, form map[string][]string) error {
 			}
 		}
 
+		if formV == nil || len(formV) <= 0 {
+			continue
+		}
+
 		if formV[0] == "" && fd.hasDefault {
 			structVal.Set(fd.defaultValue)
 			continue
 		}
-		if err := setWithProperType(fd.tp.Type.Kind(), formV, structVal); err != nil {
+		if err := setWithProperType(fd.tp.Type.Kind(), formV, structVal, fd.options); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func setWithProperType(kind reflect.Kind, value []string, dv reflect.Value) error {
+func setWithProperType(kind reflect.Kind, value []string, dv reflect.Value, options option) error {
 
 	switch kind {
 	case reflect.Int:
@@ -76,11 +83,19 @@ func setWithProperType(kind reflect.Kind, value []string, dv reflect.Value) erro
 		return setBoolValue(value[0], dv)
 	case reflect.Slice:
 		// 过滤空值
-		val := sliceEmpty(value)
+		//val := sliceEmpty(value)
+		val := value
+		_, ok := options["split"]
+		if ok {
+			val = strings.Split(value[0], ",")
+		}
+
+		val = sliceEmpty(val)
+
 		slice := reflect.MakeSlice(dv.Type(), len(val), len(val))
 		sliceKind := dv.Type().Elem().Kind()
 		for i := 0; i < len(val); i++ {
-			if err := setWithProperType(sliceKind, val[i:], slice.Index(i)); err != nil {
+			if err := setWithProperType(sliceKind, val[i:], slice.Index(i), options); err != nil {
 				return err
 			}
 		}
@@ -170,9 +185,9 @@ func sliceEmpty(value []string) []string {
 	res := make([]string, 0, len(value))
 
 	for _, v := range value {
-
-		if v != "" {
-			res = append(res, v)
+		str := utils.RemoveSpace(v)
+		if str != "" {
+			res = append(res, str)
 		}
 	}
 

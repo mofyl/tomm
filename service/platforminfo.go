@@ -1,6 +1,7 @@
 package service
 
 import (
+	"strings"
 	"tomm/api/api"
 	"tomm/api/model"
 	"tomm/core/server"
@@ -83,9 +84,80 @@ func deletePlatformName(c *server.Context) {
 
 }
 
-func getPlatformByUserID(c *server.Context) {
+func GetPlatformByUserID(c *server.Context) {
 	// 通过 某个条件 查看 platForm的数据
+	req := api.GetPlatformByUserIDReq{}
 
-	// 查询当前用户的权限组
+	err := c.Bind(req)
+
+	if err != nil {
+		log.Error("GetAllPlatformRole Err is %s", err.Error())
+		server.HttpCode(c, ecode.ParamFail)
+		return
+	}
+
+	// 查看当前用户的权限组
+	userRole, err := dao.GetMMUserPlatformRoleSign(req.UserId)
+
+	if err != nil {
+		log.Error("GetPlatformByUserID Fail Err is %s", userRole)
+		server.HttpCode(c, ecode.SystemFail)
+		return
+	}
+
+	if len(userRole) <= 0 {
+		server.HttpCode(c, nil)
+		return
+	}
+
+	userRoles := strings.Builder{}
+
+	for i := 0; i < len(userRole); i++ {
+
+		userRoles.WriteString(userRole[i].RoleSign)
+
+		if i < len(userRole)-1 {
+			userRoles.WriteString(",")
+		}
+
+	}
+
+	roleInfo, err := dao.GetPlatformRoleAppKeyByRoleSigns(userRoles.String())
+
+	if err != nil {
+		log.Error("GetPlatformRoleAppKeyByRoleSigns Fail Err is %s", err.Error())
+		server.HttpCode(c, ecode.SystemFail)
+		return
+	}
+
+	if len(roleInfo) <= 0 {
+		server.HttpCode(c, nil)
+		return
+	}
+
+	// 合并AppKey
+	appkeyMap := make(map[string]struct{}, len(roleInfo))
+
+	for i := 0; i < len(roleInfo); i++ {
+		appkeyMap[roleInfo[i].PlatformAppKey] = struct{}{}
+	}
+
+	infos := make([]*model.PlatformInfo, 0, len(appkeyMap))
+	for k, _ := range appkeyMap {
+
+		info, err := dao.GetPlatformInfo(k)
+
+		if err != nil {
+			continue
+		}
+
+		infos = append(infos, info)
+	}
+
+	res := api.GetPlatformByUserIDRes{
+		Infos: infos,
+	}
+
+	server.HttpData(c, &res)
 
 }

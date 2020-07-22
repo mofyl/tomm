@@ -54,6 +54,14 @@ func UpdatePlatformInfo(info *model.PlatformInfo) error {
 
 }
 
+//
+//func DeletePlatformInfo(appKey string) error {
+//	// TODO：这里考虑要不要做成事务
+//
+//	// 除了删除平台信息外 还将权限信息都要删除
+//
+//}
+
 func GetPlatformInfo(appKey string) (*model.PlatformInfo, error) {
 	//var res string
 	res := &model.PlatformInfo{}
@@ -77,7 +85,7 @@ func GetPlatformInfo(appKey string) (*model.PlatformInfo, error) {
 	}
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
-	err = sqldb.GetDB(sqldb.MYSQL).QueryOne(ctx, res, fmt.Sprintf("select * from %s where app_key='?' and deleted=1", PLATFORM_INFOS), appKey)
+	err = sqldb.GetDB(sqldb.MYSQL).QueryOne(ctx, res, fmt.Sprintf("select id,memo,app_key,index_url,channel_name,sign_url,create_time from %s where app_key='?' and deleted=1", PLATFORM_INFOS), appKey)
 	cancel()
 	if err != nil {
 		return nil, err
@@ -113,7 +121,7 @@ func GetAllPlatform() ([]*model.PlatformInfo, error) {
 	if len(res) <= 0 {
 		// read DB
 		ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
-		err := sqldb.GetDB(sqldb.MYSQL).QueryAll(ctx, &infos, fmt.Sprintf("select * from %s where deleted=1", PLATFORM_INFOS))
+		err := sqldb.GetDB(sqldb.MYSQL).QueryAll(ctx, &infos, fmt.Sprintf("select id,memo,app_key,index_url,channel_name,sign_url,create_time from %s where deleted=1", PLATFORM_INFOS))
 		cancel()
 		if err != nil {
 			return nil, err

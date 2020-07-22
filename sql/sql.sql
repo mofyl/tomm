@@ -63,6 +63,13 @@ CREATE TABLE `platform_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+CREATE TABLE `mm_user_platform_roles` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `mm_user_id` varchar(32) NOT NULL COMMENT 'mm用户的标识 这里可能使用userID',
+  `role_sign` varchar(256) NOT NULL COMMENT '该用户拥有的角色ID',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 
 

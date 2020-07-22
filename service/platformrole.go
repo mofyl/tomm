@@ -1,7 +1,6 @@
 package service
 
 import (
-	"strings"
 	"tomm/api/api"
 	"tomm/core/server"
 	"tomm/ecode"
@@ -22,9 +21,7 @@ func AddPlatformRole(c *server.Context) {
 	// 检查ids是否正确
 	// ....
 
-	ids := strings.Split(req.PlatformIds, ",")
-
-	err = dao.SavePlatformRole(req.RoleName, ids)
+	err = dao.SavePlatformRole(req.RoleName, req.PlatformIds)
 
 	if err != nil {
 		server.HttpCode(c, ecode.SystemFail)
@@ -33,4 +30,8 @@ func AddPlatformRole(c *server.Context) {
 	}
 
 	server.HttpCode(c, nil)
+}
+
+func GetAllPlatformRole(c *server.Context) {
+
 }

@@ -2,6 +2,7 @@ package dao
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"strings"
 	"time"
@@ -10,7 +11,7 @@ import (
 	"tomm/utils"
 )
 
-func GetPlatformRole() ([]model.PlatformRoleMidInfo, error) {
+func GetAllPlatformRole() ([]model.PlatformRoleMidInfo, error) {
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
 	roleInfos := make([]model.PlatformRoleMidInfo, 0)
@@ -24,6 +25,19 @@ func GetPlatformRole() ([]model.PlatformRoleMidInfo, error) {
 
 	return roleInfos, nil
 
+}
+
+func UpdatePlatformRoleName(roleSign, roleName string) (int64, error) {
+	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
+
+	aff, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("update %s set role_name=? where role_sign=?", PLATFORM_ROLE), roleName, roleSign)
+	cancel()
+
+	if err != nil {
+		return 0, err
+	}
+
+	return aff.RowsAffected()
 }
 
 func DeletePlatformRoleByRoleSign(roleSign string) error {
@@ -41,6 +55,23 @@ func GetPlatformRoleAppKeyByRoleSign(roleSign string) ([]model.PlatformRole, err
 	roleInfos := make([]model.PlatformRole, 0)
 
 	err := sqldb.GetDB(sqldb.MYSQL).QueryAll(ctx, &roleInfos, fmt.Sprintf("select role_name , platform_app_key from %s where role_sign=?", PLATFORM_ROLE), roleSign)
+
+	cancel()
+
+	if err != nil {
+		return nil, err
+	}
+
+	return roleInfos, nil
+
+}
+
+func GetPlatformRoleAppKeyByRoleSigns(roleSign string) ([]model.PlatformRole, error) {
+
+	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
+	roleInfos := make([]model.PlatformRole, 0)
+
+	err := sqldb.GetDB(sqldb.MYSQL).QueryAll(ctx, &roleInfos, fmt.Sprintf("select role_name , platform_app_key from %s where role_sign in(?)", PLATFORM_ROLE), roleSign)
 
 	cancel()
 
@@ -135,6 +166,11 @@ func UpdatePlatformRole(roleSign string, roleName string, platformApp map[string
 		return err
 	}
 
+	if len(oldRoleInfo) <= 0 {
+		return errors.New("Update Fail : Role Sign illage")
+	}
+
+	needUpdateName := false
 	oldRoleInfoMap := make(map[string]string, len(oldRoleInfo))
 
 	for i := 0; i < len(oldRoleInfo); i++ {
@@ -142,6 +178,9 @@ func UpdatePlatformRole(roleSign string, roleName string, platformApp map[string
 		appKey := utils.RemoveSpace(oldRoleInfo[i].PlatformAppKey)
 		if appKey != "" {
 			oldRoleInfoMap[appKey] = oldRoleInfo[i].RoleName
+			if oldRoleInfo[i].RoleName != roleName {
+				needUpdateName = true
+			}
 		}
 	}
 
@@ -181,6 +220,16 @@ func UpdatePlatformRole(roleSign string, roleName string, platformApp map[string
 		if err != nil {
 			return err
 		}
+	}
+
+	// 更新之前的名字
+	if needUpdateName && len(needDelete) < len(oldRoleInfo) {
+		_, err := UpdatePlatformRoleName(roleSign, roleName)
+
+		if err != nil {
+			return err
+		}
+
 	}
 
 	// 插入操作

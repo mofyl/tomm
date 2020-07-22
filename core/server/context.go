@@ -79,6 +79,10 @@ func (c *Context) Render(code int, render rending.Render) error {
 		log.Error("Context: Write Response Err is %s ", err.Error())
 		return err
 	}
+	c.Abort()
+	if c.Req.Body != nil {
+		c.Req.Body.Close()
+	}
 	return nil
 }
 

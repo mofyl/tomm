@@ -12,7 +12,7 @@ type TestStruct struct {
 }
 
 type TestSli struct {
-	A []int64 `form:"a_field"`
+	A []int64 `form:"a_field,required,split"`
 }
 
 func TestDefaultBind(t *testing.T) {
@@ -50,14 +50,25 @@ func TestStructPoint(t *testing.T) {
 func TestBindSlice(t *testing.T) {
 
 	ts := TestSli{}
+	//
+	//testForm := make(map[string][]string)
+	//testForm["a_field"] = []string{"111", "222"}
+	//testForm["b_field"] = []string{""}
+	//err := formBind.testInterface(testForm, &ts)
+	//
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
 
 	testForm := make(map[string][]string)
-	testForm["a_field"] = []string{"111", "222"}
-	testForm["b_field"] = []string{""}
+
+	testForm["a_field"] = []string{}
+
 	err := formBind.testInterface(testForm, &ts)
 
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	for _, v := range ts.A {

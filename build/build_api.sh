@@ -20,7 +20,7 @@ function read_dir(){
         next_path=${next_path#*/}
         cd $next_path
 #        pwd
-        protoc -I=. -I=/Users/mo/go/src/ --gofast_out=. *.proto
+        protoc -I=$GOPATH/src  -I=. --gofast_out=. *.proto
         # 执行 protoc-go-inject-tag
         cur_file=$file
         cur_file_suf=${cur_file#*.}
