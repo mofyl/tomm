@@ -27,6 +27,40 @@ func GetAllPlatformRole() ([]model.PlatformRoleMidInfo, error) {
 
 }
 
+func GetPlatformRoleCount() (int64, error) {
+
+	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
+
+	var count int64
+
+	err := sqldb.GetDB(sqldb.MYSQL).Count(ctx, &count, fmt.Sprintf("select count(id) from %s", PLATFORM_ROLE))
+	cancel()
+
+	if err != nil {
+		return 0, err
+	}
+
+	return count, nil
+
+}
+
+func GetPlatformRoleByPage(page int32, pageSize int32) ([]*model.PlatformRole, error) {
+
+	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
+	roleInfos := make([]*model.PlatformRole, 0)
+
+	err := sqldb.GetDB(sqldb.MYSQL).QueryAll(ctx, &roleInfos, fmt.Sprintf("select * from %s limit ?,? group by id desc", PLATFORM_ROLE), page*pageSize, pageSize)
+
+	cancel()
+
+	if err != nil {
+		return nil, err
+	}
+
+	return roleInfos, nil
+
+}
+
 func UpdatePlatformRoleName(roleSign, roleName string) (int64, error) {
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
 
@@ -43,6 +77,16 @@ func UpdatePlatformRoleName(roleSign, roleName string) (int64, error) {
 func DeletePlatformRoleByRoleSign(roleSign string) error {
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
 	_, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("delete from %s where role_sign=?", PLATFORM_ROLE), roleSign)
+	cancel()
+
+	return err
+
+}
+
+func DeletePlatformRoleByIds(ids string) error {
+
+	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
+	_, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("update %s set deleted = 2 where id in(?) and deleted=1", PLATFORM_ROLE), ids)
 	cancel()
 
 	return err

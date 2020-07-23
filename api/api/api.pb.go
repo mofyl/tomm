@@ -250,10 +250,8 @@ func (m *CheckPlatformNameRes) GetRes() int32 {
 }
 
 type DeletePlatformReq struct {
-	// @inject_tag: form:"channel_id,required"
-	ChannelId int64 `protobuf:"varint,1,opt,name=channel_id,json=channelId,proto3" json:"channel_id,omitempty" form:"channel_id,required"`
-	// @inject_tag: form:"user_id,required"
-	UserId               int64    `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" form:"user_id,required"`
+	// @inject_tag: form:"names,required,split"
+	Names                []string `protobuf:"bytes,1,rep,name=names,proto3" json:"names,omitempty" form:"names,required,split"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -292,18 +290,11 @@ func (m *DeletePlatformReq) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DeletePlatformReq proto.InternalMessageInfo
 
-func (m *DeletePlatformReq) GetChannelId() int64 {
+func (m *DeletePlatformReq) GetNames() []string {
 	if m != nil {
-		return m.ChannelId
+		return m.Names
 	}
-	return 0
-}
-
-func (m *DeletePlatformReq) GetUserId() int64 {
-	if m != nil {
-		return m.UserId
-	}
-	return 0
+	return nil
 }
 
 type DeletePlatformRes struct {
@@ -1468,6 +1459,118 @@ func (m *GetPlatformByUserIDReq) GetUserId() string {
 	return ""
 }
 
+type GetPlatformInfosReq struct {
+	// @inject_tag: form:"page,required"
+	Page int32 `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty" form:"page,required"`
+	// @inject_tag: form:"page_size,required"
+	PageSize             int32    `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty" form:"page_size,required"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetPlatformInfosReq) Reset()         { *m = GetPlatformInfosReq{} }
+func (m *GetPlatformInfosReq) String() string { return proto.CompactTextString(m) }
+func (*GetPlatformInfosReq) ProtoMessage()    {}
+func (*GetPlatformInfosReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00212fb1f9d3bf1c, []int{26}
+}
+func (m *GetPlatformInfosReq) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetPlatformInfosReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetPlatformInfosReq.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetPlatformInfosReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetPlatformInfosReq.Merge(m, src)
+}
+func (m *GetPlatformInfosReq) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetPlatformInfosReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetPlatformInfosReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetPlatformInfosReq proto.InternalMessageInfo
+
+func (m *GetPlatformInfosReq) GetPage() int32 {
+	if m != nil {
+		return m.Page
+	}
+	return 0
+}
+
+func (m *GetPlatformInfosReq) GetPageSize() int32 {
+	if m != nil {
+		return m.PageSize
+	}
+	return 0
+}
+
+type GetPlatformInfosRes struct {
+	Total                int64                 `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
+	Infos                []*model.PlatformInfo `protobuf:"bytes,2,rep,name=infos,proto3" json:"infos,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *GetPlatformInfosRes) Reset()         { *m = GetPlatformInfosRes{} }
+func (m *GetPlatformInfosRes) String() string { return proto.CompactTextString(m) }
+func (*GetPlatformInfosRes) ProtoMessage()    {}
+func (*GetPlatformInfosRes) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00212fb1f9d3bf1c, []int{27}
+}
+func (m *GetPlatformInfosRes) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetPlatformInfosRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetPlatformInfosRes.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetPlatformInfosRes) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetPlatformInfosRes.Merge(m, src)
+}
+func (m *GetPlatformInfosRes) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetPlatformInfosRes) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetPlatformInfosRes.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetPlatformInfosRes proto.InternalMessageInfo
+
+func (m *GetPlatformInfosRes) GetTotal() int64 {
+	if m != nil {
+		return m.Total
+	}
+	return 0
+}
+
+func (m *GetPlatformInfosRes) GetInfos() []*model.PlatformInfo {
+	if m != nil {
+		return m.Infos
+	}
+	return nil
+}
+
 type GetPlatformByUserIDRes struct {
 	Infos                []*model.PlatformInfo `protobuf:"bytes,1,rep,name=infos,proto3" json:"infos,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
@@ -1479,7 +1582,7 @@ func (m *GetPlatformByUserIDRes) Reset()         { *m = GetPlatformByUserIDRes{}
 func (m *GetPlatformByUserIDRes) String() string { return proto.CompactTextString(m) }
 func (*GetPlatformByUserIDRes) ProtoMessage()    {}
 func (*GetPlatformByUserIDRes) Descriptor() ([]byte, []int) {
-	return fileDescriptor_00212fb1f9d3bf1c, []int{26}
+	return fileDescriptor_00212fb1f9d3bf1c, []int{28}
 }
 func (m *GetPlatformByUserIDRes) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1515,6 +1618,232 @@ func (m *GetPlatformByUserIDRes) GetInfos() []*model.PlatformInfo {
 	return nil
 }
 
+type GetAllPlatformRoleReq struct {
+	// @inject_tag: form:"page,required"
+	Page int32 `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty" form:"page,required"`
+	// @inject_tag: form:"page_size,required"
+	PageSize             int32    `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty" form:"page_size,required"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetAllPlatformRoleReq) Reset()         { *m = GetAllPlatformRoleReq{} }
+func (m *GetAllPlatformRoleReq) String() string { return proto.CompactTextString(m) }
+func (*GetAllPlatformRoleReq) ProtoMessage()    {}
+func (*GetAllPlatformRoleReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00212fb1f9d3bf1c, []int{29}
+}
+func (m *GetAllPlatformRoleReq) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetAllPlatformRoleReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetAllPlatformRoleReq.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetAllPlatformRoleReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAllPlatformRoleReq.Merge(m, src)
+}
+func (m *GetAllPlatformRoleReq) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetAllPlatformRoleReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAllPlatformRoleReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetAllPlatformRoleReq proto.InternalMessageInfo
+
+func (m *GetAllPlatformRoleReq) GetPage() int32 {
+	if m != nil {
+		return m.Page
+	}
+	return 0
+}
+
+func (m *GetAllPlatformRoleReq) GetPageSize() int32 {
+	if m != nil {
+		return m.PageSize
+	}
+	return 0
+}
+
+type GetAllPlatformRoleRes struct {
+	Infos                []*model.PlatformRole `protobuf:"bytes,1,rep,name=infos,proto3" json:"infos,omitempty"`
+	Total                int64                 `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *GetAllPlatformRoleRes) Reset()         { *m = GetAllPlatformRoleRes{} }
+func (m *GetAllPlatformRoleRes) String() string { return proto.CompactTextString(m) }
+func (*GetAllPlatformRoleRes) ProtoMessage()    {}
+func (*GetAllPlatformRoleRes) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00212fb1f9d3bf1c, []int{30}
+}
+func (m *GetAllPlatformRoleRes) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetAllPlatformRoleRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetAllPlatformRoleRes.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetAllPlatformRoleRes) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetAllPlatformRoleRes.Merge(m, src)
+}
+func (m *GetAllPlatformRoleRes) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetAllPlatformRoleRes) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetAllPlatformRoleRes.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetAllPlatformRoleRes proto.InternalMessageInfo
+
+func (m *GetAllPlatformRoleRes) GetInfos() []*model.PlatformRole {
+	if m != nil {
+		return m.Infos
+	}
+	return nil
+}
+
+func (m *GetAllPlatformRoleRes) GetTotal() int64 {
+	if m != nil {
+		return m.Total
+	}
+	return 0
+}
+
+type DeletePlatformRoleReq struct {
+	// @inject_tag: form:"ids,required"
+	Ids                  string   `protobuf:"bytes,1,opt,name=ids,proto3" json:"ids,omitempty" form:"ids,required"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeletePlatformRoleReq) Reset()         { *m = DeletePlatformRoleReq{} }
+func (m *DeletePlatformRoleReq) String() string { return proto.CompactTextString(m) }
+func (*DeletePlatformRoleReq) ProtoMessage()    {}
+func (*DeletePlatformRoleReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00212fb1f9d3bf1c, []int{31}
+}
+func (m *DeletePlatformRoleReq) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *DeletePlatformRoleReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_DeletePlatformRoleReq.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *DeletePlatformRoleReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeletePlatformRoleReq.Merge(m, src)
+}
+func (m *DeletePlatformRoleReq) XXX_Size() int {
+	return m.Size()
+}
+func (m *DeletePlatformRoleReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeletePlatformRoleReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeletePlatformRoleReq proto.InternalMessageInfo
+
+func (m *DeletePlatformRoleReq) GetIds() string {
+	if m != nil {
+		return m.Ids
+	}
+	return ""
+}
+
+type UpdatePlatformRoleReq struct {
+	// @inject_tag: form:"role_name"
+	RoleName string `protobuf:"bytes,1,opt,name=role_name,json=roleName,proto3" json:"role_name,omitempty" form:"role_name"`
+	// @inject_tag: form:"role_sign,required"
+	RoleSign string `protobuf:"bytes,2,opt,name=role_sign,json=roleSign,proto3" json:"role_sign,omitempty" form:"role_sign,required"`
+	// @inject_tag: form:"app_keys,split"
+	AppKeys              []string `protobuf:"bytes,3,rep,name=app_keys,json=appKeys,proto3" json:"app_keys,omitempty" form:"app_keys,split"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *UpdatePlatformRoleReq) Reset()         { *m = UpdatePlatformRoleReq{} }
+func (m *UpdatePlatformRoleReq) String() string { return proto.CompactTextString(m) }
+func (*UpdatePlatformRoleReq) ProtoMessage()    {}
+func (*UpdatePlatformRoleReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00212fb1f9d3bf1c, []int{32}
+}
+func (m *UpdatePlatformRoleReq) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *UpdatePlatformRoleReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_UpdatePlatformRoleReq.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *UpdatePlatformRoleReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdatePlatformRoleReq.Merge(m, src)
+}
+func (m *UpdatePlatformRoleReq) XXX_Size() int {
+	return m.Size()
+}
+func (m *UpdatePlatformRoleReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdatePlatformRoleReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdatePlatformRoleReq proto.InternalMessageInfo
+
+func (m *UpdatePlatformRoleReq) GetRoleName() string {
+	if m != nil {
+		return m.RoleName
+	}
+	return ""
+}
+
+func (m *UpdatePlatformRoleReq) GetRoleSign() string {
+	if m != nil {
+		return m.RoleSign
+	}
+	return ""
+}
+
+func (m *UpdatePlatformRoleReq) GetAppKeys() []string {
+	if m != nil {
+		return m.AppKeys
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*RegisterPlatformReq)(nil), "api.RegisterPlatformReq")
 	proto.RegisterType((*RegisterPlatformRes)(nil), "api.RegisterPlatformRes")
@@ -1542,63 +1871,75 @@ func init() {
 	proto.RegisterType((*AddPlatformRoleReq)(nil), "api.AddPlatformRoleReq")
 	proto.RegisterType((*AddMMPlatformRoleReq)(nil), "api.AddMMPlatformRoleReq")
 	proto.RegisterType((*GetPlatformByUserIDReq)(nil), "api.GetPlatformByUserIDReq")
+	proto.RegisterType((*GetPlatformInfosReq)(nil), "api.GetPlatformInfosReq")
+	proto.RegisterType((*GetPlatformInfosRes)(nil), "api.GetPlatformInfosRes")
 	proto.RegisterType((*GetPlatformByUserIDRes)(nil), "api.GetPlatformByUserIDRes")
+	proto.RegisterType((*GetAllPlatformRoleReq)(nil), "api.GetAllPlatformRoleReq")
+	proto.RegisterType((*GetAllPlatformRoleRes)(nil), "api.GetAllPlatformRoleRes")
+	proto.RegisterType((*DeletePlatformRoleReq)(nil), "api.DeletePlatformRoleReq")
+	proto.RegisterType((*UpdatePlatformRoleReq)(nil), "api.UpdatePlatformRoleReq")
 }
 
 func init() { proto.RegisterFile("api.proto", fileDescriptor_00212fb1f9d3bf1c) }
 
 var fileDescriptor_00212fb1f9d3bf1c = []byte{
-	// 787 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x55, 0xdd, 0x4e, 0xeb, 0x46,
-	0x10, 0xae, 0x13, 0x92, 0xd8, 0x93, 0x70, 0x04, 0x7b, 0xe8, 0x69, 0x0e, 0x94, 0x14, 0x96, 0x56,
-	0xa5, 0xad, 0x04, 0x2a, 0xbd, 0x6b, 0xa5, 0xd2, 0x00, 0x52, 0x14, 0x51, 0x2a, 0x64, 0x48, 0x6e,
-	0xad, 0x25, 0x3b, 0x01, 0x2b, 0xfe, 0xab, 0xed, 0x40, 0xc2, 0x03, 0xf4, 0x19, 0xfa, 0x48, 0xbd,
-	0xec, 0x23, 0x54, 0xf4, 0x45, 0xaa, 0xd9, 0xb5, 0x53, 0x03, 0x49, 0x5a, 0xe9, 0xdc, 0x44, 0x3b,
-	0xb3, 0x3b, 0xf3, 0x7d, 0xf3, 0x79, 0x66, 0x02, 0x96, 0x88, 0xdc, 0x83, 0x28, 0x0e, 0xd3, 0x90,
-	0x95, 0x45, 0xe4, 0x6e, 0x6e, 0xa6, 0xa1, 0xef, 0x1f, 0x8a, 0xc8, 0x3d, 0xf4, 0x43, 0x89, 0x9e,
-	0xfe, 0xd5, 0x0f, 0xf8, 0x6f, 0x06, 0xbc, 0xb5, 0xf1, 0xd6, 0x4d, 0x52, 0x8c, 0x2f, 0x3d, 0x91,
-	0x0e, 0xc3, 0xd8, 0xb7, 0xf1, 0x57, 0xb6, 0x07, 0xab, 0x51, 0x66, 0x3a, 0x81, 0xf0, 0xb1, 0x69,
-	0xec, 0x18, 0xfb, 0x96, 0xdd, 0xc8, 0x9d, 0xbf, 0x08, 0x1f, 0x19, 0x83, 0x15, 0x1f, 0xfd, 0xb0,
-	0x59, 0x52, 0x77, 0xea, 0xcc, 0xb6, 0xc0, 0x72, 0x03, 0x89, 0x13, 0x67, 0x1c, 0x7b, 0xcd, 0xb2,
-	0xba, 0x30, 0x95, 0xa3, 0x17, 0x7b, 0xec, 0x3d, 0x98, 0x89, 0x7b, 0x1b, 0xa8, 0xbb, 0x15, 0x75,
-	0x57, 0x23, 0xbb, 0x17, 0x7b, 0xfc, 0x62, 0x1e, 0x8f, 0x84, 0x6d, 0x03, 0x24, 0x38, 0x88, 0x31,
-	0x75, 0x46, 0x38, 0xcd, 0x48, 0x58, 0xda, 0x73, 0x8e, 0x53, 0xf6, 0x09, 0xd4, 0x44, 0x14, 0xa9,
-	0x3b, 0x4d, 0xa2, 0x2a, 0xa2, 0xe8, 0x1c, 0xa7, 0xfc, 0x6b, 0xd8, 0x38, 0xbd, 0xc3, 0xc1, 0xe8,
-	0xb2, 0xc0, 0x97, 0xea, 0x62, 0xb0, 0x52, 0x28, 0x47, 0x9d, 0xf9, 0xfe, 0xdc, 0xb7, 0x09, 0x5b,
-	0x83, 0x72, 0x8c, 0x89, 0x7a, 0x5a, 0xb1, 0xe9, 0xc8, 0xcf, 0x61, 0xfd, 0x0c, 0x3d, 0x4c, 0xb1,
-	0x28, 0xd5, 0x36, 0xc0, 0xe0, 0x4e, 0x04, 0x01, 0x7a, 0x8e, 0x2b, 0xd5, 0xeb, 0xb2, 0x6d, 0x65,
-	0x9e, 0xae, 0x24, 0x8a, 0xe3, 0x04, 0x63, 0xba, 0x2b, 0xa9, 0xbb, 0x2a, 0x99, 0x5d, 0xc9, 0xbf,
-	0x78, 0x9d, 0x6c, 0x1e, 0xe6, 0xf7, 0x50, 0xef, 0x60, 0x7a, 0x1d, 0x8e, 0x30, 0x20, 0xb4, 0x42,
-	0xc5, 0x46, 0xb1, 0x62, 0xaa, 0x4c, 0x8a, 0x54, 0xe4, 0x1f, 0x83, 0xce, 0x5c, 0xc0, 0xaa, 0x0a,
-	0x3c, 0x13, 0xa9, 0xe8, 0x06, 0x43, 0xf5, 0x75, 0x12, 0x0c, 0xa4, 0x93, 0xba, 0x99, 0x06, 0x65,
-	0xdb, 0x24, 0xc7, 0xb5, 0xab, 0x3f, 0xe7, 0x20, 0x94, 0x98, 0x67, 0xa0, 0x33, 0xfb, 0x0c, 0xea,
-	0x38, 0x49, 0x29, 0xc4, 0x0d, 0x86, 0xa1, 0xfa, 0xa0, 0x0d, 0x1b, 0xb4, 0x8b, 0x32, 0xf2, 0xbd,
-	0x22, 0xbd, 0x84, 0x6d, 0x40, 0x25, 0xa5, 0x73, 0x46, 0x4e, 0x1b, 0xfc, 0x18, 0xde, 0xf4, 0x31,
-	0x76, 0x87, 0xd3, 0xff, 0x2e, 0x63, 0x96, 0xa0, 0x54, 0x4c, 0xf0, 0xcd, 0x8b, 0x04, 0x09, 0xb5,
-	0x12, 0x4e, 0xa2, 0x62, 0x21, 0x35, 0x9c, 0x44, 0x54, 0x07, 0xff, 0x11, 0xa0, 0x83, 0xe9, 0x69,
-	0x28, 0x31, 0x43, 0xca, 0xf5, 0xcf, 0x90, 0xb4, 0xfe, 0x8b, 0x7b, 0xe7, 0x87, 0x42, 0x7c, 0x32,
-	0x53, 0xc5, 0x28, 0xa8, 0xf2, 0x1e, 0xcc, 0x1b, 0x31, 0x18, 0xa9, 0x3e, 0xd6, 0xb1, 0x35, 0xb2,
-	0xa9, 0x8f, 0x8f, 0xe1, 0x4d, 0x07, 0xd3, 0x1e, 0x41, 0x04, 0xc3, 0x90, 0x08, 0xcc, 0x95, 0x64,
-	0x31, 0xfa, 0x4f, 0xb0, 0xfe, 0x3c, 0x81, 0xd3, 0x3f, 0x9a, 0x4b, 0x62, 0x09, 0xff, 0x86, 0xea,
-	0xe7, 0x82, 0x02, 0xff, 0xbf, 0x65, 0xbe, 0x7c, 0x16, 0x9c, 0x2c, 0x94, 0x8f, 0x3f, 0xc2, 0x5a,
-	0x3e, 0xb0, 0x6d, 0xe9, 0xbb, 0x41, 0x36, 0x0a, 0x5e, 0x78, 0xeb, 0x06, 0xc5, 0x95, 0x61, 0x29,
-	0x8f, 0xda, 0x17, 0x5b, 0xa0, 0x0d, 0x27, 0x7a, 0x90, 0x19, 0xa8, 0xa9, 0x1c, 0x97, 0x0f, 0x72,
-	0x36, 0x99, 0xe5, 0x7f, 0x27, 0x93, 0xbd, 0x83, 0x6a, 0x30, 0xf6, 0x6f, 0x30, 0xce, 0xb6, 0x45,
-	0x66, 0xf1, 0xcf, 0x5f, 0x61, 0xcf, 0x9b, 0x9c, 0x23, 0x58, 0x57, 0xa5, 0xa8, 0x27, 0xf9, 0x02,
-	0x58, 0x4e, 0x91, 0x86, 0xf2, 0x65, 0xcc, 0xbc, 0xd4, 0x6d, 0x30, 0xfb, 0xcb, 0x1a, 0x64, 0x17,
-	0x1a, 0xb1, 0x08, 0x64, 0xe8, 0x3b, 0xf7, 0xc2, 0x1b, 0xe7, 0x23, 0x55, 0xd7, 0xbe, 0x3e, 0xb9,
-	0xf8, 0x23, 0xac, 0x2a, 0x90, 0x9f, 0x09, 0xfb, 0x43, 0xc5, 0xfb, 0x18, 0xaa, 0xf7, 0x8e, 0x62,
-	0xa1, 0xe5, 0xab, 0xdc, 0x13, 0x3b, 0xd2, 0x4f, 0x43, 0xe6, 0xfa, 0x69, 0x8b, 0x5f, 0x03, 0x6b,
-	0x4b, 0x39, 0xdb, 0x3b, 0xa1, 0xa7, 0xa4, 0xd9, 0x02, 0x2b, 0x0e, 0x3d, 0x2c, 0xe2, 0x9b, 0xe4,
-	0x50, 0xf0, 0xbb, 0x30, 0xdb, 0xfd, 0x8e, 0x2b, 0x93, 0x66, 0x69, 0xa7, 0x4c, 0x15, 0xe5, 0xbe,
-	0xae, 0x4c, 0xf8, 0x15, 0x6c, 0xb4, 0xa5, 0xbc, 0xb8, 0x78, 0x99, 0x77, 0x1b, 0x40, 0xe5, 0xa5,
-	0x55, 0x4f, 0x2a, 0x52, 0xa0, 0x42, 0xba, 0x22, 0x07, 0xfb, 0x14, 0xc0, 0xf7, 0x9d, 0xe2, 0x8e,
-	0xb4, 0x6c, 0xd3, 0xf7, 0x7b, 0xba, 0xcd, 0xbe, 0x85, 0x77, 0x1d, 0x4c, 0xf3, 0x94, 0x27, 0x53,
-	0xe5, 0x3e, 0x5b, 0x36, 0xd8, 0xfc, 0x74, 0x41, 0x48, 0xc2, 0xbe, 0x82, 0x0a, 0xad, 0x31, 0x4d,
-	0xa2, 0x7e, 0xf4, 0xf6, 0x40, 0xff, 0x15, 0xe6, 0x4f, 0xd5, 0xc0, 0xe9, 0x17, 0x27, 0x6b, 0x7f,
-	0x3c, 0xb5, 0x8c, 0x3f, 0x9f, 0x5a, 0xc6, 0x5f, 0x4f, 0x2d, 0xe3, 0xf7, 0xbf, 0x5b, 0x1f, 0xdd,
-	0x54, 0xd5, 0x3f, 0xe6, 0x77, 0xff, 0x04, 0x00, 0x00, 0xff, 0xff, 0xa9, 0x81, 0x74, 0xb8, 0x5f,
-	0x07, 0x00, 0x00,
+	// 896 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x56, 0xef, 0x52, 0x23, 0x45,
+	0x10, 0x77, 0x09, 0x21, 0x49, 0x07, 0xae, 0x60, 0x81, 0x33, 0x77, 0x08, 0x7a, 0x73, 0x5a, 0x82,
+	0x56, 0xdd, 0x95, 0xf8, 0x4d, 0xab, 0x3c, 0x73, 0x50, 0x46, 0xea, 0xc4, 0xa2, 0x16, 0x92, 0xf2,
+	0xdb, 0xd6, 0xc0, 0x74, 0x70, 0x8b, 0xfd, 0xe7, 0xce, 0xc0, 0x11, 0x1e, 0xc0, 0x67, 0xf0, 0x91,
+	0xfc, 0xe8, 0x23, 0x58, 0xf8, 0x22, 0x56, 0xf7, 0xec, 0x86, 0xbd, 0xb0, 0x09, 0x5a, 0xf7, 0x05,
+	0xa6, 0x7b, 0xba, 0x7f, 0xdd, 0xfd, 0x9b, 0xee, 0xde, 0x40, 0x4b, 0xa6, 0xc1, 0x8b, 0x34, 0x4b,
+	0x4c, 0xe2, 0xd6, 0x64, 0x1a, 0x3c, 0x7d, 0x6a, 0x92, 0x28, 0x7a, 0x29, 0xd3, 0xe0, 0x65, 0x94,
+	0x28, 0x0c, 0xed, 0x5f, 0x6b, 0x20, 0x7e, 0x77, 0x60, 0xd5, 0xc3, 0xf3, 0x40, 0x1b, 0xcc, 0x8e,
+	0x42, 0x69, 0x86, 0x49, 0x16, 0x79, 0xf8, 0x9b, 0xfb, 0x1c, 0x96, 0xd2, 0x5c, 0xf4, 0x63, 0x19,
+	0x61, 0xc7, 0xf9, 0xc4, 0xd9, 0x6e, 0x79, 0x8b, 0x85, 0xf2, 0x67, 0x19, 0xa1, 0xeb, 0xc2, 0x7c,
+	0x84, 0x51, 0xd2, 0x99, 0xe3, 0x3b, 0x3e, 0xbb, 0x1b, 0xd0, 0x0a, 0x62, 0x85, 0xd7, 0xfe, 0x65,
+	0x16, 0x76, 0x6a, 0x7c, 0xd1, 0x64, 0x45, 0x3f, 0x0b, 0xdd, 0x27, 0xd0, 0xd4, 0xc1, 0x79, 0xcc,
+	0x77, 0xf3, 0x7c, 0xd7, 0x20, 0xb9, 0x9f, 0x85, 0xe2, 0xb0, 0x2a, 0x0f, 0xed, 0x6e, 0x02, 0x68,
+	0x3c, 0xcb, 0xd0, 0xf8, 0x17, 0x38, 0xca, 0x93, 0x68, 0x59, 0xcd, 0x1b, 0x1c, 0xb9, 0x1f, 0x42,
+	0x43, 0xa6, 0x29, 0xdf, 0xd9, 0x24, 0x16, 0x64, 0x9a, 0xbe, 0xc1, 0x91, 0xf8, 0x02, 0xd6, 0xf6,
+	0x7e, 0xc5, 0xb3, 0x8b, 0xa3, 0x52, 0xbe, 0x54, 0x97, 0x0b, 0xf3, 0xa5, 0x72, 0xf8, 0x2c, 0xb6,
+	0x2b, 0x6d, 0xb5, 0xbb, 0x0c, 0xb5, 0x0c, 0x35, 0x9b, 0xd6, 0x3d, 0x3a, 0x8a, 0x1d, 0x58, 0xd9,
+	0xc7, 0x10, 0x0d, 0x96, 0xa9, 0x5a, 0x83, 0x3a, 0xc1, 0x90, 0x61, 0x6d, 0xbb, 0xe5, 0x59, 0x41,
+	0x7c, 0x76, 0xdf, 0xb4, 0x0a, 0xf1, 0x1b, 0x68, 0xf7, 0xd0, 0x9c, 0x24, 0x17, 0x18, 0x13, 0x56,
+	0xa9, 0x1e, 0xa7, 0x5c, 0x0f, 0xe5, 0xad, 0xa4, 0x91, 0x05, 0xd5, 0x74, 0x16, 0x12, 0x96, 0xd8,
+	0x71, 0x5f, 0x1a, 0x79, 0x10, 0x0f, 0x99, 0x7b, 0x8d, 0xb1, 0xf2, 0x4d, 0x90, 0x57, 0x58, 0xf3,
+	0x9a, 0xa4, 0x38, 0x09, 0xec, 0x63, 0x9d, 0x25, 0x0a, 0x0b, 0x04, 0x3a, 0xbb, 0x1f, 0x43, 0x1b,
+	0xaf, 0x0d, 0xb9, 0x04, 0xf1, 0x30, 0xe1, 0xe7, 0x5a, 0xf4, 0xc0, 0xaa, 0x08, 0x51, 0x3c, 0x2f,
+	0xa7, 0xa7, 0xa9, 0x54, 0x43, 0xe7, 0x3c, 0x39, 0x2b, 0x88, 0x57, 0xf0, 0x68, 0x80, 0x59, 0x30,
+	0x1c, 0x3d, 0x5c, 0xc6, 0x18, 0x60, 0xae, 0x0c, 0xf0, 0xe5, 0x04, 0x80, 0xa6, 0x46, 0xc1, 0xeb,
+	0xb4, 0x5c, 0x48, 0x03, 0xaf, 0x53, 0xaa, 0x43, 0x7c, 0x07, 0xd0, 0x43, 0xb3, 0x97, 0x28, 0xcc,
+	0x23, 0x5d, 0x6a, 0xcc, 0xfc, 0x40, 0x15, 0x91, 0x48, 0x3c, 0x50, 0xd3, 0x3b, 0xe3, 0xdb, 0x92,
+	0xbf, 0x1e, 0xb3, 0xe2, 0x94, 0x58, 0x79, 0x02, 0xcd, 0x53, 0x79, 0x76, 0xc1, 0x5d, 0x6a, 0x7d,
+	0x1b, 0x24, 0x53, 0x97, 0xbe, 0x82, 0x47, 0x3d, 0x34, 0x7d, 0x0a, 0x11, 0x0f, 0x93, 0xfc, 0xf5,
+	0xef, 0x53, 0x32, 0x3d, 0xfa, 0xf7, 0xb0, 0xf2, 0x2e, 0x80, 0x3f, 0xd8, 0xad, 0x4c, 0x62, 0x46,
+	0xfe, 0x8b, 0xdc, 0xad, 0x25, 0x06, 0xfe, 0x7b, 0xcb, 0x7c, 0xfe, 0x8e, 0xb3, 0x9e, 0x4a, 0x9f,
+	0xb8, 0x81, 0xe5, 0x62, 0x1c, 0xbb, 0x2a, 0x0a, 0xf8, 0x55, 0x37, 0x01, 0xc2, 0xe4, 0x3c, 0x88,
+	0xcb, 0x0b, 0xa1, 0xc5, 0x1a, 0xde, 0x06, 0x1b, 0x60, 0x05, 0x3f, 0x7d, 0xab, 0xf2, 0xa0, 0x4d,
+	0x56, 0x1c, 0xbd, 0x55, 0xe3, 0xb9, 0xab, 0xdd, 0xcd, 0x9d, 0xfb, 0x18, 0x16, 0xe2, 0xcb, 0xe8,
+	0x14, 0xb3, 0x7c, 0x17, 0xe4, 0x92, 0xf8, 0xf4, 0x5e, 0xec, 0xaa, 0xc9, 0xd9, 0x85, 0x15, 0x2e,
+	0x85, 0x4d, 0x8a, 0xf1, 0x9e, 0x9d, 0x22, 0x0d, 0xe5, 0xa4, 0x4f, 0x15, 0x74, 0x17, 0x9a, 0x83,
+	0x59, 0x0d, 0xf2, 0x0c, 0x16, 0x33, 0x19, 0xab, 0x24, 0xf2, 0xaf, 0x64, 0x78, 0x59, 0x8c, 0x54,
+	0xdb, 0xea, 0x06, 0xa4, 0x12, 0x37, 0xb0, 0xc4, 0x41, 0x7e, 0xa2, 0xd8, 0xef, 0x4b, 0xde, 0x3a,
+	0x2c, 0x5c, 0xf9, 0x9c, 0x85, 0xa5, 0xaf, 0x7e, 0x45, 0xd9, 0x11, 0x7f, 0x36, 0x64, 0xc1, 0x9f,
+	0x95, 0xc4, 0x09, 0xb8, 0x5d, 0xa5, 0xc6, 0x7b, 0x27, 0x09, 0x99, 0x9a, 0x0d, 0x68, 0x65, 0x49,
+	0x88, 0xe5, 0xf8, 0x4d, 0x52, 0x70, 0xf8, 0x67, 0x30, 0xde, 0xec, 0x7e, 0xa0, 0x74, 0x67, 0x8e,
+	0x57, 0x59, 0xbb, 0xd0, 0x1d, 0x28, 0x2d, 0x8e, 0x61, 0xad, 0xab, 0xd4, 0xe1, 0xe1, 0x24, 0xee,
+	0x26, 0x00, 0xe3, 0xd2, 0x22, 0x2f, 0x76, 0x20, 0x47, 0x3a, 0x26, 0x85, 0xfb, 0x11, 0x40, 0x14,
+	0xf9, 0x45, 0x93, 0xe5, 0x95, 0x45, 0x51, 0xdf, 0xb6, 0xd9, 0x57, 0xf0, 0xb8, 0x87, 0xa6, 0x80,
+	0x7c, 0x3d, 0x62, 0xf5, 0xfe, 0xac, 0xc1, 0x16, 0x3f, 0xc0, 0x6a, 0xc9, 0x85, 0xa6, 0x48, 0xe7,
+	0x8b, 0x3d, 0x95, 0xe7, 0x98, 0x3f, 0x23, 0x9f, 0xa9, 0x64, 0xfa, 0xef, 0xeb, 0xe0, 0xc6, 0x3e,
+	0x52, 0xdd, 0x6b, 0x92, 0xe2, 0x38, 0xb8, 0x41, 0x31, 0xa8, 0xc2, 0xc9, 0x57, 0x9c, 0x91, 0x61,
+	0xbe, 0x76, 0xac, 0xe0, 0xee, 0x40, 0x9d, 0x36, 0xa4, 0x25, 0xa6, 0xbd, 0xbb, 0xfa, 0xc2, 0x7e,
+	0x43, 0xcb, 0xde, 0x9e, 0xb5, 0x10, 0x7b, 0x53, 0x4a, 0xd2, 0x77, 0x20, 0xce, 0x83, 0x20, 0x3f,
+	0xc2, 0x7a, 0x0f, 0x4d, 0x37, 0x0c, 0x27, 0xd9, 0xfe, 0xdf, 0x65, 0xfe, 0x52, 0x8d, 0xf4, 0x60,
+	0x36, 0x6c, 0x66, 0x2d, 0xee, 0x38, 0x99, 0x2b, 0x71, 0x22, 0x76, 0x60, 0x7d, 0xe2, 0x0b, 0x97,
+	0xe7, 0xb8, 0x0c, 0x35, 0xea, 0x21, 0xfb, 0x6c, 0x74, 0x14, 0x21, 0xac, 0xf7, 0x53, 0x25, 0xef,
+	0x9b, 0xce, 0x6c, 0xca, 0xe2, 0x92, 0x3a, 0xab, 0xe8, 0x9c, 0xa2, 0xb1, 0x68, 0x49, 0xe7, 0x6b,
+	0x4f, 0x77, 0x6a, 0xdc, 0x74, 0x0d, 0xbb, 0xf7, 0xf4, 0xeb, 0xe5, 0x3f, 0x6f, 0xb7, 0x9c, 0xbf,
+	0x6e, 0xb7, 0x9c, 0xbf, 0x6f, 0xb7, 0x9c, 0x3f, 0xfe, 0xd9, 0xfa, 0xe0, 0x74, 0x81, 0x7f, 0xec,
+	0x7c, 0xfd, 0x6f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x9d, 0xe6, 0xcf, 0x94, 0x1a, 0x09, 0x00, 0x00,
 }
 
 func (m *RegisterPlatformReq) Marshal() (dAtA []byte, err error) {
@@ -1787,15 +2128,14 @@ func (m *DeletePlatformReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if m.UserId != 0 {
-		i = encodeVarintApi(dAtA, i, uint64(m.UserId))
-		i--
-		dAtA[i] = 0x10
-	}
-	if m.ChannelId != 0 {
-		i = encodeVarintApi(dAtA, i, uint64(m.ChannelId))
-		i--
-		dAtA[i] = 0x8
+	if len(m.Names) > 0 {
+		for iNdEx := len(m.Names) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.Names[iNdEx])
+			copy(dAtA[i:], m.Names[iNdEx])
+			i = encodeVarintApi(dAtA, i, uint64(len(m.Names[iNdEx])))
+			i--
+			dAtA[i] = 0xa
+		}
 	}
 	return len(dAtA) - i, nil
 }
@@ -2634,6 +2974,89 @@ func (m *GetPlatformByUserIDReq) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	return len(dAtA) - i, nil
 }
 
+func (m *GetPlatformInfosReq) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetPlatformInfosReq) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetPlatformInfosReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.PageSize != 0 {
+		i = encodeVarintApi(dAtA, i, uint64(m.PageSize))
+		i--
+		dAtA[i] = 0x10
+	}
+	if m.Page != 0 {
+		i = encodeVarintApi(dAtA, i, uint64(m.Page))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetPlatformInfosRes) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetPlatformInfosRes) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetPlatformInfosRes) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.Infos) > 0 {
+		for iNdEx := len(m.Infos) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Infos[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintApi(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x12
+		}
+	}
+	if m.Total != 0 {
+		i = encodeVarintApi(dAtA, i, uint64(m.Total))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
 func (m *GetPlatformByUserIDRes) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -2671,6 +3094,173 @@ func (m *GetPlatformByUserIDRes) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 			i--
 			dAtA[i] = 0xa
 		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetAllPlatformRoleReq) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetAllPlatformRoleReq) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetAllPlatformRoleReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.PageSize != 0 {
+		i = encodeVarintApi(dAtA, i, uint64(m.PageSize))
+		i--
+		dAtA[i] = 0x10
+	}
+	if m.Page != 0 {
+		i = encodeVarintApi(dAtA, i, uint64(m.Page))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetAllPlatformRoleRes) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetAllPlatformRoleRes) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetAllPlatformRoleRes) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.Total != 0 {
+		i = encodeVarintApi(dAtA, i, uint64(m.Total))
+		i--
+		dAtA[i] = 0x10
+	}
+	if len(m.Infos) > 0 {
+		for iNdEx := len(m.Infos) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Infos[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintApi(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *DeletePlatformRoleReq) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *DeletePlatformRoleReq) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *DeletePlatformRoleReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.Ids) > 0 {
+		i -= len(m.Ids)
+		copy(dAtA[i:], m.Ids)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.Ids)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *UpdatePlatformRoleReq) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *UpdatePlatformRoleReq) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *UpdatePlatformRoleReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.AppKeys) > 0 {
+		for iNdEx := len(m.AppKeys) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.AppKeys[iNdEx])
+			copy(dAtA[i:], m.AppKeys[iNdEx])
+			i = encodeVarintApi(dAtA, i, uint64(len(m.AppKeys[iNdEx])))
+			i--
+			dAtA[i] = 0x1a
+		}
+	}
+	if len(m.RoleSign) > 0 {
+		i -= len(m.RoleSign)
+		copy(dAtA[i:], m.RoleSign)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.RoleSign)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.RoleName) > 0 {
+		i -= len(m.RoleName)
+		copy(dAtA[i:], m.RoleName)
+		i = encodeVarintApi(dAtA, i, uint64(len(m.RoleName)))
+		i--
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -2771,11 +3361,11 @@ func (m *DeletePlatformReq) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.ChannelId != 0 {
-		n += 1 + sovApi(uint64(m.ChannelId))
-	}
-	if m.UserId != 0 {
-		n += 1 + sovApi(uint64(m.UserId))
+	if len(m.Names) > 0 {
+		for _, s := range m.Names {
+			l = len(s)
+			n += 1 + l + sovApi(uint64(l))
+		}
 	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
@@ -3190,6 +3780,45 @@ func (m *GetPlatformByUserIDReq) Size() (n int) {
 	return n
 }
 
+func (m *GetPlatformInfosReq) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Page != 0 {
+		n += 1 + sovApi(uint64(m.Page))
+	}
+	if m.PageSize != 0 {
+		n += 1 + sovApi(uint64(m.PageSize))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GetPlatformInfosRes) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Total != 0 {
+		n += 1 + sovApi(uint64(m.Total))
+	}
+	if len(m.Infos) > 0 {
+		for _, e := range m.Infos {
+			l = e.Size()
+			n += 1 + l + sovApi(uint64(l))
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
 func (m *GetPlatformByUserIDRes) Size() (n int) {
 	if m == nil {
 		return 0
@@ -3199,6 +3828,87 @@ func (m *GetPlatformByUserIDRes) Size() (n int) {
 	if len(m.Infos) > 0 {
 		for _, e := range m.Infos {
 			l = e.Size()
+			n += 1 + l + sovApi(uint64(l))
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GetAllPlatformRoleReq) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Page != 0 {
+		n += 1 + sovApi(uint64(m.Page))
+	}
+	if m.PageSize != 0 {
+		n += 1 + sovApi(uint64(m.PageSize))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GetAllPlatformRoleRes) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Infos) > 0 {
+		for _, e := range m.Infos {
+			l = e.Size()
+			n += 1 + l + sovApi(uint64(l))
+		}
+	}
+	if m.Total != 0 {
+		n += 1 + sovApi(uint64(m.Total))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *DeletePlatformRoleReq) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Ids)
+	if l > 0 {
+		n += 1 + l + sovApi(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *UpdatePlatformRoleReq) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.RoleName)
+	if l > 0 {
+		n += 1 + l + sovApi(uint64(l))
+	}
+	l = len(m.RoleSign)
+	if l > 0 {
+		n += 1 + l + sovApi(uint64(l))
+	}
+	if len(m.AppKeys) > 0 {
+		for _, s := range m.AppKeys {
+			l = len(s)
 			n += 1 + l + sovApi(uint64(l))
 		}
 	}
@@ -3703,10 +4413,10 @@ func (m *DeletePlatformReq) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ChannelId", wireType)
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Names", wireType)
 			}
-			m.ChannelId = 0
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowApi
@@ -3716,30 +4426,24 @@ func (m *DeletePlatformReq) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.ChannelId |= int64(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field UserId", wireType)
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
 			}
-			m.UserId = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowApi
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.UserId |= int64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
 			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Names = append(m.Names, string(dAtA[iNdEx:postIndex]))
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipApi(dAtA[iNdEx:])
@@ -6084,6 +6788,205 @@ func (m *GetPlatformByUserIDReq) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+func (m *GetPlatformInfosReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowApi
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetPlatformInfosReq: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetPlatformInfosReq: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Page", wireType)
+			}
+			m.Page = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Page |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PageSize", wireType)
+			}
+			m.PageSize = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.PageSize |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipApi(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetPlatformInfosRes) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowApi
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetPlatformInfosRes: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetPlatformInfosRes: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Total", wireType)
+			}
+			m.Total = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Total |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Infos", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Infos = append(m.Infos, &model.PlatformInfo{})
+			if err := m.Infos[len(m.Infos)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipApi(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
 func (m *GetPlatformByUserIDRes) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -6146,6 +7049,441 @@ func (m *GetPlatformByUserIDRes) Unmarshal(dAtA []byte) error {
 			if err := m.Infos[len(m.Infos)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipApi(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetAllPlatformRoleReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowApi
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetAllPlatformRoleReq: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetAllPlatformRoleReq: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Page", wireType)
+			}
+			m.Page = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Page |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PageSize", wireType)
+			}
+			m.PageSize = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.PageSize |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipApi(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetAllPlatformRoleRes) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowApi
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetAllPlatformRoleRes: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetAllPlatformRoleRes: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Infos", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Infos = append(m.Infos, &model.PlatformRole{})
+			if err := m.Infos[len(m.Infos)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Total", wireType)
+			}
+			m.Total = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Total |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipApi(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *DeletePlatformRoleReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowApi
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: DeletePlatformRoleReq: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: DeletePlatformRoleReq: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Ids", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Ids = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipApi(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthApi
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *UpdatePlatformRoleReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowApi
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: UpdatePlatformRoleReq: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: UpdatePlatformRoleReq: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RoleName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.RoleName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RoleSign", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.RoleSign = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AppKeys", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowApi
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthApi
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthApi
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.AppKeys = append(m.AppKeys, string(dAtA[iNdEx:postIndex]))
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

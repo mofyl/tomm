@@ -4,8 +4,6 @@ import "tomm/api/model/model.proto";
 
 package api;
 
-
-
 message RegisterPlatformReq {
     // @inject_tag: form:"platform_name,required"
     string platform_name = 1;
@@ -34,10 +32,8 @@ message CheckPlatformNameRes {
 
 
 message DeletePlatformReq{
-    // @inject_tag: form:"channel_id,required"
-    int64 channel_id= 1;
-    // @inject_tag: form:"user_id,required"
-    int64 user_id = 2;
+    // @inject_tag: form:"names,required,split"
+    repeated string names = 1;
 }
 
 message DeletePlatformRes{
@@ -179,6 +175,44 @@ message GetPlatformByUserIDReq{
     string user_id = 1;
 }
 
+message GetPlatformInfosReq{
+    // @inject_tag: form:"page,required"
+    int32 page = 1;
+    // @inject_tag: form:"page_size,required"
+    int32 page_size = 2;
+}
+
+message GetPlatformInfosRes{
+    int64 total = 1;
+    repeated model.PlatformInfo infos = 2;
+}
+
 message GetPlatformByUserIDRes{
     repeated model.PlatformInfo infos = 1;
+}
+
+message GetAllPlatformRoleReq{
+    // @inject_tag: form:"page,required"
+    int32 page = 1;
+    // @inject_tag: form:"page_size,required"
+    int32 page_size = 2;
+}
+
+message GetAllPlatformRoleRes{
+    repeated model.PlatformRole infos = 1;
+    int64 total = 2;
+}
+
+message DeletePlatformRoleReq{
+    // @inject_tag: form:"ids,required"
+    string ids = 1;
+}
+
+message UpdatePlatformRoleReq{
+    // @inject_tag: form:"role_name"
+    string role_name = 1;
+    // @inject_tag: form:"role_sign,required"
+    string role_sign = 2;
+    // @inject_tag: form:"app_keys,split"
+    repeated string app_keys = 3;
 }

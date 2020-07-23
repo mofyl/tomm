@@ -2,7 +2,6 @@ package service
 
 import (
 	"encoding/binary"
-	"fmt"
 	"testing"
 	"time"
 	"tomm/log"
@@ -54,11 +53,4 @@ func buildData() (string, error) {
 
 func Test_test(t *testing.T) {
 
-	channel := make(chan int, 1)
-
-	select {
-	case channel <- 1:
-	default:
-		fmt.Println(111)
-	}
 }

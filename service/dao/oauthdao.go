@@ -88,7 +88,7 @@ func CreateOAuthInfo(info *model.PlatformInfo) error {
 	info.AppKey = appKey
 	info.SecretKey = secretKey
 	info.CreateTime = time.Now().Unix()
-	info.Deleted = 2
+	info.Deleted = 1
 
 	err = SavePlatformInfo(info)
 

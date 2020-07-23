@@ -5,24 +5,30 @@ import (
 	"tomm/redis"
 )
 
-func SetName(key string) error {
-	_, err := redis.HSet(context.TODO(), NAME_KEY, key, NAME_VALUE)
+func SetName(key string, val interface{}) error {
+	_, err := redis.HSet(context.TODO(), NAME_KEY, key, val)
 	return err
 }
 
 // false 表示不存在 true表示存在
-func GetName(key string) (bool, error) {
+func GetName(key string) (interface{}, error) {
 
-	var val int32
+	var val interface{}
 	err := redis.HGet(context.TODO(), NAME_KEY, key, &val)
+
 	if err != nil {
-		return false, err
+
+		if err != redis.NOT_VALUE {
+			return nil, err
+		} else {
+			return nil, nil
+		}
+
 	}
 
-	if val != NAME_VALUE {
-		return false, nil
-	}
+	return val, nil
+}
 
-	return true, nil
-
+func DelName(key string) (int64, error) {
+	return redis.HDel(context.TODO(), NAME_KEY, key)
 }

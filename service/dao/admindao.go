@@ -18,7 +18,7 @@ func SaveAdminLogin(loginInfo model.AdminInfos) error {
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
 	loginInfo.Created = time.Now().Unix()
 
-	_, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("insert into %s(`login_name`,`login_pwd`,`name`,`number`,`created`) values(?,?,?,?,?) ", ADMIN_INFOS),
+	res, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("insert into %s(`login_name`,`login_pwd`,`name`,`number`,`created`) values(?,?,?,?,?) ", ADMIN_INFOS),
 		loginInfo.LoginName, loginInfo.LoginPwd, loginInfo.Name, loginInfo.Number, loginInfo.Created)
 	cancel()
 
@@ -26,8 +26,14 @@ func SaveAdminLogin(loginInfo model.AdminInfos) error {
 		return err
 	}
 
+	id, err := res.LastInsertId()
+
+	if err != nil {
+		return nil
+	}
+
 	// 将名字存在redis中
-	SetName(fmt.Sprintf(ADMIN_LOGIN_NAME, loginInfo.LoginName))
+	SetName(fmt.Sprintf(ADMIN_LOGIN_NAME, loginInfo.LoginName), id)
 	return nil
 }
 
@@ -37,7 +43,14 @@ func CheckAdminLoginName(loginName string) (bool, error) {
 
 // 判断该用户名是否存在  若存在返回true  不存在返回false
 func ExistAdminLoginName(loginName string) (bool, error) {
-	return GetName(fmt.Sprintf(ADMIN_LOGIN_NAME, loginName))
+
+	res, err := GetName(fmt.Sprintf(ADMIN_LOGIN_NAME, loginName))
+
+	if err != nil || res == nil {
+		return true, err
+	}
+
+	return false, nil
 }
 
 func GetAdminInfoByLoginName(loginName string) (model.AdminInfos, error) {

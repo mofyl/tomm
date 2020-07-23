@@ -28,6 +28,8 @@ var (
 	//cli *redis.Ring
 	cli         *redis.Client
 	defaultConf *RedisConf
+
+	NOT_VALUE = errors.New("not value")
 )
 
 func init() {
@@ -128,8 +130,9 @@ func Get(ctx context.Context, key string, data interface{}) error {
 	//if res.Err() != nil {
 	//	return res.Err()
 	//}
+	// TODO
 	if res.Val() == "" {
-		return nil
+		return NOT_VALUE
 	}
 
 	return res.Scan(data)
@@ -165,8 +168,10 @@ func HExist(ctx context.Context, key string, field string) bool {
 func HGet(ctx context.Context, key string, field string, value interface{}) error {
 	cmd := cli.HGet(ctx, key, field)
 
+	// TODO
 	if cmd.Val() == "" {
-		return nil
+		return NOT_VALUE
+
 	}
 	return cmd.Scan(value)
 }

@@ -1,5 +1,6 @@
 CREATE DATABASE platform DEFAULT CHARSET utf8;
 
+/* 第三方平台信息表 */
 CREATE TABLE `platform`.`platform_infos` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `memo` varchar(256) NOT NULL COMMENT '简介',
@@ -16,7 +17,7 @@ CREATE TABLE `platform`.`platform_infos` (
   KEY `idx_channel_name` (`channel_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+/* MM用户授权表 表示用于对该三方应用进行授权，该三方应用可以获取MM用户的基本信息  */
 CREATE TABLE `platform`.`mm_user_auth_infos` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `app_key` varchar(32) NOT NULL COMMENT'三方平台唯一标识',
@@ -27,7 +28,7 @@ CREATE TABLE `platform`.`mm_user_auth_infos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
+/* 管理平台 管理员表  */
 CREATE TABLE `platform`.`admin_infos` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `login_name` varchar(32) NOT NULL COMMENT '三方平台管理员的登录名',
@@ -39,18 +40,7 @@ CREATE TABLE `platform`.`admin_infos` (
   key idx_login_name(`login_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-CREATE TABLE `platform_roles` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(32) NOT NULL COMMENT '角色的名字',
-  `role_id` varchar(32) NOT NULL COMMENT '角色的id'
-  `platform_id` varchar(256) NOT NULL COMMENT '该角色可访问的平台ID',
-  `create_time` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
+/* 权限中的角色 */
 CREATE TABLE `platform_roles` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(32) NOT NULL COMMENT '角色的名字',

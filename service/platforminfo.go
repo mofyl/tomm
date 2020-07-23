@@ -20,6 +20,12 @@ func RegisterPlatform(c *server.Context) {
 		return
 	}
 
+	if !dao.CheckPlatformName(req.PlatformName) {
+		log.Debug("RegisterPlatForm Fail Name is Exist")
+		server.HttpCode(c, ecode.PlatFormNameFail)
+		return
+	}
+
 	info := model.PlatformInfo{
 		Memo:        req.Memo,
 		IndexUrl:    req.IndexUrl,
@@ -68,7 +74,24 @@ func CheckPlatformName(c *server.Context) {
 
 func GetPlatformInfos(c *server.Context) {
 
-	infos, err := dao.GetAllPlatform()
+	req := api.GetPlatformInfosReq{}
+
+	err := c.Bind(&req)
+
+	if err != nil {
+		log.Error("GetPlatformInfos Bind Param Fail Err is %s", err.Error())
+		server.HttpCode(c, ecode.ParamFail)
+		return
+	}
+	res := api.GetPlatformInfosRes{}
+	count, err := dao.GetPlatformCount()
+
+	if count == 0 {
+		server.HttpData(c, res)
+		return
+	}
+
+	infos, err := dao.GetAllPlatform(req.Page, req.PageSize)
 
 	if err != nil {
 		log.Error("GetPlatformInfos Fail Err is %s", err.Error())
@@ -76,11 +99,36 @@ func GetPlatformInfos(c *server.Context) {
 		return
 	}
 
-	server.HttpData(c, infos)
+	res.Infos = infos
+	if len(res.Infos) > 0 {
+		res.Total = count
+	}
+
+	server.HttpData(c, res)
 
 }
 
-func deletePlatformName(c *server.Context) {
+func DeletePlatform(c *server.Context) {
+
+	req := api.DeletePlatformReq{}
+
+	err := c.Bind(&req)
+
+	if err != nil {
+		log.Error("DeletePlatform Bind Param Err is %s", err.Error())
+		server.HttpCode(c, ecode.ParamFail)
+		return
+	}
+
+	err = dao.DeletePlatformByNames(req.Names)
+
+	if err != nil {
+		log.Error("DeletePlatform DeletePlatformByIds Err is %s", err.Error())
+		server.HttpCode(c, ecode.SystemFail)
+		return
+	}
+
+	server.HttpCode(c, nil)
 
 }
 
@@ -109,7 +157,6 @@ func GetPlatformByUserID(c *server.Context) {
 		server.HttpCode(c, nil)
 		return
 	}
-
 	userRoles := strings.Builder{}
 
 	for i := 0; i < len(userRole); i++ {

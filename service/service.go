@@ -82,6 +82,7 @@ func (s *Ser) registerRouter() {
 	s.platform.POST("/Register", RegisterPlatform)
 	s.platform.GET("/CheckPlatformName", CheckPlatformName)
 	s.platform.GET("/PlatformInfos", GetPlatformInfos)
+	s.platform.DELETE("/PlatformInfo", DeletePlatform)
 
 	// 管理平台注册用户
 	s.admin.POST("/Register", RegisterAdmin)

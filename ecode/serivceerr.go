@@ -13,8 +13,9 @@ const (
 
 	token_fail = "Token Check Fail Please Replace Token"
 
-	vcode_fail = "Verification Code Fail Please Reflush"
-	login_fail = "Login Name or PassWord Wrong"
+	vcode_fail         = "Verification Code Fail Please Reflush"
+	login_fail         = "Login Name or PassWord Wrong"
+	platfrom_name_fail = "Platform Name is Exist"
 )
 
 var (
@@ -28,6 +29,7 @@ var (
 	// TODO 这个Code 表示 Token过期 或非法
 	TokenFail = NewErrWithMsg(token_fail, addCode(-8010))
 
-	VCodeFail = NewErrWithMsg(vcode_fail, addCode(-8011))
-	LoginFail = NewErrWithMsg(login_fail, addCode(-8012))
+	VCodeFail        = NewErrWithMsg(vcode_fail, addCode(-8011))
+	LoginFail        = NewErrWithMsg(login_fail, addCode(-8012))
+	PlatFormNameFail = NewErrWithMsg(platfrom_name_fail, addCode(-8013))
 )
