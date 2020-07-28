@@ -29,13 +29,13 @@ func addMMUserPlatformRole(info []model.MMUserPlatformRoles) (int64, error) {
 
 	builder := strings.Builder{}
 
-	builder.WriteString(fmt.Sprintf("insert into %s(`mm_user_id`,`role_sign`) ", MM_USER_PLATFORM_ROLE))
+	builder.WriteString(fmt.Sprintf("insert into %s(`mm_user_id`,`role_sign`)values ", MM_USER_PLATFORM_ROLE))
 
 	for i := 0; i < len(info); i++ {
 
-		builder.WriteString(fmt.Sprintf("values('%s' , '%s')", info[i].MmUserId, info[i].RoleSign))
+		builder.WriteString(fmt.Sprintf("('%s' , '%s')", info[i].MmUserId, info[i].RoleSign))
 
-		if i <= len(info)-1 {
+		if i < len(info)-1 {
 			builder.WriteString(", ")
 		}
 	}
@@ -50,6 +50,21 @@ func addMMUserPlatformRole(info []model.MMUserPlatformRoles) (int64, error) {
 	}
 
 	return row.RowsAffected()
+}
+
+//func GetMMPlatformRolesCount() (int64, error) {
+//	//
+//}
+
+func GetMMPlatformRoles(page int32, pageSize int32) ([]model.PlatformRoleMidInfo, error) {
+
+	//infos := make([]model.PlatformRoleMidInfo, 0)
+	//
+	//ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
+
+	//row, err := sqldb.GetDB(sqldb.MYSQL).QueryAll(ctx, infos, fmt.Sprintf("select * from "))
+
+	return nil, nil
 }
 
 func AddMMUserPlatformRole(mmUserID string, roleSign []string) error {

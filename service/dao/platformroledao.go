@@ -33,7 +33,7 @@ func GetPlatformRoleCount() (int64, error) {
 
 	var count int64
 
-	err := sqldb.GetDB(sqldb.MYSQL).Count(ctx, &count, fmt.Sprintf("select count(id) from %s", PLATFORM_ROLE))
+	err := sqldb.GetDB(sqldb.MYSQL).Count(ctx, &count, fmt.Sprintf("select count(id) from %s group by role_sign", PLATFORM_ROLE))
 	cancel()
 
 	if err != nil {
@@ -49,7 +49,7 @@ func GetPlatformRoleByPage(page int32, pageSize int32) ([]*model.PlatformRole, e
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
 	roleInfos := make([]*model.PlatformRole, 0)
 
-	err := sqldb.GetDB(sqldb.MYSQL).QueryAll(ctx, &roleInfos, fmt.Sprintf("select * from %s limit ?,? group by id desc", PLATFORM_ROLE), page*pageSize, pageSize)
+	err := sqldb.GetDB(sqldb.MYSQL).QueryAll(ctx, &roleInfos, fmt.Sprintf("select role_name,role_sign,create_time from %s group by role_sign limit ?,?", PLATFORM_ROLE), page*pageSize, pageSize)
 
 	cancel()
 
@@ -86,7 +86,7 @@ func DeletePlatformRoleByRoleSign(roleSign string) error {
 func DeletePlatformRoleByIds(ids string) error {
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
-	_, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("update %s set deleted = 2 where id in(?) and deleted=1", PLATFORM_ROLE), ids)
+	_, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("delete from %s where id in (?)", PLATFORM_ROLE), ids)
 	cancel()
 
 	return err
@@ -156,11 +156,11 @@ func SavePlatformRole(roleName string, platformAppkeys []string) error {
 func savePlatformRole(roleInfo []model.PlatformRole) error {
 
 	builder := strings.Builder{}
-	builder.WriteString(fmt.Sprintf("insert into %s(`role_name` , `role_sign` , `platform_app_key` , `create_time`)", PLATFORM_ROLE))
+	builder.WriteString(fmt.Sprintf("insert into %s(`role_name` , `role_sign` , `platform_app_key` , `create_time`)values", PLATFORM_ROLE))
 
 	for i := 0; i < len(roleInfo); i++ {
 
-		builder.WriteString(fmt.Sprintf("values('%s' , '%s' , '%s' , '%d')", roleInfo[i].RoleName, roleInfo[i].RoleSign, roleInfo[i].PlatformAppKey, roleInfo[i].CreateTime))
+		builder.WriteString(fmt.Sprintf("('%s' , '%s' , '%s' , '%d')", roleInfo[i].RoleName, roleInfo[i].RoleSign, roleInfo[i].PlatformAppKey, roleInfo[i].CreateTime))
 
 		if i < len(roleInfo)-1 {
 			builder.WriteString(",")
@@ -184,7 +184,7 @@ func removePlatformRoleByAppKey(appKey []string) error {
 
 	for i := 0; i < len(appKey); i++ {
 
-		builder.WriteString(fmt.Sprintf("'%s'", appKey))
+		builder.WriteString(fmt.Sprintf("'%s'", appKey[i]))
 
 		if i < len(appKey)-1 {
 			builder.WriteString(",")
@@ -216,14 +216,16 @@ func UpdatePlatformRole(roleSign string, roleName string, platformApp map[string
 
 	needUpdateName := false
 	oldRoleInfoMap := make(map[string]string, len(oldRoleInfo))
-
+	oldRoleName := ""
 	for i := 0; i < len(oldRoleInfo); i++ {
 
 		appKey := utils.RemoveSpace(oldRoleInfo[i].PlatformAppKey)
 		if appKey != "" {
 			oldRoleInfoMap[appKey] = oldRoleInfo[i].RoleName
-			if oldRoleInfo[i].RoleName != roleName {
+			oldRoleName = oldRoleInfo[i].RoleName
+			if oldRoleInfo[i].RoleName != roleName && roleName != "" {
 				needUpdateName = true
+				oldRoleName = roleName
 			}
 		}
 	}
@@ -235,7 +237,7 @@ func UpdatePlatformRole(roleSign string, roleName string, platformApp map[string
 		name, ok := oldRoleInfoMap[k]
 		if !ok {
 			info := model.PlatformRole{
-				RoleName:       name,
+				RoleName:       oldRoleName,
 				PlatformAppKey: k,
 				CreateTime:     nowTime,
 				RoleSign:       roleSign,

@@ -12,7 +12,7 @@ func AddPlatformRole(c *server.Context) {
 	// 这里给id数组就好
 	req := api.AddPlatformRoleReq{}
 
-	err := c.Bind(req)
+	err := c.Bind(&req)
 	if err != nil {
 		log.Warn("CheckAdminName Bind Fail err is %s", err.Error())
 		server.HttpCode(c, ecode.ParamFail)
@@ -54,10 +54,8 @@ func GetAllPlatformRole(c *server.Context) {
 		return
 	}
 
-	res := &api.GetAllPlatformRoleRes{}
 	if total == 0 {
-		res.Total = 0
-		server.HttpData(c, res)
+		server.HttpData(c, nil)
 		return
 	}
 
@@ -68,8 +66,11 @@ func GetAllPlatformRole(c *server.Context) {
 		server.HttpCode(c, ecode.SystemFail)
 		return
 	}
-
+	res := &api.GetAllPlatformRoleRes{}
 	res.Infos = infos
+	if len(res.Infos) > 0 {
+		res.Total = total
+	}
 	server.HttpData(c, res)
 }
 
@@ -98,8 +99,29 @@ func DeletePlatformRole(c *server.Context) {
 
 func UpdatePlatformRole(c *server.Context) {
 
-	// 查出原来有那些
+	req := api.UpdatePlatformRoleReq{}
 
-	// 那些需要删除 那些需要增加
-	// 是否需要改名字
+	err := c.Bind(&req)
+
+	if err != nil {
+		log.Error("UpdatePlatformRole Bind Param Err is %s", err.Error())
+		server.HttpCode(c, ecode.ParamFail)
+		return
+	}
+
+	appkeyMap := make(map[string]struct{}, len(req.AppKeys))
+
+	for i := 0; i < len(req.AppKeys); i++ {
+		appkeyMap[req.AppKeys[i]] = struct{}{}
+	}
+	// 查出原来有那些
+	err = dao.UpdatePlatformRole(req.RoleSign, req.RoleName, appkeyMap)
+
+	if err != nil {
+		log.Error("UpdatePlatformRole UpdatePlatformRole Err is %s", err.Error())
+		server.HttpCode(c, ecode.EditFail)
+		return
+	}
+
+	server.HttpCode(c, nil)
 }

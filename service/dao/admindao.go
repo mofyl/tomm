@@ -66,11 +66,11 @@ func GetAdminInfoByLoginName(loginName string) (model.AdminInfos, error) {
 	return info, err
 }
 
-func UpdatePwdByLoginName(loginName string, pwd string) error {
+func UpdatePwdByLoginNameSafe(loginName string, pwd string, oldPwd string) error {
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
 
-	aff, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("update %s set pwd=? where login_name=? ", ADMIN_INFOS), pwd, loginName)
+	aff, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("update %s set login_pwd=? where login_name=? and login_pwd=? ", ADMIN_INFOS), pwd, loginName, oldPwd)
 
 	cancel()
 
@@ -91,10 +91,45 @@ func UpdatePwdByLoginName(loginName string, pwd string) error {
 	return nil
 }
 
-func DeleteAdminByID(adminID int64) error {
+func UpdatePwdByLoginName(loginName string, pwd string) error {
+
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
 
-	aff, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("delete from %s where id=?", ADMIN_INFOS), adminID)
+	aff, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("update %s set login_pwd=? where login_name=? ", ADMIN_INFOS), pwd, loginName)
+
+	cancel()
+
+	if err != nil {
+		return err
+	}
+
+	rows, err := aff.RowsAffected()
+
+	if err != nil {
+		return err
+	}
+
+	if rows != 1 {
+		return errors.New("Update Fail")
+	}
+
+	return nil
+}
+
+func DeleteAdminByID(adminName string) error {
+
+	key := fmt.Sprintf(ADMIN_LOGIN_NAME, adminName)
+	id, err := GetName(key)
+
+	if err != nil {
+		return err
+	}
+
+	id = id.(int64)
+
+	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
+
+	aff, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("delete from %s where id=?", ADMIN_INFOS), id)
 
 	cancel()
 	if err != nil {
@@ -110,6 +145,8 @@ func DeleteAdminByID(adminID int64) error {
 	if rows != 1 {
 		return errors.New("Delete Fail")
 	}
+
+	DelName(key)
 
 	return nil
 

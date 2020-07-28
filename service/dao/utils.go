@@ -2,6 +2,7 @@ package dao
 
 import (
 	"context"
+	"tomm/ecode"
 	"tomm/redis"
 )
 
@@ -18,7 +19,7 @@ func GetName(key string) (interface{}, error) {
 
 	if err != nil {
 
-		if err != redis.NOT_VALUE {
+		if ecode.NotValue.EqualErr(err) {
 			return nil, err
 		} else {
 			return nil, nil

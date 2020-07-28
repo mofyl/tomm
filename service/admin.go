@@ -89,9 +89,9 @@ func AdminLogin(c *server.Context) {
 	vCode := ""
 	key := fmt.Sprintf(dao.VCODE, req.Random)
 	err = redis.Get(context.TODO(), key, &vCode)
-	if err != nil {
+	if err != nil && ecode.NotValue.EqualErr(err) {
 		log.Warn("AdminLogin Get VCode Fail key is %s err is %s", key, err.Error())
-		server.HttpCode(c, ecode.ParamFail)
+		server.HttpCode(c, ecode.LoginFail)
 		return
 	}
 
@@ -139,6 +139,67 @@ func AdminLogin(c *server.Context) {
 	server.HttpData(c, adminInfo)
 
 }
+
+func AdminUpdatePwdSafe(c *server.Context) {
+
+	req := api.AdminUpdatePwdSafeReq{}
+
+	err := c.Bind(&req)
+
+	if err != nil {
+		log.Warn("AdminUpdatePwdSafe Bind Fail err is %s", err.Error())
+		server.HttpCode(c, ecode.ParamFail)
+		return
+	}
+
+	if req.NewPwd == req.OldPwd {
+		log.Debug("AdminUpdatePwdSafe NewPwd==OldPwd")
+		server.HttpCode(c, ecode.PwdEqualFail)
+	}
+
+	newPwd := utils.Base64Encode([]byte(req.NewPwd))
+	oldPwd := utils.Base64Encode([]byte(req.OldPwd))
+
+	err = dao.UpdatePwdByLoginNameSafe(req.LoginName, newPwd, oldPwd)
+
+	if err != nil {
+		log.Warn("AdminUpdatePwdSafe UpdatePwdByLoginNameSafe Fail err is %s", err.Error())
+		server.HttpCode(c, ecode.EditFail)
+		return
+	}
+
+	server.HttpCode(c, nil)
+}
+
+func AdminUpdatePwd(c *server.Context) {
+
+	req := api.AdminUpdatePwdReq{}
+
+	err := c.Bind(&req)
+
+	if err != nil {
+		log.Warn("AdminUpdatePwd Bind Fail err is %s", err.Error())
+		server.HttpCode(c, ecode.ParamFail)
+		return
+	}
+	newPwd := utils.Base64Encode([]byte(req.NewPwd))
+	err = dao.UpdatePwdByLoginName(req.LoginName, newPwd)
+
+	if err != nil {
+		log.Warn("AdminUpdatePwdSafe UpdatePwdByLoginNameSafe Fail err is %s", err.Error())
+		server.HttpCode(c, ecode.EditFail)
+		return
+	}
+
+	server.HttpCode(c, nil)
+}
+
+//
+//func DeleteAdmin(c *server.Context) {
+//
+//
+//
+//}
 
 func CheckAdminName(c *server.Context) {
 	// 直接从redis里面取就好了

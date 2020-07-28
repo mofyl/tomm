@@ -16,6 +16,8 @@ const (
 	vcode_fail         = "Verification Code Fail Please Reflush"
 	login_fail         = "Login Name or PassWord Wrong"
 	platfrom_name_fail = "Platform Name is Exist"
+	edit_fail          = "edit_fail"
+	pwd_equal          = "new Pwd Can not equal as old Pwd"
 )
 
 var (
@@ -32,4 +34,6 @@ var (
 	VCodeFail        = NewErrWithMsg(vcode_fail, addCode(-8011))
 	LoginFail        = NewErrWithMsg(login_fail, addCode(-8012))
 	PlatFormNameFail = NewErrWithMsg(platfrom_name_fail, addCode(-8013))
+	EditFail         = NewErrWithMsg(edit_fail, addCode(-8014))
+	PwdEqualFail     = NewErrWithMsg(pwd_equal, addCode(-8015))
 )

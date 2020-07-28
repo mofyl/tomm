@@ -33,6 +33,20 @@ func TestEngine(t *testing.T) {
 		c.String(200, "%s", "helloworld"+js.A)
 	})
 
+	e.GET("/admin/EditPwdSafe", func(c *Context) {
+		if err := c.Bind(&js); err != nil {
+			c.String(200, "%s", err.Error())
+		}
+		c.String(200, "%s", "helloworld"+js.A)
+	})
+
+	e.GET("/admin/EditPwd", func(c *Context) {
+		if err := c.Bind(&js); err != nil {
+			c.String(200, "%s", err.Error())
+		}
+		c.String(200, "%s", "helloworld"+js.A)
+	})
+
 	e.RunServer()
 
 	select {}

@@ -148,7 +148,7 @@ func GetPlatformByUserID(c *server.Context) {
 	userRole, err := dao.GetMMUserPlatformRoleSign(req.UserId)
 
 	if err != nil {
-		log.Error("GetPlatformByUserID Fail Err is %s", userRole)
+		log.Error("GetPlatformByUserID Fail Err is %s", err.Error())
 		server.HttpCode(c, ecode.SystemFail)
 		return
 	}

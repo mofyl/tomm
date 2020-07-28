@@ -213,6 +213,29 @@ message UpdatePlatformRoleReq{
     string role_name = 1;
     // @inject_tag: form:"role_sign,required"
     string role_sign = 2;
-    // @inject_tag: form:"app_keys,split"
+    // @inject_tag: form:"app_keys,required,split"
     repeated string app_keys = 3;
+}
+
+message AdminUpdatePwdSafeReq{
+    // @inject_tag: form:"login_name,required"
+    string login_name = 1;
+    // @inject_tag: form:"old_pwd,required"
+    string old_pwd = 2;
+    // @inject_tag: form:"new_pwd,required"
+    string new_pwd = 3;
+}
+
+message AdminUpdatePwdReq{
+    // @inject_tag: form:"login_name,required"
+    string login_name = 1;
+    // @inject_tag: form:"new_pwd,required"
+    string new_pwd = 2;
+}
+
+message GetMMPlatformRolesReq{
+    // @inject_tag: form:"page,required"
+    int32 page = 1;
+    // @inject_tag: form:"page,required"
+    int32 page_size = 2;
 }

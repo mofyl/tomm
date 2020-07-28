@@ -92,10 +92,17 @@ func (s *Ser) registerRouter() {
 	s.admin.GET("/CheckLoginName", CheckAdminName)
 	// 管理平台用户登录
 	s.admin.POST("/Login", AdminLogin)
+	s.admin.PUT("/EditPwdSafe", AdminUpdatePwdSafe)
+	s.admin.PUT("/EditPwd", AdminUpdatePwd)
 	//s.userGroup.GET("/getCode", s.getCode)
 	// 设置权限组
 	s.admin.POST("/PlatformRole", AddPlatformRole)
+	s.admin.GET("/PlatformRole", GetAllPlatformRole)
+	s.admin.DELETE("/PlatformRole", DeletePlatformRole)
+	s.admin.PUT("/PlatformRole", UpdatePlatformRole)
 
+	// 为MM用户添加用户组
+	s.admin.POST("/MMRole", AddMMPlatformRoles)
 }
 
 func (s *Ser) Close() {

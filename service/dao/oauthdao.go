@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"time"
 	"tomm/api/model"
+	"tomm/ecode"
 	"tomm/redis"
 	"tomm/utils"
 )
@@ -22,7 +23,7 @@ func GetTokenAndCreate(appKey string) (string, int64, error) {
 	err = redis.Get(context.TODO(), key, &token)
 	//exist := redis.Exist(context.TODO(), key)
 
-	if token != "" && err == nil {
+	if token != "" && err == nil && ecode.NotValue.EqualErr(err) {
 		LeaseRenewKey(key, RESOURCE_TOKEN_EXP)
 		return token, RESOURCE_TOKEN_EXP, nil
 	}
@@ -53,8 +54,10 @@ func GetToken(appKey string) (string, error) {
 	key := fmt.Sprintf(RESOURCE_KEY, appKey)
 	var token string
 	err := redis.Get(context.TODO(), key, &token)
-
-	return token, err
+	if err != nil && ecode.NotValue.EqualErr(err) {
+		return "", err
+	}
+	return token, nil
 }
 
 func LeaseRenewKey(key string, expTime int64) error {

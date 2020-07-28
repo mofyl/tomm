@@ -6,6 +6,8 @@ const (
 	resource_fail = "resource_fail"
 	param_fail    = "Parameter error"
 	app_key_fail  = "AppKey error"
+
+	not_value = "not_value"
 )
 
 var (
@@ -19,4 +21,7 @@ var (
 	ParamFail  = NewErrWithMsg(param_fail, addCode(-1000))
 	AppKeyFail = NewErrWithMsg(app_key_fail, addCode(-1001))
 	SystemFail = NewErrWithMsg(system_fail, addCode(-1002))
+
+	// Redis Error
+	NotValue = NewErrWithMsg(param_fail, addCode(-100000))
 )

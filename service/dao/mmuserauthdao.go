@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 	"tomm/api/model"
+	"tomm/ecode"
 	"tomm/redis"
 	"tomm/sqldb"
 )
@@ -99,7 +100,7 @@ func CheckCode(appKey string, code string) (bool, string, error) {
 	var userID string
 	err := redis.Get(context.TODO(), key, &userID)
 
-	if err != nil {
+	if err != nil && ecode.NotValue.EqualErr(err) {
 		return false, userID, errors.New("Code illegal")
 	}
 

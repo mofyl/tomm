@@ -8,6 +8,7 @@ import (
 	"math/rand"
 	"time"
 	"tomm/config"
+	"tomm/ecode"
 	"tomm/log"
 )
 
@@ -28,8 +29,6 @@ var (
 	//cli *redis.Ring
 	cli         *redis.Client
 	defaultConf *RedisConf
-
-	NOT_VALUE = errors.New("not value")
 )
 
 func init() {
@@ -132,7 +131,7 @@ func Get(ctx context.Context, key string, data interface{}) error {
 	//}
 	// TODO
 	if res.Val() == "" {
-		return NOT_VALUE
+		return ecode.NotValue
 	}
 
 	return res.Scan(data)
@@ -170,7 +169,7 @@ func HGet(ctx context.Context, key string, field string, value interface{}) erro
 
 	// TODO
 	if cmd.Val() == "" {
-		return NOT_VALUE
+		return ecode.NotValue
 
 	}
 	return cmd.Scan(value)

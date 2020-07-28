@@ -69,6 +69,10 @@ func (n *node) addRouter(path string, handler ...HandlerFunc) {
 			n.path = path[:i]
 		}
 
+		if i == len(path) {
+			n.handler = handler
+		}
+
 		if i < len(path) {
 			// 这里表示待插入的path和 root的不一样 需要插入
 			path = path[i:]

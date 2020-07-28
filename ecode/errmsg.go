@@ -12,6 +12,7 @@ package ecode
 type ErrMsgs interface {
 	ECodes
 	SetMsg(msg string)
+	EqualErr(err error) bool
 }
 
 type errMsg struct {
@@ -28,6 +29,15 @@ func (e errMsg) Error() string {
 
 func (e errMsg) SetMsg(msg string) {
 	e.ErrMsg = msg
+}
+
+func (e errMsg) EqualErr(err error) bool {
+
+	if err == nil {
+		return false
+	}
+
+	return e.ErrMsg == err.Error()
 }
 
 func NewErr(err error) ErrMsgs {
