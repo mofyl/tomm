@@ -136,7 +136,7 @@ func GetPlatformByUserID(c *server.Context) {
 	// 通过 某个条件 查看 platForm的数据
 	req := api.GetPlatformByUserIDReq{}
 
-	err := c.Bind(req)
+	err := c.Bind(&req)
 
 	if err != nil {
 		log.Error("GetPlatformByUserID Err is %s", err.Error())

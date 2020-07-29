@@ -128,7 +128,7 @@ func GetPlatformByAppKeys(appKeys map[string]struct{}) ([]*model.PlatformInfo, e
 	infos := make([]*model.PlatformInfo, 0, len(appKeys))
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
-	err := sqldb.GetDB(sqldb.MYSQL).QueryAll(ctx, &infos, fmt.Sprintf("select id,memo,app_key,index_url,channel_name,sign_url,create_time from %s where app_key in (?) and deleted=1", PLATFORM_INFOS), appKeyStr)
+	err := sqldb.GetDB(sqldb.MYSQL).QueryAll(ctx, &infos, fmt.Sprintf("select id,memo,app_key,index_url,channel_name,sign_url,create_time from %s where app_key in (%s) and deleted=1", PLATFORM_INFOS, appKeyStr))
 	cancel()
 	if err != nil {
 		return nil, err

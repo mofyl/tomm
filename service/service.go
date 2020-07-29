@@ -83,6 +83,7 @@ func (s *Ser) registerRouter() {
 	s.platform.GET("/CheckPlatformName", CheckPlatformName)
 	s.platform.GET("/PlatformInfos", GetPlatformInfos)
 	s.platform.DELETE("/PlatformInfo", DeletePlatform)
+	s.admin.GET("/PlatformByRole", GetPlatformByUserID)
 
 	// 管理平台注册用户
 	s.admin.POST("/Register", RegisterAdmin)
@@ -101,8 +102,9 @@ func (s *Ser) registerRouter() {
 	s.admin.DELETE("/PlatformRole", DeletePlatformRole)
 	s.admin.PUT("/PlatformRole", UpdatePlatformRole)
 
-	// 为MM用户添加用户组
+	// 为MM用户添加权限组
 	s.admin.POST("/MMRole", AddMMPlatformRoles)
+	// MM用户展示 权限组所拥有的权限
 }
 
 func (s *Ser) Close() {
