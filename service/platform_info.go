@@ -139,7 +139,7 @@ func GetPlatformByUserID(c *server.Context) {
 	err := c.Bind(req)
 
 	if err != nil {
-		log.Error("GetAllPlatformRole Err is %s", err.Error())
+		log.Error("GetPlatformByUserID Err is %s", err.Error())
 		server.HttpCode(c, ecode.ParamFail)
 		return
 	}
@@ -172,7 +172,7 @@ func GetPlatformByUserID(c *server.Context) {
 	roleInfo, err := dao.GetPlatformRoleAppKeyByRoleSigns(userRoles.String())
 
 	if err != nil {
-		log.Error("GetPlatformRoleAppKeyByRoleSigns Fail Err is %s", err.Error())
+		log.Error("GetPlatformByUserID Fail Err is %s", err.Error())
 		server.HttpCode(c, ecode.SystemFail)
 		return
 	}
@@ -189,16 +189,23 @@ func GetPlatformByUserID(c *server.Context) {
 		appkeyMap[roleInfo[i].PlatformAppKey] = struct{}{}
 	}
 
-	infos := make([]*model.PlatformInfo, 0, len(appkeyMap))
-	for k, _ := range appkeyMap {
+	infos, err := dao.GetPlatformByAppKeys(appkeyMap)
+	//infos := make([]*model.PlatformInfo, 0, len(appkeyMap))
+	//for k, _ := range appkeyMap {
+	//
+	//	info, err := dao.GetPlatformInfo(k)
+	//
+	//	if err != nil {
+	//		continue
+	//	}
+	//
+	//	infos = append(infos, info)
+	//}
 
-		info, err := dao.GetPlatformInfo(k)
-
-		if err != nil {
-			continue
-		}
-
-		infos = append(infos, info)
+	if err != nil {
+		log.Error("GetPlatformByUserID GetPlatformByAppKeys Err is %s", err.Error())
+		server.HttpCode(c, ecode.SystemFail)
+		return
 	}
 
 	res := api.GetPlatformByUserIDRes{

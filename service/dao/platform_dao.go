@@ -93,7 +93,7 @@ func GetPlatformInfo(appKey string) (*model.PlatformInfo, error) {
 		return nil, err
 	}
 	if res.Id == 0 {
-		return nil, errors.New("PlatForm Not illegal")
+		return nil, errors.New("PlatForm illegal")
 	}
 
 	//resB, _ := res.Marshal()
@@ -103,6 +103,41 @@ func GetPlatformInfo(appKey string) (*model.PlatformInfo, error) {
 	//	log.Error("redis Set Fail err is %s", err.Error())
 	//}
 	return res, nil
+
+}
+
+func GetPlatformByAppKeys(appKeys map[string]struct{}) ([]*model.PlatformInfo, error) {
+
+	if appKeys == nil || len(appKeys) <= 0 {
+		return nil, nil
+	}
+
+	builder := strings.Builder{}
+	//appKeyStr.WriteString("(")
+	for k, _ := range appKeys {
+		builder.WriteString("'")
+		builder.WriteString(k)
+		builder.WriteString("',")
+	}
+
+	//appKeyStr.WriteString(")")
+
+	appKeyStr := builder.String()
+	appKeyStr = appKeyStr[:len(appKeyStr)-1]
+
+	infos := make([]*model.PlatformInfo, 0, len(appKeys))
+
+	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
+	err := sqldb.GetDB(sqldb.MYSQL).QueryAll(ctx, &infos, fmt.Sprintf("select id,memo,app_key,index_url,channel_name,sign_url,create_time from %s where app_key in (?) and deleted=1", PLATFORM_INFOS), appKeyStr)
+	cancel()
+	if err != nil {
+		return nil, err
+	}
+	if len(infos) <= 0 {
+		return nil, errors.New("PlatForm Not illegal")
+	}
+
+	return infos, nil
 
 }
 
