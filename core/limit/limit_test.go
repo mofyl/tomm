@@ -2,6 +2,7 @@ package limit
 
 import (
 	"context"
+	"fmt"
 	"sync"
 	"testing"
 	"time"
@@ -39,5 +40,27 @@ func TestGet(t *testing.T) {
 
 		}
 	}
+
+}
+
+func TestAllow(t *testing.T) {
+	//
+	window := 10 * time.Second
+
+	winBucket := 100
+
+	bucketDuration := window / time.Duration(winBucket)
+
+	fmt.Println(bucketDuration.Milliseconds())
+
+	tNow := time.Now()
+
+	time.Sleep(1 * time.Second)
+	vSince := time.Since(tNow)
+	v := vSince / bucketDuration
+
+	fmt.Println(vSince.Milliseconds())
+
+	fmt.Println(int(v))
 
 }
