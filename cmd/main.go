@@ -5,6 +5,7 @@ import (
 	"os/signal"
 	"syscall"
 	"tomm/core/server"
+	"tomm/log"
 	"tomm/service"
 )
 
@@ -20,4 +21,5 @@ func main() {
 
 	s.Close()
 	server.Close()
+	log.CloseLog()
 }

@@ -33,7 +33,6 @@ func AddPlatformRole(c *server.Context) {
 }
 
 func GetAllPlatformRole(c *server.Context) {
-
 	// page pageSize 分页获取PlatformRole
 	// 给一个Total
 	req := api.GetAllPlatformRoleReq{}

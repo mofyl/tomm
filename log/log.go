@@ -12,6 +12,7 @@ var (
 func init() {
 	cfg := getDefaultLog()
 	logger = buildLog(cfg)
+	logger.Sync()
 }
 
 func Debug(format string, args ...interface{}) {
@@ -36,6 +37,14 @@ func Panic(format string, args ...interface{}) {
 
 func Fatal(format string, args ...interface{}) {
 	defaultLog(FATAL, fmt.Sprintf(format, args...))
+}
+
+func CloseLog() error {
+
+	if logger == nil {
+		return nil
+	}
+	return logger.Sync()
 }
 
 func defaultLog(level string, msg string, field ...zap.Field) {

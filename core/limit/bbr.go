@@ -1,6 +1,7 @@
 package limit
 
 import (
+	"errors"
 	"math"
 	"sync/atomic"
 	"time"
@@ -56,6 +57,10 @@ func (b *BBR) maxPASS() int64 {
 
 			count := 0.0
 
+			if len(bucket.Points) == 0 {
+				continue
+			}
+
 			for _, p := range bucket.Points {
 				count += p
 			}
@@ -83,16 +88,37 @@ func (b *BBR) minRT() int64 {
 		return rawMinRt
 	}
 
-	rawMinRt := int64(b.rtStat.Reduce(func(iterator metric.Iterator) float64 {
+	rawMinRt = int64(b.rtStat.Reduce(func(iterator metric.Iterator) float64 {
 
 		var result = math.MaxFloat64
 
-		for i := 1 ;
+		for i := 1; iterator.Next() && i < b.conf.WinBucket; i++ {
+			bucket := iterator.Bucket()
 
+			if len(bucket.Points) == 0 {
+				continue
+			}
+
+			total := 0.0
+
+			for _, p := range bucket.Points {
+				total += p
+			}
+
+			avg := total / float64(bucket.Count)
+
+			result = math.Min(result, avg)
+		}
+
+		return result
 	}))
 
+	if rawMinRt <= 0 {
+		rawMinRt = 1
+	}
 
-
+	atomic.StoreInt64(&b.rawMinRt, rawMinRt)
+	return rawMinRt
 }
 
 func (b *BBR) maxFlight() int64 {
@@ -135,6 +161,29 @@ func (b *BBR) shouldDrop() bool {
 }
 
 func (b *BBR) Allow() (func(info DoneInfo), error) {
+
+	if b.shouldDrop() {
+		return nil, errors.New("")
+	}
+
+	atomic.AddInt64(&b.inFlight, 1)
+	// 这里表示允许请求通过的时间
+	startTime := time.Since(initTime)
+	// 这个方法在 处理完请求后会去调用，
+	return func(do DoneInfo) {
+		// 那么这里的 time.Since(intiTime) 计算的就是从开始到处理完请求花费的时间
+		// 两次时间相减 就得出了 处理请求花费的时间， 然后在转成 毫秒
+		rt := int64((time.Since(initTime) - startTime) / time.Millisecond)
+		b.rtStat.Add(rt)
+		atomic.AddInt64(&b.inFlight, -1)
+		switch do.Op {
+		case Success:
+			b.passStat.Add(1)
+			return
+		default:
+			return
+		}
+	}, nil
 
 }
 
