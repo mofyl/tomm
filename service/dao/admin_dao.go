@@ -59,7 +59,7 @@ func GetAdminInfoByLoginName(loginName string) (model.AdminInfos, error) {
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
 
-	err := sqldb.GetDB(sqldb.MYSQL).QueryOne(ctx, &info, fmt.Sprintf("select * from %s where login_name=? ", ADMIN_INFOS), loginName)
+	err := sqldb.GetDB(sqldb.MYSQL).QueryOne(ctx, &info, fmt.Sprintf("select * from %s where login_name='%s' ", ADMIN_INFOS, loginName))
 
 	cancel()
 
@@ -70,7 +70,7 @@ func UpdatePwdByLoginNameSafe(loginName string, pwd string, oldPwd string) error
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
 
-	aff, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("update %s set login_pwd=? where login_name=? and login_pwd=? ", ADMIN_INFOS), pwd, loginName, oldPwd)
+	aff, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("update %s set login_pwd='%s' where login_name='%s' and login_pwd='%s' ", ADMIN_INFOS, pwd, loginName, oldPwd))
 
 	cancel()
 
@@ -95,7 +95,7 @@ func UpdatePwdByLoginName(loginName string, pwd string) error {
 
 	ctx, cancel := context.WithTimeout(context.TODO(), time.Second*time.Duration(sqldb.EXPTIME))
 
-	aff, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("update %s set login_pwd=? where login_name=? ", ADMIN_INFOS), pwd, loginName)
+	aff, err := sqldb.GetDB(sqldb.MYSQL).Exec(ctx, fmt.Sprintf("update %s set login_pwd='%s' where login_name='%s' ", ADMIN_INFOS, pwd, loginName))
 
 	cancel()
 

@@ -1,8 +1,8 @@
 package task
 
 import (
-	"tomm/api/job"
-	"tomm/ecode"
+	"context"
+	"unsafe"
 )
 
 type JobMarshal interface {
@@ -24,31 +24,36 @@ type TaskHandler func(in *TaskContext) bool
 type TaskContext struct {
 	TaskStage    int32 // 从0开始
 	TaskHandlers []TaskHandler
-
-	TaskID   string
-	Err      ecode.ErrMsgs
-	curStage int32
-
-	Type job.JobApi // 这里表示 使用的是哪个 api号
-
-	md map[string]interface{} // 根据对应的api 来转就好
-
+	Block bool // 表示是否以阻塞的方式开始任务。若为true表示加不进去的时候就等待
+	TaskID   int64
 	NotifyUserChan chan *TaskContext
+	Err      error
+
+	curStage int32
+	md map[string]unsafe.Pointer
+	ctx context.Context
 	st             StartTask
+	createTime int64 // 创建时间
 }
 
-func (tc *TaskContext) Set(key string, value interface{}) {
+
+
+func (tc *TaskContext) Set(key string, value unsafe.Pointer) {
 	tc.md[key] = value
 }
 
-func (tc *TaskContext) Get(key string) (interface{}, bool) {
+func (tc *TaskContext) Get(key string) (unsafe.Pointer, bool) {
 	v, ok := tc.md[key]
 	return v, ok
 }
 
 func (tc *TaskContext) reset() {
 	tc.curStage = 0
-	tc.TaskID = "aqweqw" // 这里重新生成一个TaskID
+	tc.TaskID = 0 // 这里重新生成一个TaskID
+	tc.NotifyUserChan = nil
+	tc.TaskHandlers = nil
+	tc.TaskStage = 0
+	tc.ctx = nil
 	tc.Err = nil
 	for k, _ := range tc.md {
 		delete(tc.md, k)

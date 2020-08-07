@@ -1,6 +1,7 @@
 package task
 
 import (
+	"context"
 	"fmt"
 	"sync"
 	"testing"
@@ -11,27 +12,30 @@ var (
 	test_wg *sync.WaitGroup
 )
 
-func newPool() *Pool{
+func newPool() *Pool {
 	test_wg = &sync.WaitGroup{}
-	p := NewPool(nil , test_wg)
+	p := NewPool(nil, test_wg)
 	return p
 }
 
 func TestPool(t *testing.T) {
 	//res := make(chan []byte, 100)
 	p := newPool()
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 10; i++ {
 		id := int64(i)
 		job := &Job{
 			ID:        id,
 			ResNotify: nil,
 			Do: func() *TaskContext {
-				//time.Sleep(3 * time.Second)
+				fmt.Println(11111)
+				time.Sleep(3 * time.Second)
 				//ids := strconv.FormatInt(id, 10)
+				fmt.Println(22222)
 				return nil
 			},
 		}
 		p.DoJob(job)
+		fmt.Println(i)
 	}
 	fmt.Println("Send Finish")
 	p.Close()
@@ -63,15 +67,15 @@ func BenchmarkDoJob(b *testing.B) {
 
 func TestSelect(t *testing.T) {
 
-	c := make(chan int)
+	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
 
-	close(c)
+	ctx.Deadline()
 
 	select {
-	case c <- 1:
-	default:
-		fmt.Println(1111)
+	case <-ctx.Done():
+		fmt.Println(222)
 	}
 
-	fmt.Println(2222)
+	fmt.Println(33333)
+	cancel()
 }

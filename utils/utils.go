@@ -9,6 +9,7 @@ import (
 	"encoding/hex"
 	"github.com/google/uuid"
 	jsoniter "github.com/json-iterator/go"
+	"golang.org/x/crypto/bcrypt"
 	"os"
 	"path"
 	"path/filepath"
@@ -183,4 +184,20 @@ func StrToByte(str string) []byte {
 
 func BytesToStr(b []byte) string {
 	return *(*string)(unsafe.Pointer(&b))
+}
+
+func BCryptEnCodePwd(data []byte) ([]byte, error) {
+
+	hash, err := bcrypt.GenerateFromPassword(data, bcrypt.DefaultCost)
+
+	if err != nil {
+		return nil, err
+	}
+	return hash, nil
+}
+
+func BCryptCheckPwd(hash []byte, pwd []byte) bool {
+	err := bcrypt.CompareHashAndPassword(hash, pwd)
+
+	return err == nil
 }

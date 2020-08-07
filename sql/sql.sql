@@ -32,7 +32,7 @@ CREATE TABLE `platform`.`mm_user_auth_infos` (
 CREATE TABLE `platform`.`admin_infos` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `login_name` varchar(32) NOT NULL COMMENT '三方平台管理员的登录名',
-  `login_pwd` varchar(32) NOT NULL COMMENT '三方平台管理员的密码  这里会使用base64编码',
+  `login_pwd` varchar(128) NOT NULL COMMENT '三方平台管理员的密码 这里使用bcrypt编码',
   `name` varchar(32) NOT NULL COMMENT '用户名',
   `number` varchar(32) NOT NULL COMMENT '工号',
   `created` bigint(32) NOT NULL COMMENT '创建时间',

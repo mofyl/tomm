@@ -5,39 +5,35 @@ import (
 	"runtime"
 	"sync"
 	"sync/atomic"
-	"tomm/log"
 )
 
 type worker struct {
-	ID         string
-	job        chan *Job
-	jobNum     int64
-	jobNumLock *sync.RWMutex
-	wg         *sync.WaitGroup
-	wType      int
+	ID     int64
+	job    chan *Job
+	jobNum int64
+	wg     *sync.WaitGroup
+	wType  WorkType
+	info   *poolInfo
 }
 
-func newWorker(id string, chanLen int64, wg *sync.WaitGroup) *worker {
+func newWorker(id int64, chanLen int64, wg *sync.WaitGroup, info *poolInfo, wType WorkType) *worker {
 	return &worker{
-		ID:         id,
-		job:        make(chan *Job, chanLen),
-		jobNum:     0,
-		jobNumLock: &sync.RWMutex{},
-		wg:         wg,
+		ID:     id,
+		job:    make(chan *Job, chanLen),
+		jobNum: 0,
+		wg:     wg,
+		info:   info,
+		wType:  wType,
 	}
 
-}
-
-func (w *worker) close() {
-	close(w.job)
 }
 
 func (w *worker) doJob(j *Job) bool {
 	select {
 	case w.job <- j:
 		return true
-	default:
-		return false
+		//default:
+		//	return false
 	}
 }
 
@@ -49,37 +45,51 @@ func (w *worker) startWorker() {
 			buf := make([]byte, 1024)
 			n := runtime.Stack(buf, false)
 			pl := fmt.Sprintf("http server panic: %v\n%s\n", err, buf[:n])
-			log.Error("http server recover  is %s", pl)
+			defaultLog.Errorw("worker recover is ", "recover ", pl)
 		}
 	}()
 
-	log.Info("Worker Start ID is %s", w.ID)
+	if defaultLog != nil {
+		defaultLog.Debugw("Worker Start ID ", "id is ", w.ID)
+	}
 	for {
 		select {
-
+		case <-w.info.ctx.Done():
+			// 将自己从Pool身上删除
+			if w.wType == TEMPORARY && w.info.cancel != nil {
+				w.info.cancel()
+				w.info.f(w.ID)
+			}
+			close(w.job)
+			for v := range w.job {
+				doJob(v)
+			}
+			w.wg.Done()
+			return
 		case job, ok := <-w.job:
 			if !ok {
-				log.Info("Worker is Closed Id is %s", w.ID)
-				w.wg.Done()
+				//log.Info("Worker is Closed Id is %s", w.ID)
 				return
 			}
 			// Do pool
-			atomic.AddInt64(&w.jobNum, 1)
+			//atomic.AddInt64(&w.jobNum, 1)
 			for atomic.CompareAndSwapInt64(&w.jobNum, w.jobNum, w.jobNum+1) {
 				//log.Debug("Do PoolJob JobID is %d", job.ID)
-				res := job.Do()
-				if res != nil && job.ResNotify != nil {
-					select {
-					case job.ResNotify <- res:
-					default:
-					}
-				}
+				doJob(job)
 				break
 			}
 
 			atomic.AddInt64(&w.jobNum, -1)
+		}
+	}
+}
 
-			//log.Debug("Finish PoolJob JobID is %d", job.ID)
+func doJob(job *Job) {
+	res := job.Do()
+	if res != nil && job.ResNotify != nil {
+		select {
+		case job.ResNotify <- res:
+
 		}
 	}
 }

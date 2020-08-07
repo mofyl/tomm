@@ -39,7 +39,9 @@ func RegisterAdmin(c *server.Context) {
 		Number:    req.Number,
 	}
 
-	loginInfo.LoginPwd = utils.Base64Encode([]byte(loginInfo.LoginPwd))
+	//loginInfo.LoginPwd = utils.Base64Encode([]byte(loginInfo.LoginPwd))
+	pwd, _ := utils.BCryptEnCodePwd(utils.StrToByte(loginInfo.LoginPwd))
+	loginInfo.LoginPwd = utils.BytesToStr(pwd)
 	err = dao.SaveAdminLogin(loginInfo)
 
 	if err != nil {
@@ -91,7 +93,7 @@ func AdminLogin(c *server.Context) {
 	err = redis.Get(context.TODO(), key, &vCode)
 	if err != nil && ecode.NotValue.EqualErr(err) {
 		log.Warn("AdminLogin Get VCode Fail key is %s err is %s", key, err.Error())
-		server.HttpCode(c, ecode.LoginFail)
+		server.HttpCode(c, ecode.VCodeFail)
 		return
 	}
 
@@ -118,18 +120,23 @@ func AdminLogin(c *server.Context) {
 	}
 
 	// 获取密码
-	pwd := utils.Base64Encode([]byte(req.LoginPwd))
+	//pwd := utils.Base64Encode([]byte(req.LoginPwd))
 	adminInfo, err := dao.GetAdminInfoByLoginName(req.LoginName)
 
 	if err != nil {
-		// VCodeFail
 		log.Warn("AdminLogin GetPwd Fail LoginName is %s , err  is %s", req.LoginName, err.Error())
 		server.HttpCode(c, ecode.LoginFail)
 		return
 	}
-	// 检查密码
-	if pwd != adminInfo.LoginPwd {
-		log.Debug("AdminLogin Pwd Wrong loginName is %s ,pwd is %s", req.LoginName, pwd)
+
+	if adminInfo.Id == 0 {
+		log.Warn("AdminLogin User Not Exist LoginName is %s", req.LoginName)
+		server.HttpCode(c, ecode.LoginFail)
+		return
+	}
+
+	if !utils.BCryptCheckPwd(utils.StrToByte(adminInfo.LoginPwd), utils.StrToByte(req.LoginPwd)) {
+		log.Debug("AdminLogin Pwd Wrong loginName is %s ,pwd is %s", req.LoginName, req.LoginPwd)
 		server.HttpCode(c, ecode.LoginFail)
 		return
 	}
@@ -157,10 +164,32 @@ func AdminUpdatePwdSafe(c *server.Context) {
 		server.HttpCode(c, ecode.PwdEqualFail)
 	}
 
-	newPwd := utils.Base64Encode([]byte(req.NewPwd))
-	oldPwd := utils.Base64Encode([]byte(req.OldPwd))
+	//newPwd := utils.Base64Encode([]byte(req.NewPwd))
+	//oldPwd := utils.Base64Encode([]byte(req.OldPwd))
 
-	err = dao.UpdatePwdByLoginNameSafe(req.LoginName, newPwd, oldPwd)
+	adminInfo, err := dao.GetAdminInfoByLoginName(req.LoginName)
+
+	if err != nil {
+		log.Warn("AdminUpdatePwdSafe GetPwd Fail LoginName is %s , err  is %s", req.LoginName, err.Error())
+		server.HttpCode(c, ecode.PwdEqualFail)
+		return
+	}
+
+	if adminInfo.Id == 0 {
+		log.Warn("AdminUpdatePwdSafe User Not Exist LoginName is %s", req.LoginName)
+		server.HttpCode(c, ecode.PwdEqualFail)
+		return
+	}
+
+	if !utils.BCryptCheckPwd(utils.StrToByte(adminInfo.LoginPwd), utils.StrToByte(req.OldPwd)) {
+		log.Debug("AdminLogin Pwd Wrong loginName is %s ,pwd is %s", req.LoginName, req.OldPwd)
+		server.HttpCode(c, ecode.PwdEqualFail)
+		return
+	}
+
+	newPwd, _ := utils.BCryptEnCodePwd(utils.StrToByte(req.NewPwd))
+
+	err = dao.UpdatePwdByLoginName(req.LoginName, utils.BytesToStr(newPwd))
 
 	if err != nil {
 		log.Warn("AdminUpdatePwdSafe UpdatePwdByLoginNameSafe Fail err is %s", err.Error())
@@ -182,8 +211,11 @@ func AdminUpdatePwd(c *server.Context) {
 		server.HttpCode(c, ecode.ParamFail)
 		return
 	}
-	newPwd := utils.Base64Encode([]byte(req.NewPwd))
-	err = dao.UpdatePwdByLoginName(req.LoginName, newPwd)
+
+	//newPwd := utils.Base64Encode([]byte(req.NewPwd))
+	newPwd, _ := utils.BCryptEnCodePwd(utils.StrToByte(req.NewPwd))
+
+	err = dao.UpdatePwdByLoginName(req.LoginName, utils.BytesToStr(newPwd))
 
 	if err != nil {
 		log.Warn("AdminUpdatePwdSafe UpdatePwdByLoginNameSafe Fail err is %s", err.Error())

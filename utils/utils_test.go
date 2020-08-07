@@ -76,3 +76,25 @@ func TestTime(t *testing.T) {
 	StartTimeTicker()
 
 }
+
+func TestBCryptCheckPwd(t *testing.T) {
+
+	testPwd := "qweqwxcvxcvzxcawerq213451234"
+
+	hash, err := BCryptEnCodePwd(StrToByte(testPwd))
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	hashStr := BytesToStr(hash)
+
+	if BCryptCheckPwd(StrToByte(hashStr), StrToByte(testPwd)) {
+		fmt.Println(len(hashStr))
+		fmt.Println(1111)
+		return
+	}
+	fmt.Println(2222)
+
+}
