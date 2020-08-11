@@ -3,17 +3,18 @@ package task
 import (
 	"context"
 	"fmt"
-	"github.com/sunreaver/logger"
 	"hulk/config"
 	"runtime"
 	"sync"
 	"sync/atomic"
+
+	"github.com/sunreaver/logger"
 )
 
 var (
 	defaultConf = &config.TaskConf{
 		TaskNum:       4,
-		WorkerNum:     4,
+		WorkerNum:     2,
 		WorkerContent: 1,
 		ExpTime:       60,
 	}
@@ -68,20 +69,8 @@ func (t *TaskManager) StartTask(ctx *TaskContext) bool {
 		return false
 	}
 
-	if ctx.Block {
-		select {
-		case t.TaskChan <- ctx:
-			return true
-		}
-	} else {
-		select {
-		case t.TaskChan <- ctx:
-			return true
-		default:
-			return false
-		}
-	}
-
+	t.TaskChan <- ctx
+	return true
 }
 
 func (t *TaskManager) goTask() {
@@ -99,10 +88,12 @@ func (t *TaskManager) goTask() {
 	for {
 		select {
 		case <-t.closeCtx.Done():
+			close(t.TaskChan)
 			for v := range t.TaskChan {
 				t.doJob(v)
 			}
 			t.pool.Close()
+
 			t.wg.Done()
 			return
 		case ctx, ok := <-t.TaskChan:
@@ -110,7 +101,6 @@ func (t *TaskManager) goTask() {
 				break
 			}
 			t.doJob(ctx)
-
 		}
 	}
 }
@@ -129,7 +119,6 @@ func (t *TaskManager) goNotify() {
 				return
 			}
 			close(t.resNotifyChan)
-			close(t.doneChan)
 			for v := range t.resNotifyChan {
 				t.doNotify(v)
 			}
@@ -141,7 +130,8 @@ func (t *TaskManager) goNotify() {
 }
 
 func (t *TaskManager) doJob(ctx *TaskContext) {
-	t.pool.DoJob(&Job{
+
+	j := &Job{
 		ID:        111,
 		ResNotify: t.resNotifyChan,
 		Do: func() *TaskContext {
@@ -151,12 +141,18 @@ func (t *TaskManager) doJob(ctx *TaskContext) {
 			}
 			return ctx
 		},
-	})
+		IsBlock: ctx.Block,
+	}
+
+	t.pool.DoJob(j)
 }
 
 func (t *TaskManager) doNotify(ctx *TaskContext) {
 
 	if ctx.NotifyUserChan != nil && ctx != nil {
+		if defaultLog != nil {
+			defaultLog.Debugw("do Notify")
+		}
 		ctx.NotifyUserChan <- ctx
 	}
 
@@ -166,10 +162,8 @@ func (t *TaskManager) Close() {
 	if t.isClose() {
 		return
 	}
-
 	atomic.AddInt32(&t.isClosed, -1)
 
-	close(t.TaskChan)
 	t.closeCancel()
 	t.wg.Wait()
 	t.doneChan <- struct{}{}
@@ -179,8 +173,5 @@ func (t *TaskManager) Close() {
 }
 
 func (t *TaskManager) isClose() bool {
-	if atomic.LoadInt32(&t.isClosed) == 1 {
-		return true
-	}
-	return false
+	return atomic.LoadInt32(&t.isClosed) == 1
 }

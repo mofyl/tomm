@@ -14,6 +14,8 @@ type worker struct {
 	wg     *sync.WaitGroup
 	wType  WorkType
 	info   *poolInfo
+
+	Blocking uint32 // 1表示正在执行阻塞任务 若该worker正在执行阻塞任务，那么后面便不会给他排任务 直到阻塞任务执行完成
 }
 
 func newWorker(id int64, chanLen int64, wg *sync.WaitGroup, info *poolInfo, wType WorkType) *worker {
@@ -29,12 +31,14 @@ func newWorker(id int64, chanLen int64, wg *sync.WaitGroup, info *poolInfo, wTyp
 }
 
 func (w *worker) doJob(j *Job) bool {
-	select {
-	case w.job <- j:
-		return true
-		//default:
-		//	return false
-	}
+	w.job <- j
+	return true
+	//default:
+	//	return false
+}
+
+func (w *worker) IsBlocking() bool {
+	return atomic.LoadUint32(&w.Blocking) == 1
 }
 
 func (w *worker) startWorker() {
@@ -69,17 +73,18 @@ func (w *worker) startWorker() {
 		case job, ok := <-w.job:
 			if !ok {
 				//log.Info("Worker is Closed Id is %s", w.ID)
-				return
+				break
 			}
 			// Do pool
 			//atomic.AddInt64(&w.jobNum, 1)
-			for atomic.CompareAndSwapInt64(&w.jobNum, w.jobNum, w.jobNum+1) {
-				//log.Debug("Do PoolJob JobID is %d", job.ID)
-				doJob(job)
-				break
+			atomic.AddInt64(&w.jobNum, 1)
+			//log.Debug("Do PoolJob JobID is %d", job.ID)
+			if job.IsBlock {
+				atomic.StoreUint32(&w.Blocking, 1)
 			}
-
+			doJob(job)
 			atomic.AddInt64(&w.jobNum, -1)
+			atomic.StoreUint32(&w.Blocking, 0)
 		}
 	}
 }
@@ -87,9 +92,6 @@ func (w *worker) startWorker() {
 func doJob(job *Job) {
 	res := job.Do()
 	if res != nil && job.ResNotify != nil {
-		select {
-		case job.ResNotify <- res:
-
-		}
+		job.ResNotify <- res
 	}
 }

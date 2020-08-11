@@ -2,14 +2,14 @@ package task
 
 import (
 	"errors"
-	"github.com/sunreaver/logger"
 	"hulk/config"
 	"sync"
-	"unsafe"
+
+	"github.com/sunreaver/logger"
 )
 
 var (
-	tm *TaskManager
+	tm      *TaskManager
 	ctxPool *sync.Pool
 )
 
@@ -24,22 +24,21 @@ var (
 //	tm = NewTaskManager()
 //}
 
-func Init(conf config.TaskConf,log logger.Logger) error {
-
+func Init(conf config.TaskConf, log logger.Logger) error {
 
 	tm = NewTaskManager(&conf)
 
 	defaultLog = log
 
 	ctxPool = &sync.Pool{
-		New: func()interface{} {
+		New: func() interface{} {
 			return &TaskContext{
 				TaskStage:      0,
 				TaskHandlers:   nil,
 				TaskID:         0,
 				Err:            nil,
 				curStage:       0,
-				md:             make(map[string]unsafe.Pointer),
+				md:             make(map[string]interface{}),
 				ctx:            nil,
 				NotifyUserChan: nil,
 				st:             nil,
@@ -50,18 +49,17 @@ func Init(conf config.TaskConf,log logger.Logger) error {
 	return nil
 }
 
-func initNoConf(){
+func initNoConf() {
 	tm = NewTaskManager(nil)
 }
 
-
-func NewTaskContextWithCancel(notifyChan chan *TaskContext , taskStage int32, taskHandlers ...TaskHandler) (*TaskContext ,func () , error) {
+func NewTaskContextWithCancel(notifyChan chan *TaskContext, taskStage int32, taskHandlers ...TaskHandler) (*TaskContext, func(), error) {
 
 	if taskStage <= 0 {
-		return nil , nil , errors.New("task stage must more than zero")
+		return nil, nil, errors.New("task stage must more than zero")
 	}
 	if taskHandlers == nil || len(taskHandlers) <= 0 {
-		return nil , nil ,errors.New("task handlers is nil or len is zero")
+		return nil, nil, errors.New("task handlers is nil or len is zero")
 	}
 
 	ctx := ctxPool.Get().(*TaskContext)
@@ -70,20 +68,19 @@ func NewTaskContextWithCancel(notifyChan chan *TaskContext , taskStage int32, ta
 	ctx.TaskID = GetUUID()
 	ctx.NotifyUserChan = notifyChan
 	ctx.st = tm
-	return ctx , func (){
+	return ctx, func() {
 		ctx.reset()
 		ctxPool.Put(ctx)
-	} , nil
+	}, nil
 }
 
-
-func NewTaskContext(notifyChan chan *TaskContext , taskStage int32,isBlock bool, taskHandlers ...TaskHandler) (*TaskContext , error) {
+func NewTaskContext(notifyChan chan *TaskContext, taskStage int32, isBlock bool, taskHandlers ...TaskHandler) (*TaskContext, error) {
 
 	if taskStage <= 0 {
-		return nil , errors.New("task stage must more than zero")
+		return nil, errors.New("task stage must more than zero")
 	}
 	if taskHandlers == nil || len(taskHandlers) <= 0 {
-		return nil ,errors.New("task handlers is nil or len is zero")
+		return nil, errors.New("task handlers is nil or len is zero")
 	}
 
 	return &TaskContext{
@@ -92,23 +89,20 @@ func NewTaskContext(notifyChan chan *TaskContext , taskStage int32,isBlock bool,
 		TaskID:         GetUUID(),
 		Err:            nil,
 		curStage:       0,
-		md:             make(map[string]unsafe.Pointer),
+		md:             make(map[string]interface{}),
 		NotifyUserChan: notifyChan,
 		st:             tm,
-		Block: isBlock,
-	} , nil
+		Block:          isBlock,
+	}, nil
 }
 
-
-
-
-func NewTaskContextWithCtx(notifyChan chan *TaskContext , taskStage int32, v *TaskContext, isBlock bool, taskHandlers ...TaskHandler) (*TaskContext , error) {
+func NewTaskContextWithCtx(notifyChan chan *TaskContext, taskStage int32, v *TaskContext, isBlock bool, taskHandlers ...TaskHandler) (*TaskContext, error) {
 
 	if taskStage <= 0 {
-		return nil , errors.New("task stage must more than zero")
+		return nil, errors.New("task stage must more than zero")
 	}
 	if taskHandlers == nil || len(taskHandlers) <= 0 {
-		return nil , errors.New("task handlers is nil or len is zero")
+		return nil, errors.New("task handlers is nil or len is zero")
 	}
 	ctx := &TaskContext{
 		TaskStage:      taskStage,
@@ -116,19 +110,18 @@ func NewTaskContextWithCtx(notifyChan chan *TaskContext , taskStage int32, v *Ta
 		TaskID:         GetUUID(),
 		Err:            nil,
 		curStage:       0,
-		md:             make(map[string]unsafe.Pointer),
+		md:             make(map[string]interface{}),
 		NotifyUserChan: notifyChan,
 		st:             tm,
-		Block: isBlock,
+		Block:          isBlock,
 	}
 
-	for k , v := range v.md{
-		ctx.md[k] =v
+	for k, v := range v.md {
+		ctx.md[k] = v
 	}
 
 	return ctx, nil
 }
-
 
 func Close() {
 	tm.Close()

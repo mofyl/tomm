@@ -44,6 +44,10 @@ func NewPool(conf *config.TaskConf, wg *sync.WaitGroup) *Pool {
 		conf = defaultConf
 	}
 
+	if conf.WorkerNum < 2 {
+		panic("NewPool: Worker Num at least 2")
+	}
+
 	ctx, cancel := context.WithCancel(context.Background())
 
 	p := &Pool{
@@ -90,25 +94,56 @@ func (p *Pool) DoJob(job *Job) bool {
 		return false
 	}
 
-	w := p.prepareDoJob()
+	w := p.getWorkFormEnternal()
+
+	// if w == nil || w.IsBlocking() {
+	// 	w = p.getWorkStep(3, 1, p.getWorkFormEnternal)
+	// }
+
+	// if w == nil || w.IsBlocking() {
+	// 	w = p.getWorkStep(3, 1, p.getWorkerFromTemp)
+	// }
+
+	// if w == nil || w.IsBlocking() {
+	// 	w = p.newTempWorker()
+	// }
 
 	if w == nil {
-		num := 0
-		ticker := time.NewTicker(1 * time.Second)
+		w = p.getWorkStep(3, 1, p.getWorkFormEnternal)
+	}
 
-		for num < 3 && w == nil {
-			select {
-			case <-ticker.C:
-				num++
-				w = p.prepareDoJob()
-			}
-		}
-		ticker.Stop()
+	if w == nil {
+		w = p.getWorkStep(3, 1, p.getWorkerFromTemp)
 	}
 	if w == nil {
-		w = p.getJobFromTemp()
+		w = p.newTempWorker()
 	}
+
 	return w.doJob(job)
+}
+
+func (p *Pool) getWorkStep(num int, duration int32, f func() *worker) *worker {
+
+	ticker := time.NewTicker(time.Duration(duration) * time.Second)
+
+	n := 0
+	var w *worker
+	for n < num {
+		<-ticker.C
+		n++
+		w = f()
+		if w == nil {
+			continue
+		}
+		if w.IsBlocking() {
+			continue
+		}
+
+	}
+	ticker.Stop()
+
+	return w
+
 }
 
 func (p *Pool) getTwoNums(num int) (int, int) {
@@ -129,32 +164,36 @@ func (p *Pool) getTwoWorker(num int, workers []*worker) (*worker, *worker) {
 	return workers[num1], workers[num2]
 }
 
-func (p *Pool) getJobFromTemp() *worker {
-	p.lockTemporary.Lock()
-	defer p.lockTemporary.Unlock()
+func (p *Pool) getWorkerFromTemp() *worker {
+
 	if p.temporaryWorker == nil {
 		p.temporaryWorker = make([]*worker, 0, p.conf.WorkerNum)
-		return p.newTempWorker()
+		return nil
 	}
 
 	if len(p.temporaryWorker) == 0 {
-		return p.newTempWorker()
+		return nil
 	}
-
+	p.lockTemporary.Lock()
+	defer p.lockTemporary.Unlock()
 	if len(p.temporaryWorker) == 1 {
 		w := p.temporaryWorker[0]
+		// if atomic.CompareAndSwapInt64(&w.jobNum, p.conf.WorkerContent, w.jobNum) || w.IsBlocking() {
+		// 	return nil
+		// } else {
+		// 	return w
+		// }
+
 		if atomic.CompareAndSwapInt64(&w.jobNum, p.conf.WorkerContent, w.jobNum) {
-			return p.newTempWorker()
+			return nil
 		} else {
 			return w
 		}
-
 	}
 
 	w1, w2 := p.getTwoWorker(len(p.temporaryWorker), p.temporaryWorker)
 	if atomic.CompareAndSwapInt64(&w1.jobNum, p.conf.WorkerContent, w1.jobNum) &&
 		atomic.CompareAndSwapInt64(&w2.jobNum, p.conf.WorkerContent, w2.jobNum) {
-		// 从 临时的里面派送本次任务, 若临时的不够则动态扩容
 		return nil
 	}
 
@@ -167,7 +206,7 @@ func (p *Pool) getJobFromTemp() *worker {
 }
 
 func (p *Pool) newTempWorker() *worker {
-	p.wg.Add(1)
+
 	ctx, cancel := context.WithTimeout(p.cancelCtx, time.Duration(p.conf.ExpTime)*time.Second)
 	t := &poolInfo{
 		cancel: cancel,
@@ -176,9 +215,11 @@ func (p *Pool) newTempWorker() *worker {
 	}
 
 	w := newWorker(GetUUID(), p.conf.WorkerContent, p.wg, t, TEMPORARY)
+	p.wg.Add(1)
 	go w.startWorker()
-
+	p.lockTemporary.Lock()
 	p.temporaryWorker = append(p.temporaryWorker, w)
+	p.lockTemporary.Unlock()
 	return w
 }
 
@@ -218,11 +259,9 @@ func (p *Pool) removeFromParent(id int64) {
 
 }
 
-func (p *Pool) prepareDoJob() *worker {
+func (p *Pool) getWorkFormEnternal() *worker {
 	// 这里使用p2c 策略来选取 worker
 	w1, w2 := p.getTwoWorker(int(p.conf.WorkerNum), p.eternalWorker)
-
-	// TODO: 这里先不考虑 多阶段派任务
 
 	if defaultLog != nil {
 		defaultLog.Debugw(fmt.Sprintf("Cur Select Worker Num is %d , jobNum is %d , Num is %d , jobNum is %d",
@@ -231,8 +270,6 @@ func (p *Pool) prepareDoJob() *worker {
 
 	if atomic.CompareAndSwapInt64(&w1.jobNum, p.conf.WorkerContent, w1.jobNum) &&
 		atomic.CompareAndSwapInt64(&w2.jobNum, p.conf.WorkerContent, w2.jobNum) {
-
-		// 从 临时的里面派送本次任务, 若临时的不够则动态扩容
 		return nil
 	}
 
@@ -257,8 +294,5 @@ func (p *Pool) Close() {
 }
 
 func (p *Pool) isClosed() bool {
-	if atomic.LoadInt32(&p.isClose) == 1 {
-		return true
-	}
-	return false
+	return atomic.LoadInt32(&p.isClose) == 1
 }

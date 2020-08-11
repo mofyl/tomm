@@ -5,12 +5,12 @@ import (
 	"sync"
 	"sync/atomic"
 	"testing"
+	"time"
 )
 
 func TestAtomic(t *testing.T) {
 
-	var tmp int32
-	tmp = 1
+	var tmp int32 = 1
 	if atomic.CompareAndSwapInt32(&tmp, 1, 3) {
 		fmt.Println(11)
 		return
@@ -25,13 +25,32 @@ func TestTask(t *testing.T) {
 	wg := &sync.WaitGroup{}
 	initNoConf()
 	//
-	for i := 0; i < 10000; i++ {
+
+	wg.Add(1)
+	go func() {
+		fmt.Println("Wait Res")
+		for v := range c {
+			fmt.Println(v.TaskID)
+		}
+
+		wg.Done()
+	}()
+
+	wg.Add(1)
+	go func() {
+		time.Sleep(1 * time.Second)
+		tm.Close()
+		wg.Done()
+		close(c)
+	}()
+
+	for i := 0; i < 1000; i++ {
 		ctx, err := NewTaskContext(c, 2, true, func(ctx *TaskContext) bool {
-			//fmt.Println(111)
+			fmt.Println(111)
 			//time.Sleep(3 * time.Second)
 			return true
 		}, func(ctx *TaskContext) bool {
-			//fmt.Println(2222)
+			fmt.Println(2222)
 			//time.Sleep(3 * time.Second)
 			return true
 		})
@@ -46,34 +65,28 @@ func TestTask(t *testing.T) {
 		fmt.Printf("Ctx Start Res is %v , index is %d\n", res, i)
 	}
 
-	wg.Add(1)
-	go func() {
-		fmt.Println("Wait Res")
-		for {
-			select {
-			case v, ok := <-c:
-				if !ok {
-					for v := range c {
-						fmt.Println(v.TaskID)
-					}
-					wg.Done()
-					fmt.Println("Finish")
-					return
-				}
-				fmt.Println(v.TaskID)
-			}
+	wg.Wait()
+}
 
+func TestWaitRes(t *testing.T) {
+
+	num := 9
+	c := make(chan int, num)
+
+	go func() {
+
+		for i := 0; i < num; i++ {
+			c <- i
 		}
 
 	}()
 
-	wg.Add(1)
-	go func() {
-		tm.Close()
-		wg.Done()
-		close(c)
-	}()
-	wg.Wait()
+	for {
+		if len(c) == num {
+			fmt.Println("finish")
+			break
+		}
+	}
 
 }
 
@@ -84,6 +97,11 @@ func BenchmarkTask(b *testing.B) {
 	initNoConf()
 
 	b.ResetTimer()
+
+	go func() {
+		time.Sleep(2 * time.Second)
+		tm.Close()
+	}()
 
 	for i := 0; i < b.N; i++ {
 		ctx, err := NewTaskContext(nil, 2, true, func(ctx *TaskContext) bool {
@@ -110,19 +128,21 @@ func BenchmarkTask(b *testing.B) {
 
 func TestChannel(t *testing.T) {
 
-	c := make(chan int, 3)
+	c := make(chan int)
 
-	c <- 2
-	c <- 3
+	go func() {
+		v, ok := <-c
+		fmt.Println("111 ", v, ok)
+	}()
+
+	go func() {
+		v, ok := <-c
+		fmt.Println("222  ", v, ok)
+	}()
+	time.Sleep(2 * time.Second)
+	c <- 1
+
 	close(c)
-
-	v, ok := <-c
-
-	fmt.Printf("%d , %v\n", v, ok)
-
-	for v := range c {
-
-		fmt.Printf("%d\n", v)
-	}
+	select {}
 
 }

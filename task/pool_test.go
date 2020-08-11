@@ -1,7 +1,6 @@
 package task
 
 import (
-	"context"
 	"fmt"
 	"sync"
 	"testing"
@@ -67,15 +66,12 @@ func BenchmarkDoJob(b *testing.B) {
 
 func TestSelect(t *testing.T) {
 
-	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+	m := make(map[string]string, 1)
 
-	ctx.Deadline()
+	m["test"] = "test1"
 
-	select {
-	case <-ctx.Done():
-		fmt.Println(222)
+	for k := range m {
+		fmt.Println(k)
 	}
 
-	fmt.Println(33333)
-	cancel()
 }
