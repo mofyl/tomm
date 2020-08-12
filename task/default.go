@@ -4,6 +4,7 @@ import (
 	"errors"
 	"hulk/config"
 	"sync"
+	"time"
 
 	"github.com/sunreaver/logger"
 )
@@ -75,7 +76,6 @@ func NewTaskContextWithCancel(notifyChan chan *TaskContext, taskStage int32, tas
 }
 
 func NewTaskContext(notifyChan chan *TaskContext, taskStage int32, isBlock bool, taskHandlers ...TaskHandler) (*TaskContext, error) {
-
 	if taskStage <= 0 {
 		return nil, errors.New("task stage must more than zero")
 	}
@@ -86,34 +86,24 @@ func NewTaskContext(notifyChan chan *TaskContext, taskStage int32, isBlock bool,
 	return &TaskContext{
 		TaskStage:      taskStage,
 		TaskHandlers:   taskHandlers,
+		Block:          isBlock,
 		TaskID:         GetUUID(),
 		Err:            nil,
 		curStage:       0,
 		md:             make(map[string]interface{}),
-		NotifyUserChan: notifyChan,
+		IsRunning:      CTX_IDLE,
+		CreateTime:     time.Now().UnixNano(),
 		st:             tm,
-		Block:          isBlock,
+		NotifyUserChan: notifyChan,
 	}, nil
+
 }
 
 func NewTaskContextWithCtx(notifyChan chan *TaskContext, taskStage int32, v *TaskContext, isBlock bool, taskHandlers ...TaskHandler) (*TaskContext, error) {
 
-	if taskStage <= 0 {
-		return nil, errors.New("task stage must more than zero")
-	}
-	if taskHandlers == nil || len(taskHandlers) <= 0 {
-		return nil, errors.New("task handlers is nil or len is zero")
-	}
-	ctx := &TaskContext{
-		TaskStage:      taskStage,
-		TaskHandlers:   taskHandlers,
-		TaskID:         GetUUID(),
-		Err:            nil,
-		curStage:       0,
-		md:             make(map[string]interface{}),
-		NotifyUserChan: notifyChan,
-		st:             tm,
-		Block:          isBlock,
+	ctx, err := NewTaskContext(notifyChan, taskStage, isBlock, taskHandlers...)
+	if err != nil {
+		return nil, err
 	}
 
 	for k, v := range v.md {

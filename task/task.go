@@ -4,17 +4,14 @@ import (
 	"context"
 )
 
+const (
+	CTX_IDLE = iota
+	CTX_RUNNING
+	CTX_FINISH
+)
+
 type JobMarshal interface {
 	Marshal() ([]byte, error)
-}
-
-type JobType string
-
-type Job struct {
-	ID        int64
-	ResNotify chan *TaskContext
-	Do        func() *TaskContext
-	IsBlock   bool
 }
 
 // 返回false 表示不要进行下一步 true表示要进行下一步
@@ -28,12 +25,13 @@ type TaskContext struct {
 	TaskID         int64
 	NotifyUserChan chan *TaskContext
 	Err            error
-
-	curStage int32
-	md       map[string]interface{}
-	ctx      context.Context
-	st       StartTask
-	//createTime int64 // 创建时间
+	WorkID         int64
+	curStage       int32
+	md             map[string]interface{}
+	ctx            context.Context
+	st             StartTask
+	IsRunning      uint32 // 表示该上下文是否开始执行  0 表示未执行 1 表示开始执行 2 表示执行结束
+	CreateTime     int64  // 创建时间
 }
 
 func (tc *TaskContext) Set(key string, value interface{}) {

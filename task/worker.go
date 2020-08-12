@@ -9,7 +9,7 @@ import (
 
 type worker struct {
 	ID     int64
-	job    chan *Job
+	job    chan *TaskContext
 	jobNum int64
 	wg     *sync.WaitGroup
 	wType  WorkType
@@ -21,7 +21,7 @@ type worker struct {
 func newWorker(id int64, chanLen int64, wg *sync.WaitGroup, info *poolInfo, wType WorkType) *worker {
 	return &worker{
 		ID:     id,
-		job:    make(chan *Job, chanLen),
+		job:    make(chan *TaskContext, chanLen),
 		jobNum: 0,
 		wg:     wg,
 		info:   info,
@@ -30,8 +30,9 @@ func newWorker(id int64, chanLen int64, wg *sync.WaitGroup, info *poolInfo, wTyp
 
 }
 
-func (w *worker) doJob(j *Job) bool {
+func (w *worker) sendJob(j *TaskContext) bool {
 	w.job <- j
+	w.setBlock()
 	return true
 	//default:
 	//	return false
@@ -39,6 +40,11 @@ func (w *worker) doJob(j *Job) bool {
 
 func (w *worker) IsBlocking() bool {
 	return atomic.LoadUint32(&w.Blocking) == 1
+}
+
+func (w *worker) setBlock() {
+	fmt.Printf("set block work id is %d\n", w.ID)
+	atomic.StoreUint32(&w.Blocking, 1)
 }
 
 func (w *worker) startWorker() {
@@ -66,7 +72,7 @@ func (w *worker) startWorker() {
 			}
 			close(w.job)
 			for v := range w.job {
-				doJob(v)
+				w.excCtx(v)
 			}
 			w.wg.Done()
 			return
@@ -79,19 +85,23 @@ func (w *worker) startWorker() {
 			//atomic.AddInt64(&w.jobNum, 1)
 			atomic.AddInt64(&w.jobNum, 1)
 			//log.Debug("Do PoolJob JobID is %d", job.ID)
-			if job.IsBlock {
-				atomic.StoreUint32(&w.Blocking, 1)
-			}
-			doJob(job)
+			w.excCtx(job)
 			atomic.AddInt64(&w.jobNum, -1)
 			atomic.StoreUint32(&w.Blocking, 0)
+			fmt.Printf("unset block work id is %d\n", w.ID)
 		}
 	}
 }
 
-func doJob(job *Job) {
-	res := job.Do()
-	if res != nil && job.ResNotify != nil {
-		job.ResNotify <- res
+func (w *worker) excCtx(ctx *TaskContext) {
+	atomic.StoreInt64(&ctx.WorkID, w.ID)
+	for ctx.curStage < ctx.TaskStage &&
+		int(ctx.curStage) < len(ctx.TaskHandlers) &&
+		ctx.TaskHandlers[ctx.curStage](ctx) {
+		ctx.curStage++
+	}
+
+	if ctx.NotifyUserChan != nil {
+		ctx.NotifyUserChan <- ctx
 	}
 }

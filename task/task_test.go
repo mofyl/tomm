@@ -30,7 +30,7 @@ func TestTask(t *testing.T) {
 	go func() {
 		fmt.Println("Wait Res")
 		for v := range c {
-			fmt.Println(v.TaskID)
+			fmt.Printf("Res is %d\n", v.WorkID)
 		}
 
 		wg.Done()
@@ -38,20 +38,15 @@ func TestTask(t *testing.T) {
 
 	wg.Add(1)
 	go func() {
-		time.Sleep(1 * time.Second)
+		time.Sleep(2 * time.Second)
 		tm.Close()
 		wg.Done()
-		close(c)
 	}()
-
-	for i := 0; i < 1000; i++ {
-		ctx, err := NewTaskContext(c, 2, true, func(ctx *TaskContext) bool {
-			fmt.Println(111)
-			//time.Sleep(3 * time.Second)
-			return true
-		}, func(ctx *TaskContext) bool {
+	time.Sleep(1 * time.Second)
+	for i := 0; i < 10; i++ {
+		ctx, err := NewTaskContext(c, 1, true, func(ctx *TaskContext) bool {
 			fmt.Println(2222)
-			//time.Sleep(3 * time.Second)
+			time.Sleep(10 * time.Second)
 			return true
 		})
 
@@ -65,7 +60,24 @@ func TestTask(t *testing.T) {
 		fmt.Printf("Ctx Start Res is %v , index is %d\n", res, i)
 	}
 
+	// for i := 0; i < 10; i++ {
+	// 	ctx, err := NewTaskContext(c, 1, false, func(ctx *TaskContext) bool {
+	// 		fmt.Println(2222)
+	// 		return true
+	// 	})
+
+	// 	if err != nil {
+	// 		fmt.Println("err ", err.Error())
+	// 		return
+	// 	}
+
+	// 	res := ctx.Start()
+
+	// 	fmt.Printf("Ctx Start Res is %v , index is %d\n", res, i)
+	// }
+
 	wg.Wait()
+	close(c)
 }
 
 func TestWaitRes(t *testing.T) {
@@ -128,21 +140,17 @@ func BenchmarkTask(b *testing.B) {
 
 func TestChannel(t *testing.T) {
 
-	c := make(chan int)
+	ticker := time.NewTicker(1 * time.Second)
 
-	go func() {
-		v, ok := <-c
-		fmt.Println("111 ", v, ok)
-	}()
+	for {
 
-	go func() {
-		v, ok := <-c
-		fmt.Println("222  ", v, ok)
-	}()
-	time.Sleep(2 * time.Second)
-	c <- 1
+		select {
+		case <-ticker.C:
+			fmt.Println("break")
+			break
+		}
 
-	close(c)
-	select {}
+	}
 
+	fmt.Println("111")
 }

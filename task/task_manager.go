@@ -13,10 +13,10 @@ import (
 
 var (
 	defaultConf = &config.TaskConf{
-		TaskNum:       4,
-		WorkerNum:     2,
-		WorkerContent: 1,
-		ExpTime:       60,
+		TaskNum:       4,  // 表示 TaskManager Channel 的长度
+		WorkerNum:     2,  // 表示创建多少个 worker
+		WorkerContent: 1,  // 表示 worker的 channel 的长度
+		ExpTime:       60, // 表示 临时worker 的maxLifeTime
 	}
 
 	defaultLog logger.Logger
@@ -27,16 +27,13 @@ type StartTask interface {
 }
 
 type TaskManager struct {
-	pool          *Pool
-	TaskChan      chan *TaskContext
-	doneChan      chan struct{}
-	finish        chan struct{}
-	wg            *sync.WaitGroup
-	resNotifyChan chan *TaskContext
-	closeCtx      context.Context
-	closeCancel   context.CancelFunc
-	isClosed      int32 // 1 表示关闭 2 表示开启
-	conf          *config.TaskConf
+	pool        *Pool
+	TaskChan    chan *TaskContext
+	wg          *sync.WaitGroup
+	closeCtx    context.Context
+	closeCancel context.CancelFunc
+	isClosed    int32 // 1 表示关闭 2 表示开启
+	conf        *config.TaskConf
 }
 
 func NewTaskManager(conf *config.TaskConf) *TaskManager {
@@ -48,17 +45,12 @@ func NewTaskManager(conf *config.TaskConf) *TaskManager {
 	tm := &TaskManager{}
 	tm.wg = &sync.WaitGroup{}
 	tm.TaskChan = make(chan *TaskContext, conf.TaskNum)
-	tm.doneChan = make(chan struct{})
-	tm.finish = make(chan struct{})
-	tm.resNotifyChan = make(chan *TaskContext, conf.TaskNum)
 	tm.pool = NewPool(conf, tm.wg)
 	tm.conf = conf
 	tm.closeCtx = ctx
 	tm.closeCancel = cancel
 	tm.wg.Add(1)
 	go tm.goTask()
-
-	go tm.goNotify()
 	tm.isClosed = 2
 	return tm
 }
@@ -70,6 +62,9 @@ func (t *TaskManager) StartTask(ctx *TaskContext) bool {
 	}
 
 	t.TaskChan <- ctx
+	if t.isClose() {
+		t.closeCancel()
+	}
 	return true
 }
 
@@ -105,71 +100,17 @@ func (t *TaskManager) goTask() {
 	}
 }
 
-func (t *TaskManager) goNotify() {
-
-	for {
-		select {
-		case task, ok := <-t.resNotifyChan:
-			if !ok {
-				break
-			}
-			t.doNotify(task)
-		case _, ok := <-t.doneChan:
-			if !ok {
-				return
-			}
-			close(t.resNotifyChan)
-			for v := range t.resNotifyChan {
-				t.doNotify(v)
-			}
-			t.finish <- struct{}{}
-			return
-		}
-
-	}
-}
-
 func (t *TaskManager) doJob(ctx *TaskContext) {
-
-	j := &Job{
-		ID:        111,
-		ResNotify: t.resNotifyChan,
-		Do: func() *TaskContext {
-			for ctx.curStage < ctx.TaskStage &&
-				ctx.TaskHandlers[ctx.curStage](ctx) {
-				ctx.curStage++
-			}
-			return ctx
-		},
-		IsBlock: ctx.Block,
-	}
-
-	t.pool.DoJob(j)
-}
-
-func (t *TaskManager) doNotify(ctx *TaskContext) {
-
-	if ctx.NotifyUserChan != nil && ctx != nil {
-		if defaultLog != nil {
-			defaultLog.Debugw("do Notify")
-		}
-		ctx.NotifyUserChan <- ctx
-	}
-
+	t.pool.DoJob(ctx)
 }
 
 func (t *TaskManager) Close() {
 	if t.isClose() {
 		return
 	}
-	atomic.AddInt32(&t.isClosed, -1)
+	atomic.StoreInt32(&t.isClosed, 1)
 
-	t.closeCancel()
 	t.wg.Wait()
-	t.doneChan <- struct{}{}
-
-	<-t.finish
-	close(t.finish)
 }
 
 func (t *TaskManager) isClose() bool {

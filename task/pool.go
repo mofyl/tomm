@@ -79,47 +79,38 @@ func (p *Pool) startPool() {
 		w := newWorker(int64(wid), p.conf.WorkerContent, p.wg, info, ETERNAL)
 		p.wg.Add(1)
 		go w.startWorker()
-		//p.wids = append(p.wids, int64(wid))
 		p.eternalWorker = append(p.eternalWorker, w)
-		//p.worker[int64(i)] = w
 	}
 
 	atomic.AddInt32(&p.isClose, 1)
 }
 
-func (p *Pool) DoJob(job *Job) bool {
+func (p *Pool) DoJob(job *TaskContext) bool {
 
 	if p.isClosed() {
-		//defaultLog.Debugw("Worker is Closed")
 		return false
 	}
 
 	w := p.getWorkFormEnternal()
 
-	// if w == nil || w.IsBlocking() {
-	// 	w = p.getWorkStep(3, 1, p.getWorkFormEnternal)
-	// }
-
-	// if w == nil || w.IsBlocking() {
-	// 	w = p.getWorkStep(3, 1, p.getWorkerFromTemp)
-	// }
-
-	// if w == nil || w.IsBlocking() {
-	// 	w = p.newTempWorker()
-	// }
-
-	if w == nil {
+	if w == nil || w.IsBlocking() {
 		w = p.getWorkStep(3, 1, p.getWorkFormEnternal)
 	}
 
-	if w == nil {
+	if w == nil || w.IsBlocking() {
 		w = p.getWorkStep(3, 1, p.getWorkerFromTemp)
 	}
-	if w == nil {
+
+	if w == nil || w.IsBlocking() {
 		w = p.newTempWorker()
 	}
 
-	return w.doJob(job)
+	if defaultLog != nil {
+		defaultLog.Debugw(fmt.Sprintf("Cur Select Worker Num is %d , jobNum is %d", w.ID, atomic.LoadInt64(&w.jobNum)))
+	} else {
+		fmt.Printf("Cur Select Worker Num is %d , jobNum is %d , isBlock is %d\n", w.ID, atomic.LoadInt64(&w.jobNum), atomic.LoadUint32(&w.Blocking))
+	}
+	return w.sendJob(job)
 }
 
 func (p *Pool) getWorkStep(num int, duration int32, f func() *worker) *worker {
@@ -178,17 +169,12 @@ func (p *Pool) getWorkerFromTemp() *worker {
 	defer p.lockTemporary.Unlock()
 	if len(p.temporaryWorker) == 1 {
 		w := p.temporaryWorker[0]
-		// if atomic.CompareAndSwapInt64(&w.jobNum, p.conf.WorkerContent, w.jobNum) || w.IsBlocking() {
-		// 	return nil
-		// } else {
-		// 	return w
-		// }
-
-		if atomic.CompareAndSwapInt64(&w.jobNum, p.conf.WorkerContent, w.jobNum) {
+		if atomic.CompareAndSwapInt64(&w.jobNum, p.conf.WorkerContent, w.jobNum) || w.IsBlocking() {
 			return nil
 		} else {
 			return w
 		}
+
 	}
 
 	w1, w2 := p.getTwoWorker(len(p.temporaryWorker), p.temporaryWorker)
@@ -219,6 +205,7 @@ func (p *Pool) newTempWorker() *worker {
 	go w.startWorker()
 	p.lockTemporary.Lock()
 	p.temporaryWorker = append(p.temporaryWorker, w)
+	fmt.Println("Create Temp Worker")
 	p.lockTemporary.Unlock()
 	return w
 }
@@ -263,11 +250,6 @@ func (p *Pool) getWorkFormEnternal() *worker {
 	// 这里使用p2c 策略来选取 worker
 	w1, w2 := p.getTwoWorker(int(p.conf.WorkerNum), p.eternalWorker)
 
-	if defaultLog != nil {
-		defaultLog.Debugw(fmt.Sprintf("Cur Select Worker Num is %d , jobNum is %d , Num is %d , jobNum is %d",
-			w1.ID, atomic.LoadInt64(&w1.jobNum), w2.ID, atomic.LoadInt64(&w2.jobNum)))
-	}
-
 	if atomic.CompareAndSwapInt64(&w1.jobNum, p.conf.WorkerContent, w1.jobNum) &&
 		atomic.CompareAndSwapInt64(&w2.jobNum, p.conf.WorkerContent, w2.jobNum) {
 		return nil
@@ -287,7 +269,6 @@ func (p *Pool) Close() {
 	}
 
 	atomic.AddInt32(&p.isClose, -1)
-	//p.cancel()
 	p.cancel()
 
 	fmt.Println("Closed")
