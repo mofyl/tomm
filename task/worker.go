@@ -43,7 +43,6 @@ func (w *worker) IsBlocking() bool {
 }
 
 func (w *worker) setBlock() {
-	fmt.Printf("set block work id is %d\n", w.ID)
 	atomic.StoreUint32(&w.Blocking, 1)
 }
 
@@ -88,7 +87,6 @@ func (w *worker) startWorker() {
 			w.excCtx(job)
 			atomic.AddInt64(&w.jobNum, -1)
 			atomic.StoreUint32(&w.Blocking, 0)
-			fmt.Printf("unset block work id is %d\n", w.ID)
 		}
 	}
 }

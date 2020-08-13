@@ -205,7 +205,7 @@ func (p *Pool) newTempWorker() *worker {
 	go w.startWorker()
 	p.lockTemporary.Lock()
 	p.temporaryWorker = append(p.temporaryWorker, w)
-	fmt.Println("Create Temp Worker")
+	// fmt.Println("Create Temp Worker")
 	p.lockTemporary.Unlock()
 	return w
 }
